@@ -12,6 +12,15 @@
 
     <title>Personal Information - Resume Builder</title>
 
+
+    <!-- International telephone input -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.5/dist/css/intlTelInput.css"
+    >
+
+
     <style>
 
         * {
@@ -20,188 +29,637 @@
             padding: 0;
         }
 
+
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
             background: #f5f7fb;
+
+            color: #172033;
+
+            min-height: 100vh;
+        }
+
+
+        /* =========================================
+           NAVBAR
+        ========================================= */
+
+        .navbar {
+
+            background: white;
+
+            border-bottom:
+                1px solid #e5e7eb;
+
+            padding:
+                18px 7%;
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+        }
+
+
+        .logo {
+
+            font-size: 22px;
+
+            font-weight: 800;
+
             color: #172033;
         }
 
-        .navbar {
-            background: white;
-            border-bottom: 1px solid #e5e7eb;
-            padding: 18px 7%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: 800;
-        }
 
         .navbar nav {
+
             display: flex;
+
             gap: 25px;
         }
 
+
         .navbar a {
+
             text-decoration: none;
+
             color: #172033;
+
             font-weight: 600;
         }
 
-        .page {
-            max-width: 1000px;
-            margin: auto;
-            padding: 60px 20px;
+
+        .navbar a:hover {
+
+            color: #4361ee;
         }
 
+
+
+        /* =========================================
+           PAGE
+        ========================================= */
+
+        .page {
+
+            max-width: 1050px;
+
+            margin: auto;
+
+            padding:
+                60px 20px;
+        }
+
+
         .header {
+
             text-align: center;
+
             margin-bottom: 35px;
         }
 
+
         .badge {
+
             display: inline-block;
-            background: #e8edff;
-            color: #4361ee;
-            padding: 8px 15px;
-            border-radius: 30px;
-            font-size: 14px;
-            font-weight: 700;
+
+            background:
+                #e8edff;
+
+            color:
+                #4361ee;
+
+            padding:
+                8px 15px;
+
+            border-radius:
+                30px;
+
+            font-size:
+                14px;
+
+            font-weight:
+                700;
         }
+
 
         h1 {
-            font-size: 42px;
-            margin: 18px 0 10px;
+
+            font-size:
+                42px;
+
+            margin:
+                18px 0 10px;
         }
+
 
         .header p {
-            color: #64748b;
-            font-size: 17px;
+
+            color:
+                #64748b;
+
+            font-size:
+                17px;
+
+            line-height:
+                1.6;
         }
+
+
+
+        /* =========================================
+           CARD
+        ========================================= */
 
         .card {
-            background: white;
-            padding: 35px;
-            border-radius: 18px;
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+
+            background:
+                white;
+
+            padding:
+                35px;
+
+            border-radius:
+                18px;
+
+            border:
+                1px solid #e5e7eb;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0, 0, 0, 0.05);
         }
+
 
         .card h2 {
-            margin-bottom: 25px;
+
+            margin-bottom:
+                25px;
+
+            font-size:
+                24px;
         }
+
+
+
+        /* =========================================
+           FORM GRID
+        ========================================= */
 
         .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 22px;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                22px;
         }
+
 
         .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                8px;
         }
+
 
         .full {
-            grid-column: 1 / -1;
+
+            grid-column:
+                1 / -1;
         }
+
 
         label {
-            font-weight: 700;
+
+            font-weight:
+                700;
+
+            color:
+                #172033;
         }
 
-        input {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #d5dbe5;
-            border-radius: 9px;
-            font-size: 15px;
-            outline: none;
-        }
-
-        input:focus {
-            border-color: #4361ee;
-            box-shadow: 0 0 0 3px rgba(67,97,238,0.12);
-        }
 
         .required {
-            color: #e63946;
+
+            color:
+                #e63946;
         }
+
+
+        .help-text {
+
+            font-size:
+                12px;
+
+            color:
+                #64748b;
+
+            line-height:
+                1.4;
+        }
+
+
+
+        /* =========================================
+           INPUTS
+        ========================================= */
+
+        input,
+        select {
+
+            width:
+                100%;
+
+            padding:
+                14px;
+
+            border:
+                1px solid #d5dbe5;
+
+            border-radius:
+                9px;
+
+            font-size:
+                15px;
+
+            outline:
+                none;
+
+            background:
+                white;
+
+            color:
+                #172033;
+
+            transition:
+                0.2s;
+        }
+
+
+        input:focus,
+        select:focus {
+
+            border-color:
+                #4361ee;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(67, 97, 238, 0.12);
+        }
+
+
+        input::placeholder {
+
+            color:
+                #9aa3b2;
+        }
+
+
+        select:disabled {
+
+            background:
+                #f1f3f7;
+
+            color:
+                #8b95a7;
+
+            cursor:
+                not-allowed;
+        }
+
+
+
+        /* =========================================
+           PHONE INPUT
+        ========================================= */
+
+        .phone-wrapper {
+
+            width:
+                100%;
+        }
+
+
+        .iti {
+
+            width:
+                100%;
+        }
+
+
+        .iti input {
+
+            width:
+                100%;
+
+            padding-top:
+                14px;
+
+            padding-bottom:
+                14px;
+        }
+
+
+        .iti__country-list {
+
+            max-width:
+                350px;
+        }
+
+
+
+        /* =========================================
+           LOCATION INFORMATION
+        ========================================= */
+
+        .location-note {
+
+            display:
+                none;
+
+            font-size:
+                13px;
+
+            color:
+                #64748b;
+
+            line-height:
+                1.5;
+
+            margin-top:
+                2px;
+        }
+
+
+        .location-status {
+
+            display:
+                none;
+
+            padding:
+                10px 12px;
+
+            margin-top:
+                10px;
+
+            background:
+                #f1f5ff;
+
+            border:
+                1px solid #dbe3ff;
+
+            border-radius:
+                8px;
+
+            color:
+                #4054a5;
+
+            font-size:
+                13px;
+        }
+
+
+
+        /* =========================================
+           BUTTONS
+        ========================================= */
 
         .actions {
-            margin-top: 25px;
-            display: flex;
-            justify-content: space-between;
-            gap: 15px;
+
+            margin-top:
+                25px;
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
         }
+
 
         .btn {
-            border: none;
-            border-radius: 10px;
-            padding: 14px 24px;
-            font-size: 15px;
-            font-weight: 700;
-            text-decoration: none;
-            cursor: pointer;
+
+            border:
+                none;
+
+            border-radius:
+                10px;
+
+            padding:
+                14px 24px;
+
+            font-size:
+                15px;
+
+            font-weight:
+                700;
+
+            text-decoration:
+                none;
+
+            cursor:
+                pointer;
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            transition:
+                0.2s;
         }
+
+
+        .btn:hover {
+
+            transform:
+                translateY(-1px);
+        }
+
 
         .back {
-            background: white;
-            color: #172033;
-            border: 1px solid #d5dbe5;
+
+            background:
+                white;
+
+            color:
+                #172033;
+
+            border:
+                1px solid #d5dbe5;
         }
 
+
         .next {
-            background: #4361ee;
-            color: white;
+
+            background:
+                #4361ee;
+
+            color:
+                white;
         }
+
+
+        .next:hover {
+
+            background:
+                #3048c8;
+        }
+
+
+
+        /* =========================================
+           ERROR
+        ========================================= */
+
+        .error-message {
+
+            display:
+                none;
+
+            color:
+                #dc2626;
+
+            background:
+                #fef2f2;
+
+            border:
+                1px solid #fecaca;
+
+            padding:
+                12px;
+
+            border-radius:
+                8px;
+
+            margin-bottom:
+                20px;
+
+            font-size:
+                14px;
+        }
+
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
 
         @media (max-width: 650px) {
 
             .navbar {
-                padding: 15px 5%;
+
+                padding:
+                    15px 5%;
             }
+
 
             .navbar nav {
-                gap: 12px;
+
+                gap:
+                    12px;
             }
+
 
             .navbar nav a {
-                font-size: 13px;
+
+                font-size:
+                    13px;
             }
+
 
             .page {
-                padding: 40px 15px;
+
+                padding:
+                    40px 15px;
             }
+
 
             h1 {
-                font-size: 32px;
+
+                font-size:
+                    32px;
             }
+
+
+            .header p {
+
+                font-size:
+                    15px;
+            }
+
 
             .card {
-                padding: 22px;
+
+                padding:
+                    22px;
+
+                border-radius:
+                    14px;
             }
+
 
             .form-grid {
-                grid-template-columns: 1fr;
+
+                grid-template-columns:
+                    1fr;
             }
+
 
             .full {
-                grid-column: auto;
+
+                grid-column:
+                    auto;
             }
+
 
             .actions {
-                flex-direction: column-reverse;
+
+                flex-direction:
+                    column-reverse;
             }
 
+
             .btn {
-                width: 100%;
-                text-align: center;
+
+                width:
+                    100%;
+
+                text-align:
+                    center;
             }
+
+
+            .iti__country-list {
+
+                max-width:
+                    300px;
+            }
+
         }
 
     </style>
@@ -212,11 +670,16 @@
 <body>
 
 
+<!-- =========================================
+     NAVBAR
+========================================= -->
+
 <header class="navbar">
 
     <div class="logo">
         Resume Builder
     </div>
+
 
     <nav>
 
@@ -237,6 +700,11 @@
 </header>
 
 
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
 <main class="page">
 
 
@@ -246,12 +714,14 @@
             Step 1 of 10
         </span>
 
+
         <h1>
             Personal Information
         </h1>
 
+
         <p>
-            Enter your basic information.
+            Tell us about yourself.
             Fields marked with
             <strong class="required">*</strong>
             are required.
@@ -260,10 +730,23 @@
     </div>
 
 
+
     <form id="personalForm">
 
 
+        <div
+            id="errorMessage"
+            class="error-message"
+        ></div>
+
+
+
+        <!-- =====================================
+             BASIC INFORMATION
+        ====================================== -->
+
         <div class="card">
+
 
             <h2>
                 Basic Information
@@ -273,150 +756,338 @@
             <div class="form-grid">
 
 
+                <!-- FIRST NAME -->
+
                 <div class="form-group">
 
-                    <label>
+                    <label for="firstName">
+
                         First Name
-                        <span class="required">*</span>
+
+                        <span class="required">
+                            *
+                        </span>
+
                     </label>
+
 
                     <input
                         type="text"
                         id="firstName"
                         placeholder="Enter your first name"
+                        autocomplete="given-name"
                         required
                     >
 
                 </div>
 
 
+
+                <!-- LAST NAME -->
+
                 <div class="form-group">
 
-                    <label>
+                    <label for="lastName">
+
                         Last Name
-                        <span class="required">*</span>
+
+                        <span class="required">
+                            *
+                        </span>
+
                     </label>
+
 
                     <input
                         type="text"
                         id="lastName"
                         placeholder="Enter your last name"
+                        autocomplete="family-name"
                         required
                     >
 
                 </div>
 
 
+
+                <!-- EMAIL -->
+
                 <div class="form-group">
 
-                    <label>
+                    <label for="email">
+
                         Email
-                        <span class="required">*</span>
+
+                        <span class="required">
+                            *
+                        </span>
+
                     </label>
+
 
                     <input
                         type="email"
                         id="email"
                         placeholder="you@example.com"
+                        autocomplete="email"
                         required
                     >
 
                 </div>
 
 
+
+                <!-- PHONE -->
+
                 <div class="form-group">
 
-                    <label>
-                        Phone
-                        <span class="required">*</span>
+                    <label for="phone">
+
+                        Mobile Number
+
+                        <span class="required">
+                            *
+                        </span>
+
                     </label>
 
-                    <input
-                        type="tel"
-                        id="phone"
-                        placeholder="+91 XXXXX XXXXX"
-                        required
-                    >
+
+                    <div class="phone-wrapper">
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="Mobile number"
+                            autocomplete="tel"
+                            required
+                        >
+
+                    </div>
+
+
+                    <small class="help-text">
+                        Select your country code from the flag.
+                    </small>
 
                 </div>
 
 
-                <div class="form-group">
 
-                    <label>
-                        City
-                        <span class="required">*</span>
-                    </label>
-
-                    <input
-                        type="text"
-                        id="city"
-                        placeholder="Your city"
-                        required
-                    >
-
-                </div>
-
+                <!-- =================================
+                     COUNTRY
+                ================================== -->
 
                 <div class="form-group">
 
-                    <label>
+                    <label for="country">
+
                         Country
-                        <span class="required">*</span>
+
+                        <span class="required">
+                            *
+                        </span>
+
                     </label>
+
+
+                    <select
+                        id="country"
+                        required
+                    >
+
+                        <option value="">
+                            Loading countries...
+                        </option>
+
+                    </select>
+
+
+                    <small class="help-text">
+                        Choose your country first.
+                    </small>
+
+                </div>
+
+
+
+                <!-- =================================
+                     STATE
+                ================================== -->
+
+                <div class="form-group">
+
+                    <label for="state">
+
+                        State / Province / Region
+
+                        <span class="required">
+                            *
+                        </span>
+
+                    </label>
+
+
+                    <select
+                        id="state"
+                        required
+                        disabled
+                    >
+
+                        <option value="">
+                            Select country first
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- =================================
+                     DISTRICT / CITY
+                ================================== -->
+
+                <div class="form-group">
+
+                    <label for="district">
+
+                        District / City / Region
+
+                        <span class="required">
+                            *
+                        </span>
+
+                    </label>
+
+
+                    <select
+                        id="district"
+                        required
+                        disabled
+                    >
+
+                        <option value="">
+                            Select state / region first
+                        </option>
+
+                    </select>
+
+
+                    <small
+                        id="districtNote"
+                        class="location-note"
+                    ></small>
+
+
+                    <div
+                        id="locationStatus"
+                        class="location-status"
+                    ></div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     POSTAL CODE
+                ================================== -->
+
+                <div class="form-group">
+
+                    <label for="postalCode">
+
+                        PIN / ZIP / Postal Code
+
+                        <span class="required">
+                            *
+                        </span>
+
+                    </label>
+
 
                     <input
                         type="text"
-                        id="country"
-                        placeholder="Your country"
+                        id="postalCode"
+                        placeholder="PIN / ZIP / Postal code"
+                        autocomplete="postal-code"
                         required
                     >
 
                 </div>
 
+
+
+                <!-- =================================
+                     PROFESSIONAL TITLE
+                ================================== -->
 
                 <div class="form-group full">
 
-                    <label>
+                    <label for="professionalTitle">
+
                         Professional Title
-                        <span class="required">*</span>
+
+                        <span class="required">
+                            *
+                        </span>
+
                     </label>
+
 
                     <input
                         type="text"
                         id="professionalTitle"
                         placeholder="e.g. Software Developer"
+                        autocomplete="organization-title"
                         required
                     >
 
                 </div>
 
 
+
+                <!-- =================================
+                     LINKEDIN
+                ================================== -->
+
                 <div class="form-group full">
 
-                    <label>
+                    <label for="linkedin">
+
                         LinkedIn Profile
+
                     </label>
+
 
                     <input
                         type="url"
                         id="linkedin"
                         placeholder="https://linkedin.com/in/your-profile"
+                        autocomplete="url"
                     >
 
                 </div>
 
 
+
+                <!-- =================================
+                     WEBSITE
+                ================================== -->
+
                 <div class="form-group full">
 
-                    <label>
+                    <label for="website">
+
                         Portfolio / Website
+
                     </label>
+
 
                     <input
                         type="url"
                         id="website"
                         placeholder="https://yourwebsite.com"
+                        autocomplete="url"
                     >
 
                 </div>
@@ -427,7 +1098,13 @@
         </div>
 
 
+
+        <!-- =====================================
+             BUTTONS
+        ====================================== -->
+
         <div class="actions">
+
 
             <a
                 href="index.html"
@@ -444,6 +1121,7 @@
                 Save & Continue →
             </button>
 
+
         </div>
 
 
@@ -453,122 +1131,1612 @@
 </main>
 
 
-<script>
 
-    const savedData =
-        JSON.parse(
-            localStorage.getItem("resumePersonalData")
+<!-- =========================================
+     PHONE LIBRARY
+========================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.5/dist/js/intlTelInput.min.js"></script>
+
+
+
+<!-- =========================================
+     LOCATION + FORM JAVASCRIPT
+========================================= -->
+
+<script type="module">
+
+
+/*
+========================================================
+IMPORT INTERNATIONAL COUNTRY / STATE / CITY DATA
+========================================================
+
+The browser package provides:
+
+getCountries()
+getStatesOfCountry()
+getCitiesOfState()
+
+and loads location data on demand.
+========================================================
+*/
+
+
+import {
+
+    getCountries,
+
+    getStatesOfCountry,
+
+    getCitiesOfState
+
+}
+from
+"https://cdn.jsdelivr.net/npm/@countrystatecity/countries-browser@2.0.0/+esm";
+
+
+
+/*
+========================================================
+ELEMENTS
+========================================================
+*/
+
+
+const phoneInput =
+    document.getElementById("phone");
+
+
+const countrySelect =
+    document.getElementById("country");
+
+
+const stateSelect =
+    document.getElementById("state");
+
+
+const districtSelect =
+    document.getElementById("district");
+
+
+const districtNote =
+    document.getElementById("districtNote");
+
+
+const locationStatus =
+    document.getElementById("locationStatus");
+
+
+const errorMessage =
+    document.getElementById("errorMessage");
+
+
+
+/*
+========================================================
+PHONE NUMBER
+========================================================
+*/
+
+
+const phone =
+    window.intlTelInput(
+        phoneInput,
+        {
+
+            initialCountry: "in",
+
+            separateDialCode: true,
+
+            countrySelectorMode: "auto",
+
+            preferredCountries: [
+                "in",
+                "us",
+                "gb",
+                "ca",
+                "au",
+                "ae"
+            ],
+
+            loadUtils: () =>
+                import(
+                    "https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.5/dist/js/utils.js"
+                )
+
+        }
+    );
+
+
+
+/*
+========================================================
+INDIA DATA
+========================================================
+
+India gets its dedicated:
+
+State → District
+
+dataset.
+
+========================================================
+*/
+
+
+let indiaData = [];
+
+
+
+/*
+========================================================
+LOAD INDIA DATA
+========================================================
+*/
+
+
+async function loadIndiaData() {
+
+    try {
+
+        const response =
+            await fetch(
+                "https://raw.githubusercontent.com/CodingMation/indian-states-districts/main/data/india_states_districts.min.json"
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "India location data unavailable."
+            );
+
+        }
+
+
+        indiaData =
+            await response.json();
+
+
+        console.log(
+            "India state/district data loaded."
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "India data error:",
+            error
+        );
+
+    }
+
+}
+
+
+
+/*
+========================================================
+LOAD ALL COUNTRIES
+========================================================
+*/
+
+
+async function loadCountries() {
+
+    try {
+
+
+        showLocationStatus(
+            "Loading international countries..."
         );
 
 
-    if (savedData) {
+        const countries =
+            await getCountries();
 
-        document.getElementById("firstName").value =
-            savedData.firstName || "";
 
-        document.getElementById("lastName").value =
-            savedData.lastName || "";
+        countrySelect.innerHTML =
+            '<option value="">Select country</option>';
 
-        document.getElementById("email").value =
-            savedData.email || "";
 
-        document.getElementById("phone").value =
-            savedData.phone || "";
+        countries
+            .sort(
+                (a, b) =>
+                    a.name.localeCompare(b.name)
+            )
+            .forEach(country => {
 
-        document.getElementById("city").value =
-            savedData.city || "";
 
-        document.getElementById("country").value =
-            savedData.country || "";
+                const option =
+                    document.createElement(
+                        "option"
+                    );
 
-        document.getElementById("professionalTitle").value =
-            savedData.professionalTitle || "";
 
-        document.getElementById("linkedin").value =
-            savedData.linkedin || "";
+                option.value =
+                    country.iso2;
 
-        document.getElementById("website").value =
-            savedData.website || "";
+
+                option.textContent =
+                    `${country.emoji || ""} ${country.name}`;
+
+
+                countrySelect.appendChild(
+                    option
+                );
+
+            });
+
+
+        hideLocationStatus();
+
+
+        /*
+        Restore saved information
+        */
+
+        const saved =
+            getSavedData();
+
+
+        if (
+            saved &&
+            saved.countryCode
+        ) {
+
+
+            countrySelect.value =
+                saved.countryCode;
+
+
+            await handleCountryChange(
+                saved.stateCode || "",
+                saved.districtCode || ""
+            );
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Country loading error:",
+            error
+        );
+
+
+        countrySelect.innerHTML =
+            '<option value="">Unable to load countries</option>';
+
+
+        showLocationStatus(
+            "Unable to load country data. Please refresh the page."
+        );
+
+    }
+
+}
+
+
+
+/*
+========================================================
+COUNTRY CHANGED
+========================================================
+*/
+
+
+countrySelect.addEventListener(
+    "change",
+    async function() {
+
+        await handleCountryChange();
+
+    }
+);
+
+
+
+/*
+========================================================
+HANDLE COUNTRY
+========================================================
+*/
+
+
+async function handleCountryChange(
+    savedStateCode = "",
+    savedDistrictCode = ""
+) {
+
+
+    const countryCode =
+        countrySelect.value;
+
+
+    /*
+    Reset state
+    */
+
+    stateSelect.innerHTML =
+        '<option value="">Select state / province / region</option>';
+
+
+    stateSelect.disabled =
+        true;
+
+
+    /*
+    Reset city/district
+    */
+
+    districtSelect.innerHTML =
+        '<option value="">Select state / region first</option>';
+
+
+    districtSelect.disabled =
+        true;
+
+
+    districtNote.style.display =
+        "none";
+
+
+    hideLocationStatus();
+
+
+
+    if (!countryCode) {
+
+        return;
 
     }
 
 
-    document
-        .getElementById("personalForm")
-        .addEventListener("submit", function(event) {
+
+    /*
+    ================================================
+    INDIA
+    ================================================
+    */
+
+    if (
+        countryCode.toUpperCase() === "IN"
+    ) {
+
+
+        loadIndiaStates(
+            savedStateCode,
+            savedDistrictCode
+        );
+
+
+        return;
+
+    }
+
+
+
+    /*
+    ================================================
+    OTHER COUNTRIES
+    ================================================
+    */
+
+    await loadInternationalStates(
+        countryCode,
+        savedStateCode,
+        savedDistrictCode
+    );
+
+}
+
+
+
+/*
+========================================================
+INDIA STATES
+========================================================
+*/
+
+
+function loadIndiaStates(
+    savedStateCode = "",
+    savedDistrictCode = ""
+) {
+
+
+    stateSelect.innerHTML =
+        '<option value="">Select Indian state / UT</option>';
+
+
+    indiaData
+        .slice()
+        .sort(
+            (a, b) =>
+                a.name.localeCompare(b.name)
+        )
+        .forEach(state => {
+
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                state.code;
+
+
+            option.textContent =
+                state.name;
+
+
+            stateSelect.appendChild(
+                option
+            );
+
+        });
+
+
+    stateSelect.disabled =
+        false;
+
+
+    districtNote.style.display =
+        "block";
+
+
+    districtNote.textContent =
+        "For India, this list contains States and Union Territories. The next field contains districts.";
+
+
+    if (savedStateCode) {
+
+
+        stateSelect.value =
+            savedStateCode;
+
+
+        if (stateSelect.value) {
+
+
+            loadIndiaDistricts(
+                savedStateCode,
+                savedDistrictCode
+            );
+
+        }
+
+    }
+
+}
+
+
+
+/*
+========================================================
+INDIA DISTRICTS
+========================================================
+*/
+
+
+function loadIndiaDistricts(
+    stateCode,
+    savedDistrictCode = ""
+) {
+
+
+    const selectedState =
+        indiaData.find(
+            state =>
+                state.code === stateCode
+        );
+
+
+    districtSelect.innerHTML =
+        '<option value="">Select district</option>';
+
+
+    if (
+        !selectedState ||
+        !selectedState.districts
+    ) {
+
+
+        districtSelect.innerHTML =
+            '<option value="">No districts available</option>';
+
+
+        districtSelect.disabled =
+            true;
+
+
+        return;
+
+    }
+
+
+    selectedState.districts
+        .slice()
+        .sort(
+            (a, b) =>
+                a.name.localeCompare(b.name)
+        )
+        .forEach(district => {
+
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                district.code;
+
+
+            option.textContent =
+                district.name;
+
+
+            districtSelect.appendChild(
+                option
+            );
+
+        });
+
+
+    districtSelect.disabled =
+        false;
+
+
+    if (savedDistrictCode) {
+
+        districtSelect.value =
+            savedDistrictCode;
+
+    }
+
+}
+
+
+
+/*
+========================================================
+INTERNATIONAL STATES
+========================================================
+*/
+
+
+async function loadInternationalStates(
+    countryCode,
+    savedStateCode = "",
+    savedDistrictCode = ""
+) {
+
+
+    try {
+
+
+        showLocationStatus(
+            "Loading states / provinces / regions..."
+        );
+
+
+        stateSelect.innerHTML =
+            '<option value="">Loading...</option>';
+
+
+        const states =
+            await getStatesOfCountry(
+                countryCode
+            );
+
+
+        stateSelect.innerHTML =
+            '<option value="">Select state / province / region</option>';
+
+
+        /*
+        Some countries may not have
+        state-level data.
+        */
+
+        if (
+            !states ||
+            states.length === 0
+        ) {
+
+
+            stateSelect.innerHTML =
+                '<option value="">No state / region data available</option>';
+
+
+            stateSelect.disabled =
+                true;
+
+
+            districtSelect.innerHTML =
+                '<option value="">No location data available</option>';
+
+
+            districtSelect.disabled =
+                true;
+
+
+            districtNote.style.display =
+                "block";
+
+
+            districtNote.textContent =
+                "State/region information is not available for this country in the current dataset.";
+
+
+            hideLocationStatus();
+
+
+            return;
+
+        }
+
+
+
+        /*
+        Add states
+        */
+
+        states
+            .slice()
+            .sort(
+                (a, b) =>
+                    a.name.localeCompare(b.name)
+            )
+            .forEach(state => {
+
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                option.value =
+                    state.iso2;
+
+
+                option.textContent =
+                    state.name;
+
+
+                stateSelect.appendChild(
+                    option
+                );
+
+            });
+
+
+        stateSelect.disabled =
+            false;
+
+
+        districtNote.style.display =
+            "block";
+
+
+        districtNote.textContent =
+            "Select a state, province or region to load its cities/towns.";
+
+
+        hideLocationStatus();
+
+
+
+        /*
+        Restore saved state
+        */
+
+        if (savedStateCode) {
+
+
+            stateSelect.value =
+                savedStateCode;
+
+
+            if (stateSelect.value) {
+
+
+                await loadInternationalCities(
+                    countryCode,
+                    savedStateCode,
+                    savedDistrictCode
+                );
+
+            }
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "International state error:",
+            error
+        );
+
+
+        stateSelect.innerHTML =
+            '<option value="">Unable to load states</option>';
+
+
+        stateSelect.disabled =
+            true;
+
+
+        showLocationStatus(
+            "State/region data could not be loaded. Please try again."
+        );
+
+    }
+
+}
+
+
+
+/*
+========================================================
+STATE CHANGED
+========================================================
+*/
+
+
+stateSelect.addEventListener(
+    "change",
+    async function() {
+
+
+        const countryCode =
+            countrySelect.value;
+
+
+        const stateCode =
+            stateSelect.value;
+
+
+        districtSelect.innerHTML =
+            '<option value="">Loading locations...</option>';
+
+
+        districtSelect.disabled =
+            true;
+
+
+
+        if (!stateCode) {
+
+
+            districtSelect.innerHTML =
+                '<option value="">Select state / region first</option>';
+
+
+            return;
+
+        }
+
+
+
+        /*
+        INDIA
+        */
+
+        if (
+            countryCode.toUpperCase() === "IN"
+        ) {
+
+
+            loadIndiaDistricts(
+                stateCode
+            );
+
+
+            return;
+
+        }
+
+
+
+        /*
+        INTERNATIONAL
+        */
+
+        await loadInternationalCities(
+            countryCode,
+            stateCode
+        );
+
+    }
+);
+
+
+
+/*
+========================================================
+INTERNATIONAL CITIES
+========================================================
+*/
+
+
+async function loadInternationalCities(
+    countryCode,
+    stateCode,
+    savedDistrictCode = ""
+) {
+
+
+    try {
+
+
+        showLocationStatus(
+            "Loading cities / towns..."
+        );
+
+
+        districtSelect.innerHTML =
+            '<option value="">Loading...</option>';
+
+
+        const cities =
+            await getCitiesOfState(
+                countryCode,
+                stateCode
+            );
+
+
+        districtSelect.innerHTML =
+            '<option value="">Select city / town</option>';
+
+
+        if (
+            !cities ||
+            cities.length === 0
+        ) {
+
+
+            districtSelect.innerHTML =
+                '<option value="">No city data available</option>';
+
+
+            districtSelect.disabled =
+                true;
+
+
+            hideLocationStatus();
+
+
+            return;
+
+        }
+
+
+
+        /*
+        Remove duplicate city names
+        */
+
+        const uniqueCities =
+            Array.from(
+                new Map(
+                    cities.map(
+                        city =>
+                            [
+                                city.name
+                                    .trim()
+                                    .toLowerCase(),
+
+                                city
+                            ]
+                    )
+                ).values()
+            );
+
+
+
+        /*
+        Sort alphabetically
+        */
+
+        uniqueCities
+            .sort(
+                (a, b) =>
+                    a.name.localeCompare(b.name)
+            )
+            .forEach(city => {
+
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                option.value =
+                    String(city.id);
+
+
+                option.textContent =
+                    city.name;
+
+
+                districtSelect.appendChild(
+                    option
+                );
+
+            });
+
+
+        districtSelect.disabled =
+            false;
+
+
+        hideLocationStatus();
+
+
+
+        /*
+        Restore saved city
+        */
+
+        if (savedDistrictCode) {
+
+            districtSelect.value =
+                savedDistrictCode;
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "International city error:",
+            error
+        );
+
+
+        districtSelect.innerHTML =
+            '<option value="">Unable to load cities</option>';
+
+
+        districtSelect.disabled =
+            true;
+
+
+        showLocationStatus(
+            "City data could not be loaded. Please try again."
+        );
+
+    }
+
+}
+
+
+
+/*
+========================================================
+POSTAL CODE PLACEHOLDER
+========================================================
+
+Changes the example according to country.
+========================================================
+*/
+
+
+countrySelect.addEventListener(
+    "change",
+    function() {
+
+        updatePostalPlaceholder();
+
+    }
+);
+
+
+
+function updatePostalPlaceholder() {
+
+
+    const country =
+        countrySelect.value
+            .toUpperCase();
+
+
+    const postalInput =
+        document.getElementById(
+            "postalCode"
+        );
+
+
+    const placeholders = {
+
+        IN:
+            "e.g. 416001",
+
+        US:
+            "e.g. 10001",
+
+        CA:
+            "e.g. M5V 3A8",
+
+        GB:
+            "e.g. SW1A 1AA",
+
+        AU:
+            "e.g. 2000",
+
+        DE:
+            "e.g. 10115",
+
+        FR:
+            "e.g. 75001",
+
+        AE:
+            "Postal code if applicable",
+
+        SG:
+            "e.g. 018956",
+
+        JP:
+            "e.g. 100-0001",
+
+        NZ:
+            "e.g. 6011",
+
+        BR:
+            "e.g. 01001-000"
+
+    };
+
+
+    postalInput.placeholder =
+        placeholders[country] ||
+        "PIN / ZIP / Postal code";
+
+}
+
+
+
+/*
+========================================================
+FORM VALIDATION
+========================================================
+*/
+
+
+function showError(message) {
+
+    errorMessage.textContent =
+        message;
+
+    errorMessage.style.display =
+        "block";
+
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+
+function hideError() {
+
+    errorMessage.style.display =
+        "none";
+
+}
+
+
+
+/*
+========================================================
+PHONE VALIDATION
+========================================================
+*/
+
+
+function validatePhone() {
+
+
+    if (!phoneInput.value.trim()) {
+
+        return false;
+
+    }
+
+
+    try {
+
+        return phone.isValidNumber();
+
+    }
+
+    catch {
+
+        return true;
+
+    }
+
+}
+
+
+
+/*
+========================================================
+FORM SUBMISSION
+========================================================
+*/
+
+
+document
+    .getElementById("personalForm")
+    .addEventListener(
+        "submit",
+        async function(event) {
+
 
             event.preventDefault();
 
 
+            hideError();
+
+
+
+            /*
+            Native required-field validation
+            */
+
+            if (
+                !this.checkValidity()
+            ) {
+
+                this.reportValidity();
+
+                return;
+
+            }
+
+
+
+            /*
+            Phone validation
+            */
+
+            if (
+                !validatePhone()
+            ) {
+
+
+                showError(
+                    "Please enter a valid mobile number for the selected country."
+                );
+
+
+                phoneInput.focus();
+
+
+                return;
+
+            }
+
+
+
+            /*
+            Selected country
+            */
+
+            const countryOption =
+                countrySelect.options[
+                    countrySelect.selectedIndex
+                ];
+
+
+
+            /*
+            Selected state
+            */
+
+            const stateOption =
+                stateSelect.options[
+                    stateSelect.selectedIndex
+                ];
+
+
+
+            /*
+            Selected district/city
+            */
+
+            const districtOption =
+                districtSelect.options[
+                    districtSelect.selectedIndex
+                ];
+
+
+
+            /*
+            Full international phone
+            */
+
+            let fullPhone = "";
+
+
+            try {
+
+                fullPhone =
+                    phone.getNumber();
+
+            }
+
+            catch {
+
+                fullPhone =
+                    phoneInput.value.trim();
+
+            }
+
+
+
+            /*
+            COUNTRY NAME
+            */
+
+            const countryName =
+                countryOption &&
+                countryOption.value
+                    ? countryOption
+                        .textContent
+                        .trim()
+                    : "";
+
+
+
+            /*
+            STATE NAME
+            */
+
+            const stateName =
+                stateOption &&
+                stateOption.value
+                    ? stateOption
+                        .textContent
+                        .trim()
+                    : "";
+
+
+
+            /*
+            DISTRICT/CITY NAME
+            */
+
+            const districtName =
+                districtOption &&
+                districtOption.value
+                    ? districtOption
+                        .textContent
+                        .trim()
+                    : "";
+
+
+
+            /*
+            DATA OBJECT
+            */
+
             const personalData = {
+
 
                 firstName:
                     document
-                        .getElementById("firstName")
+                        .getElementById(
+                            "firstName"
+                        )
                         .value
                         .trim(),
+
 
                 lastName:
                     document
-                        .getElementById("lastName")
+                        .getElementById(
+                            "lastName"
+                        )
                         .value
                         .trim(),
+
 
                 email:
                     document
-                        .getElementById("email")
+                        .getElementById(
+                            "email"
+                        )
                         .value
                         .trim(),
+
 
                 phone:
-                    document
-                        .getElementById("phone")
-                        .value
-                        .trim(),
+                    fullPhone,
 
-                city:
-                    document
-                        .getElementById("city")
-                        .value
-                        .trim(),
+
+                countryCode:
+                    countrySelect.value,
+
 
                 country:
+                    countryName,
+
+
+                stateCode:
+                    stateSelect.value,
+
+
+                state:
+                    stateName,
+
+
+                districtCode:
+                    districtSelect.value,
+
+
+                district:
+                    districtName,
+
+
+                postalCode:
                     document
-                        .getElementById("country")
+                        .getElementById(
+                            "postalCode"
+                        )
                         .value
                         .trim(),
+
 
                 professionalTitle:
                     document
-                        .getElementById("professionalTitle")
+                        .getElementById(
+                            "professionalTitle"
+                        )
                         .value
                         .trim(),
+
 
                 linkedin:
                     document
-                        .getElementById("linkedin")
+                        .getElementById(
+                            "linkedin"
+                        )
                         .value
                         .trim(),
 
+
                 website:
                     document
-                        .getElementById("website")
+                        .getElementById(
+                            "website"
+                        )
                         .value
                         .trim()
 
             };
 
 
+
+            /*
+            SAVE TO BROWSER
+            */
+
             localStorage.setItem(
+
                 "resumePersonalData",
-                JSON.stringify(personalData)
+
+                JSON.stringify(
+                    personalData
+                )
+
             );
 
+
+
+            /*
+            GO TO NEXT STEP
+            */
 
             window.location.href =
                 "summary.html";
 
-        });
+        }
+    );
+
+
+
+/*
+========================================================
+GET SAVED DATA
+========================================================
+*/
+
+
+function getSavedData() {
+
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(
+                "resumePersonalData"
+            )
+        );
+
+    }
+
+    catch {
+
+        return null;
+
+    }
+
+}
+
+
+
+/*
+========================================================
+RESTORE PERSONAL INFORMATION
+========================================================
+*/
+
+
+function restoreBasicInformation() {
+
+
+    const saved =
+        getSavedData();
+
+
+    if (!saved) {
+
+        return;
+
+    }
+
+
+
+    document.getElementById(
+        "firstName"
+    ).value =
+        saved.firstName || "";
+
+
+    document.getElementById(
+        "lastName"
+    ).value =
+        saved.lastName || "";
+
+
+    document.getElementById(
+        "email"
+    ).value =
+        saved.email || "";
+
+
+    document.getElementById(
+        "professionalTitle"
+    ).value =
+        saved.professionalTitle || "";
+
+
+    document.getElementById(
+        "linkedin"
+    ).value =
+        saved.linkedin || "";
+
+
+    document.getElementById(
+        "website"
+    ).value =
+        saved.website || "";
+
+
+    document.getElementById(
+        "postalCode"
+    ).value =
+        saved.postalCode || "";
+
+
+    /*
+    Phone
+    */
+
+    if (saved.phone) {
+
+        try {
+
+            phone.setNumber(
+                saved.phone
+            );
+
+        }
+
+        catch {
+
+            phoneInput.value =
+                saved.phone;
+
+        }
+
+    }
+
+}
+
+
+
+/*
+========================================================
+LOCATION STATUS
+========================================================
+*/
+
+
+function showLocationStatus(
+    message
+) {
+
+    locationStatus.textContent =
+        message;
+
+    locationStatus.style.display =
+        "block";
+
+}
+
+
+
+function hideLocationStatus() {
+
+    locationStatus.style.display =
+        "none";
+
+}
+
+
+
+/*
+========================================================
+START
+========================================================
+*/
+
+
+restoreBasicInformation();
+
+
+await loadIndiaData();
+
+
+await loadCountries();
+
+
+updatePostalPlaceholder();
+
 
 </script>
 
