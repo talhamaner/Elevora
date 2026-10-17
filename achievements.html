@@ -4,9 +4,10 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Achievements - Elevora</title>
+<title>Achievements | Elevora</title>
 
 <link rel="stylesheet" href="css/style.css">
 
@@ -15,11 +16,13 @@
 
 </head>
 
+
 <body>
+
 
 <header class="navbar">
 
-<a class="logo" href="index.html">Elevora</a>
+<a href="index.html" class="logo">Elevora</a>
 
 <nav class="nav-links">
 
@@ -28,182 +31,153 @@
 <a href="preview.html">Preview</a>
 <a href="cover-letter.html">Cover Letter</a>
 
-<button id="themeToggle" class="theme-toggle">🌙</button>
+<button id="themeToggle" class="theme-toggle" type="button">🌙</button>
 
 </nav>
 
 </header>
 
 
-<main class="container">
+<main class="page-container">
 
-<div class="page-head">
+
+<div class="form-header">
+
+<div class="step-number">9</div>
+
+<div>
 
 <h1>Achievements</h1>
 
-<p>Add awards, competitions, publications and other achievements.</p>
+<p>
+Highlight awards, accomplishments and recognition.
+</p>
+
+</div>
 
 </div>
 
 
-<div class="builder">
+<div class="progress-wrapper">
 
-<aside class="steps">
+<div class="progress-bar">
+<div class="progress-fill" style="width:90%"></div>
+</div>
 
-<a href="personal.html">1. Personal</a>
-<a href="summary.html">2. Summary</a>
-<a href="education.html">3. Education</a>
-<a href="experience.html">4. Experience</a>
-<a href="projects.html">5. Projects</a>
-<a href="skills.html">6. Skills</a>
-<a href="certifications.html">7. Certifications</a>
-<a href="languages.html">8. Languages</a>
-<a href="achievements.html">9. Achievements</a>
-<a href="preview.html">10. Preview</a>
+<span>9 of 10</span>
 
-</aside>
+</div>
 
-
-<section class="form-card">
 
 <div id="entryList" class="entry-list"></div>
 
-<form id="entryForm">
 
-<div class="form-grid">
+<form id="entryForm" class="form-card">
 
-<div class="form-group">
-
-<label>Achievement Title</label>
-
-<input
-id="title"
-placeholder="Hackathon Winner">
-
-</div>
 
 <div class="form-group">
 
-<label>Organization</label>
+<label>Achievement</label>
 
-<input
-id="organization"
-placeholder="Example Organization">
+<input id="title" placeholder="Achievement or award">
 
 </div>
+
+
+<div class="form-group">
+
+<label>Organization / Event</label>
+
+<input id="organization" placeholder="Organization or event">
+
+</div>
+
 
 <div class="form-group">
 
 <label>Year</label>
 
-<input
-id="year"
-type="number"
-placeholder="2025">
+<input id="year" type="number" placeholder="2025">
 
 </div>
 
-<div class="form-group full">
+
+<div class="form-group">
 
 <label>Description</label>
 
-<textarea
-id="description"
-placeholder="Describe the achievement...">
-</textarea>
-
-</div>
+<textarea id="description" placeholder="Describe your achievement..."></textarea>
 
 </div>
 
 
-<div class="actions">
+<div class="form-actions">
 
-<button
-type="button"
-id="cancelEdit"
-class="btn secondary"
-style="display:none">
+<a href="languages.html" class="btn secondary">
+← Back
+</a>
 
-Cancel Edit
+<div style="display:flex;gap:10px;">
 
+<button type="button" id="cancelEdit" class="btn secondary" style="display:none">
+Cancel
 </button>
 
-<button
-id="saveBtn"
-class="btn">
-
+<button type="submit" id="saveBtn" class="btn primary">
 + Add Achievement
-
 </button>
 
 </div>
 
-<div id="status" class="status"></div>
+</div>
+
+
+<div id="status" class="form-status"></div>
 
 </form>
 
 
-<div class="actions">
+<div class="form-actions">
 
-<a
-class="btn secondary"
-href="languages.html">
-
+<a href="languages.html" class="btn secondary">
 ← Back
-
 </a>
 
-<a
-class="btn"
-href="preview.html">
-
-Go to Resume Preview →
-
+<a href="preview.html" class="btn primary">
+Save & Preview →
 </a>
 
 </div>
 
-</section>
-
-</div>
 
 </main>
 
 
 <script>
 
-window.MULTI_CONFIG={
+window.MULTI_CONFIG = {
 
 key:"achievements",
 
 addText:"+ Add Achievement",
 
 fields:[
-
 {id:"title"},
 {id:"organization"},
 {id:"year"},
-{id:"description",type:"textarea"}
-
+{id:"description"}
 ],
 
-title:function(entry){
+title:entry =>
+entry.title || "Achievement",
 
-return entry.title || "Achievement";
-
-},
-
-meta:function(entry){
-
-return [
+meta:entry =>
+[
 entry.organization,
 entry.year
 ]
 .filter(Boolean)
-.join(" • ");
-
-}
+.join(" • ")
 
 };
 
@@ -212,5 +186,4 @@ entry.year
 <script src="js/multi.js"></script>
 
 </body>
-
 </html>
