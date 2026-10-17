@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Skills | Elevora</title>
+<title>Skills - Elevora</title>
 
-  <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css">
 
-  <script src="theme.js"></script>
-  <script src="js/app.js"></script>
+<script src="theme.js"></script>
+<script src="js/app.js"></script>
 
 </head>
 
@@ -18,212 +19,163 @@
 
 <header class="navbar">
 
-  <a href="index.html" class="logo">Elevora</a>
+<a class="logo" href="index.html">Elevora</a>
 
-  <nav class="nav-links">
+<nav class="nav-links">
 
-    <a href="index.html">Home</a>
-    <a href="personal.html" class="active">Resume</a>
-    <a href="preview.html">Preview</a>
+<a href="index.html">Home</a>
+<a href="personal.html">Resume</a>
+<a href="preview.html">Preview</a>
+<a href="cover-letter.html">Cover Letter</a>
 
-    <button
-      id="themeToggle"
-      class="theme-toggle"
-      type="button"
-    >
-      🌙
-    </button>
+<button id="themeToggle" class="theme-toggle">🌙</button>
 
-  </nav>
+</nav>
 
 </header>
 
 
-<main class="builder-wrapper">
+<main class="container">
 
-  <div class="progress-wrapper">
+<div class="page-head">
 
-    <div
-      class="progress-bar"
-      style="--progress: 55%"
-    >
-      <div class="progress-fill"></div>
-    </div>
+<h1>Skills</h1>
 
-    <div class="progress-text">
-      <span>Step 6 of 11</span>
-      <span>Skills</span>
-    </div>
+<p>Add technical skills, soft skills and other skill categories.</p>
 
-  </div>
+</div>
 
 
-  <div class="page-heading">
+<div class="builder">
 
-    <span class="eyebrow">STEP 06</span>
+<aside class="steps">
 
-    <h1>Skills</h1>
+<a href="personal.html">1. Personal</a>
+<a href="summary.html">2. Summary</a>
+<a href="education.html">3. Education</a>
+<a href="experience.html">4. Experience</a>
+<a href="projects.html">5. Projects</a>
+<a href="skills.html">6. Skills</a>
+<a href="certifications.html">7. Certifications</a>
+<a href="languages.html">8. Languages</a>
+<a href="achievements.html">9. Achievements</a>
+<a href="preview.html">10. Preview</a>
 
-    <p>
-      Add your technical and professional skills.
-    </p>
-
-  </div>
-
-
-  <form id="skillsForm" class="form-card">
-
-    <div class="form-grid">
-
-      <div class="form-group full">
-
-        <label>
-          Technical Skills
-        </label>
-
-        <textarea
-          id="technicalSkills"
-          placeholder="JavaScript, HTML, CSS, Python, React, SQL..."
-        ></textarea>
-
-        <span class="form-help">
-          Separate skills with commas.
-        </span>
-
-      </div>
+</aside>
 
 
-      <div class="form-group full">
+<section class="form-card">
 
-        <label>
-          Soft Skills
-        </label>
+<div id="entryList" class="entry-list"></div>
 
-        <textarea
-          id="softSkills"
-          placeholder="Communication, Leadership, Teamwork, Problem Solving..."
-        ></textarea>
+<form id="entryForm">
 
-      </div>
+<div class="form-grid">
 
+<div class="form-group">
 
-      <div class="form-group full">
+<label>Category</label>
 
-        <label>
-          Tools & Technologies
-        </label>
+<input
+id="category"
+placeholder="Technical Skills">
 
-        <textarea
-          id="tools"
-          placeholder="Git, GitHub, VS Code, Figma..."
-        ></textarea>
-
-      </div>
-
-    </div>
+</div>
 
 
-    <div class="form-actions">
+<div class="form-group">
 
-      <a
-        href="projects.html"
-        class="btn btn-secondary"
-      >
-        ← Back
-      </a>
+<label>Skills</label>
 
-      <button
-        type="submit"
-        class="btn btn-primary"
-      >
-        Save & Continue →
-      </button>
+<input
+id="skills"
+placeholder="HTML, CSS, JavaScript, Git">
 
-    </div>
+</div>
 
-  </form>
+</div>
+
+
+<div class="actions">
+
+<button
+type="button"
+id="cancelEdit"
+class="btn secondary"
+style="display:none">
+
+Cancel Edit
+
+</button>
+
+<button
+id="saveBtn"
+class="btn">
+
++ Add Skill Group
+
+</button>
+
+</div>
+
+<div id="status" class="status"></div>
+
+</form>
+
+
+<div class="actions">
+
+<a class="btn secondary" href="projects.html">
+← Back
+</a>
+
+<a class="btn" href="certifications.html">
+Save & Continue →
+</a>
+
+</div>
+
+</section>
+
+</div>
 
 </main>
 
 
 <script>
 
-document.addEventListener(
-  "DOMContentLoaded",
-  function () {
+window.MULTI_CONFIG={
 
-    const data =
-      getJSON(
-        STORAGE_KEYS.skills,
-        {}
-      );
+key:"skills",
 
+addText:"+ Add Skill Group",
 
-    document.getElementById(
-      "technicalSkills"
-    ).value =
-      data.technicalSkills || "";
+fields:[
 
+{id:"category"},
 
-    document.getElementById(
-      "softSkills"
-    ).value =
-      data.softSkills || "";
+{id:"skills"}
 
+],
 
-    document.getElementById(
-      "tools"
-    ).value =
-      data.tools || "";
+title:function(entry){
 
+return entry.category || "Skills";
 
-    document
-      .getElementById(
-        "skillsForm"
-      )
-      .addEventListener(
-        "submit",
-        function (event) {
+},
 
-          event.preventDefault();
+meta:function(entry){
 
+return entry.skills || "";
 
-          const result = {
+}
 
-            technicalSkills:
-              document.getElementById(
-                "technicalSkills"
-              ).value.trim(),
-
-            softSkills:
-              document.getElementById(
-                "softSkills"
-              ).value.trim(),
-
-            tools:
-              document.getElementById(
-                "tools"
-              ).value.trim()
-
-          };
-
-
-          setJSON(
-            STORAGE_KEYS.skills,
-            result
-          );
-
-
-          window.location.href =
-            "certifications.html";
-
-        }
-      );
-
-  }
-);
+};
 
 </script>
 
+<script src="js/multi.js"></script>
+
 </body>
+
 </html>
