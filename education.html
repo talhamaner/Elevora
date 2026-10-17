@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Education - Resume Builder</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="theme.js"></script>
+
+    <style>
+        /* ================================
+           EDUCATION PAGE
+        ================================= */
+
+        .education-page {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 45px 20px 70px;
+        }
+
+        .page-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .page-heading .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #4361ee;
+            color: white;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .page-heading h1 {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .page-heading p {
+            color: #64748b;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .education-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+
+        .education-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .education-card-header h2 {
+            font-size: 21px;
+            margin: 0;
+        }
+
+        .education-card-header span {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .education-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .education-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .education-group label {
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .required {
+            color: #e11d48;
+        }
+
+        .education-group input,
+        .education-group select,
+        .education-group textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d5dbe5;
+            border-radius: 9px;
+            font-size: 15px;
+            font-family: inherit;
+            background: white;
+            color: #172033;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .education-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .education-group input:focus,
+        .education-group select:focus,
+        .education-group textarea:focus {
+            border-color: #4361ee;
+            box-shadow: 0 0 0 3px rgba(67,97,238,0.1);
+        }
+
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-top: 29px;
+        }
+
+        .checkbox-row input {
+            width: 17px;
+            height: 17px;
+            accent-color: #4361ee;
+        }
+
+        .checkbox-row label {
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .remove-education {
+            border: none;
+            background: #fee2e2;
+            color: #b91c1c;
+            padding: 9px 13px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .remove-education:hover {
+            background: #fecaca;
+        }
+
+        .add-education {
+            width: 100%;
+            border: 2px dashed #cbd5e1;
+            background: transparent;
+            color: #4361ee;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 25px;
+            transition: 0.2s;
+        }
+
+        .add-education:hover {
+            border-color: #4361ee;
+            background: rgba(67,97,238,0.05);
+        }
+
+        .form-error {
+            color: #dc2626;
+            font-size: 13px;
+            display: none;
+        }
+
+        .education-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .back-button,
+        .continue-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 150px;
+            padding: 14px 22px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            font-size: 15px;
+        }
+
+        .back-button {
+            background: #e2e8f0;
+            color: #172033;
+        }
+
+        .continue-button {
+            background: #4361ee;
+            color: white;
+            box-shadow: 0 8px 20px rgba(67,97,238,0.2);
+        }
+
+        .continue-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ================================
+           DARK MODE
+        ================================= */
+
+        html[data-theme="dark"] .education-card {
+            background: #111827;
+            border-color: #334155;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        }
+
+        html[data-theme="dark"] .page-heading p,
+        html[data-theme="dark"] .education-card-header span {
+            color: #94a3b8;
+        }
+
+        html[data-theme="dark"] .education-group input,
+        html[data-theme="dark"] .education-group select,
+        html[data-theme="dark"] .education-group textarea {
+            background: #1e293b;
+            color: #f8fafc;
+            border-color: #475569;
+        }
+
+        html[data-theme="dark"] .education-group input::placeholder,
+        html[data-theme="dark"] .education-group textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        html[data-theme="dark"] .back-button {
+            background: #334155;
+            color: #f8fafc;
+        }
+
+        html[data-theme="dark"] .add-education {
+            border-color: #475569;
+            color: #8da2ff;
+        }
+
+        html[data-theme="dark"] .add-education:hover {
+            background: rgba(67,97,238,0.12);
+            border-color: #4361ee;
+        }
+
+        /* ================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 700px) {
+
+            .education-page {
+                padding: 35px 15px 55px;
+            }
+
+            .page-heading h1 {
+                font-size: 30px;
+            }
+
+            .education-card {
+                padding: 20px;
+            }
+
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .education-group.full {
+                grid-column: auto;
+            }
+
+            .education-card-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .remove-education {
+                width: 100%;
+            }
+
+            .education-actions {
+                flex-direction: column-reverse;
+            }
+
+            .back-button,
+            .continue-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+
+        <div class="logo">
+            Resume Builder
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="personal.html">Resume</a>
+            <a href="preview.html">Preview</a>
+
+            <button
+                id="themeToggle"
+                type="button"
+                class="theme-toggle"
+                aria-label="Switch to dark mode"
+                title="Switch to dark mode">
+                🌙
+            </button>
+        </nav>
+
+    </header>
+
+
+    <!-- EDUCATION -->
+    <main class="education-page">
+
+        <div class="page-heading">
+
+            <div class="step-number">
+                3
+            </div>
+
+            <h1>Education</h1>
+
+            <p>
+                Add your academic qualifications, degrees, diplomas,
+                school education, and other relevant education.
+            </p>
+
+        </div>
+
+
+        <!-- EDUCATION CONTAINER -->
+        <div id="educationContainer"></div>
+
+
+        <!-- ADD EDUCATION -->
+        <button
+            type="button"
+            class="add-education"
+            id="addEducation">
+
+            + Add Another Education
+
+        </button>
+
+
+        <!-- ACTIONS -->
+        <div class="education-actions">
+
+            <a
+                href="summary.html"
+                class="back-button">
+
+                ← Back
+
+            </a>
+
+            <button
+                type="button"
+                id="continueButton"
+                class="continue-button">
+
+                Save & Continue →
+
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <script src="theme.js"></script>
+
+    <script>
+
+        const educationContainer =
+            document.getElementById("educationContainer");
+
+        const addEducationButton =
+            document.getElementById("addEducation");
+
+        const continueButton =
+            document.getElementById("continueButton");
+
+
+        /* =========================================
+           CREATE EDUCATION CARD
+        ========================================= */
+
+        function createEducationCard(data = {}) {
+
+            const card =
+                document.createElement("div");
+
+            card.className = "education-card";
+
+
+            card.innerHTML = `
+
+                <div class="education-card-header">
+
+                    <div>
+                        <h2>Education Entry</h2>
+                        <span>
+                            Add one qualification or academic record.
+                        </span>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="remove-education">
+                        Remove
+                    </button>
+
+                </div>
+
+
+                <div class="education-grid">
+
+
+                    <!-- LEVEL -->
+
+                    <div class="education-group">
+
+                        <label>
+                            Education Level
+                            <span class="required">*</span>
+                        </label>
+
+                        <select class="education-level">
+
+                            <option value="">
+                                Select education level
+                            </option>
+
+                            <option value="Secondary School / 10th">
+                                Secondary School / 10th
+                            </option>
+
+                            <option value="Higher Secondary / 12th">
+                                Higher Secondary / 12th
+                            </option>
+
+                            <option value="Diploma">
+                                Diploma
+                            </option>
+
+                            <option value="Associate Degree">
+                                Associate Degree
+                            </option>
+
+                            <option value="Bachelor's Degree">
+                                Bachelor's Degree
+                            </option>
+
+                            <option value="Master's Degree">
+                                Master's Degree
+                            </option>
+
+                            <option value="Doctorate / PhD">
+                                Doctorate / PhD
+                            </option>
+
+                            <option value="Professional Certification">
+                                Professional Certification
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                        <span class="form-error level-error">
+                            Please select your education level.
+                        </span>
+
+                    </div>
+
+
+                    <!-- DEGREE -->
+
+                    <div class="education-group">
+
+                        <label>
+                            Degree / Qualification
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            class="education-degree"
+                            placeholder="Example: Bachelor of Computer Applications">
+
+                        <span class="form-error degree-error">
+                            Please enter your degree or qualification.
+                        </span>
+
+                    </div>
+
+
+                    <!-- FIELD -->
+
+                    <div class="education-group">
+
+                        <label>
+                            Field of Study
+                        </label>
+
+                        <input
+                            type="text"
+                            class="education-field"
+                            placeholder="Example: Computer Science">
+
+                    </div>
+
+
+                    <!-- INSTITUTION -->
+
+                    <div class="education-group">
+
+                        <label>
+                            Institution / University
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            class="education-institution"
+                            placeholder="Example: ABC University">
+
+                        <span class="form-error institution-error">
+                            Please enter your institution.
+                        </span>
+
+                    </div>
+
+
+                    <!-- LOCATION -->
+
+                    <div class="education-group">
+
+                        <label>
+                            Location
+                        </label>
+
+                        <input
+                            type="text"
+                            class="education-location"
+                            placeholder="Example: Mumbai, Maharashtra, India">
+
+                    </div>
+
+
+                    <!-- START DATE -->
+
+                    <div class="education-group">
+
+                        <label>
+                            Start Date
+                        </label>
+
+                        <input
+                            type="month"
+                            class="education-start">
+
+                    </div>
+
+
+                    <!-- END DATE -->
+
+                    <div class="education-group">
+
+                        <label>
+                            End Date
+                        </label>
+
+                        <input
+                            type="month"
+                            class="education-end">
+
+                    </div>
+
+
+                    <!-- CURRENTLY STUDYING -->
+
+                    <div class="education-group">
+
+                        <div class="checkbox-row">
+
+                            <input
+                                type="checkbox"
+                                class="education-current">
+
+                            <label>
+                                I am currently studying here
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- GRADE TYPE -->
+
+                    <div class="education-group">
+
+                        <label>
+                            Grade Type
+                        </label>
+
+                        <select class="education-grade-type">
+
+                            <option value="">
+                                Select grade type
+                            </option>
+
+                            <option value="CGPA">
+                                CGPA
+                            </option>
+
+                            <option value="GPA">
+                                GPA
+                            </option>
+
+                            <option value="Percentage">
+                                Percentage
+                            </option>
+
+                            <option value="Grade">
+                                Grade
+                            </option>
+
+                            <option value="Rank">
+                                Rank
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- GRADE -->
+
+                    <div class="education-group">
+
+                        <label>
+                            Grade / Score
+                        </label>
+
+                        <input
+                            type="text"
+                            class="education-grade"
+                            placeholder="Example: 8.7 CGPA">
+
+                    </div>
+
+
+                    <!-- DETAILS -->
+
+                    <div class="education-group full">
+
+                        <label>
+                            Description / Achievements
+                        </label>
+
+                        <textarea
+                            class="education-details"
+                            placeholder="Mention relevant coursework, academic achievements, projects, awards, activities, or other important information."></textarea>
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            educationContainer.appendChild(card);
+
+
+            /* =========================================
+               LOAD SAVED VALUES
+            ========================================= */
+
+            card.querySelector(".education-level").value =
+                data.level || "";
+
+            card.querySelector(".education-degree").value =
+                data.degree || "";
+
+            card.querySelector(".education-field").value =
+                data.field || "";
+
+            card.querySelector(".education-institution").value =
+                data.institution || "";
+
+            card.querySelector(".education-location").value =
+                data.location || "";
+
+            card.querySelector(".education-start").value =
+                data.startDate || "";
+
+            card.querySelector(".education-end").value =
+                data.endDate || "";
+
+            card.querySelector(".education-current").checked =
+                data.currentlyStudying || false;
+
+            card.querySelector(".education-grade-type").value =
+                data.gradeType || "";
+
+            card.querySelector(".education-grade").value =
+                data.grade || "";
+
+            card.querySelector(".education-details").value =
+                data.details || "";
+
+
+            /* =========================================
+               CURRENTLY STUDYING
+            ========================================= */
+
+            const currentCheckbox =
+                card.querySelector(".education-current");
+
+            const endDate =
+                card.querySelector(".education-end");
+
+
+            function updateEndDate() {
+
+                if (currentCheckbox.checked) {
+
+                    endDate.value = "";
+                    endDate.disabled = true;
+
+                } else {
+
+                    endDate.disabled = false;
+
+                }
+
+            }
+
+
+            currentCheckbox.addEventListener(
+                "change",
+                updateEndDate
+            );
+
+            updateEndDate();
+
+
+            /* =========================================
+               REMOVE
+            ========================================= */
+
+            card.querySelector(".remove-education")
+                .addEventListener("click", function () {
+
+                    const cards =
+                        document.querySelectorAll(
+                            ".education-card"
+                        );
+
+                    if (cards.length === 1) {
+
+                        alert(
+                            "You need at least one education entry."
+                        );
+
+                        return;
+                    }
+
+                    card.remove();
+
+                });
+
+
+            return card;
+        }
+
+
+        /* =========================================
+           LOAD EDUCATION DATA
+        ========================================= */
+
+        function loadEducation() {
+
+            let savedEducation = [];
+
+            try {
+
+                savedEducation =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "section_education"
+                        ) || "[]"
+                    );
+
+            } catch (error) {
+
+                savedEducation = [];
+
+            }
+
+
+            if (
+                Array.isArray(savedEducation) &&
+                savedEducation.length > 0
+            ) {
+
+                savedEducation.forEach(function (education) {
+
+                    createEducationCard(education);
+
+                });
+
+            } else {
+
+                createEducationCard();
+
+            }
+
+        }
+
+
+        /* =========================================
+           ADD EDUCATION
+        ========================================= */
+
+        addEducationButton.addEventListener(
+            "click",
+            function () {
+
+                createEducationCard();
+
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: "smooth"
+                });
+
+            }
+        );
+
+
+        /* =========================================
+           VALIDATION
+        ========================================= */
+
+        function validateEducation() {
+
+            let valid = true;
+
+
+            const cards =
+                document.querySelectorAll(
+                    ".education-card"
+                );
+
+
+            cards.forEach(function (card) {
+
+                const level =
+                    card.querySelector(
+                        ".education-level"
+                    );
+
+                const degree =
+                    card.querySelector(
+                        ".education-degree"
+                    );
+
+                const institution =
+                    card.querySelector(
+                        ".education-institution"
+                    );
+
+
+                const levelError =
+                    card.querySelector(
+                        ".level-error"
+                    );
+
+                const degreeError =
+                    card.querySelector(
+                        ".degree-error"
+                    );
+
+                const institutionError =
+                    card.querySelector(
+                        ".institution-error"
+                    );
+
+
+                levelError.style.display = "none";
+                degreeError.style.display = "none";
+                institutionError.style.display = "none";
+
+
+                if (!level.value.trim()) {
+
+                    levelError.style.display =
+                        "block";
+
+                    valid = false;
+
+                }
+
+
+                if (!degree.value.trim()) {
+
+                    degreeError.style.display =
+                        "block";
+
+                    valid = false;
+
+                }
+
+
+                if (!institution.value.trim()) {
+
+                    institutionError.style.display =
+                        "block";
+
+                    valid = false;
+
+                }
+
+            });
+
+
+            return valid;
+        }
+
+
+        /* =========================================
+           SAVE EDUCATION
+        ========================================= */
+
+        function saveEducation() {
+
+            const cards =
+                document.querySelectorAll(
+                    ".education-card"
+                );
+
+
+            const educationData = [];
+
+
+            cards.forEach(function (card) {
+
+                educationData.push({
+
+                    level:
+                        card.querySelector(
+                            ".education-level"
+                        ).value.trim(),
+
+                    degree:
+                        card.querySelector(
+                            ".education-degree"
+                        ).value.trim(),
+
+                    field:
+                        card.querySelector(
+                            ".education-field"
+                        ).value.trim(),
+
+                    institution:
+                        card.querySelector(
+                            ".education-institution"
+                        ).value.trim(),
+
+                    location:
+                        card.querySelector(
+                            ".education-location"
+                        ).value.trim(),
+
+                    startDate:
+                        card.querySelector(
+                            ".education-start"
+                        ).value,
+
+                    endDate:
+                        card.querySelector(
+                            ".education-end"
+                        ).value,
+
+                    currentlyStudying:
+                        card.querySelector(
+                            ".education-current"
+                        ).checked,
+
+                    gradeType:
+                        card.querySelector(
+                            ".education-grade-type"
+                        ).value,
+
+                    grade:
+                        card.querySelector(
+                            ".education-grade"
+                        ).value.trim(),
+
+                    details:
+                        card.querySelector(
+                            ".education-details"
+                        ).value.trim()
+
+                });
+
+            });
+
+
+            localStorage.setItem(
+                "section_education",
+                JSON.stringify(educationData)
+            );
+
+        }
+
+
+        /* =========================================
+           CONTINUE
+        ========================================= */
+
+        continueButton.addEventListener(
+            "click",
+            function () {
+
+                if (!validateEducation()) {
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+
+                    return;
+                }
+
+
+                saveEducation();
+
+
+                window.location.href =
+                    "experience.html";
+
+            }
+        );
+
+
+        /* =========================================
+           START PAGE
+        ========================================= */
+
+        loadEducation();
+
+    </script>
+
+</body>
+</html>
