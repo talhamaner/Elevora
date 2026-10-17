@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Experience | Elevora</title>
+<title>Experience - Elevora</title>
 
-  <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css">
 
-  <script src="theme.js"></script>
-  <script src="js/app.js"></script>
+<script src="theme.js"></script>
+<script src="js/app.js"></script>
 
 </head>
 
@@ -18,590 +19,266 @@
 
 <header class="navbar">
 
-  <a href="index.html" class="logo">Elevora</a>
+<a class="logo" href="index.html">Elevora</a>
 
-  <nav class="nav-links">
+<nav class="nav-links">
 
-    <a href="index.html">Home</a>
-    <a href="personal.html" class="active">Resume</a>
-    <a href="preview.html">Preview</a>
+<a href="index.html">Home</a>
+<a href="personal.html">Resume</a>
+<a href="preview.html">Preview</a>
+<a href="cover-letter.html">Cover Letter</a>
 
-    <button
-      id="themeToggle"
-      class="theme-toggle"
-      type="button"
-    >
-      🌙
-    </button>
+<button id="themeToggle" class="theme-toggle">
+🌙
+</button>
 
-  </nav>
+</nav>
 
 </header>
 
 
-<main class="builder-wrapper">
+<main class="container">
 
-  <div class="progress-wrapper">
+<div class="page-head">
 
-    <div
-      class="progress-bar"
-      style="--progress: 36%"
-    >
-      <div class="progress-fill"></div>
-    </div>
+<h1>Experience</h1>
 
-    <div class="progress-text">
-      <span>Step 4 of 11</span>
-      <span>Experience</span>
-    </div>
+<p>
+Add multiple jobs, internships, freelance roles or other professional experience.
+</p>
 
-  </div>
+</div>
 
 
-  <div class="page-heading">
+<div class="builder">
 
-    <span class="eyebrow">STEP 04</span>
+<aside class="steps">
 
-    <h1>Experience</h1>
+<a href="personal.html">1. Personal</a>
+<a href="summary.html">2. Summary</a>
+<a href="education.html">3. Education</a>
+<a href="experience.html">4. Experience</a>
+<a href="projects.html">5. Projects</a>
+<a href="skills.html">6. Skills</a>
+<a href="certifications.html">7. Certifications</a>
+<a href="languages.html">8. Languages</a>
+<a href="achievements.html">9. Achievements</a>
+<a href="preview.html">10. Preview</a>
 
-    <p>
-      Tell us about your professional experience.
-      Freshers and students can skip this section.
-    </p>
-
-  </div>
-
-
-  <form id="experienceForm" class="form-card">
-
-    <div class="form-group">
-
-      <label>
-        Experience Status
-      </label>
-
-      <select id="experienceStatus">
-
-        <option value="experienced">
-          Experienced
-        </option>
-
-        <option value="fresher">
-          Fresher
-        </option>
-
-        <option value="student">
-          Student
-        </option>
-
-      </select>
-
-    </div>
+</aside>
 
 
-    <br>
+<section class="form-card">
+
+<div id="entryList" class="entry-list"></div>
 
 
-    <div id="experienceEntries"></div>
+<form id="entryForm">
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Job Title</label>
+
+<input
+id="jobTitle"
+placeholder="Software Developer">
+
+</div>
 
 
-    <button
-      type="button"
-      id="addExperience"
-      class="add-entry"
-    >
-      + Add Experience
-    </button>
+<div class="form-group">
+
+<label>Company / Organization</label>
+
+<input
+id="company"
+placeholder="Example Company">
+
+</div>
 
 
-    <div class="form-actions">
+<div class="form-group">
 
-      <a
-        href="education.html"
-        class="btn btn-secondary"
-      >
-        ← Back
-      </a>
+<label>Location</label>
 
-      <button
-        type="submit"
-        class="btn btn-primary"
-      >
-        Save & Continue →
-      </button>
+<input
+id="location"
+placeholder="City, Country">
 
-    </div>
+</div>
 
-  </form>
+
+<div class="form-group">
+
+<label>Start Year</label>
+
+<input
+id="startYear"
+type="number"
+placeholder="2024">
+
+</div>
+
+
+<div class="form-group">
+
+<label>End Year</label>
+
+<input
+id="endYear"
+type="number"
+placeholder="2025">
+
+</div>
+
+
+<div class="form-group">
+
+<label class="checkbox">
+
+<input
+id="current"
+type="checkbox">
+
+Currently Working
+
+</label>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>Responsibilities / Achievements</label>
+
+<textarea
+id="description"
+placeholder="Describe your responsibilities and achievements...">
+</textarea>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button
+type="button"
+id="cancelEdit"
+class="btn secondary"
+style="display:none">
+
+Cancel Edit
+
+</button>
+
+
+<button
+id="saveBtn"
+class="btn">
+
++ Add Experience
+
+</button>
+
+</div>
+
+
+<div id="status" class="status"></div>
+
+</form>
+
+
+<div class="actions">
+
+<a
+class="btn secondary"
+href="education.html">
+
+← Back
+
+</a>
+
+<a
+class="btn"
+href="projects.html">
+
+Save & Continue →
+
+</a>
+
+</div>
+
+</section>
+
+</div>
 
 </main>
 
 
 <script>
 
-document.addEventListener(
-  "DOMContentLoaded",
-  function () {
+window.MULTI_CONFIG = {
 
-    const saved =
-      getJSON(
-        STORAGE_KEYS.experience,
-        {}
-      );
+key: "experience",
 
+addText: "+ Add Experience",
 
-    let entries =
-      Array.isArray(saved.entries)
-        ? saved.entries
-        : [];
+fields: [
 
+{id:"jobTitle"},
 
-    document.getElementById(
-      "experienceStatus"
-    ).value =
-      saved.status || "experienced";
+{id:"company"},
 
+{id:"location"},
 
-    const container =
-      document.getElementById(
-        "experienceEntries"
-      );
+{id:"startYear"},
 
+{id:"endYear"},
 
-    function render() {
+{
+id:"current",
+type:"checkbox"
+},
 
-      container.innerHTML = "";
+{
+id:"description",
+type:"textarea"
+}
 
+],
 
-      if (
-        document.getElementById(
-          "experienceStatus"
-        ).value !== "experienced"
-      ) {
+title: function(entry) {
 
-        return;
+return entry.jobTitle ||
+       entry.company ||
+       "Experience";
 
-      }
+},
 
+meta: function(entry) {
 
-      if (!entries.length) {
+return [
 
-        entries.push({});
+entry.company,
+entry.location,
+entry.startYear,
+entry.current ? "Present" : entry.endYear
 
-      }
+]
+.filter(Boolean)
+.join(" • ");
 
+}
 
-      entries.forEach(
-        function (entry, index) {
-
-          const card =
-            document.createElement(
-              "div"
-            );
-
-          card.className =
-            "entry-card";
-
-
-          card.innerHTML = `
-
-            <div class="entry-card-header">
-
-              <h3>
-                Experience ${index + 1}
-              </h3>
-
-              ${
-                index > 0
-                ? `
-                  <button
-                    type="button"
-                    class="remove-entry"
-                  >
-                    Remove
-                  </button>
-                `
-                : ""
-              }
-
-            </div>
-
-
-            <div class="form-grid">
-
-              <div class="form-group">
-
-                <label>
-                  Job Title
-                  <span class="required">*</span>
-                </label>
-
-                <input
-                  class="jobTitle"
-                  type="text"
-                  placeholder="e.g. Software Developer"
-                  value="${escapeHTML(entry.jobTitle || "")}"
-                  required
-                >
-
-              </div>
-
-
-              <div class="form-group">
-
-                <label>
-                  Company
-                  <span class="required">*</span>
-                </label>
-
-                <input
-                  class="company"
-                  type="text"
-                  placeholder="Company name"
-                  value="${escapeHTML(entry.company || "")}"
-                  required
-                >
-
-              </div>
-
-
-              <div class="form-group">
-
-                <label>
-                  Location
-                </label>
-
-                <input
-                  class="location"
-                  type="text"
-                  placeholder="City, Country"
-                  value="${escapeHTML(entry.location || "")}"
-                >
-
-              </div>
-
-
-              <div class="form-group">
-
-                <label>
-                  Employment Type
-                </label>
-
-                <select class="employmentType">
-
-                  <option value="">
-                    Select type
-                  </option>
-
-                  <option value="Full-time">
-                    Full-time
-                  </option>
-
-                  <option value="Part-time">
-                    Part-time
-                  </option>
-
-                  <option value="Internship">
-                    Internship
-                  </option>
-
-                  <option value="Contract">
-                    Contract
-                  </option>
-
-                  <option value="Freelance">
-                    Freelance
-                  </option>
-
-                </select>
-
-              </div>
-
-
-              <div class="form-group">
-
-                <label>
-                  Start Year
-                </label>
-
-                <input
-                  class="startYear"
-                  type="number"
-                  min="1950"
-                  max="2100"
-                  placeholder="2022"
-                  value="${entry.startYear || ""}"
-                >
-
-              </div>
-
-
-              <div class="form-group">
-
-                <label>
-                  End Year
-                </label>
-
-                <input
-                  class="endYear"
-                  type="number"
-                  min="1950"
-                  max="2100"
-                  placeholder="2025"
-                  value="${entry.endYear || ""}"
-                >
-
-              </div>
-
-
-              <div class="form-group full">
-
-                <label class="checkbox-row">
-
-                  <input
-                    class="currentJob"
-                    type="checkbox"
-                    ${entry.currentJob ? "checked" : ""}
-                  >
-
-                  <span>
-                    I currently work here
-                  </span>
-
-                </label>
-
-              </div>
-
-
-              <div class="form-group full">
-
-                <label>
-                  Responsibilities & Achievements
-                </label>
-
-                <textarea
-                  class="description"
-                  placeholder="Describe your responsibilities, achievements and measurable results..."
-                >${escapeHTML(entry.description || "")}</textarea>
-
-              </div>
-
-            </div>
-
-          `;
-
-
-          container.appendChild(card);
-
-
-          const type =
-            card.querySelector(
-              ".employmentType"
-            );
-
-          type.value =
-            entry.employmentType || "";
-
-
-          const checkbox =
-            card.querySelector(
-              ".currentJob"
-            );
-
-          const endYear =
-            card.querySelector(
-              ".endYear"
-            );
-
-
-          function updateEndYear() {
-
-            endYear.disabled =
-              checkbox.checked;
-
-            if (checkbox.checked) {
-              endYear.value = "";
-            }
-
-          }
-
-
-          checkbox.addEventListener(
-            "change",
-            updateEndYear
-          );
-
-
-          updateEndYear();
-
-
-          const remove =
-            card.querySelector(
-              ".remove-entry"
-            );
-
-
-          if (remove) {
-
-            remove.addEventListener(
-              "click",
-              function () {
-
-                entries.splice(
-                  index,
-                  1
-                );
-
-                render();
-
-              }
-            );
-
-          }
-
-        }
-      );
-
-    }
-
-
-    render();
-
-
-    document
-      .getElementById(
-        "experienceStatus"
-      )
-      .addEventListener(
-        "change",
-        render
-      );
-
-
-    document
-      .getElementById(
-        "addExperience"
-      )
-      .addEventListener(
-        "click",
-        function () {
-
-          if (
-            document.getElementById(
-              "experienceStatus"
-            ).value !== "experienced"
-          ) {
-
-            return;
-
-          }
-
-          entries.push({});
-
-          render();
-
-        }
-      );
-
-
-    document
-      .getElementById(
-        "experienceForm"
-      )
-      .addEventListener(
-        "submit",
-        function (event) {
-
-          event.preventDefault();
-
-
-          const status =
-            document.getElementById(
-              "experienceStatus"
-            ).value;
-
-
-          const result = [];
-
-
-          if (status === "experienced") {
-
-            container
-              .querySelectorAll(
-                ".entry-card"
-              )
-              .forEach(
-                function (card) {
-
-                  result.push({
-
-                    jobTitle:
-                      card.querySelector(
-                        ".jobTitle"
-                      ).value.trim(),
-
-                    company:
-                      card.querySelector(
-                        ".company"
-                      ).value.trim(),
-
-                    location:
-                      card.querySelector(
-                        ".location"
-                      ).value.trim(),
-
-                    employmentType:
-                      card.querySelector(
-                        ".employmentType"
-                      ).value,
-
-                    startYear:
-                      card.querySelector(
-                        ".startYear"
-                      ).value,
-
-                    endYear:
-                      card.querySelector(
-                        ".endYear"
-                      ).value,
-
-                    currentJob:
-                      card.querySelector(
-                        ".currentJob"
-                      ).checked,
-
-                    description:
-                      card.querySelector(
-                        ".description"
-                      ).value.trim()
-
-                  });
-
-                }
-              );
-
-          }
-
-
-          setJSON(
-            STORAGE_KEYS.experience,
-            {
-              status: status,
-              entries: result
-            }
-          );
-
-
-          window.location.href =
-            "projects.html";
-
-        }
-      );
-
-  }
-);
+};
 
 </script>
+
+<script src="js/multi.js"></script>
 
 </body>
 </html>
