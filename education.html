@@ -2,295 +2,265 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Education - Elevora</title>
+<meta charset="UTF-8">
 
-  <link rel="stylesheet" href="css/style.css">
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
 
-  <script src="theme.js"></script>
-  <script src="js/app.js"></script>
+<title>Education | Elevora</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<script src="theme.js"></script>
+<script src="js/app.js"></script>
+
 </head>
+
 
 <body>
 
+
 <header class="navbar">
 
-  <a class="logo" href="index.html">
-    Elevora
-  </a>
+<a href="index.html" class="logo">
+Elevora
+</a>
 
-  <nav class="nav-links">
+<nav class="nav-links">
 
-    <a href="index.html">Home</a>
+<a href="index.html">Home</a>
+<a href="personal.html">Resume</a>
+<a href="preview.html">Preview</a>
+<a href="cover-letter.html">Cover Letter</a>
 
-    <a href="personal.html">Resume</a>
+<button
+id="themeToggle"
+class="theme-toggle"
+type="button"
+>
+🌙
+</button>
 
-    <a href="preview.html">Preview</a>
-
-    <a href="cover-letter.html">
-      Cover Letter
-    </a>
-
-    <button
-      id="themeToggle"
-      class="theme-toggle"
-      type="button">
-      🌙
-    </button>
-
-  </nav>
+</nav>
 
 </header>
 
 
-<main class="container">
+<main class="page-container">
 
-  <div class="page-head">
 
-    <h1>Education</h1>
+<div class="form-header">
 
-    <p>
-      Add multiple education records.
-      Your previous education will never be replaced.
-    </p>
+<div class="step-number">3</div>
 
-  </div>
+<div>
 
+<h1>Education</h1>
 
-  <div class="builder">
+<p>
+Add your academic qualifications.
+</p>
 
-    <aside class="steps">
+</div>
 
-      <a href="personal.html">
-        1. Personal
-      </a>
+</div>
 
-      <a href="summary.html">
-        2. Summary
-      </a>
 
-      <a href="education.html">
-        3. Education
-      </a>
+<div class="progress-wrapper">
 
-      <a href="experience.html">
-        4. Experience
-      </a>
+<div class="progress-bar">
+<div
+class="progress-fill"
+style="width:30%"
+></div>
+</div>
 
-      <a href="projects.html">
-        5. Projects
-      </a>
+<span>3 of 10</span>
 
-      <a href="skills.html">
-        6. Skills
-      </a>
+</div>
 
-      <a href="certifications.html">
-        7. Certifications
-      </a>
 
-      <a href="languages.html">
-        8. Languages
-      </a>
+<div
+id="entryList"
+class="entry-list"
+></div>
 
-      <a href="achievements.html">
-        9. Achievements
-      </a>
 
-      <a href="preview.html">
-        10. Preview
-      </a>
+<form
+id="entryForm"
+class="form-card"
+>
 
-    </aside>
 
+<div class="form-group">
 
-    <section class="form-card">
+<label>Institution <span class="required">*</span></label>
 
-      <div id="entryList" class="entry-list"></div>
+<input
+id="institution"
+required
+placeholder="University / College / School"
+>
 
+</div>
 
-      <form id="entryForm">
 
-        <div class="form-grid">
+<div class="form-group">
 
-          <div class="form-group">
+<label>Degree <span class="required">*</span></label>
 
-            <label>
-              Institution / University
-              <span class="required">*</span>
-            </label>
+<input
+id="degree"
+required
+placeholder="Bachelor of Technology"
+>
 
-            <input
-              id="institution"
-              required
-              placeholder="Example University">
+</div>
 
-          </div>
 
+<div class="form-group">
 
-          <div class="form-group">
+<label>Field of Study</label>
 
-            <label>
-              Degree
-              <span class="required">*</span>
-            </label>
+<input
+id="field"
+placeholder="Computer Science"
+>
 
-            <input
-              id="degree"
-              required
-              placeholder="Bachelor of Technology">
+</div>
 
-          </div>
 
+<div class="form-group">
 
-          <div class="form-group">
+<label>Admission Year</label>
 
-            <label>
-              Field of Study
-            </label>
+<input
+id="admissionYear"
+type="number"
+min="1950"
+max="2100"
+placeholder="2020"
+>
 
-            <input
-              id="field"
-              placeholder="Computer Science">
+</div>
 
-          </div>
 
+<div class="form-group">
 
-          <div class="form-group">
+<label>Pass Out / Completed Year</label>
 
-            <label>
-              Admission Year
-            </label>
+<input
+id="completedYear"
+type="number"
+min="1950"
+max="2100"
+placeholder="2024"
+>
 
-            <input
-              id="admissionYear"
-              type="number"
-              min="1900"
-              max="2100"
-              placeholder="2021">
+</div>
 
-          </div>
 
+<div class="checkbox-row">
 
-          <div class="form-group">
+<input
+id="currentlyStudying"
+type="checkbox"
+>
 
-            <label>
-              Pass Out / Completed Year
-            </label>
+<label for="currentlyStudying">
+I am currently studying
+</label>
 
-            <input
-              id="completedYear"
-              type="number"
-              min="1900"
-              max="2100"
-              placeholder="2025">
+</div>
 
-          </div>
 
+<div class="form-group">
 
-          <div class="form-group">
+<label>Grade / GPA</label>
 
-            <label>
-              Grade / CGPA
-            </label>
+<input
+id="grade"
+placeholder="8.5 CGPA / 85%"
+>
 
-            <input
-              id="grade"
-              placeholder="8.6 / 10">
+</div>
 
-          </div>
 
+<div class="form-group">
 
-          <div class="form-group">
+<label>Description</label>
 
-            <label class="checkbox">
+<textarea
+id="description"
+placeholder="Relevant coursework, achievements, activities..."
+></textarea>
 
-              <input
-                id="currentlyStudying"
-                type="checkbox">
+</div>
 
-              Currently Studying
 
-            </label>
+<div class="form-actions">
 
-          </div>
+<a
+href="summary.html"
+class="btn secondary"
+>
+← Back
+</a>
 
+<div style="display:flex;gap:10px;">
 
-          <div class="form-group full">
+<button
+type="button"
+id="cancelEdit"
+class="btn secondary"
+style="display:none"
+>
+Cancel
+</button>
 
-            <label>
-              Description
-            </label>
+<button
+type="submit"
+id="saveBtn"
+class="btn primary"
+>
++ Add Education
+</button>
 
-            <textarea
-              id="description"
-              placeholder="Relevant coursework, activities, achievements, etc.">
-            </textarea>
+</div>
 
-          </div>
+</div>
 
-        </div>
 
+<div
+id="status"
+class="form-status"
+></div>
 
-        <div class="actions">
 
-          <button
-            type="button"
-            id="cancelEdit"
-            class="btn secondary"
-            style="display:none">
+</form>
 
-            Cancel Edit
 
-          </button>
+<div class="form-actions">
 
+<a
+href="summary.html"
+class="btn secondary"
+>
+← Back
+</a>
 
-          <button
-            id="saveBtn"
-            class="btn"
-            type="submit">
+<a
+href="experience.html"
+class="btn primary"
+>
+Save & Continue →
+</a>
 
-            + Add Education
+</div>
 
-          </button>
-
-        </div>
-
-
-        <div
-          id="status"
-          class="status">
-        </div>
-
-      </form>
-
-
-      <div class="actions">
-
-        <a
-          class="btn secondary"
-          href="summary.html">
-
-          ← Back
-
-        </a>
-
-
-        <a
-          class="btn"
-          href="experience.html">
-
-          Save & Continue →
-
-        </a>
-
-      </div>
-
-    </section>
-
-  </div>
 
 </main>
 
@@ -299,77 +269,47 @@
 
 window.MULTI_CONFIG = {
 
-  key: "education",
+key:"education",
 
-  addText: "+ Add Education",
+addText:"+ Add Education",
 
-  fields: [
+fields:[
 
-    {
-      id: "institution"
-    },
+{id:"institution"},
 
-    {
-      id: "degree"
-    },
+{id:"degree"},
 
-    {
-      id: "field"
-    },
+{id:"field"},
 
-    {
-      id: "admissionYear"
-    },
+{id:"admissionYear"},
 
-    {
-      id: "completedYear"
-    },
+{id:"completedYear"},
 
-    {
-      id: "grade"
-    },
+{id:"currentlyStudying",type:"checkbox"},
 
-    {
-      id: "currentlyStudying",
-      type: "checkbox"
-    },
+{id:"grade"},
 
-    {
-      id: "description",
-      type: "textarea"
-    }
+{id:"description"}
 
-  ],
+],
 
-  title: function(entry) {
+title:entry =>
+entry.degree ||
+entry.institution ||
+"Education",
 
-    return entry.degree ||
-           entry.institution ||
-           "Education";
-
-  },
-
-  meta: function(entry) {
-
-    return [
-
-      entry.institution,
-
-      entry.field,
-
-      entry.admissionYear,
-
-      entry.currentlyStudying
-        ? "Currently Studying"
-        : entry.completedYear,
-
-      entry.grade
-
-    ]
-    .filter(Boolean)
-    .join(" • ");
-
-  }
+meta:entry =>
+[
+entry.institution,
+entry.field,
+entry.admissionYear,
+entry.currentlyStudying
+? "Currently Studying"
+: entry.completedYear,
+entry.grade
+]
+.filter(Boolean)
+.join(" • ")
 
 };
 
