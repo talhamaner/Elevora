@@ -1,61 +1,95 @@
 const config = window.MULTI_CONFIG;
 
-const storageKey = STORAGE_KEYS[config.key];
+const storageKey =
+  STORAGE_KEYS[config.key];
 
-let entries = getArray(storageKey);
+let entries =
+  getArray(storageKey);
+
 let editIndex = -1;
 
-const entryList = document.getElementById("entryList");
-const entryForm = document.getElementById("entryForm");
-const saveButton = document.getElementById("saveBtn");
-const cancelButton = document.getElementById("cancelEdit");
+const entryList =
+  document.getElementById("entryList");
+
+const entryForm =
+  document.getElementById("entryForm");
+
+const saveButton =
+  document.getElementById("saveBtn");
+
+const cancelButton =
+  document.getElementById("cancelEdit");
+
 
 function clearForm() {
+
   config.fields.forEach(field => {
-    const element = document.getElementById(field.id);
+
+    const element =
+      document.getElementById(field.id);
 
     if (!element) return;
 
     if (field.type === "checkbox") {
+
       element.checked = false;
+
     } else {
+
       element.value = "";
+
     }
+
   });
 
   editIndex = -1;
 
-  cancelButton.style.display = "none";
-  saveButton.textContent = config.addText || "+ Add Entry";
+  cancelButton.style.display =
+    "none";
+
+  saveButton.textContent =
+    config.addText || "+ Add Entry";
+
 }
 
+
 function renderEntries() {
+
   if (!entries.length) {
-    entryList.innerHTML = `
-      <div class="empty">
+
+    entryList.innerHTML =
+      `<div class="empty">
         No entries added yet.
-      </div>
-    `;
+      </div>`;
 
     return;
+
   }
 
-  entryList.innerHTML = entries
-    .map((entry, index) => {
+
+  entryList.innerHTML =
+    entries.map((entry,index) => {
+
       return `
         <div class="entry-card">
 
           <h3>
-            ${escapeHTML(config.title(entry))}
+            ${escapeHTML(
+              config.title(entry)
+            )}
           </h3>
 
           <div class="entry-meta">
-            ${escapeHTML(config.meta(entry))}
+            ${escapeHTML(
+              config.meta(entry)
+            )}
           </div>
 
           ${
             entry.description
-              ? `<p>${escapeHTML(entry.description)}</p>`
+              ? `<p>${escapeHTML(
+                  entry.description
+                )}</p>`
               : ""
           }
 
@@ -64,14 +98,16 @@ function renderEntries() {
             <button
               type="button"
               class="btn small secondary"
-              data-edit="${index}">
+              data-edit="${index}"
+            >
               Edit
             </button>
 
             <button
               type="button"
               class="btn small danger"
-              data-delete="${index}">
+              data-delete="${index}"
+            >
               Delete
             </button>
 
@@ -79,105 +115,199 @@ function renderEntries() {
 
         </div>
       `;
-    })
-    .join("");
+
+    }).join("");
+
 
   document
     .querySelectorAll("[data-edit]")
     .forEach(button => {
-      button.addEventListener("click", () => {
-        editEntry(Number(button.dataset.edit));
-      });
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          editEntry(
+            Number(
+              button.dataset.edit
+            )
+          );
+
+        }
+      );
+
     });
+
 
   document
     .querySelectorAll("[data-delete]")
     .forEach(button => {
-      button.addEventListener("click", () => {
-        const index = Number(button.dataset.delete);
 
-        if (!confirm("Delete this entry?")) {
-          return;
+      button.addEventListener(
+        "click",
+        () => {
+
+          const index =
+            Number(
+              button.dataset.delete
+            );
+
+          if (
+            !confirm(
+              "Delete this entry?"
+            )
+          ) return;
+
+          entries =
+            deleteEntry(
+              storageKey,
+              index
+            );
+
+          renderEntries();
+
         }
+      );
 
-        entries = deleteEntry(storageKey, index);
-
-        renderEntries();
-      });
     });
+
 }
 
+
 function editEntry(index) {
-  const entry = entries[index];
+
+  const entry =
+    entries[index];
 
   if (!entry) return;
 
   editIndex = index;
 
+
   config.fields.forEach(field => {
-    const element = document.getElementById(field.id);
+
+    const element =
+      document.getElementById(
+        field.id
+      );
 
     if (!element) return;
 
-    if (field.type === "checkbox") {
-      element.checked = Boolean(entry[field.id]);
+    if (
+      field.type ===
+      "checkbox"
+    ) {
+
+      element.checked =
+        Boolean(
+          entry[field.id]
+        );
+
     } else {
-      element.value = entry[field.id] || "";
+
+      element.value =
+        entry[field.id] || "";
+
     }
+
   });
 
-  cancelButton.style.display = "inline-flex";
-  saveButton.textContent = "Update Entry";
+
+  cancelButton.style.display =
+    "inline-flex";
+
+  saveButton.textContent =
+    "Update Entry";
+
 
   entryForm.scrollIntoView({
     behavior: "smooth",
     block: "start"
   });
+
 }
 
-entryForm.addEventListener("submit", function (event) {
-  event.preventDefault();
 
-  const entry = {};
+entryForm.addEventListener(
+  "submit",
+  function (event) {
 
-  config.fields.forEach(field => {
-    const element = document.getElementById(field.id);
+    event.preventDefault();
 
-    if (!element) return;
+    const entry = {};
 
-    if (field.type === "checkbox") {
-      entry[field.id] = element.checked;
+
+    config.fields.forEach(field => {
+
+      const element =
+        document.getElementById(
+          field.id
+        );
+
+      if (!element) return;
+
+      if (
+        field.type ===
+        "checkbox"
+      ) {
+
+        entry[field.id] =
+          element.checked;
+
+      } else {
+
+        entry[field.id] =
+          element.value.trim();
+
+      }
+
+    });
+
+
+    const updating =
+      editIndex >= 0;
+
+
+    if (updating) {
+
+      entries =
+        updateEntry(
+          storageKey,
+          editIndex,
+          entry
+        );
+
     } else {
-      entry[field.id] = element.value.trim();
+
+      entries =
+        addEntry(
+          storageKey,
+          entry
+        );
+
     }
-  });
 
-  const updating = editIndex >= 0;
 
-  if (updating) {
-    entries = updateEntry(
-      storageKey,
-      editIndex,
-      entry
+    renderEntries();
+
+    clearForm();
+
+
+    setStatus(
+      "status",
+      updating
+        ? "Entry updated successfully."
+        : "Entry added successfully."
     );
-  } else {
-    entries = addEntry(
-      storageKey,
-      entry
-    );
+
   }
+);
 
-  renderEntries();
-  clearForm();
 
-  setStatus(
-    "status",
-    updating
-      ? "Entry updated successfully."
-      : "Entry added successfully."
-  );
-});
+cancelButton.addEventListener(
+  "click",
+  clearForm
+);
 
-cancelButton.addEventListener("click", clearForm);
 
 renderEntries();
