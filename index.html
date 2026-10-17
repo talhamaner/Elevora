@@ -1,175 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>Elevora — Build Your Future</title>
-
-  <link
-    rel="stylesheet"
-    href="css/style.css"
-  >
-
-  <script src="theme.js"></script>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elevora — Build Your Future</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="theme.js"></script>
 </head>
-
-
 <body class="home-page">
-
-
 <header class="navbar">
-
-  <a
-    href="index.html"
-    class="logo"
-  >
-    Elevora
-  </a>
-
+  <a href="index.html" class="logo">Elevora</a>
   <nav class="nav-links">
-
-    <a href="index.html">
-      Home
-    </a>
-
-    <a href="personal.html">
-      Resume
-    </a>
-
-    <a href="preview.html">
-      Preview
-    </a>
-
-    <a href="cover-letter.html">
-      Cover Letter
-    </a>
-
-    <button
-      id="themeToggle"
-      class="theme-toggle"
-      type="button"
-    >
-      🌙
-    </button>
-
+    <a href="index.html">Home</a>
+    <a href="personal.html">Resume</a>
+    <a href="preview.html">Preview</a>
+    <a href="cover-letter.html">Cover Letter</a>
+    <button id="themeToggle" class="theme-toggle" type="button">🌙</button>
   </nav>
-
 </header>
-
-
 <main>
-
   <section class="hero">
-
-    <div class="hero-badge">
-      ✦ Professional Resume Builder
-    </div>
-
-    <h1>
-      Build a Resume
-      <span>That Gets Noticed.</span>
-    </h1>
-
-    <p>
-      Create a professional resume and cover letter
-      with a simple step-by-step experience.
-      Your information stays saved while you build.
-    </p>
-
-
+    <div class="hero-badge">✦ Professional Resume Builder</div>
+    <h1>Build a Resume <span>That Gets Noticed.</span></h1>
+    <p>Create a professional resume and cover letter with a simple step-by-step experience. Your information stays saved while you build.</p>
     <div class="hero-buttons">
-
-      <a
-        href="personal.html"
-        class="btn primary"
-      >
-        Build My Resume →
-      </a>
-
-      <a
-        href="cover-letter.html"
-        class="btn secondary"
-      >
-        Build a Cover Letter
-      </a>
-
+      <a href="personal.html" class="btn primary">Build My Resume →</a>
+      <a href="cover-letter.html" class="btn secondary">Build a Cover Letter</a>
     </div>
-
   </section>
 
+  <section class="template-showcase">
+    <div class="section-heading-center">
+      <div class="hero-badge">🎨 12 Professional Designs</div>
+      <h2>Choose the style that fits your career</h2>
+      <p>Switch templates anytime. Your resume information stays exactly the same.</p>
+    </div>
+    <div id="homeTemplateGrid" class="home-template-grid"></div>
+    <div class="template-showcase-action"><a href="preview.html" class="btn primary">Open Resume Templates →</a></div>
+  </section>
 
   <section class="feature-grid">
-
-    <div class="feature-card">
-
-      <div class="feature-icon">
-        📝
-      </div>
-
-      <h3>
-        Easy Resume Builder
-      </h3>
-
-      <p>
-        Complete your resume one section at a time
-        without getting overwhelmed.
-      </p>
-
-    </div>
-
-
-    <div class="feature-card">
-
-      <div class="feature-icon">
-        🎨
-      </div>
-
-      <h3>
-        Professional Design
-      </h3>
-
-      <p>
-        Create a clean and modern resume
-        ready for professional applications.
-      </p>
-
-    </div>
-
-
-    <div class="feature-card">
-
-      <div class="feature-icon">
-        💼
-      </div>
-
-      <h3>
-        Career Ready
-      </h3>
-
-      <p>
-        Preview, print and download your finished
-        resume when you are ready.
-      </p>
-
-    </div>
-
+    <div class="feature-card"><div class="feature-icon">📝</div><h3>Easy Resume Builder</h3><p>Complete your resume one section at a time without getting overwhelmed.</p></div>
+    <div class="feature-card"><div class="feature-icon">🎨</div><h3>12 Professional Templates</h3><p>Choose classic, modern, executive, minimal, creative, ATS and more.</p></div>
+    <div class="feature-card"><div class="feature-icon">💼</div><h3>Career Ready</h3><p>Preview, download PDF or Word, and print your finished resume.</p></div>
   </section>
-
 </main>
-
-
-<footer>
-  © 2026 Elevora. Build your career with confidence.
-</footer>
-
-
+<footer>© 2026 Elevora. Build your career with confidence.</footer>
+<script>
+const HOME_TEMPLATES = [
+ ["classic","Classic","Traditional & ATS-friendly"],["modern","Modern","Contemporary & clean"],["minimal","Minimal","Simple & spacious"],["executive","Executive","Leadership focused"],["elegant","Elegant","Refined typography"],["compact","Compact","More content, less space"],["bold","Bold","Strong visual hierarchy"],["professional","Professional","Corporate balance"],["sidebar","Sidebar","Two-column layout"],["creative","Creative","Distinctive presentation"],["ats","ATS Focus","Applicant tracking friendly"],["academic","Academic","Education & research"]
+];
+function selectHomeTemplate(id){ localStorage.setItem("resumeTemplate",id); window.location.href="preview.html"; }
+const current = localStorage.getItem("resumeTemplate") || "classic";
+document.getElementById("homeTemplateGrid").innerHTML = HOME_TEMPLATES.map(([id,name,desc],i)=>`<button class="home-template-card ${current===id?'active':''}" type="button" onclick="selectHomeTemplate('${id}')"><div class="mini-resume mini-${id}"><span></span><span></span><i></i><i></i><b></b></div><strong>${name}</strong><small>${desc}</small></button>`).join("");
+</script>
 </body>
 </html>
