@@ -1,1 +1,555 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Education</title><link rel="stylesheet" href="css/style.css"><script src="theme.js"></script><script src="js/app.js"></script></head><body><header class="navbar"><div class="logo">Resume Builder</div><nav><a href="index.html">Home</a><a href="personal.html">Resume</a><a href="preview.html">Preview</a><button id="themeToggle" class="theme-toggle" type="button">🌙</button></nav></header><main class="builder-page"><div class="stepbar"><span class="step ">1</span><span class="step-line"></span><span class="step ">2</span><span class="step-line"></span><span class="step active">3</span><span class="step-line"></span><span class="step ">4</span><span class="step-line"></span><span class="step ">5</span><span class="step-line"></span><span class="step ">6</span><span class="step-line"></span><span class="step ">7</span><span class="step-line"></span><span class="step ">8</span><span class="step-line"></span><span class="step ">9</span><span class="step-line"></span><span class="step ">10</span></div><div class="builder-header"><h1>Education</h1><p>Add school, diploma, bachelor's, master's, doctorate and other qualifications.</p></div><form id="f" class="form-card"><div id="educationContainer"></div><button type="button" id="addEducation" class="add-entry">＋ Add Another Education</button><div class="form-actions"><a class="btn secondary" href="summary.html">← Back</a><button class="btn primary">Save & Continue →</button></div></form></main><script>const c=document.getElementById("educationContainer");function add(d={}){const w=document.createElement("div");w.className="repeat-item";w.innerHTML=`<div class="repeat-head"><div><h2>Education Entry</h2><p class="muted">Add one academic qualification.</p></div><button type="button" class="remove-entry">Remove</button></div><div class="repeat-grid"><div class="field"><label>Education Level <span class="required">*</span></label><select class="level"><option value="">Select level</option><option>Secondary School / 10th</option><option>Higher Secondary / 12th</option><option>Diploma</option><option>Certificate</option><option>Associate Degree</option><option>Bachelor's Degree</option><option>Master's Degree</option><option>Doctorate / PhD</option><option>Other</option></select></div><div class="field"><label>Degree / Qualification <span class="required">*</span></label><input class="degree" placeholder="e.g. Bachelor of Computer Applications"></div><div class="field"><label>Field of Study</label><input class="fieldStudy" placeholder="e.g. Computer Applications"></div><div class="field"><label>Institution / University <span class="required">*</span></label><input class="institution" placeholder="e.g. ABC University"></div><div class="field"><label>Location</label><input class="location" placeholder="e.g. Kolhapur, Maharashtra, India"></div><div class="field"><label>Admission Year <span class="required">*</span></label><input class="admission" type="number" min="1900" max="2100" step="1" placeholder="e.g. 2022"></div><div class="field"><label>Pass Out / Completed Year</label><input class="completion" type="number" min="1900" max="2100" step="1" placeholder="e.g. 2025"></div><div class="checkbox-row"><input class="current" type="checkbox"><label>I am currently studying here</label></div><div class="field"><label>Grade Type</label><select class="gradeType"><option value="">Select</option><option>CGPA</option><option>GPA</option><option>Percentage</option><option>Grade</option><option>Rank</option><option>Other</option></select></div><div class="field"><label>Grade / Score</label><input class="grade" placeholder="e.g. 8.7 CGPA"></div><div class="field full"><label>Details / Achievements</label><textarea class="details" maxlength="1000" placeholder="Relevant subjects, academic achievements, honors or activities."></textarea></div></div>`;c.appendChild(w);["level","degree","fieldStudy","institution","location","admission","completion","gradeType","grade","details"].forEach(k=>w.querySelector("."+k).value=d[k]||"");w.querySelector(".current").checked=!!d.current;const cur=w.querySelector(".current"),end=w.querySelector(".completion");function toggle(){end.disabled=cur.checked;if(cur.checked)end.value=""}cur.addEventListener("change",toggle);toggle();w.querySelector(".remove-entry").onclick=()=>{if(c.children.length>1)w.remove();else alert("Keep at least one education entry.")}}const saved=getJSON(K.education,[]);if(Array.isArray(saved)&&saved.length)saved.forEach(add);else add();document.getElementById("addEducation").onclick=()=>add();document.getElementById("f").addEventListener("submit",e=>{e.preventDefault();const a=[...c.children].map(w=>({level:w.querySelector(".level").value,degree:w.querySelector(".degree").value.trim(),fieldStudy:w.querySelector(".fieldStudy").value.trim(),institution:w.querySelector(".institution").value.trim(),location:w.querySelector(".location").value.trim(),admission:w.querySelector(".admission").value,completion:w.querySelector(".completion").value,current:w.querySelector(".current").checked,gradeType:w.querySelector(".gradeType").value,grade:w.querySelector(".grade").value.trim(),details:w.querySelector(".details").value.trim()}));for(const x of a){if(!x.level||!x.degree||!x.institution||!x.admission){alert("Please complete all required education fields.");return}if(!x.current&&x.completion&&Number(x.completion)<Number(x.admission)){alert("Pass Out / Completed Year cannot be earlier than Admission Year.");return}}setJSON(K.education,a);location.href="experience.html"});</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Education | Elevora</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="theme.js"></script>
+  <script src="js/app.js"></script>
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+  <a href="index.html" class="logo">Elevora</a>
+
+  <nav class="nav-links">
+
+    <a href="index.html">Home</a>
+    <a href="personal.html" class="active">Resume</a>
+    <a href="preview.html">Preview</a>
+
+    <button
+      id="themeToggle"
+      class="theme-toggle"
+      type="button"
+    >
+      🌙
+    </button>
+
+  </nav>
+
+</header>
+
+
+<main class="builder-wrapper">
+
+  <div class="progress-wrapper">
+
+    <div
+      class="progress-bar"
+      style="--progress: 27%"
+    >
+      <div class="progress-fill"></div>
+    </div>
+
+    <div class="progress-text">
+      <span>Step 3 of 11</span>
+      <span>Education</span>
+    </div>
+
+  </div>
+
+
+  <div class="page-heading">
+
+    <span class="eyebrow">STEP 03</span>
+
+    <h1>Education</h1>
+
+    <p>
+      Add one or more educational qualifications.
+    </p>
+
+  </div>
+
+
+  <form id="educationForm" class="form-card">
+
+    <div id="educationEntries" class="entries-container"></div>
+
+    <button
+      type="button"
+      id="addEducation"
+      class="add-entry"
+    >
+      + Add Education
+    </button>
+
+
+    <div class="form-actions">
+
+      <a
+        href="summary.html"
+        class="btn btn-secondary"
+      >
+        ← Back
+      </a>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+      >
+        Save & Continue →
+      </button>
+
+    </div>
+
+  </form>
+
+</main>
+
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+    const container =
+      document.getElementById(
+        "educationEntries"
+      );
+
+
+    let entries =
+      getJSON(
+        STORAGE_KEYS.education,
+        []
+      );
+
+
+    if (!Array.isArray(entries) ||
+        !entries.length) {
+
+      entries = [{}];
+
+    }
+
+
+    function years() {
+
+      const current =
+        new Date().getFullYear();
+
+      let html =
+        '<option value="">Select year</option>';
+
+      for (
+        let year = current + 5;
+        year >= 1950;
+        year--
+      ) {
+
+        html +=
+          `<option value="${year}">
+            ${year}
+          </option>`;
+
+      }
+
+      return html;
+
+    }
+
+
+    function render() {
+
+      container.innerHTML = "";
+
+
+      entries.forEach(
+        function (entry, index) {
+
+          const card =
+            document.createElement(
+              "div"
+            );
+
+          card.className =
+            "entry-card";
+
+
+          card.innerHTML = `
+
+            <div class="entry-card-header">
+
+              <h3>
+                Education ${index + 1}
+              </h3>
+
+              ${
+                index > 0
+                ? `
+                  <button
+                    type="button"
+                    class="remove-entry"
+                    data-index="${index}"
+                  >
+                    Remove
+                  </button>
+                `
+                : ""
+              }
+
+            </div>
+
+
+            <div class="form-grid">
+
+              <div class="form-group">
+
+                <label>
+                  Degree / Qualification
+                  <span class="required">*</span>
+                </label>
+
+                <input
+                  class="degree"
+                  type="text"
+                  placeholder="e.g. Bachelor of Technology"
+                  value="${escapeHTML(entry.degree || "")}"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label>
+                  Field of Study
+                </label>
+
+                <input
+                  class="field"
+                  type="text"
+                  placeholder="e.g. Computer Science"
+                  value="${escapeHTML(entry.field || "")}"
+                >
+
+              </div>
+
+
+              <div class="form-group full">
+
+                <label>
+                  Institution / University
+                  <span class="required">*</span>
+                </label>
+
+                <input
+                  class="institution"
+                  type="text"
+                  placeholder="Enter institution name"
+                  value="${escapeHTML(entry.institution || "")}"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label>
+                  Admission Year
+                </label>
+
+                <select class="admissionYear">
+
+                  ${years()}
+
+                </select>
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label>
+                  Pass Out / Completed
+                </label>
+
+                <select class="completionYear">
+
+                  ${years()}
+
+                </select>
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label>
+                  Grade / CGPA / Percentage
+                </label>
+
+                <input
+                  class="grade"
+                  type="text"
+                  placeholder="e.g. 8.5 CGPA"
+                  value="${escapeHTML(entry.grade || "")}"
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label>
+                  Location
+                </label>
+
+                <input
+                  class="location"
+                  type="text"
+                  placeholder="City, Country"
+                  value="${escapeHTML(entry.location || "")}"
+                >
+
+              </div>
+
+
+              <div class="form-group full">
+
+                <label class="checkbox-row">
+
+                  <input
+                    class="currentlyStudying"
+                    type="checkbox"
+                    ${entry.currentlyStudying ? "checked" : ""}
+                  >
+
+                  <span>
+                    I am currently studying here
+                  </span>
+
+                </label>
+
+              </div>
+
+
+              <div class="form-group full">
+
+                <label>
+                  Description
+                </label>
+
+                <textarea
+                  class="description"
+                  placeholder="Relevant coursework, achievements, activities..."
+                >${escapeHTML(entry.description || "")}</textarea>
+
+              </div>
+
+            </div>
+
+          `;
+
+
+          container.appendChild(card);
+
+
+          card.querySelector(
+            ".admissionYear"
+          ).value =
+            entry.admissionYear || "";
+
+
+          card.querySelector(
+            ".completionYear"
+          ).value =
+            entry.completionYear || "";
+
+
+          const currentCheckbox =
+            card.querySelector(
+              ".currentlyStudying"
+            );
+
+          const completion =
+            card.querySelector(
+              ".completionYear"
+            );
+
+
+          function updateCompletion() {
+
+            completion.disabled =
+              currentCheckbox.checked;
+
+            if (currentCheckbox.checked) {
+              completion.value = "";
+            }
+
+          }
+
+
+          currentCheckbox.addEventListener(
+            "change",
+            updateCompletion
+          );
+
+
+          updateCompletion();
+
+        }
+      );
+
+
+      container
+        .querySelectorAll(
+          ".remove-entry"
+        )
+        .forEach(
+          function (button) {
+
+            button.addEventListener(
+              "click",
+              function () {
+
+                const index =
+                  Number(
+                    button.dataset.index
+                  );
+
+                entries.splice(
+                  index,
+                  1
+                );
+
+                render();
+
+              }
+            );
+
+          }
+        );
+
+    }
+
+
+    render();
+
+
+    document
+      .getElementById("addEducation")
+      .addEventListener(
+        "click",
+        function () {
+
+          entries.push({});
+
+          render();
+
+          window.scrollTo({
+            top:
+              document.body.scrollHeight,
+            behavior: "smooth"
+          });
+
+        }
+      );
+
+
+    document
+      .getElementById("educationForm")
+      .addEventListener(
+        "submit",
+        function (event) {
+
+          event.preventDefault();
+
+
+          const cards =
+            container.querySelectorAll(
+              ".entry-card"
+            );
+
+
+          const result = [];
+
+
+          cards.forEach(
+            function (card) {
+
+              result.push({
+
+                degree:
+                  card.querySelector(
+                    ".degree"
+                  ).value.trim(),
+
+                field:
+                  card.querySelector(
+                    ".field"
+                  ).value.trim(),
+
+                institution:
+                  card.querySelector(
+                    ".institution"
+                  ).value.trim(),
+
+                admissionYear:
+                  card.querySelector(
+                    ".admissionYear"
+                  ).value,
+
+                completionYear:
+                  card.querySelector(
+                    ".completionYear"
+                  ).value,
+
+                currentlyStudying:
+                  card.querySelector(
+                    ".currentlyStudying"
+                  ).checked,
+
+                grade:
+                  card.querySelector(
+                    ".grade"
+                  ).value.trim(),
+
+                location:
+                  card.querySelector(
+                    ".location"
+                  ).value.trim(),
+
+                description:
+                  card.querySelector(
+                    ".description"
+                  ).value.trim()
+
+              });
+
+            }
+          );
+
+
+          setJSON(
+            STORAGE_KEYS.education,
+            result
+          );
+
+
+          window.location.href =
+            "experience.html";
+
+        }
+      );
+
+  }
+);
+
+</script>
+
+</body>
+</html>
