@@ -1,19 +1,31 @@
-/* =========================================
-   RESUME BUILDER THEME SYSTEM
-========================================= */
-
 (function () {
+
+    /*
+     * =========================================
+     * RESUME BUILDER THEME SYSTEM
+     * =========================================
+     */
+
 
     const savedTheme =
         localStorage.getItem("resumeTheme");
 
+
     const systemDark =
         window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window.matchMedia(
+            "(prefers-color-scheme: dark)"
+        ).matches;
+
 
     const initialTheme =
         savedTheme ||
         (systemDark ? "dark" : "light");
+
+
+    /*
+     * Apply theme immediately
+     */
 
     document.documentElement.setAttribute(
         "data-theme",
@@ -21,21 +33,32 @@
     );
 
 
+    /*
+     * Update moon / sun button
+     */
+
     function updateThemeButton() {
 
         const button =
-            document.getElementById("themeToggle");
+            document.getElementById(
+                "themeToggle"
+            );
 
-        if (!button) return;
+
+        if (!button) {
+            return;
+        }
+
 
         const currentTheme =
             document.documentElement.getAttribute(
                 "data-theme"
             );
 
+
         if (currentTheme === "dark") {
 
-            button.innerHTML = "☀️";
+            button.textContent = "☀️";
 
             button.setAttribute(
                 "aria-label",
@@ -49,7 +72,7 @@
 
         } else {
 
-            button.innerHTML = "🌙";
+            button.textContent = "🌙";
 
             button.setAttribute(
                 "aria-label",
@@ -66,12 +89,17 @@
     }
 
 
+    /*
+     * Toggle theme
+     */
+
     window.toggleTheme = function () {
 
         const currentTheme =
             document.documentElement.getAttribute(
                 "data-theme"
             );
+
 
         const newTheme =
             currentTheme === "dark"
@@ -96,22 +124,28 @@
     };
 
 
+    /*
+     * Initialize after page loads
+     */
+
     document.addEventListener(
         "DOMContentLoaded",
         function () {
 
             updateThemeButton();
 
+
             const button =
                 document.getElementById(
                     "themeToggle"
                 );
 
+
             if (button) {
 
                 button.addEventListener(
                     "click",
-                    toggleTheme
+                    window.toggleTheme
                 );
 
             }
