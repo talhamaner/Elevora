@@ -1,243 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-  <title>Professional Summary | Elevora</title>
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
 
-  <link rel="stylesheet" href="css/style.css">
+<title>Professional Summary | Elevora</title>
 
-  <script src="theme.js"></script>
-  <script src="js/app.js"></script>
+<link
+rel="stylesheet"
+href="css/style.css"
+>
+
+<script src="theme.js"></script>
+<script src="js/app.js"></script>
 
 </head>
 
+
 <body>
+
 
 <header class="navbar">
 
-  <a href="index.html" class="logo">Elevora</a>
+<a href="index.html" class="logo">
+Elevora
+</a>
 
-  <nav class="nav-links">
+<nav class="nav-links">
 
-    <a href="index.html">Home</a>
-    <a href="personal.html" class="active">Resume</a>
-    <a href="preview.html">Preview</a>
+<a href="index.html">Home</a>
+<a href="personal.html">Resume</a>
+<a href="preview.html">Preview</a>
+<a href="cover-letter.html">Cover Letter</a>
 
-    <button
-      id="themeToggle"
-      class="theme-toggle"
-      type="button"
-    >
-      🌙
-    </button>
+<button
+id="themeToggle"
+class="theme-toggle"
+type="button"
+>
+🌙
+</button>
 
-  </nav>
+</nav>
 
 </header>
 
 
-<main class="builder-wrapper">
-
-  <div class="progress-wrapper">
-
-    <div
-      class="progress-bar"
-      style="--progress: 18%"
-    >
-      <div class="progress-fill"></div>
-    </div>
-
-    <div class="progress-text">
-      <span>Step 2 of 11</span>
-      <span>Professional Summary</span>
-    </div>
-
-  </div>
+<main class="page-container">
 
 
-  <div class="page-heading">
+<div class="form-header">
 
-    <span class="eyebrow">STEP 02</span>
+<div class="step-number">2</div>
 
-    <h1>Professional Summary</h1>
+<div>
 
-    <p>
-      Tell employers about your professional background,
-      goals and strengths.
-    </p>
+<h1>Professional Summary</h1>
 
-  </div>
+<p>
+Introduce yourself and highlight your professional strengths.
+</p>
 
+</div>
 
-  <form id="summaryForm" class="form-card">
-
-    <div class="form-grid">
-
-      <div class="form-group full">
-
-        <label>
-          Professional Summary <span class="required">*</span>
-        </label>
-
-        <textarea
-          id="professionalSummary"
-          placeholder="Example: Motivated and detail-oriented professional with experience..."
-          required
-        ></textarea>
-
-        <span class="form-help">
-          Keep this section concise and focused on your value.
-        </span>
-
-      </div>
+</div>
 
 
-      <div class="form-group full">
+<div class="progress-wrapper">
 
-        <label>
-          Career Objective
-        </label>
+<div class="progress-bar">
+<div
+class="progress-fill"
+style="width:20%"
+></div>
+</div>
 
-        <textarea
-          id="careerObjective"
-          placeholder="Example: To obtain a software development position where I can apply my skills..."
-        ></textarea>
+<span>2 of 10</span>
 
-      </div>
-
-
-      <div class="form-group full">
-
-        <label>
-          Key Strengths
-        </label>
-
-        <input
-          id="keyStrengths"
-          type="text"
-          placeholder="Problem Solving, Communication, Teamwork, Leadership"
-        >
-
-        <span class="form-help">
-          Separate each strength with commas.
-        </span>
-
-      </div>
-
-    </div>
+</div>
 
 
-    <div class="form-actions">
+<form
+id="summaryForm"
+class="form-card"
+>
 
-      <a
-        href="personal.html"
-        class="btn btn-secondary"
-      >
-        ← Back
-      </a>
 
-      <button
-        type="submit"
-        class="btn btn-primary"
-      >
-        Save & Continue →
-      </button>
+<div class="form-group">
 
-    </div>
+<label>
+Professional Summary
+<span class="required">*</span>
+</label>
 
-  </form>
+<textarea
+id="professionalSummary"
+required
+placeholder="Write a concise professional summary..."
+></textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Career Objective
+</label>
+
+<textarea
+id="careerObjective"
+placeholder="Describe your career goals..."
+></textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Key Strengths
+</label>
+
+<textarea
+id="keyStrengths"
+placeholder="Leadership, communication, problem solving..."
+></textarea>
+
+</div>
+
+
+<div class="form-actions">
+
+<a
+href="personal.html"
+class="btn secondary"
+>
+← Back
+</a>
+
+<button
+type="submit"
+class="btn primary"
+>
+Save & Continue →
+</button>
+
+</div>
+
+
+<div
+id="status"
+class="form-status"
+></div>
+
+
+</form>
 
 </main>
 
 
 <script>
 
-document.addEventListener(
-  "DOMContentLoaded",
-  function () {
-
-    const saved =
-      getJSON(
-        STORAGE_KEYS.summary,
-        {}
-      );
-
-
-    document.getElementById(
-      "professionalSummary"
-    ).value =
-      saved.professionalSummary || "";
-
-
-    document.getElementById(
-      "careerObjective"
-    ).value =
-      saved.careerObjective || "";
-
-
-    document.getElementById(
-      "keyStrengths"
-    ).value =
-      saved.keyStrengths || "";
-
-
-    document
-      .getElementById("summaryForm")
-      .addEventListener(
-        "submit",
-        function (event) {
-
-          event.preventDefault();
-
-
-          const data = {
-
-            professionalSummary:
-              document.getElementById(
-                "professionalSummary"
-              ).value.trim(),
-
-            careerObjective:
-              document.getElementById(
-                "careerObjective"
-              ).value.trim(),
-
-            keyStrengths:
-              document.getElementById(
-                "keyStrengths"
-              ).value.trim()
-
-          };
-
-
-          if (!data.professionalSummary) {
-
-            alert(
-              "Please enter your professional summary."
-            );
-
-            return;
-
-          }
-
-
-          setJSON(
-            STORAGE_KEYS.summary,
-            data
-          );
-
-
-          window.location.href =
-            "education.html";
-
-        }
-      );
-
-  }
+const saved =
+JSON.parse(
+localStorage.getItem(
+"section_summary"
+) || "{}"
 );
+
+
+document.getElementById(
+"professionalSummary"
+).value =
+saved.professionalSummary || "";
+
+
+document.getElementById(
+"careerObjective"
+).value =
+saved.careerObjective || "";
+
+
+document.getElementById(
+"keyStrengths"
+).value =
+saved.keyStrengths || "";
+
+
+document.getElementById(
+"summaryForm"
+).addEventListener(
+"submit",
+function(event){
+
+event.preventDefault();
+
+
+const data={
+
+professionalSummary:
+document.getElementById(
+"professionalSummary"
+).value.trim(),
+
+careerObjective:
+document.getElementById(
+"careerObjective"
+).value.trim(),
+
+keyStrengths:
+document.getElementById(
+"keyStrengths"
+).value.trim()
+
+};
+
+
+localStorage.setItem(
+"section_summary",
+JSON.stringify(data)
+);
+
+
+window.location.href =
+"education.html";
+
+});
 
 </script>
 
