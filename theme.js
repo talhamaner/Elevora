@@ -1,1 +1,83 @@
-(function(){const r=document.documentElement,s=localStorage.getItem("resumeTheme"),d=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;r.setAttribute("data-theme",s==="dark"||s==="light"?s:(d?"dark":"light"));function u(){const b=document.getElementById("themeToggle");if(!b)return;const dark=r.getAttribute("data-theme")==="dark";b.textContent=dark?"☀️":"🌙";b.title=dark?"Switch to light mode":"Switch to dark mode"}window.toggleTheme=function(){const n=r.getAttribute("data-theme")==="dark"?"light":"dark";r.setAttribute("data-theme",n);localStorage.setItem("resumeTheme",n);u()};document.addEventListener("DOMContentLoaded",()=>{u();const b=document.getElementById("themeToggle");if(b)b.addEventListener("click",window.toggleTheme)})})();
+(function () {
+
+  const root = document.documentElement;
+
+  const savedTheme = localStorage.getItem("resumeTheme");
+
+  const systemDark =
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  root.setAttribute(
+    "data-theme",
+    savedTheme || (systemDark ? "dark" : "light")
+  );
+
+
+  function updateThemeButton() {
+
+    const button = document.getElementById("themeToggle");
+
+    if (!button) {
+      return;
+    }
+
+    const isDark =
+      root.getAttribute("data-theme") === "dark";
+
+    button.textContent = isDark ? "☀️" : "🌙";
+
+    button.title = isDark
+      ? "Switch to light mode"
+      : "Switch to dark mode";
+
+    button.setAttribute(
+      "aria-label",
+      button.title
+    );
+  }
+
+
+  window.toggleTheme = function () {
+
+    const current =
+      root.getAttribute("data-theme");
+
+    const next =
+      current === "dark"
+        ? "light"
+        : "dark";
+
+    root.setAttribute("data-theme", next);
+
+    localStorage.setItem(
+      "resumeTheme",
+      next
+    );
+
+    updateThemeButton();
+  };
+
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+      updateThemeButton();
+
+      const button =
+        document.getElementById("themeToggle");
+
+      if (button) {
+
+        button.addEventListener(
+          "click",
+          window.toggleTheme
+        );
+
+      }
+
+    }
+  );
+
+})();
