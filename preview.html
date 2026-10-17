@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Resume Preview | Elevora</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="theme.js"></script>
+  <script src="js/app.js"></script>
+
+</head>
+
+<body>
+
+<header class="navbar no-print">
+
+  <a href="index.html" class="logo">Elevora</a>
+
+  <nav class="nav-links">
+
+    <a href="index.html">Home</a>
+    <a href="personal.html">Resume</a>
+    <a href="preview.html" class="active">Preview</a>
+
+    <button
+      id="themeToggle"
+      class="theme-toggle"
+      type="button"
+    >
+      🌙
+    </button>
+
+  </nav>
+
+</header>
+
+
+<main class="preview-wrapper">
+
+  <div class="preview-toolbar no-print">
+
+    <div>
+
+      <h1>Resume Preview</h1>
+
+      <p>
+        Review your resume before printing.
+      </p>
+
+    </div>
+
+
+    <div class="action-right">
+
+      <a
+        href="personal.html"
+        class="btn btn-secondary"
+      >
+        Edit Resume
+      </a>
+
+      <button
+        type="button"
+        class="btn btn-primary"
+        onclick="window.print()"
+      >
+        Print / Save PDF
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="resumePaper"
+    class="resume-paper"
+  ></div>
+
+</main>
+
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+    const personal =
+      getJSON(
+        STORAGE_KEYS.personal,
+        {}
+      );
+
+
+    const summary =
+      getJSON(
+        STORAGE_KEYS.summary,
+        {}
+      );
+
+
+    const education =
+      getJSON(
+        STORAGE_KEYS.education,
+        []
+      );
+
+
+    const experience =
+      getJSON(
+        STORAGE_KEYS.experience,
+        {
+          status: "fresher",
+          entries: []
+        }
+      );
+
+
+    const projects =
+      getJSON(
+        STORAGE_KEYS.projects,
+        []
+      );
+
+
+    const skills =
+      getJSON(
+        STORAGE_KEYS.skills,
+        {}
+      );
+
+
+    const certifications =
+      getJSON(
+        STORAGE_KEYS.certifications,
+        []
+      );
+
+
+    const languages =
+      getJSON(
+        STORAGE_KEYS.languages,
+        []
+      );
+
+
+    const achievements =
+      getJSON(
+        STORAGE_KEYS.achievements,
+        []
+      );
+
+
+    const paper =
+      document.getElementById(
+        "resumePaper"
+      );
+
+
+    const fullName =
+      (
+        personal.firstName || ""
+      ) +
+      " " +
+      (
+        personal.lastName || ""
+      );
+
+
+    let html = "";
+
+
+    /*
+      HEADER
+    */
+
+    html += `
+
+      <header>
+
+        <h1 class="resume-name">
+          ${escapeHTML(
+            fullName.trim() ||
+            "Your Name"
+          )}
+        </h1>
+
+        ${
+          personal.professionalTitle
+          ? `
+            <div class="resume-title">
+              ${escapeHTML(
+                personal.professionalTitle
+              )}
+            </div>
+          `
+          : ""
+        }
+
+
+        <div class="resume-contact">
+
+          ${
+            personal.email
+            ? `<span>${escapeHTML(
+                personal.email
+              )}</span>`
+            : ""
+          }
+
+
+          ${
+            personal.phone
+            ? `<span>${escapeHTML(
+                personal.phoneCode || ""
+              )} ${escapeHTML(
+                personal.phone
+              )}</span>`
+            : ""
+          }
+
+
+          ${
+            personal.city
+            ? `<span>${escapeHTML(
+                personal.city
+              )}</span>`
+            : ""
+          }
+
+
+          ${
+            personal.country
+            ? `<span>${escapeHTML(
+                personal.country
+              )}</span>`
+            : ""
+          }
+
+        </div>
+
+
+        <div class="resume-contact">
+
+          ${
+            personal.linkedin
+            ? `<span>${escapeHTML(
+                personal.linkedin
+              )}</span>`
+            : ""
+          }
+
+
+          ${
+            personal.github
+            ? `<span>${escapeHTML(
+                personal.github
+              )}</span>`
+            : ""
+          }
+
+
+          ${
+            personal.portfolio
+            ? `<span>${escapeHTML(
+                personal.portfolio
+              )}</span>`
+            : ""
+          }
+
+        </div>
+
+      </header>
+
+    `;
+
+
+    /*
+      SUMMARY
+    */
+
+    if (
+      summary.professionalSummary ||
+      summary.careerObjective
+    ) {
+
+      html += `
+
+        <section class="resume-section">
+
+          <div class="resume-section-title">
+            Professional Summary
+          </div>
+
+          ${
+            summary.professionalSummary
+            ? `
+              <p>
+                ${escapeHTML(
+                  summary.professionalSummary
+                )}
+              </p>
+            `
+            : ""
+          }
+
+
+          ${
+            summary.careerObjective
+            ? `
+              <p>
+                <strong>Career Objective:</strong>
+                ${escapeHTML(
+                  summary.careerObjective
+                )}
+              </p>
+            `
+            : ""
+          }
+
+        </section>
+
+      `;
+
+    }
+
+
+    /*
+      EXPERIENCE
+    */
+
+    if (
+      experience.status === "experienced" &&
+      experience.entries &&
+      experience.entries.length
+    ) {
+
+      html += `
+
+        <section class="resume-section">
+
+          <div class="resume-section-title">
+            Experience
+          </div>
+
+      `;
+
+
+      experience.entries.forEach(
+        function (item) {
+
+          if (
+            !item.jobTitle &&
+            !item.company
+          ) {
+
+            return;
+
+          }
+
+
+          html += `
+
+            <div class="resume-item">
+
+              <h4>
+                ${escapeHTML(
+                  item.jobTitle || ""
+                )}
+              </h4>
+
+              <div class="meta">
+
+                ${escapeHTML(
+                  item.company || ""
+                )}
+
+                ${
+                  item.location
+                  ? ` · ${escapeHTML(
+                      item.location
+                    )}`
+                  : ""
+                }
+
+                ${
+                  item.startYear
+                  ? ` · ${escapeHTML(
+                      item.startYear
+                    )}`
+                  : ""
+                }
+
+                ${
+                  item.currentJob
+                  ? " - Present"
+                  : (
+                    item.endYear
+                    ? ` - ${escapeHTML(
+                        item.endYear
+                      )}`
+                    : ""
+                  )
+                }
+
+              </div>
+
+
+              ${
+                item.description
+                ? `
+                  <p>
+                    ${escapeHTML(
+                      item.description
+                    )}
+                  </p>
+                `
+                : ""
+              }
+
+            </div>
+
+          `;
+
+        }
+      );
+
+
+      html += `</section>`;
+
+    }
+
+
+    /*
+      EDUCATION
+    */
+
+    if (
+      education.length
+    ) {
+
+      const validEducation =
+        education.filter(
+          function (item) {
+
+            return (
+              item.degree ||
+              item.institution
+            );
+
+          }
+        );
+
+
+      if (validEducation.length) {
+
+        html += `
+
+          <section class="resume-section">
+
+            <div class="resume-section-title">
+              Education
+            </div>
+
+        `;
+
+
+        validEducation.forEach(
+          function (item) {
+
+            html += `
+
+              <div class="resume-item">
+
+                <h4>
+                  ${escapeHTML(
+                    item.degree || ""
+                  )}
+
+                  ${
+                    item.field
+                    ? ` - ${escapeHTML(
+                        item.field
+                      )}`
+                    : ""
+                  }
+
+                </h4>
+
+
+                <div class="meta">
+
+                  ${escapeHTML(
+                    item.institution || ""
+                  )}
+
+                  ${
+                    item.location
+                    ? ` · ${escapeHTML(
+                        item.location
+                      )}`
+                    : ""
+                  }
+
+                  ${
+                    item.admissionYear
+                    ? ` · ${escapeHTML(
+                        item.admissionYear
+                      )}`
+                    : ""
+                  }
+
+                  ${
+                    item.currentlyStudying
+                    ? " - Present"
+                    : (
+                      item.completionYear
+                      ? ` - ${escapeHTML(
+                          item.completionYear
+                        )}`
+                      : ""
+                    )
+                  }
+
+                </div>
+
+
+                ${
+                  item.grade
+                  ? `
+                    <p>
+                      <strong>Grade:</strong>
+                      ${escapeHTML(
+                        item.grade
+                      )}
+                    </p>
+                  `
+                  : ""
+                }
+
+
+                ${
+                  item.description
+                  ? `
+                    <p>
+                      ${escapeHTML(
+                        item.description
+                      )}
+                    </p>
+                  `
+                  : ""
+                }
+
+              </div>
+
+            `;
+
+          }
+        );
+
+
+        html += `</section>`;
+
+      }
+
+    }
+
+
+    /*
+      PROJECTS
+    */
+
+    if (
+      projects.length
+    ) {
+
+      const validProjects =
+        projects.filter(
+          function (item) {
+
+            return (
+              item.projectName ||
+              item.description
+            );
+
+          }
+        );
+
+
+      if (validProjects.length) {
+
+        html += `
+
+          <section class="resume-section">
+
+            <div class="resume-section-title">
+              Projects
+            </div>
+
+        `;
+
+
+        validProjects.forEach(
+          function (item) {
+
+            html += `
+
+              <div class="resume-item">
+
+                <h4>
+                  ${escapeHTML(
+                    item.projectName || ""
+                  )}
+                </h4>
+
+
+                <div class="meta">
+
+                  ${
+                    item.role
+                    ? escapeHTML(
+                        item.role
+                      )
+                    : ""
+                  }
+
+                  ${
+                    item.technologies
+                    ? ` · ${escapeHTML(
+                        item.technologies
+                      )}`
+                    : ""
+                  }
+
+                </div>
+
+
+                ${
+                  item.description
+                  ? `
+                    <p>
+                      ${escapeHTML(
+                        item.description
+                      )}
+                    </p>
+                  `
+                  : ""
+                }
+
+              </div>
+
+            `;
+
+          }
+        );
+
+
+        html += `</section>`;
+
+      }
+
+    }
+
+
+    /*
+      SKILLS
+    */
+
+    const skillText =
+      [
+        skills.technicalSkills,
+        skills.softSkills,
+        skills.tools
+      ]
+      .filter(Boolean)
+      .join(",");
+
+
+    if (skillText) {
+
+      const skillArray =
+        skillText
+          .split(",")
+          .map(
+            function (item) {
+              return item.trim();
+            }
+          )
+          .filter(Boolean);
+
+
+      html += `
+
+        <section class="resume-section">
+
+          <div class="resume-section-title">
+            Skills
+          </div>
+
+          <div class="skill-list">
+
+            ${skillArray
+              .map(
+                function (skill) {
+
+                  return `
+                    <span class="skill-tag">
+                      ${escapeHTML(skill)}
+                    </span>
+                  `;
+
+                }
+              )
+              .join("")}
+
+          </div>
+
+        </section>
+
+      `;
+
+    }
+
+
+    /*
+      CERTIFICATIONS
+    */
+
+    if (
+      certifications.length
+    ) {
+
+      const valid =
+        certifications.filter(
+          function (item) {
+
+            return (
+              item.name ||
+              item.organization
+            );
+
+          }
+        );
+
+
+      if (valid.length) {
+
+        html += `
+
+          <section class="resume-section">
+
+            <div class="resume-section-title">
+              Certifications
+            </div>
+
+        `;
+
+
+        valid.forEach(
+          function (item) {
+
+            html += `
+
+              <div class="resume-item">
+
+                <h4>
+                  ${escapeHTML(
+                    item.name || ""
+                  )}
+                </h4>
+
+                <div class="meta">
+
+                  ${escapeHTML(
+                    item.organization || ""
+                  )}
+
+                  ${
+                    item.year
+                    ? ` · ${escapeHTML(
+                        item.year
+                      )}`
+                    : ""
+                  }
+
+                </div>
+
+              </div>
+
+            `;
+
+          }
+        );
+
+
+        html += `</section>`;
+
+      }
+
+    }
+
+
+    /*
+      LANGUAGES
+    */
+
+    if (
+      languages.length
+    ) {
+
+      const valid =
+        languages.filter(
+          function (item) {
+
+            return item.language;
+
+          }
+        );
+
+
+      if (valid.length) {
+
+        html += `
+
+          <section class="resume-section">
+
+            <div class="resume-section-title">
+              Languages
+            </div>
+
+        `;
+
+
+        valid.forEach(
+          function (item) {
+
+            html += `
+
+              <div class="resume-item">
+
+                <p>
+                  <strong>
+                    ${escapeHTML(
+                      item.language
+                    )}
+                  </strong>
+
+                  ${
+                    item.proficiency
+                    ? ` - ${escapeHTML(
+                        item.proficiency
+                      )}`
+                    : ""
+                  }
+
+                </p>
+
+              </div>
+
+            `;
+
+          }
+        );
+
+
+        html += `</section>`;
+
+      }
+
+    }
+
+
+    /*
+      ACHIEVEMENTS
+    */
+
+    if (
+      achievements.length
+    ) {
+
+      const valid =
+        achievements.filter(
+          function (item) {
+
+            return (
+              item.title ||
+              item.description
+            );
+
+          }
+        );
+
+
+      if (valid.length) {
+
+        html += `
+
+          <section class="resume-section">
+
+            <div class="resume-section-title">
+              Achievements
+            </div>
+
+        `;
+
+
+        valid.forEach(
+          function (item) {
+
+            html += `
+
+              <div class="resume-item">
+
+                <h4>
+                  ${escapeHTML(
+                    item.title || ""
+                  )}
+
+                  ${
+                    item.year
+                    ? ` (${escapeHTML(
+                        item.year
+                      )})`
+                    : ""
+                  }
+
+                </h4>
+
+
+                ${
+                  item.description
+                  ? `
+                    <p>
+                      ${escapeHTML(
+                        item.description
+                      )}
+                    </p>
+                  `
+                  : ""
+                }
+
+              </div>
+
+            `;
+
+          }
+        );
+
+
+        html += `</section>`;
+
+      }
+
+    }
+
+
+    paper.innerHTML =
+      html;
+
+  }
+);
+
+</script>
+
+</body>
+</html>
