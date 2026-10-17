@@ -13,9 +13,9 @@
     <title>Personal Information - Resume Builder</title>
 
 
-    <!-- =========================================
-         INTERNATIONAL PHONE CSS
-    ========================================== -->
+    <!-- =====================================================
+         INTERNATIONAL TELEPHONE INPUT
+    ====================================================== -->
 
     <link
         rel="stylesheet"
@@ -25,9 +25,9 @@
 
     <style>
 
-        /* =========================================
+        /* =====================================================
            RESET
-        ========================================== */
+        ====================================================== */
 
         * {
             box-sizing: border-box;
@@ -36,9 +36,9 @@
         }
 
 
-        /* =========================================
+        /* =====================================================
            BODY
-        ========================================== */
+        ====================================================== */
 
         body {
 
@@ -58,11 +58,13 @@
         }
 
 
-        /* =========================================
+        /* =====================================================
            NAVBAR
-        ========================================== */
+        ====================================================== */
 
         .navbar {
+
+            width: 100%;
 
             background:
                 #ffffff;
@@ -76,20 +78,18 @@
             display:
                 flex;
 
-            justify-content:
-                space-between;
-
             align-items:
                 center;
+
+            justify-content:
+                space-between;
 
             position:
                 sticky;
 
-            top:
-                0;
+            top: 0;
 
-            z-index:
-                1000;
+            z-index: 1000;
         }
 
 
@@ -116,46 +116,52 @@
         }
 
 
-        .navbar a {
-
-            text-decoration:
-                none;
+        .navbar nav a {
 
             color:
                 #172033;
 
+            text-decoration:
+                none;
+
             font-weight:
                 600;
+
+            transition:
+                0.2s;
         }
 
 
-        .navbar a:hover {
+        .navbar nav a:hover {
 
             color:
                 #4361ee;
         }
 
 
-        /* =========================================
-           MAIN PAGE
-        ========================================== */
+        /* =====================================================
+           PAGE
+        ====================================================== */
 
         .page {
+
+            width:
+                100%;
 
             max-width:
                 1050px;
 
             margin:
-                auto;
+                0 auto;
 
             padding:
-                60px 20px;
+                55px 20px 70px;
         }
 
 
-        /* =========================================
+        /* =====================================================
            HEADER
-        ========================================== */
+        ====================================================== */
 
         .header {
 
@@ -179,26 +185,29 @@
                 #4361ee;
 
             padding:
-                8px 15px;
+                8px 16px;
 
             border-radius:
-                30px;
+                50px;
 
             font-size:
-                14px;
+                13px;
 
             font-weight:
                 700;
         }
 
 
-        h1 {
+        .header h1 {
+
+            margin:
+                18px 0 10px;
 
             font-size:
                 42px;
 
-            margin:
-                18px 0 10px;
+            line-height:
+                1.15;
         }
 
 
@@ -208,7 +217,7 @@
                 #64748b;
 
             font-size:
-                17px;
+                16px;
 
             line-height:
                 1.6;
@@ -222,43 +231,43 @@
         }
 
 
-        /* =========================================
+        /* =====================================================
            CARD
-        ========================================== */
+        ====================================================== */
 
         .card {
 
             background:
                 #ffffff;
 
-            padding:
-                35px;
+            border:
+                1px solid #e5e7eb;
 
             border-radius:
                 18px;
 
-            border:
-                1px solid #e5e7eb;
+            padding:
+                35px;
 
             box-shadow:
-                0 10px 30px
-                rgba(0, 0, 0, 0.05);
+                0 10px 35px
+                rgba(15, 23, 42, 0.06);
         }
 
 
         .card h2 {
 
-            margin-bottom:
-                25px;
-
             font-size:
                 24px;
+
+            margin-bottom:
+                28px;
         }
 
 
-        /* =========================================
+        /* =====================================================
            FORM GRID
-        ========================================== */
+        ====================================================== */
 
         .form-grid {
 
@@ -266,7 +275,7 @@
                 grid;
 
             grid-template-columns:
-                1fr 1fr;
+                repeat(2, minmax(0, 1fr));
 
             gap:
                 22px;
@@ -274,6 +283,9 @@
 
 
         .form-group {
+
+            min-width:
+                0;
 
             display:
                 flex;
@@ -293,7 +305,14 @@
         }
 
 
+        /* =====================================================
+           LABELS
+        ====================================================== */
+
         label {
+
+            font-size:
+                15px;
 
             font-weight:
                 700;
@@ -305,20 +324,20 @@
 
         .help-text {
 
-            font-size:
-                12px;
-
             color:
                 #64748b;
+
+            font-size:
+                12px;
 
             line-height:
                 1.5;
         }
 
 
-        /* =========================================
+        /* =====================================================
            INPUTS
-        ========================================== */
+        ====================================================== */
 
         input,
         select {
@@ -326,8 +345,8 @@
             width:
                 100%;
 
-            padding:
-                14px;
+            min-height:
+                48px;
 
             border:
                 1px solid #d5dbe5;
@@ -335,20 +354,32 @@
             border-radius:
                 9px;
 
-            font-size:
-                15px;
-
-            outline:
-                none;
-
             background:
                 #ffffff;
 
             color:
                 #172033;
 
+            padding:
+                13px 14px;
+
+            font-size:
+                15px;
+
+            outline:
+                none;
+
             transition:
-                0.2s;
+                border-color 0.2s,
+                box-shadow 0.2s,
+                background 0.2s;
+        }
+
+
+        input::placeholder {
+
+            color:
+                #9aa3b2;
         }
 
 
@@ -361,13 +392,6 @@
             box-shadow:
                 0 0 0 3px
                 rgba(67, 97, 238, 0.12);
-        }
-
-
-        input::placeholder {
-
-            color:
-                #9aa3b2;
         }
 
 
@@ -384,9 +408,9 @@
         }
 
 
-        /* =========================================
+        /* =====================================================
            PHONE
-        ========================================== */
+        ====================================================== */
 
         .phone-wrapper {
 
@@ -407,69 +431,59 @@
             width:
                 100%;
 
+            min-height:
+                48px;
+
             padding-top:
-                14px;
+                13px;
 
             padding-bottom:
-                14px;
+                13px;
         }
 
 
         .iti__country-list {
 
+            z-index:
+                3000;
+
             max-width:
                 360px;
-
-            z-index:
-                2000;
         }
 
 
-        /* =========================================
+        /* =====================================================
            LOCATION STATUS
-        ========================================== */
+        ====================================================== */
 
         .location-status {
 
             display:
                 none;
 
+            width:
+                100%;
+
             padding:
                 12px 14px;
 
-            margin-top:
-                10px;
-
-            background:
-                #f1f5ff;
-
-            border:
-                1px solid #dbe3ff;
-
             border-radius:
-                8px;
-
-            color:
-                #4054a5;
+                9px;
 
             font-size:
                 13px;
 
             line-height:
                 1.5;
-        }
-
-
-        .location-status.error {
 
             background:
-                #fff1f2;
+                #eff6ff;
 
-            border-color:
-                #fecdd3;
+            border:
+                1px solid #bfdbfe;
 
             color:
-                #be123c;
+                #1d4ed8;
         }
 
 
@@ -486,33 +500,75 @@
         }
 
 
-        .location-note {
+        .location-status.error {
+
+            background:
+                #fff1f2;
+
+            border-color:
+                #fecdd3;
+
+            color:
+                #be123c;
+        }
+
+
+        /* =====================================================
+           MANUAL FALLBACK
+        ====================================================== */
+
+        .manual-location {
 
             display:
                 none;
 
+            margin-top:
+                5px;
+
+            padding:
+                18px;
+
+            border:
+                1px dashed #cbd5e1;
+
+            border-radius:
+                10px;
+
+            background:
+                #f8fafc;
+        }
+
+
+        .manual-location p {
+
             font-size:
-                12px;
+                13px;
+
+            line-height:
+                1.5;
 
             color:
                 #64748b;
 
-            line-height:
-                1.5;
+            margin-bottom:
+                14px;
         }
 
 
-        /* =========================================
-           ERROR MESSAGE
-        ========================================== */
+        /* =====================================================
+           ERROR
+        ====================================================== */
 
         .error-message {
 
             display:
                 none;
 
-            color:
-                #dc2626;
+            margin-bottom:
+                20px;
+
+            padding:
+                14px 16px;
 
             background:
                 #fef2f2;
@@ -520,14 +576,11 @@
             border:
                 1px solid #fecaca;
 
-            padding:
-                13px;
-
             border-radius:
-                8px;
+                9px;
 
-            margin-bottom:
-                20px;
+            color:
+                #b91c1c;
 
             font-size:
                 14px;
@@ -537,14 +590,11 @@
         }
 
 
-        /* =========================================
+        /* =====================================================
            BUTTONS
-        ========================================== */
+        ====================================================== */
 
         .actions {
-
-            margin-top:
-                25px;
 
             display:
                 flex;
@@ -554,31 +604,13 @@
 
             gap:
                 15px;
+
+            margin-top:
+                25px;
         }
 
 
         .btn {
-
-            border:
-                none;
-
-            border-radius:
-                10px;
-
-            padding:
-                14px 24px;
-
-            font-size:
-                15px;
-
-            font-weight:
-                700;
-
-            text-decoration:
-                none;
-
-            cursor:
-                pointer;
 
             display:
                 inline-flex;
@@ -588,6 +620,30 @@
 
             justify-content:
                 center;
+
+            min-height:
+                48px;
+
+            padding:
+                12px 24px;
+
+            border-radius:
+                10px;
+
+            font-size:
+                15px;
+
+            font-weight:
+                700;
+
+            cursor:
+                pointer;
+
+            text-decoration:
+                none;
+
+            border:
+                none;
 
             transition:
                 0.2s;
@@ -603,11 +659,11 @@
 
         .back {
 
-            background:
-                #ffffff;
-
             color:
                 #172033;
+
+            background:
+                #ffffff;
 
             border:
                 1px solid #d5dbe5;
@@ -616,11 +672,11 @@
 
         .next {
 
-            background:
-                #4361ee;
-
             color:
                 #ffffff;
+
+            background:
+                #4361ee;
         }
 
 
@@ -631,58 +687,49 @@
         }
 
 
-        /* =========================================
-           LOADING SPINNER
-        ========================================== */
+        /* =====================================================
+           LOADING
+        ====================================================== */
 
-        .loading-dot {
-
-            display:
-                inline-block;
+        .spinner {
 
             width:
-                7px;
+                16px;
 
             height:
-                7px;
+                16px;
 
-            margin-left:
-                5px;
+            border:
+                2px solid
+                rgba(255,255,255,0.4);
+
+            border-top-color:
+                #ffffff;
 
             border-radius:
                 50%;
 
-            background:
-                #4361ee;
-
             animation:
-                pulse 1s infinite;
+                spin 0.8s linear infinite;
+
+            margin-right:
+                8px;
         }
 
 
-        @keyframes pulse {
+        @keyframes spin {
 
-            0% {
-                opacity:
-                    0.2;
-            }
-
-            50% {
-                opacity:
-                    1;
-            }
-
-            100% {
-                opacity:
-                    0.2;
+            to {
+                transform:
+                    rotate(360deg);
             }
 
         }
 
 
-        /* =========================================
+        /* =====================================================
            MOBILE
-        ========================================== */
+        ====================================================== */
 
         @media (max-width: 700px) {
 
@@ -710,31 +757,38 @@
             .page {
 
                 padding:
-                    40px 15px;
+                    35px 14px 50px;
             }
 
 
-            h1 {
+            .header h1 {
 
                 font-size:
-                    32px;
+                    31px;
             }
 
 
             .header p {
 
                 font-size:
-                    15px;
+                    14px;
             }
 
 
             .card {
 
                 padding:
-                    22px;
+                    22px 17px;
 
                 border-radius:
                     14px;
+            }
+
+
+            .card h2 {
+
+                font-size:
+                    21px;
             }
 
 
@@ -742,6 +796,9 @@
 
                 grid-template-columns:
                     1fr;
+
+                gap:
+                    19px;
             }
 
 
@@ -769,7 +826,7 @@
             .iti__country-list {
 
                 max-width:
-                    300px;
+                    290px;
             }
 
         }
@@ -782,9 +839,9 @@
 <body>
 
 
-<!-- =========================================
+<!-- =====================================================
      NAVBAR
-========================================== -->
+====================================================== -->
 
 <header class="navbar">
 
@@ -813,18 +870,18 @@
 
 
 
-<!-- =========================================
+<!-- =====================================================
      MAIN
-========================================== -->
+====================================================== -->
 
 <main class="page">
 
 
-    <!-- =====================================
+    <!-- =================================================
          HEADER
-    ====================================== -->
+    ================================================== -->
 
-    <div class="header">
+    <section class="header">
 
         <span class="badge">
             Step 1 of 10
@@ -837,19 +894,19 @@
 
 
         <p>
-            Tell us about yourself.
+            Enter your personal and contact information.
             Fields marked with
             <strong class="required">*</strong>
             are required.
         </p>
 
-    </div>
+    </section>
 
 
 
-    <!-- =====================================
+    <!-- =================================================
          FORM
-    ====================================== -->
+    ================================================== -->
 
     <form
         id="personalForm"
@@ -857,9 +914,9 @@
     >
 
 
-        <!-- =================================
+        <!-- =============================================
              ERROR
-        ================================== -->
+        ============================================== -->
 
         <div
             id="errorMessage"
@@ -868,11 +925,11 @@
 
 
 
-        <!-- =================================
-             PERSONAL CARD
-        ================================== -->
+        <!-- =============================================
+             BASIC INFORMATION CARD
+        ============================================== -->
 
-        <div class="card">
+        <section class="card">
 
 
             <h2>
@@ -883,9 +940,9 @@
             <div class="form-grid">
 
 
-                <!-- =============================
+                <!-- =====================================
                      FIRST NAME
-                ============================== -->
+                ====================================== -->
 
                 <div class="form-group">
 
@@ -903,6 +960,7 @@
                     <input
                         type="text"
                         id="firstName"
+                        name="firstName"
                         placeholder="Enter your first name"
                         autocomplete="given-name"
                         required
@@ -912,9 +970,9 @@
 
 
 
-                <!-- =============================
+                <!-- =====================================
                      LAST NAME
-                ============================== -->
+                ====================================== -->
 
                 <div class="form-group">
 
@@ -932,6 +990,7 @@
                     <input
                         type="text"
                         id="lastName"
+                        name="lastName"
                         placeholder="Enter your last name"
                         autocomplete="family-name"
                         required
@@ -941,9 +1000,9 @@
 
 
 
-                <!-- =============================
+                <!-- =====================================
                      EMAIL
-                ============================== -->
+                ====================================== -->
 
                 <div class="form-group">
 
@@ -961,6 +1020,7 @@
                     <input
                         type="email"
                         id="email"
+                        name="email"
                         placeholder="you@example.com"
                         autocomplete="email"
                         required
@@ -970,9 +1030,9 @@
 
 
 
-                <!-- =============================
-                     MOBILE
-                ============================== -->
+                <!-- =====================================
+                     PHONE
+                ====================================== -->
 
                 <div class="form-group">
 
@@ -992,6 +1052,7 @@
                         <input
                             type="tel"
                             id="phone"
+                            name="phone"
                             autocomplete="tel"
                             required
                         >
@@ -1000,16 +1061,19 @@
 
 
                     <small class="help-text">
-                        Select your country from the flag.
+
+                        Select the country flag to change
+                        the international calling code.
+
                     </small>
 
                 </div>
 
 
 
-                <!-- =============================
+                <!-- =====================================
                      COUNTRY
-                ============================== -->
+                ====================================== -->
 
                 <div class="form-group">
 
@@ -1026,27 +1090,30 @@
 
                     <select
                         id="country"
+                        name="country"
                         required
                     >
 
                         <option value="">
-                            Loading countries...
+                            Select country
                         </option>
 
                     </select>
 
 
                     <small class="help-text">
-                        More than 200 countries are supported.
+
+                        International country list.
+
                     </small>
 
                 </div>
 
 
 
-                <!-- =============================
+                <!-- =====================================
                      STATE
-                ============================== -->
+                ====================================== -->
 
                 <div class="form-group">
 
@@ -1063,8 +1130,9 @@
 
                     <select
                         id="state"
-                        required
+                        name="state"
                         disabled
+                        required
                     >
 
                         <option value="">
@@ -1077,9 +1145,9 @@
 
 
 
-                <!-- =============================
+                <!-- =====================================
                      DISTRICT / CITY
-                ============================== -->
+                ====================================== -->
 
                 <div class="form-group">
 
@@ -1096,8 +1164,9 @@
 
                     <select
                         id="district"
-                        required
+                        name="district"
                         disabled
+                        required
                     >
 
                         <option value="">
@@ -1109,16 +1178,16 @@
 
                     <small
                         id="districtNote"
-                        class="location-note"
+                        class="help-text"
                     ></small>
 
                 </div>
 
 
 
-                <!-- =============================
+                <!-- =====================================
                      POSTAL CODE
-                ============================== -->
+                ====================================== -->
 
                 <div class="form-group">
 
@@ -1136,6 +1205,7 @@
                     <input
                         type="text"
                         id="postalCode"
+                        name="postalCode"
                         placeholder="PIN / ZIP / Postal code"
                         autocomplete="postal-code"
                         required
@@ -1145,9 +1215,9 @@
 
 
 
-                <!-- =============================
+                <!-- =====================================
                      LOCATION STATUS
-                ============================== -->
+                ====================================== -->
 
                 <div class="form-group full">
 
@@ -1160,9 +1230,72 @@
 
 
 
-                <!-- =============================
+                <!-- =====================================
+                     MANUAL LOCATION FALLBACK
+                ====================================== -->
+
+                <div
+                    id="manualLocation"
+                    class="manual-location full"
+                >
+
+                    <p>
+
+                        We could not load the location
+                        database for this country.
+                        You can enter your state/province
+                        and city/town manually.
+
+                    </p>
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group">
+
+                            <label for="manualState">
+
+                                State / Province / Region
+
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="manualState"
+                                placeholder="Enter state / province / region"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="manualCity">
+
+                                District / City / Town
+
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="manualCity"
+                                placeholder="Enter district / city / town"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =====================================
                      PROFESSIONAL TITLE
-                ============================== -->
+                ====================================== -->
 
                 <div class="form-group full">
 
@@ -1180,6 +1313,7 @@
                     <input
                         type="text"
                         id="professionalTitle"
+                        name="professionalTitle"
                         placeholder="e.g. Software Developer"
                         required
                     >
@@ -1188,9 +1322,9 @@
 
 
 
-                <!-- =============================
+                <!-- =====================================
                      LINKEDIN
-                ============================== -->
+                ====================================== -->
 
                 <div class="form-group full">
 
@@ -1204,6 +1338,7 @@
                     <input
                         type="url"
                         id="linkedin"
+                        name="linkedin"
                         placeholder="https://linkedin.com/in/your-profile"
                         autocomplete="url"
                     >
@@ -1212,9 +1347,9 @@
 
 
 
-                <!-- =============================
+                <!-- =====================================
                      WEBSITE
-                ============================== -->
+                ====================================== -->
 
                 <div class="form-group full">
 
@@ -1228,6 +1363,7 @@
                     <input
                         type="url"
                         id="website"
+                        name="website"
                         placeholder="https://yourwebsite.com"
                         autocomplete="url"
                     >
@@ -1237,13 +1373,13 @@
 
             </div>
 
-        </div>
+        </section>
 
 
 
-        <!-- =====================================
-             ACTIONS
-        ====================================== -->
+        <!-- =================================================
+             BUTTONS
+        ================================================== -->
 
         <div class="actions">
 
@@ -1258,6 +1394,7 @@
 
             <button
                 type="submit"
+                id="continueButton"
                 class="btn next"
             >
                 Save & Continue →
@@ -1269,22 +1406,19 @@
 
     </form>
 
-
 </main>
 
 
 
-<!-- =========================================
-     INTERNATIONAL PHONE JAVASCRIPT
-========================================== -->
+<!-- =====================================================
+     INTERNATIONAL PHONE LIBRARY
+====================================================== -->
 
-<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.5/dist/js/intlTelInput.min.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.5/dist/js/intlTelInput.min.js"
+></script>
 
 
-
-<!-- =========================================
-     MAIN JAVASCRIPT
-========================================== -->
 
 <script>
 
@@ -1293,54 +1427,338 @@ document.addEventListener(
     function () {
 
 
-        /* =====================================
-           GET ELEMENTS
-        ====================================== */
+        /* =================================================
+           ELEMENTS
+        ================================================== */
+
+        const form =
+            document.getElementById(
+                "personalForm"
+            );
+
 
         const phoneInput =
-            document.getElementById("phone");
+            document.getElementById(
+                "phone"
+            );
 
 
         const countrySelect =
-            document.getElementById("country");
+            document.getElementById(
+                "country"
+            );
 
 
         const stateSelect =
-            document.getElementById("state");
+            document.getElementById(
+                "state"
+            );
 
 
         const districtSelect =
-            document.getElementById("district");
+            document.getElementById(
+                "district"
+            );
+
+
+        const postalCodeInput =
+            document.getElementById(
+                "postalCode"
+            );
 
 
         const districtNote =
-            document.getElementById("districtNote");
+            document.getElementById(
+                "districtNote"
+            );
 
 
         const locationStatus =
-            document.getElementById("locationStatus");
+            document.getElementById(
+                "locationStatus"
+            );
+
+
+        const manualLocation =
+            document.getElementById(
+                "manualLocation"
+            );
+
+
+        const manualState =
+            document.getElementById(
+                "manualState"
+            );
+
+
+        const manualCity =
+            document.getElementById(
+                "manualCity"
+            );
 
 
         const errorMessage =
-            document.getElementById("errorMessage");
+            document.getElementById(
+                "errorMessage"
+            );
 
 
-        const form =
-            document.getElementById("personalForm");
+        const continueButton =
+            document.getElementById(
+                "continueButton"
+            );
 
 
 
-        /* =====================================
-           INDIA DATA
-        ====================================== */
+        /* =================================================
+           INDIA STATE / DISTRICT DATA
+        ==================================================
+
+           We first try to load this database from GitHub.
+
+           If it fails, international location APIs are
+           still used for other countries.
+        ================================================== */
 
         let indiaData = [];
 
 
 
-        /* =====================================
-           PHONE
-        ====================================== */
+        /* =================================================
+           INTERNATIONAL COUNTRY DATABASE
+
+           This is stored locally so the country dropdown
+           does NOT depend on an API.
+        ================================================== */
+
+        const countries = [
+
+            ["af","Afghanistan"],
+            ["al","Albania"],
+            ["dz","Algeria"],
+            ["ad","Andorra"],
+            ["ao","Angola"],
+            ["ag","Antigua and Barbuda"],
+            ["ar","Argentina"],
+            ["am","Armenia"],
+            ["au","Australia"],
+            ["at","Austria"],
+            ["az","Azerbaijan"],
+
+            ["bs","Bahamas"],
+            ["bh","Bahrain"],
+            ["bd","Bangladesh"],
+            ["bb","Barbados"],
+            ["by","Belarus"],
+            ["be","Belgium"],
+            ["bz","Belize"],
+            ["bj","Benin"],
+            ["bt","Bhutan"],
+            ["bo","Bolivia"],
+            ["ba","Bosnia and Herzegovina"],
+            ["bw","Botswana"],
+            ["br","Brazil"],
+            ["bn","Brunei"],
+            ["bg","Bulgaria"],
+            ["bf","Burkina Faso"],
+            ["bi","Burundi"],
+
+            ["cv","Cabo Verde"],
+            ["kh","Cambodia"],
+            ["cm","Cameroon"],
+            ["ca","Canada"],
+            ["cf","Central African Republic"],
+            ["td","Chad"],
+            ["cl","Chile"],
+            ["cn","China"],
+            ["co","Colombia"],
+            ["km","Comoros"],
+            ["cg","Congo"],
+            ["cd","Democratic Republic of the Congo"],
+            ["cr","Costa Rica"],
+            ["ci","Côte d'Ivoire"],
+            ["hr","Croatia"],
+            ["cu","Cuba"],
+            ["cy","Cyprus"],
+            ["cz","Czechia"],
+
+            ["dk","Denmark"],
+            ["dj","Djibouti"],
+            ["dm","Dominica"],
+            ["do","Dominican Republic"],
+
+            ["ec","Ecuador"],
+            ["eg","Egypt"],
+            ["sv","El Salvador"],
+            ["gq","Equatorial Guinea"],
+            ["er","Eritrea"],
+            ["ee","Estonia"],
+            ["sz","Eswatini"],
+            ["et","Ethiopia"],
+
+            ["fj","Fiji"],
+            ["fi","Finland"],
+            ["fr","France"],
+
+            ["ga","Gabon"],
+            ["gm","Gambia"],
+            ["ge","Georgia"],
+            ["de","Germany"],
+            ["gh","Ghana"],
+            ["gr","Greece"],
+            ["gd","Grenada"],
+            ["gt","Guatemala"],
+            ["gn","Guinea"],
+            ["gw","Guinea-Bissau"],
+            ["gy","Guyana"],
+
+            ["ht","Haiti"],
+            ["hn","Honduras"],
+            ["hu","Hungary"],
+
+            ["is","Iceland"],
+            ["in","India"],
+            ["id","Indonesia"],
+            ["ir","Iran"],
+            ["iq","Iraq"],
+            ["ie","Ireland"],
+            ["il","Israel"],
+            ["it","Italy"],
+
+            ["jm","Jamaica"],
+            ["jp","Japan"],
+            ["jo","Jordan"],
+
+            ["kz","Kazakhstan"],
+            ["ke","Kenya"],
+            ["ki","Kiribati"],
+            ["kw","Kuwait"],
+            ["kg","Kyrgyzstan"],
+
+            ["la","Laos"],
+            ["lv","Latvia"],
+            ["lb","Lebanon"],
+            ["ls","Lesotho"],
+            ["lr","Liberia"],
+            ["ly","Libya"],
+            ["li","Liechtenstein"],
+            ["lt","Lithuania"],
+            ["lu","Luxembourg"],
+
+            ["mg","Madagascar"],
+            ["mw","Malawi"],
+            ["my","Malaysia"],
+            ["mv","Maldives"],
+            ["ml","Mali"],
+            ["mt","Malta"],
+            ["mh","Marshall Islands"],
+            ["mr","Mauritania"],
+            ["mu","Mauritius"],
+            ["mx","Mexico"],
+            ["fm","Micronesia"],
+            ["md","Moldova"],
+            ["mc","Monaco"],
+            ["mn","Mongolia"],
+            ["me","Montenegro"],
+            ["ma","Morocco"],
+            ["mz","Mozambique"],
+            ["mm","Myanmar"],
+
+            ["na","Namibia"],
+            ["nr","Nauru"],
+            ["np","Nepal"],
+            ["nl","Netherlands"],
+            ["nz","New Zealand"],
+            ["ni","Nicaragua"],
+            ["ne","Niger"],
+            ["ng","Nigeria"],
+            ["kp","North Korea"],
+            ["mk","North Macedonia"],
+            ["no","Norway"],
+
+            ["om","Oman"],
+
+            ["pk","Pakistan"],
+            ["pw","Palau"],
+            ["pa","Panama"],
+            ["pg","Papua New Guinea"],
+            ["py","Paraguay"],
+            ["pe","Peru"],
+            ["ph","Philippines"],
+            ["pl","Poland"],
+            ["pt","Portugal"],
+
+            ["qa","Qatar"],
+
+            ["ro","Romania"],
+            ["ru","Russia"],
+            ["rw","Rwanda"],
+
+            ["kn","Saint Kitts and Nevis"],
+            ["lc","Saint Lucia"],
+            ["vc","Saint Vincent and the Grenadines"],
+            ["ws","Samoa"],
+            ["sm","San Marino"],
+            ["st","São Tomé and Príncipe"],
+            ["sa","Saudi Arabia"],
+            ["sn","Senegal"],
+            ["rs","Serbia"],
+            ["sc","Seychelles"],
+            ["sl","Sierra Leone"],
+            ["sg","Singapore"],
+            ["sk","Slovakia"],
+            ["si","Slovenia"],
+            ["sb","Solomon Islands"],
+            ["so","Somalia"],
+            ["za","South Africa"],
+            ["kr","South Korea"],
+            ["ss","South Sudan"],
+            ["es","Spain"],
+            ["lk","Sri Lanka"],
+            ["sd","Sudan"],
+            ["sr","Suriname"],
+            ["se","Sweden"],
+            ["ch","Switzerland"],
+            ["sy","Syria"],
+
+            ["tw","Taiwan"],
+            ["tj","Tajikistan"],
+            ["tz","Tanzania"],
+            ["th","Thailand"],
+            ["tl","Timor-Leste"],
+            ["tg","Togo"],
+            ["to","Tonga"],
+            ["tt","Trinidad and Tobago"],
+            ["tn","Tunisia"],
+            ["tr","Türkiye"],
+            ["tm","Turkmenistan"],
+            ["tv","Tuvalu"],
+
+            ["ug","Uganda"],
+            ["ua","Ukraine"],
+            ["ae","United Arab Emirates"],
+            ["gb","United Kingdom"],
+            ["us","United States"],
+            ["uy","Uruguay"],
+            ["uz","Uzbekistan"],
+
+            ["vu","Vanuatu"],
+            ["va","Vatican City"],
+            ["ve","Venezuela"],
+            ["vn","Vietnam"],
+
+            ["ye","Yemen"],
+
+            ["zm","Zambia"],
+            ["zw","Zimbabwe"]
+
+        ];
+
+
+
+        /* =================================================
+           PHONE INITIALIZATION
+        ================================================== */
 
         const iti =
             window.intlTelInput(
@@ -1363,6 +1781,12 @@ document.addEventListener(
                             "ae"
                         ],
 
+                    nationalMode:
+                        true,
+
+                    formatOnDisplay:
+                        true,
+
                     loadUtils:
                         function () {
 
@@ -1377,9 +1801,9 @@ document.addEventListener(
 
 
 
-        /* =====================================
-           STATUS
-        ====================================== */
+        /* =================================================
+           SHOW STATUS
+        ================================================== */
 
         function showStatus(
             message,
@@ -1395,22 +1819,22 @@ document.addEventListener(
 
 
             if (
-                type === "error"
+                type === "success"
             ) {
 
                 locationStatus.classList.add(
-                    "error"
+                    "success"
                 );
 
             }
 
 
             if (
-                type === "success"
+                type === "error"
             ) {
 
                 locationStatus.classList.add(
-                    "success"
+                    "error"
                 );
 
             }
@@ -1422,6 +1846,11 @@ document.addEventListener(
         }
 
 
+
+        /* =================================================
+           HIDE STATUS
+        ================================================== */
+
         function hideStatus() {
 
             locationStatus.style.display =
@@ -1431,9 +1860,9 @@ document.addEventListener(
 
 
 
-        /* =====================================
-           ERROR
-        ====================================== */
+        /* =================================================
+           ERROR MESSAGE
+        ================================================== */
 
         function showError(
             message
@@ -1447,15 +1876,15 @@ document.addEventListener(
                 "block";
 
 
-            window.scrollTo({
-
-                top: 0,
-
-                behavior: "smooth"
-
-            });
+            window.scrollTo(
+                {
+                    top: 0,
+                    behavior: "smooth"
+                }
+            );
 
         }
+
 
 
         function hideError() {
@@ -1467,21 +1896,21 @@ document.addEventListener(
 
 
 
-        /* =====================================
-           GET SAVED DATA
-        ====================================== */
+        /* =================================================
+           LOCAL STORAGE
+        ================================================== */
 
         function getSavedData() {
 
             try {
 
-                const data =
+                const saved =
                     localStorage.getItem(
                         "resumePersonalData"
                     );
 
 
-                if (!data) {
+                if (!saved) {
 
                     return null;
 
@@ -1489,7 +1918,7 @@ document.addEventListener(
 
 
                 return JSON.parse(
-                    data
+                    saved
                 );
 
             }
@@ -1497,7 +1926,7 @@ document.addEventListener(
             catch (error) {
 
                 console.error(
-                    "Saved data error:",
+                    "Local storage error:",
                     error
                 );
 
@@ -1510,13 +1939,102 @@ document.addEventListener(
 
 
 
-        /* =====================================
+        /* =================================================
+           LOAD COUNTRY DROPDOWN
+        ================================================== */
+
+        function loadCountries() {
+
+
+            countrySelect.innerHTML =
+                '<option value="">Select country</option>';
+
+
+            countries
+                .slice()
+                .sort(
+                    function(a,b) {
+
+                        return a[1].localeCompare(
+                            b[1]
+                        );
+
+                    }
+                )
+                .forEach(
+                    function(country) {
+
+
+                        const option =
+                            document.createElement(
+                                "option"
+                            );
+
+
+                        option.value =
+                            country[0];
+
+
+                        option.textContent =
+                            country[1];
+
+
+                        countrySelect.appendChild(
+                            option
+                        );
+
+                    }
+                );
+
+
+            countrySelect.disabled =
+                false;
+
+
+            const saved =
+                getSavedData();
+
+
+            if (
+                saved &&
+                saved.countryCode
+            ) {
+
+
+                countrySelect.value =
+                    saved.countryCode
+                        .toLowerCase();
+
+
+                if (
+                    countrySelect.value
+                ) {
+
+
+                    handleCountryChange(
+                        saved.stateCode || "",
+                        saved.districtCode || ""
+                    );
+
+                }
+
+            }
+
+
+            updatePostalPlaceholder();
+
+        }
+
+
+
+        /* =================================================
            LOAD INDIA DATA
-        ====================================== */
+        ================================================== */
 
         async function loadIndiaData() {
 
             try {
+
 
                 const response =
                     await fetch(
@@ -1527,7 +2045,7 @@ document.addEventListener(
                 if (!response.ok) {
 
                     throw new Error(
-                        "India data request failed"
+                        "India data unavailable"
                     );
 
                 }
@@ -1541,14 +2059,18 @@ document.addEventListener(
                     "India location data loaded."
                 );
 
+
             }
 
             catch (error) {
 
-                console.error(
-                    "India data error:",
+                console.warn(
+                    "India data could not be loaded.",
                     error
                 );
+
+
+                indiaData = [];
 
             }
 
@@ -1556,346 +2078,15 @@ document.addEventListener(
 
 
 
-        /* =====================================
-           LOAD COUNTRIES
-        ====================================== */
-
-        async function loadCountries() {
-
-
-            countrySelect.innerHTML =
-                '<option value="">Loading countries...</option>';
-
-
-            countrySelect.disabled =
-                true;
-
-
-            try {
-
-
-                showStatus(
-                    "Loading international countries..."
-                );
-
-
-                /*
-                 * CountriesNow API
-                 */
-
-                const response =
-                    await fetch(
-                        "https://countriesnow.space/api/v0.1/countries"
-                    );
-
-
-                if (!response.ok) {
-
-                    throw new Error(
-                        "CountriesNow failed"
-                    );
-
-                }
-
-
-                const result =
-                    await response.json();
-
-
-                let countries =
-                    result.data || [];
-
-
-                if (
-                    !countries.length
-                ) {
-
-                    throw new Error(
-                        "Country list was empty"
-                    );
-
-                }
-
-
-
-                /*
-                 * Sort countries
-                 */
-
-                countries =
-                    countries
-                        .filter(
-                            function (country) {
-
-                                return (
-                                    country.name &&
-                                    country.iso2
-                                );
-
-                            }
-                        )
-                        .sort(
-                            function (a, b) {
-
-                                return a.name.localeCompare(
-                                    b.name
-                                );
-
-                            }
-                        );
-
-
-
-                /*
-                 * Clear dropdown
-                 */
-
-                countrySelect.innerHTML =
-                    '<option value="">Select country</option>';
-
-
-
-                /*
-                 * Add countries
-                 */
-
-                countries.forEach(
-                    function (country) {
-
-
-                        const option =
-                            document.createElement(
-                                "option"
-                            );
-
-
-                        option.value =
-                            country.iso2
-                                .toLowerCase();
-
-
-                        option.textContent =
-                            country.name;
-
-
-                        countrySelect.appendChild(
-                            option
-                        );
-
-                    }
-                );
-
-
-
-                countrySelect.disabled =
-                    false;
-
-
-                hideStatus();
-
-
-                /*
-                 * Restore country
-                 */
-
-                const saved =
-                    getSavedData();
-
-
-                if (
-                    saved &&
-                    saved.countryCode
-                ) {
-
-
-                    countrySelect.value =
-                        saved.countryCode
-                            .toLowerCase();
-
-
-                    await handleCountryChange(
-                        saved.stateCode || "",
-                        saved.districtCode || ""
-                    );
-
-                }
-
-            }
-
-            catch (error) {
-
-                console.error(
-                    "Country loading error:",
-                    error
-                );
-
-
-                /*
-                 * FALLBACK COUNTRY SOURCE
-                 */
-
-                await loadCountriesFallback();
-
-            }
-
-        }
-
-
-
-        /* =====================================
-           FALLBACK COUNTRY LIST
-        ====================================== */
-
-        async function loadCountriesFallback() {
-
-            try {
-
-
-                showStatus(
-                    "Using backup country database..."
-                );
-
-
-                const response =
-                    await fetch(
-                        "https://restcountries.com/v3.1/all?fields=name,cca2"
-                    );
-
-
-                if (!response.ok) {
-
-                    throw new Error(
-                        "Fallback country API failed"
-                    );
-
-                }
-
-
-                const data =
-                    await response.json();
-
-
-                const countries =
-                    data
-                        .filter(
-                            function (country) {
-
-                                return (
-                                    country.name &&
-                                    country.name.common &&
-                                    country.cca2
-                                );
-
-                            }
-                        )
-                        .sort(
-                            function (a, b) {
-
-                                return a.name.common.localeCompare(
-                                    b.name.common
-                                );
-
-                            }
-                        );
-
-
-                countrySelect.innerHTML =
-                    '<option value="">Select country</option>';
-
-
-                countries.forEach(
-                    function (country) {
-
-
-                        const option =
-                            document.createElement(
-                                "option"
-                            );
-
-
-                        option.value =
-                            country.cca2.toLowerCase();
-
-
-                        option.textContent =
-                            country.name.common;
-
-
-                        countrySelect.appendChild(
-                            option
-                        );
-
-                    }
-                );
-
-
-                countrySelect.disabled =
-                    false;
-
-
-                hideStatus();
-
-
-                const saved =
-                    getSavedData();
-
-
-                if (
-                    saved &&
-                    saved.countryCode
-                ) {
-
-
-                    countrySelect.value =
-                        saved.countryCode
-                            .toLowerCase();
-
-
-                    await handleCountryChange(
-                        saved.stateCode || "",
-                        saved.districtCode || ""
-                    );
-
-                }
-
-            }
-
-            catch (error) {
-
-                console.error(
-                    "Fallback country error:",
-                    error
-                );
-
-
-                countrySelect.innerHTML =
-                    '<option value="">Countries could not be loaded</option>';
-
-
-                countrySelect.disabled =
-                    false;
-
-
-                showStatus(
-                    "Country data could not be loaded. Please refresh the page.",
-                    "error"
-                );
-
-            }
-
-        }
-
-
-
-        /* =====================================
+        /* =================================================
            COUNTRY CHANGE
-        ====================================== */
+        ================================================== */
 
         countrySelect.addEventListener(
             "change",
-            async function () {
+            function() {
 
-                await handleCountryChange();
+                handleCountryChange();
 
                 updatePostalPlaceholder();
 
@@ -1904,24 +2095,15 @@ document.addEventListener(
 
 
 
-        /* =====================================
+        /* =================================================
            HANDLE COUNTRY
-        ====================================== */
+        ================================================== */
 
         async function handleCountryChange(
-            savedStateCode = "",
-            savedDistrictCode = ""
+            savedState = "",
+            savedDistrict = ""
         ) {
 
-
-            const countryCode =
-                countrySelect.value
-                    .toUpperCase();
-
-
-            /*
-             * Reset state
-             */
 
             stateSelect.innerHTML =
                 '<option value="">Select state / province / region</option>';
@@ -1931,10 +2113,6 @@ document.addEventListener(
                 true;
 
 
-            /*
-             * Reset city
-             */
-
             districtSelect.innerHTML =
                 '<option value="">Select state first</option>';
 
@@ -1943,32 +2121,74 @@ document.addEventListener(
                 true;
 
 
-            districtNote.style.display =
+            manualLocation.style.display =
                 "none";
 
 
-            hideStatus();
+            manualState.value =
+                "";
 
 
-            if (!countryCode) {
+            manualCity.value =
+                "";
+
+
+            districtNote.textContent =
+                "";
+
+
+            if (
+                !countrySelect.value
+            ) {
 
                 return;
 
             }
 
 
-            /*
-             * INDIA
-             */
+            const countryCode =
+                countrySelect.value
+                    .toUpperCase();
+
+
+
+            /* =================================================
+               INDIA
+            ================================================== */
 
             if (
                 countryCode === "IN"
             ) {
 
-                loadIndiaStates(
-                    savedStateCode,
-                    savedDistrictCode
-                );
+
+                if (
+                    indiaData.length
+                ) {
+
+
+                    loadIndiaStates(
+                        savedState,
+                        savedDistrict
+                    );
+
+
+                }
+
+                else {
+
+
+                    /*
+                     * If India data failed,
+                     * use international API.
+                     */
+
+                    await loadInternationalStates(
+                        getSelectedCountryName(),
+                        savedState,
+                        savedDistrict
+                    );
+
+                }
 
 
                 return;
@@ -1976,27 +2196,68 @@ document.addEventListener(
             }
 
 
-            /*
-             * OTHER COUNTRIES
-             */
+
+            /* =================================================
+               INTERNATIONAL
+            ================================================== */
 
             await loadInternationalStates(
-                countryCode,
-                savedStateCode,
-                savedDistrictCode
+                getSelectedCountryName(),
+                savedState,
+                savedDistrict
             );
 
         }
 
 
 
-        /* =====================================
+        /* =================================================
+           GET COUNTRY NAME
+        ================================================== */
+
+        function getSelectedCountryName() {
+
+            const option =
+                countrySelect.options[
+                    countrySelect.selectedIndex
+                ];
+
+
+            return option
+                ? option.textContent.trim()
+                : "";
+
+        }
+
+
+
+        /* =================================================
+           GET STATE NAME
+        ================================================== */
+
+        function getSelectedStateName() {
+
+            const option =
+                stateSelect.options[
+                    stateSelect.selectedIndex
+                ];
+
+
+            return option
+                ? option.textContent.trim()
+                : "";
+
+        }
+
+
+
+        /* =================================================
            INDIA STATES
-        ====================================== */
+        ================================================== */
 
         function loadIndiaStates(
-            savedStateCode = "",
-            savedDistrictCode = ""
+            savedState = "",
+            savedDistrict = ""
         ) {
 
 
@@ -2004,35 +2265,10 @@ document.addEventListener(
                 '<option value="">Select Indian State / UT</option>';
 
 
-            if (
-                !indiaData ||
-                !indiaData.length
-            ) {
-
-
-                stateSelect.innerHTML =
-                    '<option value="">India state data unavailable</option>';
-
-
-                stateSelect.disabled =
-                    true;
-
-
-                showStatus(
-                    "India state/district data could not be loaded. Please refresh the page.",
-                    "error"
-                );
-
-
-                return;
-
-            }
-
-
             indiaData
                 .slice()
                 .sort(
-                    function (a, b) {
+                    function(a,b) {
 
                         return a.name.localeCompare(
                             b.name
@@ -2041,7 +2277,7 @@ document.addEventListener(
                     }
                 )
                 .forEach(
-                    function (state) {
+                    function(state) {
 
 
                         const option =
@@ -2051,7 +2287,8 @@ document.addEventListener(
 
 
                         option.value =
-                            state.code;
+                            state.code ||
+                            state.name;
 
 
                         option.textContent =
@@ -2070,21 +2307,17 @@ document.addEventListener(
                 false;
 
 
-            districtNote.style.display =
-                "block";
-
-
             districtNote.textContent =
-                "India: select your State/UT and then your District.";
+                "Select your State/UT to load its districts.";
 
 
             if (
-                savedStateCode
+                savedState
             ) {
 
 
                 stateSelect.value =
-                    savedStateCode;
+                    savedState;
 
 
                 if (
@@ -2093,8 +2326,8 @@ document.addEventListener(
 
 
                     loadIndiaDistricts(
-                        savedStateCode,
-                        savedDistrictCode
+                        stateSelect.value,
+                        savedDistrict
                     );
 
                 }
@@ -2105,23 +2338,23 @@ document.addEventListener(
 
 
 
-        /* =====================================
+        /* =================================================
            INDIA DISTRICTS
-        ====================================== */
+        ================================================== */
 
         function loadIndiaDistricts(
             stateCode,
-            savedDistrictCode = ""
+            savedDistrict = ""
         ) {
 
 
-            const selectedState =
+            const state =
                 indiaData.find(
-                    function (state) {
+                    function(item) {
 
                         return (
-                            state.code ===
-                            stateCode
+                            item.code === stateCode ||
+                            item.name === stateCode
                         );
 
                     }
@@ -2133,17 +2366,17 @@ document.addEventListener(
 
 
             if (
-                !selectedState ||
-                !selectedState.districts
+                !state ||
+                !state.districts
             ) {
-
-
-                districtSelect.innerHTML =
-                    '<option value="">No districts available</option>';
 
 
                 districtSelect.disabled =
                     true;
+
+
+                districtNote.textContent =
+                    "District information is not available.";
 
 
                 return;
@@ -2151,10 +2384,10 @@ document.addEventListener(
             }
 
 
-            selectedState.districts
+            state.districts
                 .slice()
                 .sort(
-                    function (a, b) {
+                    function(a,b) {
 
                         return a.name.localeCompare(
                             b.name
@@ -2163,7 +2396,7 @@ document.addEventListener(
                     }
                 )
                 .forEach(
-                    function (district) {
+                    function(district) {
 
 
                         const option =
@@ -2173,7 +2406,8 @@ document.addEventListener(
 
 
                         option.value =
-                            district.code;
+                            district.code ||
+                            district.name;
 
 
                         option.textContent =
@@ -2192,12 +2426,17 @@ document.addEventListener(
                 false;
 
 
+            districtNote.textContent =
+                "Select your district.";
+
+
             if (
-                savedDistrictCode
+                savedDistrict
             ) {
 
+
                 districtSelect.value =
-                    savedDistrictCode;
+                    savedDistrict;
 
             }
 
@@ -2205,14 +2444,78 @@ document.addEventListener(
 
 
 
-        /* =====================================
+        /* =================================================
+           STATE CHANGE
+        ================================================== */
+
+        stateSelect.addEventListener(
+            "change",
+            async function() {
+
+
+                const countryCode =
+                    countrySelect.value
+                        .toUpperCase();
+
+
+                if (
+                    !stateSelect.value
+                ) {
+
+
+                    districtSelect.innerHTML =
+                        '<option value="">Select state first</option>';
+
+
+                    districtSelect.disabled =
+                        true;
+
+
+                    return;
+
+                }
+
+
+
+                /* INDIA */
+
+                if (
+                    countryCode === "IN" &&
+                    indiaData.length
+                ) {
+
+
+                    loadIndiaDistricts(
+                        stateSelect.value
+                    );
+
+
+                    return;
+
+                }
+
+
+
+                /* INTERNATIONAL */
+
+                await loadInternationalCities(
+                    getSelectedCountryName(),
+                    getSelectedStateName()
+                );
+
+            }
+        );
+
+
+
+        /* =================================================
            INTERNATIONAL STATES
-        ====================================== */
+        ================================================== */
 
         async function loadInternationalStates(
-            countryCode,
-            savedStateCode = "",
-            savedDistrictCode = ""
+            countryName,
+            savedState = "",
+            savedDistrict = ""
         ) {
 
 
@@ -2228,17 +2531,9 @@ document.addEventListener(
                     '<option value="">Loading...</option>';
 
 
-                /*
-                 * Get country name.
-                 */
+                stateSelect.disabled =
+                    true;
 
-                const countryName =
-                    getSelectedCountryName();
-
-
-                /*
-                 * CountriesNow state endpoint.
-                 */
 
                 const response =
                     await fetch(
@@ -2269,7 +2564,7 @@ document.addEventListener(
                 if (!response.ok) {
 
                     throw new Error(
-                        "State API failed"
+                        "State request failed"
                     );
 
                 }
@@ -2285,7 +2580,7 @@ document.addEventListener(
 
                     throw new Error(
                         result.msg ||
-                        "State API returned an error"
+                        "No state information"
                     );
 
                 }
@@ -2298,60 +2593,25 @@ document.addEventListener(
                         : [];
 
 
-                stateSelect.innerHTML =
-                    '<option value="">Select state / province / region</option>';
-
-
-                /*
-                 * No state data
-                 */
-
                 if (
-                    states.length === 0
+                    !states.length
                 ) {
 
-
-                    stateSelect.innerHTML =
-                        '<option value="">No state data available</option>';
-
-
-                    stateSelect.disabled =
-                        true;
-
-
-                    districtSelect.innerHTML =
-                        '<option value="">No city data available</option>';
-
-
-                    districtSelect.disabled =
-                        true;
-
-
-                    districtNote.style.display =
-                        "block";
-
-
-                    districtNote.textContent =
-                        "State/region data is not available for this country.";
-
-
-                    hideStatus();
-
-
-                    return;
+                    throw new Error(
+                        "No state data available"
+                    );
 
                 }
 
 
+                stateSelect.innerHTML =
+                    '<option value="">Select state / province / region</option>';
 
-                /*
-                 * Sort states
-                 */
 
                 states
                     .slice()
                     .sort(
-                        function (a, b) {
+                        function(a,b) {
 
                             return a.name.localeCompare(
                                 b.name
@@ -2360,7 +2620,7 @@ document.addEventListener(
                         }
                     )
                     .forEach(
-                        function (state) {
+                        function(state) {
 
 
                             const option =
@@ -2368,13 +2628,6 @@ document.addEventListener(
                                     "option"
                                 );
 
-
-                            /*
-                             * CountriesNow may provide
-                             * state_code.
-                             *
-                             * If not, use state name.
-                             */
 
                             option.value =
                                 state.state_code ||
@@ -2398,38 +2651,29 @@ document.addEventListener(
                     false;
 
 
-                districtNote.style.display =
-                    "block";
-
-
                 districtNote.textContent =
-                    "Select a state/province/region to load cities and towns.";
+                    "Select a state/province/region to load cities.";
 
 
                 hideStatus();
 
 
-
                 /*
-                 * Restore state
+                 * Restore saved state.
                  */
 
                 if (
-                    savedStateCode
+                    savedState
                 ) {
 
 
-                    /*
-                     * Try saved code first.
-                     */
-
                     stateSelect.value =
-                        savedStateCode;
+                        savedState;
 
 
                     /*
-                     * If not found, try
-                     * saved state name.
+                     * If code did not match,
+                     * try matching by name.
                      */
 
                     if (
@@ -2437,15 +2681,18 @@ document.addEventListener(
                     ) {
 
 
-                        const matchingState =
-                            states.find(
-                                function (state) {
+                        const matchingOption =
+                            Array.from(
+                                stateSelect.options
+                            )
+                            .find(
+                                function(option) {
 
                                     return (
-                                        state.name
+                                        option.textContent
                                             .toLowerCase() ===
                                         String(
-                                            savedStateCode
+                                            savedState
                                         )
                                             .toLowerCase()
                                     );
@@ -2455,13 +2702,11 @@ document.addEventListener(
 
 
                         if (
-                            matchingState
+                            matchingOption
                         ) {
 
                             stateSelect.value =
-                                matchingState.state_code ||
-                                matchingState.iso2 ||
-                                matchingState.name;
+                                matchingOption.value;
 
                         }
 
@@ -2475,8 +2720,8 @@ document.addEventListener(
 
                         await loadInternationalCities(
                             countryName,
-                            stateSelect.value,
-                            savedDistrictCode
+                            getSelectedStateName(),
+                            savedDistrict
                         );
 
                     }
@@ -2487,14 +2732,14 @@ document.addEventListener(
 
             catch (error) {
 
-                console.error(
-                    "International state error:",
+                console.warn(
+                    "International state API error:",
                     error
                 );
 
 
                 stateSelect.innerHTML =
-                    '<option value="">Unable to load states</option>';
+                    '<option value="">Location data unavailable</option>';
 
 
                 stateSelect.disabled =
@@ -2502,15 +2747,23 @@ document.addEventListener(
 
 
                 districtSelect.innerHTML =
-                    '<option value="">Unable to load cities</option>';
+                    '<option value="">Use manual entry below</option>';
 
 
                 districtSelect.disabled =
                     true;
 
 
+                districtNote.textContent =
+                    "The online location database is temporarily unavailable.";
+
+
+                manualLocation.style.display =
+                    "block";
+
+
                 showStatus(
-                    "State/Province data could not be loaded. Please try again.",
+                    "State/city data could not be loaded automatically. You can enter your location manually below.",
                     "error"
                 );
 
@@ -2520,89 +2773,14 @@ document.addEventListener(
 
 
 
-        /* =====================================
-           STATE CHANGE
-        ====================================== */
-
-        stateSelect.addEventListener(
-            "change",
-            async function () {
-
-
-                const countryCode =
-                    countrySelect.value
-                        .toUpperCase();
-
-
-                const stateValue =
-                    stateSelect.value;
-
-
-                const stateName =
-                    getSelectedStateName();
-
-
-                districtSelect.innerHTML =
-                    '<option value="">Loading...</option>';
-
-
-                districtSelect.disabled =
-                    true;
-
-
-                if (!stateValue) {
-
-
-                    districtSelect.innerHTML =
-                        '<option value="">Select state first</option>';
-
-
-                    return;
-
-                }
-
-
-                /*
-                 * INDIA
-                 */
-
-                if (
-                    countryCode === "IN"
-                ) {
-
-
-                    loadIndiaDistricts(
-                        stateValue
-                    );
-
-
-                    return;
-
-                }
-
-
-                /*
-                 * INTERNATIONAL
-                 */
-
-                await loadInternationalCities(
-                    getSelectedCountryName(),
-                    stateName
-                );
-
-            }
-        );
-
-
-
-        /* =====================================
+        /* =================================================
            INTERNATIONAL CITIES
-        ====================================== */
+        ================================================== */
 
         async function loadInternationalCities(
             countryName,
             stateName,
-            savedDistrictCode = ""
+            savedDistrict = ""
         ) {
 
 
@@ -2618,9 +2796,9 @@ document.addEventListener(
                     '<option value="">Loading cities...</option>';
 
 
-                /*
-                 * CountriesNow city endpoint.
-                 */
+                districtSelect.disabled =
+                    true;
+
 
                 const response =
                     await fetch(
@@ -2654,7 +2832,7 @@ document.addEventListener(
                 if (!response.ok) {
 
                     throw new Error(
-                        "City API failed"
+                        "City request failed"
                     );
 
                 }
@@ -2670,41 +2848,26 @@ document.addEventListener(
 
                     throw new Error(
                         result.msg ||
-                        "City API returned an error"
+                        "City information unavailable"
                     );
 
                 }
 
 
                 const cities =
-                    result.data || [];
+                    Array.isArray(
+                        result.data
+                    )
+                    ? result.data
+                    : [];
 
-
-                districtSelect.innerHTML =
-                    '<option value="">Select city / town</option>';
-
-
-                /*
-                 * Remove duplicates
-                 */
 
                 const uniqueCities =
                     Array.from(
                         new Set(
                             cities
-                                .filter(
-                                    function (city) {
-
-                                        return (
-                                            city &&
-                                            String(city)
-                                                .trim()
-                                        );
-
-                                    }
-                                )
                                 .map(
-                                    function (city) {
+                                    function(city) {
 
                                         return String(
                                             city
@@ -2712,16 +2875,30 @@ document.addEventListener(
 
                                     }
                                 )
+                                .filter(
+                                    function(city) {
+
+                                        return city.length > 0;
+
+                                    }
+                                )
                         )
                     );
 
 
-                /*
-                 * Sort
-                 */
+                if (
+                    !uniqueCities.length
+                ) {
+
+                    throw new Error(
+                        "No city data available"
+                    );
+
+                }
+
 
                 uniqueCities.sort(
-                    function (a, b) {
+                    function(a,b) {
 
                         return a.localeCompare(
                             b
@@ -2731,13 +2908,12 @@ document.addEventListener(
                 );
 
 
+                districtSelect.innerHTML =
+                    '<option value="">Select city / town</option>';
 
-                /*
-                 * Add cities
-                 */
 
                 uniqueCities.forEach(
-                    function (city) {
+                    function(city) {
 
 
                         const option =
@@ -2762,50 +2938,23 @@ document.addEventListener(
                 );
 
 
-
-                /*
-                 * No cities
-                 */
-
-                if (
-                    uniqueCities.length === 0
-                ) {
-
-
-                    districtSelect.innerHTML =
-                        '<option value="">No city data available</option>';
-
-
-                    districtSelect.disabled =
-                        true;
-
-
-                    hideStatus();
-
-
-                    return;
-
-                }
-
-
                 districtSelect.disabled =
                     false;
+
+
+                districtNote.textContent =
+                    "Select your city or town.";
 
 
                 hideStatus();
 
 
-
-                /*
-                 * Restore city
-                 */
-
                 if (
-                    savedDistrictCode
+                    savedDistrict
                 ) {
 
                     districtSelect.value =
-                        savedDistrictCode;
+                        savedDistrict;
 
                 }
 
@@ -2813,22 +2962,30 @@ document.addEventListener(
 
             catch (error) {
 
-                console.error(
-                    "International city error:",
+                console.warn(
+                    "International city API error:",
                     error
                 );
 
 
                 districtSelect.innerHTML =
-                    '<option value="">Unable to load cities</option>';
+                    '<option value="">Use manual entry below</option>';
 
 
                 districtSelect.disabled =
                     true;
 
 
+                districtNote.textContent =
+                    "City data is temporarily unavailable.";
+
+
+                manualLocation.style.display =
+                    "block";
+
+
                 showStatus(
-                    "City/Town data could not be loaded. Please try again.",
+                    "City data could not be loaded. You can enter your city manually.",
                     "error"
                 );
 
@@ -2838,76 +2995,16 @@ document.addEventListener(
 
 
 
-        /* =====================================
-           GET COUNTRY NAME
-        ====================================== */
-
-        function getSelectedCountryName() {
-
-            const option =
-                countrySelect.options[
-                    countrySelect.selectedIndex
-                ];
-
-
-            if (
-                !option
-            ) {
-
-                return "";
-
-            }
-
-
-            return option.textContent.trim();
-
-        }
-
-
-
-        /* =====================================
-           GET STATE NAME
-        ====================================== */
-
-        function getSelectedStateName() {
-
-            const option =
-                stateSelect.options[
-                    stateSelect.selectedIndex
-                ];
-
-
-            if (
-                !option
-            ) {
-
-                return "";
-
-            }
-
-
-            return option.textContent.trim();
-
-        }
-
-
-
-        /* =====================================
-           POSTAL PLACEHOLDER
-        ====================================== */
+        /* =================================================
+           POSTAL CODE PLACEHOLDERS
+        ================================================== */
 
         function updatePostalPlaceholder() {
 
 
-            const country =
+            const code =
                 countrySelect.value
                     .toUpperCase();
-
-
-            const postalInput =
-                document.getElementById(
-                    "postalCode"
-                );
 
 
             const placeholders = {
@@ -2948,23 +3045,26 @@ document.addEventListener(
                 BR:
                     "e.g. 01001-000",
 
+                ZA:
+                    "e.g. 2000",
+
                 IN:
                     "e.g. 416001"
 
             };
 
 
-            postalInput.placeholder =
-                placeholders[country] ||
+            postalCodeInput.placeholder =
+                placeholders[code] ||
                 "PIN / ZIP / Postal code";
 
         }
 
 
 
-        /* =====================================
+        /* =================================================
            RESTORE BASIC INFORMATION
-        ====================================== */
+        ================================================== */
 
         function restoreBasicInformation() {
 
@@ -2973,9 +3073,7 @@ document.addEventListener(
                 getSavedData();
 
 
-            if (
-                !saved
-            ) {
+            if (!saved) {
 
                 return;
 
@@ -3001,6 +3099,12 @@ document.addEventListener(
 
 
             document.getElementById(
+                "postalCode"
+            ).value =
+                saved.postalCode || "";
+
+
+            document.getElementById(
                 "professionalTitle"
             ).value =
                 saved.professionalTitle || "";
@@ -3017,19 +3121,6 @@ document.addEventListener(
             ).value =
                 saved.website || "";
 
-
-            document.getElementById(
-                "postalCode"
-            ).value =
-                saved.postalCode || "";
-
-
-            /*
-             * Restore phone.
-             *
-             * Wait for utils before using
-             * getNumber/setNumber.
-             */
 
             if (
                 saved.phone
@@ -3057,13 +3148,13 @@ document.addEventListener(
 
 
 
-        /* =====================================
-           FORM VALIDATION
-        ====================================== */
+        /* =================================================
+           FORM SUBMIT
+        ================================================== */
 
         form.addEventListener(
             "submit",
-            async function (event) {
+            async function(event) {
 
 
                 event.preventDefault();
@@ -3072,9 +3163,8 @@ document.addEventListener(
                 hideError();
 
 
-
                 /*
-                 * First/last/email/etc.
+                 * Required fields.
                  */
 
                 const firstName =
@@ -3104,15 +3194,6 @@ document.addEventListener(
                         .trim();
 
 
-                const postalCode =
-                    document
-                        .getElementById(
-                            "postalCode"
-                        )
-                        .value
-                        .trim();
-
-
                 const professionalTitle =
                     document
                         .getElementById(
@@ -3122,10 +3203,74 @@ document.addEventListener(
                         .trim();
 
 
+                const postalCode =
+                    postalCodeInput.value
+                        .trim();
+
+
+
+                /* =================================================
+                   LOCATION VALUES
+                ================================================== */
+
+                let stateName =
+                    getSelectedStateName();
+
+
+                let districtName = "";
+
+
+                if (
+                    districtSelect.value &&
+                    districtSelect.disabled === false
+                ) {
+
+                    districtName =
+                        districtSelect.options[
+                            districtSelect.selectedIndex
+                        ]
+                        .textContent
+                        .trim();
+
+                }
+
 
                 /*
-                 * Required fields
+                 * Manual location fallback.
                  */
+
+                if (
+                    manualLocation.style.display !==
+                    "none"
+                ) {
+
+
+                    if (
+                        manualState.value.trim()
+                    ) {
+
+                        stateName =
+                            manualState.value.trim();
+
+                    }
+
+
+                    if (
+                        manualCity.value.trim()
+                    ) {
+
+                        districtName =
+                            manualCity.value.trim();
+
+                    }
+
+                }
+
+
+
+                /* =================================================
+                   REQUIRED VALIDATION
+                ================================================== */
 
                 if (
                     !firstName ||
@@ -3133,8 +3278,8 @@ document.addEventListener(
                     !email ||
                     !phoneInput.value.trim() ||
                     !countrySelect.value ||
-                    !stateSelect.value ||
-                    !districtSelect.value ||
+                    !stateName ||
+                    !districtName ||
                     !postalCode ||
                     !professionalTitle
                 ) {
@@ -3151,9 +3296,9 @@ document.addEventListener(
 
 
 
-                /*
-                 * Email
-                 */
+                /* =================================================
+                   EMAIL VALIDATION
+                ================================================== */
 
                 const emailPattern =
                     /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -3177,14 +3322,12 @@ document.addEventListener(
 
 
 
-                /*
-                 * Phone
-                 *
-                 * Wait for intl-tel-input
-                 * utilities to finish.
-                 */
+                /* =================================================
+                   PHONE VALIDATION
+                ================================================== */
 
                 try {
+
 
                     if (
                         iti.promise
@@ -3216,14 +3359,6 @@ document.addEventListener(
 
                 catch (error) {
 
-                    /*
-                     * If the external
-                     * validation service/library
-                     * is unavailable, don't
-                     * block the user solely
-                     * because of it.
-                     */
-
                     console.warn(
                         "Phone validation unavailable:",
                         error
@@ -3233,38 +3368,9 @@ document.addEventListener(
 
 
 
-                /* =================================
-                   SELECTED NAMES
-                ================================= */
-
-
-                const countryName =
-                    getSelectedCountryName();
-
-
-                const stateName =
-                    getSelectedStateName();
-
-
-                const districtOption =
-                    districtSelect.options[
-                        districtSelect.selectedIndex
-                    ];
-
-
-                const districtName =
-                    districtOption
-                        ? districtOption
-                            .textContent
-                            .trim()
-                        : "";
-
-
-
-                /* =================================
-                   PHONE E.164
-                ================================= */
-
+                /* =================================================
+                   PHONE NUMBER
+                ================================================== */
 
                 let fullPhone =
                     phoneInput.value.trim();
@@ -3272,10 +3378,28 @@ document.addEventListener(
 
                 try {
 
-                    await iti.promise;
 
-                    fullPhone =
+                    if (
+                        iti.promise
+                    ) {
+
+                        await iti.promise;
+
+                    }
+
+
+                    const internationalNumber =
                         iti.getNumber();
+
+
+                    if (
+                        internationalNumber
+                    ) {
+
+                        fullPhone =
+                            internationalNumber;
+
+                    }
 
                 }
 
@@ -3290,87 +3414,82 @@ document.addEventListener(
 
 
 
-                /* =================================
-                   SAVE DATA
-                ================================= */
+                /* =================================================
+                   COUNTRY
+                ================================================== */
 
+                const countryName =
+                    getSelectedCountryName();
+
+
+                const countryCode =
+                    countrySelect.value;
+
+
+
+                /* =================================================
+                   SAVE DATA
+                ================================================== */
 
                 const personalData = {
-
 
                     firstName:
                         firstName,
 
-
                     lastName:
                         lastName,
-
 
                     email:
                         email,
 
-
                     phone:
                         fullPhone,
 
-
                     countryCode:
-                        countrySelect.value
-                            .toLowerCase(),
-
+                        countryCode,
 
                     country:
                         countryName,
 
-
                     stateCode:
                         stateSelect.value,
-
 
                     state:
                         stateName,
 
-
                     districtCode:
                         districtSelect.value,
-
 
                     district:
                         districtName,
 
-
                     postalCode:
                         postalCode,
-
 
                     professionalTitle:
                         professionalTitle,
 
-
                     linkedin:
-                        document
-                            .getElementById(
-                                "linkedin"
-                            )
-                            .value
-                            .trim(),
-
+                        document.getElementById(
+                            "linkedin"
+                        )
+                        .value
+                        .trim(),
 
                     website:
-                        document
-                            .getElementById(
-                                "website"
-                            )
-                            .value
-                            .trim()
+                        document.getElementById(
+                            "website"
+                        )
+                        .value
+                        .trim()
 
                 };
 
 
 
-                /*
-                 * Save
-                 */
+                /* =================================================
+                   SAVE TO BROWSER
+                ================================================== */
 
                 localStorage.setItem(
                     "resumePersonalData",
@@ -3381,63 +3500,68 @@ document.addEventListener(
 
 
 
+                /* =================================================
+                   BUTTON
+                ================================================== */
+
+                continueButton.disabled =
+                    true;
+
+
+                continueButton.innerHTML =
+                    '<span class="spinner"></span>Saving...';
+
+
+
                 /*
-                 * Continue
+                 * Small delay so user sees
+                 * the save state.
                  */
 
-                window.location.href =
-                    "summary.html";
+                setTimeout(
+                    function() {
+
+                        window.location.href =
+                            "summary.html";
+
+                    },
+                    350
+                );
 
             }
         );
 
 
 
-        /* =====================================
-           START PAGE
-        ====================================== */
+        /* =================================================
+           START APPLICATION
+        ================================================== */
 
         restoreBasicInformation();
+
+
+        loadCountries();
 
 
         updatePostalPlaceholder();
 
 
         /*
-         * Load both datasets.
+         * India database loads in background.
          */
 
-        Promise.all(
-            [
-                loadIndiaData(),
-                loadCountries()
-            ]
-        )
-        .then(
-            function () {
+        loadIndiaData();
 
-                console.log(
-                    "Location system ready."
-                );
 
-            }
-        )
-        .catch(
-            function (error) {
-
-                console.error(
-                    "Startup error:",
-                    error
-                );
-
-            }
+        console.log(
+            "Resume Builder personal information page loaded."
         );
-
 
     }
 );
 
 </script>
+
 
 </body>
 
