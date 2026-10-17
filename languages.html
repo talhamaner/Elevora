@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Languages | Elevora</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="theme.js"></script>
+  <script src="js/app.js"></script>
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+  <a href="index.html" class="logo">Elevora</a>
+
+  <nav class="nav-links">
+
+    <a href="index.html">Home</a>
+    <a href="personal.html" class="active">Resume</a>
+    <a href="preview.html">Preview</a>
+
+    <button
+      id="themeToggle"
+      class="theme-toggle"
+      type="button"
+    >
+      🌙
+    </button>
+
+  </nav>
+
+</header>
+
+
+<main class="builder-wrapper">
+
+  <div class="progress-wrapper">
+
+    <div
+      class="progress-bar"
+      style="--progress: 73%"
+    >
+      <div class="progress-fill"></div>
+    </div>
+
+    <div class="progress-text">
+      <span>Step 8 of 11</span>
+      <span>Languages</span>
+    </div>
+
+  </div>
+
+
+  <div class="page-heading">
+
+    <span class="eyebrow">STEP 08</span>
+
+    <h1>Languages</h1>
+
+    <p>
+      Add languages you can speak, read or write.
+    </p>
+
+  </div>
+
+
+  <form id="languageForm" class="form-card">
+
+    <div
+      id="languageEntries"
+      class="entries-container"
+    ></div>
+
+    <button
+      type="button"
+      id="addLanguage"
+      class="add-entry"
+    >
+      + Add Language
+    </button>
+
+
+    <div class="form-actions">
+
+      <a
+        href="certifications.html"
+        class="btn btn-secondary"
+      >
+        ← Back
+      </a>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+      >
+        Save & Continue →
+      </button>
+
+    </div>
+
+  </form>
+
+</main>
+
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+    let entries =
+      getJSON(
+        STORAGE_KEYS.languages,
+        []
+      );
+
+
+    if (!Array.isArray(entries) ||
+        !entries.length) {
+
+      entries = [{}];
+
+    }
+
+
+    const container =
+      document.getElementById(
+        "languageEntries"
+      );
+
+
+    function render() {
+
+      container.innerHTML = "";
+
+
+      entries.forEach(
+        function (entry, index) {
+
+          const card =
+            document.createElement(
+              "div"
+            );
+
+          card.className =
+            "entry-card";
+
+
+          card.innerHTML = `
+
+            <div class="entry-card-header">
+
+              <h3>
+                Language ${index + 1}
+              </h3>
+
+              ${
+                index > 0
+                ? `
+                  <button
+                    type="button"
+                    class="remove-entry"
+                  >
+                    Remove
+                  </button>
+                `
+                : ""
+              }
+
+            </div>
+
+
+            <div class="form-grid">
+
+              <div class="form-group">
+
+                <label>
+                  Language
+                </label>
+
+                <input
+                  class="language"
+                  type="text"
+                  placeholder="e.g. English"
+                  value="${escapeHTML(entry.language || "")}"
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label>
+                  Proficiency
+                </label>
+
+                <select class="proficiency">
+
+                  <option value="">
+                    Select level
+                  </option>
+
+                  <option value="Native">
+                    Native
+                  </option>
+
+                  <option value="Fluent">
+                    Fluent
+                  </option>
+
+                  <option value="Advanced">
+                    Advanced
+                  </option>
+
+                  <option value="Intermediate">
+                    Intermediate
+                  </option>
+
+                  <option value="Basic">
+                    Basic
+                  </option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+          `;
+
+
+          container.appendChild(card);
+
+
+          card.querySelector(
+            ".proficiency"
+          ).value =
+            entry.proficiency || "";
+
+
+          const remove =
+            card.querySelector(
+              ".remove-entry"
+            );
+
+
+          if (remove) {
+
+            remove.addEventListener(
+              "click",
+              function () {
+
+                entries.splice(
+                  index,
+                  1
+                );
+
+                render();
+
+              }
+            );
+
+          }
+
+        }
+      );
+
+    }
+
+
+    render();
+
+
+    document
+      .getElementById(
+        "addLanguage"
+      )
+      .addEventListener(
+        "click",
+        function () {
+
+          entries.push({});
+
+          render();
+
+        }
+      );
+
+
+    document
+      .getElementById(
+        "languageForm"
+      )
+      .addEventListener(
+        "submit",
+        function (event) {
+
+          event.preventDefault();
+
+
+          const result = [];
+
+
+          container
+            .querySelectorAll(
+              ".entry-card"
+            )
+            .forEach(
+              function (card) {
+
+                result.push({
+
+                  language:
+                    card.querySelector(
+                      ".language"
+                    ).value.trim(),
+
+                  proficiency:
+                    card.querySelector(
+                      ".proficiency"
+                    ).value
+
+                });
+
+              }
+            );
+
+
+          setJSON(
+            STORAGE_KEYS.languages,
+            result
+          );
+
+
+          window.location.href =
+            "achievements.html";
+
+        }
+      );
+
+  }
+);
+
+</script>
+
+</body>
+</html>
