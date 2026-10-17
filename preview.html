@@ -1,771 +1,1351 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Preview | Elevora</title>
 
-<title>Resume Preview - Elevora</title>
+  <link rel="stylesheet" href="css/style.css">
 
-<link rel="stylesheet" href="css/style.css">
+  <!-- PDF generator -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-<script src="theme.js"></script>
-<script src="js/app.js"></script>
+  <script src="theme.js"></script>
+  <script src="js/app.js"></script>
 
+  <style>
+    .preview-toolbar {
+      max-width: 1100px;
+      margin: 25px auto 0;
+      padding: 0 20px;
+    }
+
+    .preview-toolbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .template-title {
+      margin: 0;
+    }
+
+    .template-subtitle {
+      margin: 5px 0 0;
+      color: var(--muted);
+    }
+
+    .template-selector {
+      max-width: 1100px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    .template-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+    }
+
+    .template-button {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 13px;
+      cursor: pointer;
+      text-align: left;
+      transition: .2s;
+    }
+
+    .template-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .template-button.active {
+      border: 2px solid #2563eb;
+      box-shadow: 0 4px 18px rgba(37, 99, 235, .15);
+    }
+
+    .template-number {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .template-name {
+      font-weight: 700;
+    }
+
+    .resume-wrapper {
+      padding: 10px 20px 60px;
+    }
+
+    #resumePaper {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      background: #fff;
+      color: #111;
+      box-shadow: 0 12px 40px rgba(0,0,0,.18);
+      overflow: hidden;
+    }
+
+    .resume-content {
+      padding: 42px;
+    }
+
+    .resume-header {
+      margin-bottom: 25px;
+    }
+
+    .resume-name {
+      font-size: 34px;
+      font-weight: 800;
+      margin: 0 0 7px;
+    }
+
+    .resume-contact {
+      color: #555;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .resume-section {
+      margin-top: 24px;
+    }
+
+    .resume-section-title {
+      font-size: 16px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin: 0 0 10px;
+    }
+
+    .resume-section-content {
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .resume-item {
+      margin-bottom: 15px;
+      page-break-inside: avoid;
+    }
+
+    .resume-item-title {
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 2px;
+    }
+
+    .resume-item-meta {
+      color: #666;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .resume-item-description {
+      font-size: 13px;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+
+    .skill-line {
+      margin-bottom: 6px;
+    }
+
+    .language-line {
+      margin-bottom: 5px;
+    }
+
+    /* =========================
+       TEMPLATE 1 - CLASSIC
+       ========================= */
+
+    #resumePaper.template-classic .resume-content {
+      padding: 45px;
+    }
+
+    #resumePaper.template-classic .resume-name {
+      font-family: Georgia, serif;
+    }
+
+    #resumePaper.template-classic .resume-section-title {
+      border-bottom: 1px solid #222;
+      padding-bottom: 5px;
+    }
+
+    /* =========================
+       TEMPLATE 2 - MODERN
+       ========================= */
+
+    #resumePaper.template-modern .resume-header {
+      border-left: 6px solid #2563eb;
+      padding-left: 18px;
+    }
+
+    #resumePaper.template-modern .resume-section-title {
+      color: #2563eb;
+      border-bottom: 2px solid #2563eb;
+      padding-bottom: 5px;
+    }
+
+    /* =========================
+       TEMPLATE 3 - MINIMAL
+       ========================= */
+
+    #resumePaper.template-minimal .resume-content {
+      padding: 55px;
+    }
+
+    #resumePaper.template-minimal .resume-name {
+      font-weight: 600;
+      letter-spacing: .02em;
+    }
+
+    #resumePaper.template-minimal .resume-section-title {
+      font-size: 13px;
+      letter-spacing: .15em;
+      color: #555;
+    }
+
+    /* =========================
+       TEMPLATE 4 - EXECUTIVE
+       ========================= */
+
+    #resumePaper.template-executive .resume-header {
+      text-align: center;
+      padding-bottom: 20px;
+      border-bottom: 3px solid #111;
+    }
+
+    #resumePaper.template-executive .resume-contact {
+      text-align: center;
+    }
+
+    #resumePaper.template-executive .resume-section-title {
+      font-family: Georgia, serif;
+      border-bottom: 1px solid #999;
+      padding-bottom: 5px;
+    }
+
+    /* =========================
+       TEMPLATE 5 - SIDEBAR
+       ========================= */
+
+    #resumePaper.template-sidebar {
+      display: flex;
+    }
+
+    #resumePaper.template-sidebar .resume-sidebar {
+      width: 30%;
+      background: #1f2937;
+      color: white;
+      padding: 35px 25px;
+    }
+
+    #resumePaper.template-sidebar .resume-main {
+      width: 70%;
+      padding: 35px;
+    }
+
+    #resumePaper.template-sidebar .resume-name {
+      font-size: 25px;
+    }
+
+    #resumePaper.template-sidebar .resume-contact {
+      color: #d1d5db;
+    }
+
+    #resumePaper.template-sidebar .resume-section-title {
+      color: #fff;
+      border-bottom: 1px solid rgba(255,255,255,.3);
+      padding-bottom: 5px;
+    }
+
+    #resumePaper.template-sidebar .resume-main .resume-section-title {
+      color: #111;
+      border-bottom: 2px solid #111;
+    }
+
+    #resumePaper.template-sidebar .resume-sidebar .resume-item-meta,
+    #resumePaper.template-sidebar .resume-sidebar .resume-item-description {
+      color: #d1d5db;
+    }
+
+    /* =========================
+       TEMPLATE 6 - COMPACT
+       ========================= */
+
+    #resumePaper.template-compact .resume-content {
+      padding: 30px 38px;
+    }
+
+    #resumePaper.template-compact .resume-section {
+      margin-top: 15px;
+    }
+
+    #resumePaper.template-compact .resume-item {
+      margin-bottom: 9px;
+    }
+
+    #resumePaper.template-compact .resume-name {
+      font-size: 28px;
+    }
+
+    /* =========================
+       TEMPLATE 7 - ELEGANT
+       ========================= */
+
+    #resumePaper.template-elegant .resume-name {
+      font-family: Georgia, serif;
+      font-weight: 500;
+      letter-spacing: .04em;
+    }
+
+    #resumePaper.template-elegant .resume-section-title {
+      font-family: Georgia, serif;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: .03em;
+      font-size: 18px;
+    }
+
+    /* =========================
+       TEMPLATE 8 - TECH
+       ========================= */
+
+    #resumePaper.template-tech .resume-name {
+      font-family: monospace;
+    }
+
+    #resumePaper.template-tech .resume-section-title {
+      font-family: monospace;
+      color: #111;
+    }
+
+    #resumePaper.template-tech .resume-section-title::before {
+      content: "> ";
+    }
+
+    /* =========================
+       TEMPLATE 9 - ACADEMIC
+       ========================= */
+
+    #resumePaper.template-academic .resume-name {
+      font-family: Georgia, serif;
+      text-align: center;
+    }
+
+    #resumePaper.template-academic .resume-contact {
+      text-align: center;
+    }
+
+    #resumePaper.template-academic .resume-section-title {
+      font-family: Georgia, serif;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 18px;
+      border-bottom: 1px solid #777;
+      padding-bottom: 4px;
+    }
+
+    /* =========================
+       TEMPLATE 10 - ATS
+       ========================= */
+
+    #resumePaper.template-ats {
+      box-shadow: none;
+    }
+
+    #resumePaper.template-ats .resume-name {
+      font-size: 30px;
+    }
+
+    #resumePaper.template-ats .resume-section-title {
+      border-bottom: 1px solid #222;
+      padding-bottom: 4px;
+    }
+
+    #resumePaper.template-ats .resume-content {
+      padding: 40px 48px;
+    }
+
+    .download-area {
+      max-width: 1100px;
+      margin: 0 auto 30px;
+      padding: 0 20px;
+    }
+
+    .download-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .download-buttons button {
+      min-width: 140px;
+    }
+
+    .danger {
+      background: #dc2626 !important;
+      color: white !important;
+    }
+
+    @media (max-width: 800px) {
+      #resumePaper {
+        width: 100%;
+        min-height: auto;
+      }
+
+      .resume-content {
+        padding: 25px !important;
+      }
+
+      #resumePaper.template-sidebar {
+        display: block;
+      }
+
+      #resumePaper.template-sidebar .resume-sidebar,
+      #resumePaper.template-sidebar .resume-main {
+        width: auto;
+      }
+
+      .template-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media print {
+      body {
+        background: white !important;
+      }
+
+      .navbar,
+      .preview-toolbar,
+      .template-selector,
+      .download-area,
+      footer {
+        display: none !important;
+      }
+
+      .resume-wrapper {
+        padding: 0;
+      }
+
+      #resumePaper {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0;
+        box-shadow: none;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
 <header class="navbar no-print">
+  <a href="index.html" class="logo">Elevora</a>
 
-<a class="logo" href="index.html">
-Elevora
-</a>
-
-<nav class="nav-links">
-
-<a href="index.html">Home</a>
-
-<a href="personal.html">Resume</a>
-
-<a href="preview.html">Preview</a>
-
-<a href="cover-letter.html">Cover Letter</a>
-
-<button id="themeToggle" class="theme-toggle">
-🌙
-</button>
-
-</nav>
-
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="personal.html">Resume</a>
+    <a href="preview.html">Preview</a>
+    <a href="cover-letter.html">Cover Letter</a>
+    <button id="themeToggle" class="theme-toggle" type="button">🌙</button>
+  </nav>
 </header>
 
+<main>
 
-<main class="container">
+  <!-- TOP BAR -->
+  <section class="preview-toolbar no-print">
+    <div class="preview-toolbar-inner">
 
-<div class="page-head no-print">
+      <div>
+        <h1 class="template-title">Resume Preview</h1>
+        <p class="template-subtitle">
+          Choose a professional template and download your resume.
+        </p>
+      </div>
 
-<h1>Resume Preview</h1>
+      <div class="download-buttons">
+        <button class="btn primary" onclick="downloadPDF()">
+          Download PDF
+        </button>
 
-<p>
-Review your complete resume before downloading.
-</p>
+        <button class="btn secondary" onclick="downloadWord()">
+          Download Word
+        </button>
 
-</div>
+        <button class="btn secondary" onclick="window.print()">
+          Print
+        </button>
+      </div>
 
+    </div>
+  </section>
 
-<div class="actions no-print">
+  <!-- TEMPLATE SELECTOR -->
+  <section class="template-selector no-print">
 
-<a
-href="achievements.html"
-class="btn secondary">
+    <h2>Choose Resume Template</h2>
 
-← Back to Resume
+    <div class="template-grid">
 
-</a>
+      <button class="template-button active"
+              data-template="classic"
+              onclick="selectTemplate('classic', this)">
+        <div class="template-number">Template 01</div>
+        <div class="template-name">Classic Professional</div>
+      </button>
 
+      <button class="template-button"
+              data-template="modern"
+              onclick="selectTemplate('modern', this)">
+        <div class="template-number">Template 02</div>
+        <div class="template-name">Modern Blue</div>
+      </button>
 
-<button
-id="downloadButton"
-class="btn">
+      <button class="template-button"
+              data-template="minimal"
+              onclick="selectTemplate('minimal', this)">
+        <div class="template-number">Template 03</div>
+        <div class="template-name">Minimal</div>
+      </button>
 
-Download Resume
+      <button class="template-button"
+              data-template="executive"
+              onclick="selectTemplate('executive', this)">
+        <div class="template-number">Template 04</div>
+        <div class="template-name">Executive</div>
+      </button>
 
-</button>
+      <button class="template-button"
+              data-template="sidebar"
+              onclick="selectTemplate('sidebar', this)">
+        <div class="template-number">Template 05</div>
+        <div class="template-name">Professional Sidebar</div>
+      </button>
 
-</div>
+      <button class="template-button"
+              data-template="compact"
+              onclick="selectTemplate('compact', this)">
+        <div class="template-number">Template 06</div>
+        <div class="template-name">Compact</div>
+      </button>
 
+      <button class="template-button"
+              data-template="elegant"
+              onclick="selectTemplate('elegant', this)">
+        <div class="template-number">Template 07</div>
+        <div class="template-name">Elegant</div>
+      </button>
 
-<article
-id="resume"
-class="resume-paper">
+      <button class="template-button"
+              data-template="tech"
+              onclick="selectTemplate('tech', this)">
+        <div class="template-number">Template 08</div>
+        <div class="template-name">Tech Developer</div>
+      </button>
 
-</article>
+      <button class="template-button"
+              data-template="academic"
+              onclick="selectTemplate('academic', this)">
+        <div class="template-number">Template 09</div>
+        <div class="template-name">Academic</div>
+      </button>
+
+      <button class="template-button"
+              data-template="ats"
+              onclick="selectTemplate('ats', this)">
+        <div class="template-number">Template 10</div>
+        <div class="template-name">ATS Friendly</div>
+      </button>
+
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <section class="resume-wrapper">
+
+    <div id="resumePaper" class="template-classic">
+
+      <!-- Normal templates -->
+      <div id="normalResume" class="resume-content">
+
+        <header class="resume-header">
+
+          <h1 id="resumeName" class="resume-name">
+            Your Name
+          </h1>
+
+          <div id="resumeContact" class="resume-contact"></div>
+
+        </header>
+
+        <section id="summarySection" class="resume-section">
+          <h2 class="resume-section-title">Professional Summary</h2>
+          <div id="summaryContent" class="resume-section-content"></div>
+        </section>
+
+        <section id="experienceSection" class="resume-section">
+          <h2 class="resume-section-title">Experience</h2>
+          <div id="experienceContent"></div>
+        </section>
+
+        <section id="educationSection" class="resume-section">
+          <h2 class="resume-section-title">Education</h2>
+          <div id="educationContent"></div>
+        </section>
+
+        <section id="projectsSection" class="resume-section">
+          <h2 class="resume-section-title">Projects</h2>
+          <div id="projectsContent"></div>
+        </section>
+
+        <section id="skillsSection" class="resume-section">
+          <h2 class="resume-section-title">Skills</h2>
+          <div id="skillsContent"></div>
+        </section>
+
+        <section id="certificationsSection" class="resume-section">
+          <h2 class="resume-section-title">Certifications</h2>
+          <div id="certificationsContent"></div>
+        </section>
+
+        <section id="languagesSection" class="resume-section">
+          <h2 class="resume-section-title">Languages</h2>
+          <div id="languagesContent"></div>
+        </section>
+
+        <section id="achievementsSection" class="resume-section">
+          <h2 class="resume-section-title">Achievements</h2>
+          <div id="achievementsContent"></div>
+        </section>
+
+      </div>
+
+      <!-- Sidebar template -->
+      <div id="sidebarResume" style="display:none;">
+
+        <aside class="resume-sidebar">
+
+          <h1 id="sidebarName" class="resume-name"></h1>
+
+          <div id="sidebarContact" class="resume-contact"></div>
+
+          <section class="resume-section">
+            <h2 class="resume-section-title">Skills</h2>
+            <div id="sidebarSkills"></div>
+          </section>
+
+          <section class="resume-section">
+            <h2 class="resume-section-title">Languages</h2>
+            <div id="sidebarLanguages"></div>
+          </section>
+
+          <section class="resume-section">
+            <h2 class="resume-section-title">Certifications</h2>
+            <div id="sidebarCertifications"></div>
+          </section>
+
+        </aside>
+
+        <main class="resume-main">
+
+          <section class="resume-section">
+            <h2 class="resume-section-title">Professional Summary</h2>
+            <div id="sidebarSummary"></div>
+          </section>
+
+          <section class="resume-section">
+            <h2 class="resume-section-title">Experience</h2>
+            <div id="sidebarExperience"></div>
+          </section>
+
+          <section class="resume-section">
+            <h2 class="resume-section-title">Education</h2>
+            <div id="sidebarEducation"></div>
+          </section>
+
+          <section class="resume-section">
+            <h2 class="resume-section-title">Projects</h2>
+            <div id="sidebarProjects"></div>
+          </section>
+
+          <section class="resume-section">
+            <h2 class="resume-section-title">Achievements</h2>
+            <div id="sidebarAchievements"></div>
+          </section>
+
+        </main>
+
+      </div>
+
+    </div>
+
+  </section>
 
 </main>
 
-
-<div
-id="downloadModal"
-class="modal no-print">
-
-<div class="modal-box">
-
-<h2>
-Download Resume
-</h2>
-
-<p>
-Choose the format you want.
-</p>
-
-
-<div class="grid2">
-
-<div class="card">
-
-<h3>
-PDF
-</h3>
-
-<p>
-Best for job applications and sharing.
-</p>
-
-<button
-id="pdfButton"
-class="btn">
-
-Download PDF
-
-</button>
-
-</div>
-
-
-<div class="card">
-
-<h3>
-Word
-</h3>
-
-<p>
-Editable Word-compatible document.
-</p>
-
-<button
-id="wordButton"
-class="btn">
-
-Download Word
-
-</button>
-
-</div>
-
-</div>
-
-
-<div class="actions">
-
-<button
-id="printButton"
-class="btn secondary">
-
-Print Resume
-
-</button>
-
-
-<button
-id="closeModal"
-class="btn secondary">
-
-Close
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
 <script>
 
-const personal =
-  getJSON(STORAGE_KEYS.personal, {});
+const personal = getJSON("resumePersonalData", {});
+const summary = getJSON("section_summary", {});
+const education = getArray("section_education");
+const experience = getArray("section_experience");
+const projects = getArray("section_projects");
+const skills = getArray("section_skills");
+const certifications = getArray("section_certifications");
+const languages = getArray("section_languages");
+const achievements = getArray("section_achievements");
 
-const summary =
-  getJSON(STORAGE_KEYS.summary, {});
-
-const education =
-  getArray(STORAGE_KEYS.education);
-
-const experience =
-  getArray(STORAGE_KEYS.experience);
-
-const projects =
-  getArray(STORAGE_KEYS.projects);
-
-const skills =
-  getArray(STORAGE_KEYS.skills);
-
-const certifications =
-  getArray(STORAGE_KEYS.certifications);
-
-const languages =
-  getArray(STORAGE_KEYS.languages);
-
-const achievements =
-  getArray(STORAGE_KEYS.achievements);
+let selectedTemplate =
+  localStorage.getItem("selectedResumeTemplate") || "classic";
 
 
-const resume =
-  document.getElementById("resume");
-
-
-let html = "";
-
-
-html += `
-
-<h1>
-${escapeHTML(
-  personal.fullName || "Your Name"
-)}
-</h1>
-
-<div class="contact">
-
-${escapeHTML(
-
-[
-personal.email,
-
-personal.phoneCode &&
-personal.phone
-  ? personal.phoneCode + " " + personal.phone
-  : personal.phone,
-
-personal.city,
-personal.state,
-personal.country
-
-]
-.filter(Boolean)
-.join(" • ")
-
-)}
-
-</div>
-
-`;
-
-
-if (summary.professionalSummary) {
-
-  html += `
-
-  <h2>
-  Professional Summary
-  </h2>
-
-  <p>
-  ${escapeHTML(
-    summary.professionalSummary
-  )}
-  </p>
-
-  `;
-
+function safe(value) {
+  return escapeHTML(value || "");
 }
 
 
-if (summary.keyStrengths) {
+/* =========================
+   CONTACT
+   ========================= */
 
-  html += `
+function buildContact() {
 
-  <h2>
-  Key Strengths
-  </h2>
+  const parts = [];
 
-  <p>
-  ${escapeHTML(
-    summary.keyStrengths
-  )}
-  </p>
+  if (personal.email) {
+    parts.push(safe(personal.email));
+  }
 
-  `;
+  if (personal.phone) {
+    parts.push(
+      safe(
+        (personal.phoneCountryCode || "") +
+        " " +
+        personal.phone
+      )
+    );
+  }
 
+  const location = [
+    personal.city,
+    personal.district,
+    personal.state,
+    personal.country
+  ].filter(Boolean).join(", ");
+
+  if (location) {
+    parts.push(safe(location));
+  }
+
+  if (personal.linkedin) {
+    parts.push(safe(personal.linkedin));
+  }
+
+  if (personal.github) {
+    parts.push(safe(personal.github));
+  }
+
+  if (personal.portfolio) {
+    parts.push(safe(personal.portfolio));
+  }
+
+  return parts.join(" &nbsp; | &nbsp; ");
 }
 
 
-/* EXPERIENCE */
+/* =========================
+   ITEMS
+   ========================= */
 
-if (experience.length) {
+function experienceHTML() {
 
-  html += `
-  <h2>Experience</h2>
-  `;
+  if (!experience.length) return "";
 
-  experience.forEach(item => {
+  return experience.map(item => {
 
-    html += `
+    const dateText = [
+      item.startYear,
+      item.current ? "Present" : item.endYear
+    ].filter(Boolean).join(" - ");
 
-    <h3>
+    return `
+      <div class="resume-item">
 
-    ${escapeHTML(
-      item.jobTitle || ""
-    )}
+        <div class="resume-item-title">
+          ${safe(item.jobTitle || item.company)}
+        </div>
 
-    ${
-      item.company
-        ? " — " +
-          escapeHTML(item.company)
-        : ""
+        <div class="resume-item-meta">
+          ${safe(item.company)}
+          ${item.location ? " • " + safe(item.location) : ""}
+          ${dateText ? " • " + safe(dateText) : ""}
+        </div>
+
+        ${
+          item.description
+          ? `<div class="resume-item-description">
+               ${safe(item.description)}
+             </div>`
+          : ""
+        }
+
+      </div>
+    `;
+
+  }).join("");
+}
+
+
+function educationHTML() {
+
+  if (!education.length) return "";
+
+  return education.map(item => {
+
+    const dateText = [
+      item.admissionYear,
+      item.currentlyStudying
+        ? "Present"
+        : item.completedYear
+    ].filter(Boolean).join(" - ");
+
+    return `
+      <div class="resume-item">
+
+        <div class="resume-item-title">
+          ${safe(item.degree || item.institution)}
+        </div>
+
+        <div class="resume-item-meta">
+          ${safe(item.institution)}
+          ${item.field ? " • " + safe(item.field) : ""}
+          ${dateText ? " • " + safe(dateText) : ""}
+          ${item.grade ? " • " + safe(item.grade) : ""}
+        </div>
+
+        ${
+          item.description
+          ? `<div class="resume-item-description">
+               ${safe(item.description)}
+             </div>`
+          : ""
+        }
+
+      </div>
+    `;
+
+  }).join("");
+}
+
+
+function projectsHTML() {
+
+  if (!projects.length) return "";
+
+  return projects.map(item => {
+
+    return `
+      <div class="resume-item">
+
+        <div class="resume-item-title">
+          ${safe(item.name)}
+        </div>
+
+        <div class="resume-item-meta">
+          ${safe(item.role)}
+          ${item.technologies
+            ? " • " + safe(item.technologies)
+            : ""}
+        </div>
+
+        ${
+          item.description
+          ? `<div class="resume-item-description">
+               ${safe(item.description)}
+             </div>`
+          : ""
+        }
+
+        ${
+          item.link
+          ? `<div class="resume-item-meta">
+               ${safe(item.link)}
+             </div>`
+          : ""
+        }
+
+      </div>
+    `;
+
+  }).join("");
+}
+
+
+function skillsHTML() {
+
+  if (!skills.length) return "";
+
+  return skills.map(item => {
+
+    return `
+      <div class="skill-line">
+        <strong>${safe(item.category)}</strong>
+        ${item.skills ? ": " + safe(item.skills) : ""}
+      </div>
+    `;
+
+  }).join("");
+}
+
+
+function certificationsHTML() {
+
+  if (!certifications.length) return "";
+
+  return certifications.map(item => {
+
+    return `
+      <div class="resume-item">
+
+        <div class="resume-item-title">
+          ${safe(item.name)}
+        </div>
+
+        <div class="resume-item-meta">
+          ${safe(item.issuer)}
+          ${item.year ? " • " + safe(item.year) : ""}
+          ${item.credential
+            ? " • " + safe(item.credential)
+            : ""}
+        </div>
+
+        ${
+          item.description
+          ? `<div class="resume-item-description">
+               ${safe(item.description)}
+             </div>`
+          : ""
+        }
+
+      </div>
+    `;
+
+  }).join("");
+}
+
+
+function languagesHTML() {
+
+  if (!languages.length) return "";
+
+  return languages.map(item => {
+
+    return `
+      <div class="language-line">
+        <strong>${safe(item.language)}</strong>
+        ${item.proficiency
+          ? " - " + safe(item.proficiency)
+          : ""}
+      </div>
+    `;
+
+  }).join("");
+}
+
+
+function achievementsHTML() {
+
+  if (!achievements.length) return "";
+
+  return achievements.map(item => {
+
+    return `
+      <div class="resume-item">
+
+        <div class="resume-item-title">
+          ${safe(item.title)}
+        </div>
+
+        <div class="resume-item-meta">
+          ${safe(item.organization)}
+          ${item.year ? " • " + safe(item.year) : ""}
+        </div>
+
+        ${
+          item.description
+          ? `<div class="resume-item-description">
+               ${safe(item.description)}
+             </div>`
+          : ""
+        }
+
+      </div>
+    `;
+
+  }).join("");
+}
+
+
+/* =========================
+   NORMAL RESUME
+   ========================= */
+
+function renderNormalResume() {
+
+  document.getElementById("resumeName").textContent =
+    personal.fullName || "Your Name";
+
+  document.getElementById("resumeContact").innerHTML =
+    buildContact();
+
+  document.getElementById("summaryContent").innerHTML =
+    safe(
+      summary.professionalSummary ||
+      summary.summary ||
+      ""
+    ).replace(/\n/g, "<br>");
+
+  document.getElementById("experienceContent").innerHTML =
+    experienceHTML();
+
+  document.getElementById("educationContent").innerHTML =
+    educationHTML();
+
+  document.getElementById("projectsContent").innerHTML =
+    projectsHTML();
+
+  document.getElementById("skillsContent").innerHTML =
+    skillsHTML();
+
+  document.getElementById("certificationsContent").innerHTML =
+    certificationsHTML();
+
+  document.getElementById("languagesContent").innerHTML =
+    languagesHTML();
+
+  document.getElementById("achievementsContent").innerHTML =
+    achievementsHTML();
+
+  hideEmptySections();
+}
+
+
+function hideEmptySections() {
+
+  const checks = [
+    ["summarySection", summary.professionalSummary || summary.summary],
+    ["experienceSection", experience.length],
+    ["educationSection", education.length],
+    ["projectsSection", projects.length],
+    ["skillsSection", skills.length],
+    ["certificationsSection", certifications.length],
+    ["languagesSection", languages.length],
+    ["achievementsSection", achievements.length]
+  ];
+
+  checks.forEach(([id, value]) => {
+
+    const section = document.getElementById(id);
+
+    if (section) {
+      section.style.display = value ? "" : "none";
     }
 
-    </h3>
-
-
-    <p>
-
-    ${escapeHTML(
-
-      [
-        item.startYear,
-
-        item.current
-          ? "Present"
-          : item.endYear,
-
-        item.location
-
-      ]
-      .filter(Boolean)
-      .join(" • ")
-
-    )}
-
-    </p>
-
-
-    ${
-      item.description
-        ? `<p>${escapeHTML(
-            item.description
-          )}</p>`
-        : ""
-    }
-
-    `;
-
   });
-
 }
 
 
-/* EDUCATION */
+/* =========================
+   SIDEBAR
+   ========================= */
 
-if (education.length) {
+function renderSidebarResume() {
 
-  html += `
-  <h2>Education</h2>
-  `;
+  document.getElementById("sidebarName").textContent =
+    personal.fullName || "Your Name";
 
-  education.forEach(item => {
+  document.getElementById("sidebarContact").innerHTML =
+    buildContact();
 
-    html += `
+  document.getElementById("sidebarSkills").innerHTML =
+    skillsHTML();
 
-    <h3>
+  document.getElementById("sidebarLanguages").innerHTML =
+    languagesHTML();
 
-    ${escapeHTML(
-      item.degree || ""
-    )}
+  document.getElementById("sidebarCertifications").innerHTML =
+    certificationsHTML();
 
-    ${
-      item.institution
-        ? " — " +
-          escapeHTML(item.institution)
-        : ""
-    }
+  document.getElementById("sidebarSummary").innerHTML =
+    safe(
+      summary.professionalSummary ||
+      summary.summary ||
+      ""
+    ).replace(/\n/g, "<br>");
 
-    </h3>
+  document.getElementById("sidebarExperience").innerHTML =
+    experienceHTML();
 
+  document.getElementById("sidebarEducation").innerHTML =
+    educationHTML();
 
-    <p>
+  document.getElementById("sidebarProjects").innerHTML =
+    projectsHTML();
 
-    ${escapeHTML(
-
-      [
-        item.field,
-        item.admissionYear,
-
-        item.currentlyStudying
-          ? "Currently Studying"
-          : item.completedYear,
-
-        item.grade
-
-      ]
-      .filter(Boolean)
-      .join(" • ")
-
-    )}
-
-    </p>
-
-
-    ${
-      item.description
-        ? `<p>${escapeHTML(
-            item.description
-          )}</p>`
-        : ""
-    }
-
-    `;
-
-  });
-
+  document.getElementById("sidebarAchievements").innerHTML =
+    achievementsHTML();
 }
 
 
-/* PROJECTS */
+/* =========================
+   TEMPLATE SWITCH
+   ========================= */
 
-if (projects.length) {
+function selectTemplate(template, button) {
 
-  html += `
-  <h2>Projects</h2>
-  `;
+  selectedTemplate = template;
 
-  projects.forEach(item => {
-
-    html += `
-
-    <h3>
-    ${escapeHTML(
-      item.name || ""
-    )}
-    </h3>
-
-    <p>
-
-    ${escapeHTML(
-
-      [
-        item.role,
-        item.technologies
-
-      ]
-      .filter(Boolean)
-      .join(" • ")
-
-    )}
-
-    </p>
-
-
-    ${
-      item.description
-        ? `<p>${escapeHTML(
-            item.description
-          )}</p>`
-        : ""
-    }
-
-    `;
-
-  });
-
-}
-
-
-/* SKILLS */
-
-if (skills.length) {
-
-  html += `
-  <h2>Skills</h2>
-  `;
-
-  skills.forEach(item => {
-
-    html += `
-
-    <p>
-
-    <strong>
-    ${escapeHTML(
-      item.category || ""
-    )}
-    </strong>
-
-    :
-
-    ${escapeHTML(
-      item.skills || ""
-    )}
-
-    </p>
-
-    `;
-
-  });
-
-}
-
-
-/* CERTIFICATIONS */
-
-if (certifications.length) {
-
-  html += `
-  <h2>Certifications</h2>
-  `;
-
-  certifications.forEach(item => {
-
-    html += `
-
-    <h3>
-    ${escapeHTML(
-      item.name || ""
-    )}
-    </h3>
-
-    <p>
-
-    ${escapeHTML(
-
-      [
-        item.issuer,
-        item.year,
-        item.credential
-
-      ]
-      .filter(Boolean)
-      .join(" • ")
-
-    )}
-
-    </p>
-
-    `;
-
-  });
-
-}
-
-
-/* LANGUAGES */
-
-if (languages.length) {
-
-  html += `
-  <h2>Languages</h2>
-  `;
-
-  languages.forEach(item => {
-
-    html += `
-
-    <p>
-
-    <strong>
-    ${escapeHTML(
-      item.language || ""
-    )}
-    </strong>
-
-    —
-
-    ${escapeHTML(
-      item.proficiency || ""
-    )}
-
-    </p>
-
-    `;
-
-  });
-
-}
-
-
-/* ACHIEVEMENTS */
-
-if (achievements.length) {
-
-  html += `
-  <h2>Achievements</h2>
-  `;
-
-  achievements.forEach(item => {
-
-    html += `
-
-    <h3>
-    ${escapeHTML(
-      item.title || ""
-    )}
-    </h3>
-
-    <p>
-
-    ${escapeHTML(
-
-      [
-        item.organization,
-        item.year
-
-      ]
-      .filter(Boolean)
-      .join(" • ")
-
-    )}
-
-    </p>
-
-
-    ${
-      item.description
-        ? `<p>${escapeHTML(
-            item.description
-          )}</p>`
-        : ""
-    }
-
-    `;
-
-  });
-
-}
-
-
-resume.innerHTML = html;
-
-
-/* DOWNLOAD MODAL */
-
-const modal =
-  document.getElementById(
-    "downloadModal"
+  localStorage.setItem(
+    "selectedResumeTemplate",
+    template
   );
 
+  const paper =
+    document.getElementById("resumePaper");
 
-document
-  .getElementById("downloadButton")
-  .onclick = function() {
+  paper.className =
+    "template-" + template;
 
-    modal.classList.add("show");
+  document
+    .querySelectorAll(".template-button")
+    .forEach(btn => {
+      btn.classList.remove("active");
+    });
+
+  if (button) {
+    button.classList.add("active");
+  }
+
+  const normal =
+    document.getElementById("normalResume");
+
+  const sidebar =
+    document.getElementById("sidebarResume");
+
+  if (template === "sidebar") {
+
+    normal.style.display = "none";
+    sidebar.style.display = "flex";
+
+  } else {
+
+    normal.style.display = "block";
+    sidebar.style.display = "none";
+
+  }
+}
+
+
+/* =========================
+   PDF DOWNLOAD
+   ========================= */
+
+async function downloadPDF() {
+
+  const paper =
+    document.getElementById("resumePaper");
+
+  const oldWidth =
+    paper.style.width;
+
+  const oldBoxShadow =
+    paper.style.boxShadow;
+
+  paper.style.width = "210mm";
+  paper.style.boxShadow = "none";
+
+  const filename =
+    (
+      personal.fullName ||
+      "Elevora-Resume"
+    )
+    .replace(/[^a-z0-9]+/gi, "-")
+    .replace(/^-|-$/g, "");
+
+  const options = {
+
+    margin: 0,
+
+    filename:
+      filename + "-Resume.pdf",
+
+    image: {
+      type: "jpeg",
+      quality: 0.98
+    },
+
+    html2canvas: {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: "#ffffff"
+    },
+
+    jsPDF: {
+      unit: "mm",
+      format: "a4",
+      orientation: "portrait"
+    },
+
+    pagebreak: {
+      mode: [
+        "css",
+        "legacy"
+      ]
+    }
 
   };
 
+  try {
 
-document
-  .getElementById("closeModal")
-  .onclick = function() {
+    await html2pdf()
+      .set(options)
+      .from(paper)
+      .save();
 
-    modal.classList.remove("show");
+  } catch (error) {
 
-  };
+    console.error(error);
 
+    alert(
+      "PDF download failed. Please try Print → Save as PDF."
+    );
 
-/* PDF */
+  } finally {
 
-document
-  .getElementById("pdfButton")
-  .onclick = function() {
+    paper.style.width = oldWidth;
+    paper.style.boxShadow = oldBoxShadow;
 
-    modal.classList.remove("show");
-
-    window.print();
-
-  };
-
-
-/* PRINT */
-
-document
-  .getElementById("printButton")
-  .onclick = function() {
-
-    modal.classList.remove("show");
-
-    window.print();
-
-  };
+  }
+}
 
 
-/* WORD */
+/* =========================
+   WORD DOWNLOAD
+   ========================= */
 
-document
-  .getElementById("wordButton")
-  .onclick = function() {
+function downloadWord() {
 
-    const documentHTML = `
+  const paper =
+    document.getElementById("resumePaper");
 
-      <html>
+  const name =
+    personal.fullName ||
+    "Elevora Resume";
 
-      <head>
-
+  const html = `
+    <!DOCTYPE html>
+    <html>
+    <head>
       <meta charset="UTF-8">
 
       <style>
 
-      body {
-        font-family: Arial, sans-serif;
-        padding: 40px;
-        color: #111;
-        line-height: 1.5;
-      }
+        body {
+          font-family: Arial, sans-serif;
+          color: #111;
+          line-height: 1.5;
+          padding: 35px;
+        }
 
-      h1 {
-        font-size: 30px;
-      }
+        h1 {
+          font-size: 30px;
+        }
 
-      h2 {
-        font-size: 16px;
-        border-bottom: 1px solid #999;
-        padding-bottom: 5px;
-        margin-top: 25px;
-      }
+        h2 {
+          font-size: 16px;
+          border-bottom: 1px solid #333;
+          padding-bottom: 4px;
+          margin-top: 24px;
+        }
 
-      h3 {
-        margin-bottom: 4px;
-      }
+        h3 {
+          font-size: 14px;
+        }
 
       </style>
 
-      </head>
+    </head>
 
-      <body>
+    <body>
 
-      ${resume.innerHTML}
+      ${paper.innerHTML}
 
-      </body>
+    </body>
+    </html>
+  `;
 
-      </html>
+  const blob =
+    new Blob(
+      ["\ufeff", html],
+      {
+        type: "application/msword"
+      }
+    );
 
-    `;
+  const url =
+    URL.createObjectURL(blob);
+
+  const link =
+    document.createElement("a");
+
+  link.href = url;
+
+  link.download =
+    name.replace(/[^a-z0-9]+/gi, "-") +
+    "-Resume.doc";
+
+  document.body.appendChild(link);
+
+  link.click();
+
+  document.body.removeChild(link);
+
+  URL.revokeObjectURL(url);
+}
 
 
-    const blob =
-      new Blob(
-        [documentHTML],
-        {
-          type:
-            "application/msword"
-        }
-      );
+/* =========================
+   INITIALIZE
+   ========================= */
 
+renderNormalResume();
+renderSidebarResume();
 
-    const url =
-      URL.createObjectURL(blob);
+const savedButton =
+  document.querySelector(
+    `[data-template="${selectedTemplate}"]`
+  );
 
-
-    const link =
-      document.createElement("a");
-
-
-    link.href = url;
-
-    link.download =
-      "resume.doc";
-
-    link.click();
-
-
-    URL.revokeObjectURL(url);
-
-  };
+selectTemplate(
+  selectedTemplate,
+  savedButton ||
+  document.querySelector(
+    '[data-template="classic"]'
+  )
+);
 
 </script>
 
 </body>
-
 </html>
