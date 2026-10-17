@@ -4,38 +4,46 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Build Cover Letter - Elevora</title>
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
 
-<link rel="stylesheet" href="css/style.css">
+<title>Cover Letter Builder | Elevora</title>
+
+<link
+rel="stylesheet"
+href="css/style.css"
+>
 
 <script src="theme.js"></script>
 <script src="js/app.js"></script>
 
 </head>
 
+
 <body>
+
 
 <header class="navbar">
 
-<a class="logo" href="index.html">
+<a href="index.html" class="logo">
 Elevora
 </a>
 
 <nav class="nav-links">
 
 <a href="index.html">Home</a>
-
 <a href="personal.html">Resume</a>
-
 <a href="preview.html">Preview</a>
+<a href="cover-letter.html">Cover Letter</a>
 
-<a href="cover-letter.html">
-Cover Letter
-</a>
-
-<button id="themeToggle" class="theme-toggle">
+<button
+id="themeToggle"
+class="theme-toggle"
+type="button"
+>
 🌙
 </button>
 
@@ -44,25 +52,33 @@ Cover Letter
 </header>
 
 
-<main class="container">
+<main class="page-container">
 
-<div class="page-head">
+
+<div class="form-header">
+
+<div class="step-number">
+✦
+</div>
+
+<div>
 
 <h1>Build a Cover Letter</h1>
 
 <p>
-Create a separate, job-specific cover letter.
-This is independent from the resume-building steps.
+Create a personalized cover letter for a specific opportunity.
 </p>
 
 </div>
 
+</div>
 
-<section class="form-card">
 
-<form id="coverLetterForm">
+<form
+id="coverLetterForm"
+class="form-card"
+>
 
-<div class="form-grid">
 
 <div class="form-group">
 
@@ -73,7 +89,8 @@ Company Name <span class="required">*</span>
 <input
 id="company"
 required
-placeholder="Example Technologies">
+placeholder="Company name"
+>
 
 </div>
 
@@ -87,7 +104,8 @@ Job Title <span class="required">*</span>
 <input
 id="jobTitle"
 required
-placeholder="Frontend Developer">
+placeholder="Job title"
+>
 
 </div>
 
@@ -100,7 +118,8 @@ Industry
 
 <input
 id="industry"
-placeholder="Technology">
+placeholder="Technology, Finance, Healthcare..."
+>
 
 </div>
 
@@ -113,27 +132,27 @@ Hiring Manager
 
 <input
 id="manager"
-placeholder="Hiring Manager">
+placeholder="Hiring manager name"
+>
 
 </div>
 
 
-<div class="form-group full">
+<div class="form-group">
 
 <label>
-Job Description <span class="required">*</span>
+Job Description
 </label>
 
 <textarea
 id="jobDescription"
-required
-placeholder="Paste the job description here...">
-</textarea>
+placeholder="Paste the job description here..."
+></textarea>
 
 </div>
 
 
-<div class="form-group full">
+<div class="form-group">
 
 <label>
 Additional Information
@@ -141,105 +160,110 @@ Additional Information
 
 <textarea
 id="notes"
-placeholder="Achievements or points you want the cover letter to emphasize...">
-</textarea>
+placeholder="Anything else you want the cover letter to mention..."
+></textarea>
 
 </div>
 
-</div>
 
-
-<div class="actions">
+<div class="form-actions">
 
 <a
 href="index.html"
-class="btn secondary">
-
-← Home
-
+class="btn secondary"
+>
+← Back
 </a>
 
-
 <button
-class="btn"
-type="submit">
-
-Build Cover Letter →
-
+type="submit"
+class="btn primary"
+>
+Continue →
 </button>
 
 </div>
 
-</form>
 
-</section>
+</form>
 
 </main>
 
 
 <script>
 
-const savedCoverLetter =
-  getJSON(STORAGE_KEYS.coverLetter, {});
+const saved =
+JSON.parse(
+localStorage.getItem(
+"section_cover_letter"
+) || "{}"
+);
 
 
 [
-  "company",
-  "jobTitle",
-  "industry",
-  "manager",
-  "jobDescription",
-  "notes"
-].forEach(id => {
+"company",
+"jobTitle",
+"industry",
+"manager",
+"jobDescription",
+"notes"
+].forEach(id=>{
 
-  document.getElementById(id).value =
-    savedCoverLetter[id] || "";
+const element =
+document.getElementById(id);
+
+if(element){
+
+element.value =
+saved[id] || "";
+
+}
 
 });
 
 
 document
-  .getElementById("coverLetterForm")
-  .addEventListener("submit", function(event) {
+.getElementById(
+"coverLetterForm"
+)
+.addEventListener(
+"submit",
+function(event){
 
-    event.preventDefault();
-
-    const data = {
-
-      company:
-        document.getElementById("company").value.trim(),
-
-      jobTitle:
-        document.getElementById("jobTitle").value.trim(),
-
-      industry:
-        document.getElementById("industry").value.trim(),
-
-      manager:
-        document.getElementById("manager").value.trim(),
-
-      jobDescription:
-        document.getElementById("jobDescription").value.trim(),
-
-      notes:
-        document.getElementById("notes").value.trim()
-
-    };
+event.preventDefault();
 
 
-    setJSON(
-      STORAGE_KEYS.coverLetter,
-      data
-    );
+const data={};
+
+[
+"company",
+"jobTitle",
+"industry",
+"manager",
+"jobDescription",
+"notes"
+].forEach(id=>{
+
+data[id] =
+document.getElementById(
+id
+).value.trim();
+
+});
 
 
-    window.location.href =
-      "cover-letter-preview.html";
+localStorage.setItem(
+"section_cover_letter",
+JSON.stringify(data)
+);
 
-  });
+
+window.location.href =
+"cover-letter-preview.html";
+
+});
 
 </script>
 
 </body>
-
 </html>
