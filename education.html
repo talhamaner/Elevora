@@ -1,36 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
 
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Education | Elevora</title>
+  <title>Education - Elevora</title>
 
   <link rel="stylesheet" href="css/style.css">
 
   <script src="theme.js"></script>
   <script src="js/app.js"></script>
-
 </head>
 
 <body>
 
 <header class="navbar">
 
-  <a href="index.html" class="logo">Elevora</a>
+  <a class="logo" href="index.html">
+    Elevora
+  </a>
 
   <nav class="nav-links">
 
     <a href="index.html">Home</a>
-    <a href="personal.html" class="active">Resume</a>
+
+    <a href="personal.html">Resume</a>
+
     <a href="preview.html">Preview</a>
+
+    <a href="cover-letter.html">
+      Cover Letter
+    </a>
 
     <button
       id="themeToggle"
       class="theme-toggle"
-      type="button"
-    >
+      type="button">
       🌙
     </button>
 
@@ -39,517 +45,337 @@
 </header>
 
 
-<main class="builder-wrapper">
+<main class="container">
 
-  <div class="progress-wrapper">
-
-    <div
-      class="progress-bar"
-      style="--progress: 27%"
-    >
-      <div class="progress-fill"></div>
-    </div>
-
-    <div class="progress-text">
-      <span>Step 3 of 11</span>
-      <span>Education</span>
-    </div>
-
-  </div>
-
-
-  <div class="page-heading">
-
-    <span class="eyebrow">STEP 03</span>
+  <div class="page-head">
 
     <h1>Education</h1>
 
     <p>
-      Add one or more educational qualifications.
+      Add multiple education records.
+      Your previous education will never be replaced.
     </p>
 
   </div>
 
 
-  <form id="educationForm" class="form-card">
+  <div class="builder">
 
-    <div id="educationEntries" class="entries-container"></div>
+    <aside class="steps">
 
-    <button
-      type="button"
-      id="addEducation"
-      class="add-entry"
-    >
-      + Add Education
-    </button>
-
-
-    <div class="form-actions">
-
-      <a
-        href="summary.html"
-        class="btn btn-secondary"
-      >
-        ← Back
+      <a href="personal.html">
+        1. Personal
       </a>
 
-      <button
-        type="submit"
-        class="btn btn-primary"
-      >
-        Save & Continue →
-      </button>
+      <a href="summary.html">
+        2. Summary
+      </a>
 
-    </div>
+      <a href="education.html">
+        3. Education
+      </a>
 
-  </form>
+      <a href="experience.html">
+        4. Experience
+      </a>
+
+      <a href="projects.html">
+        5. Projects
+      </a>
+
+      <a href="skills.html">
+        6. Skills
+      </a>
+
+      <a href="certifications.html">
+        7. Certifications
+      </a>
+
+      <a href="languages.html">
+        8. Languages
+      </a>
+
+      <a href="achievements.html">
+        9. Achievements
+      </a>
+
+      <a href="preview.html">
+        10. Preview
+      </a>
+
+    </aside>
+
+
+    <section class="form-card">
+
+      <div id="entryList" class="entry-list"></div>
+
+
+      <form id="entryForm">
+
+        <div class="form-grid">
+
+          <div class="form-group">
+
+            <label>
+              Institution / University
+              <span class="required">*</span>
+            </label>
+
+            <input
+              id="institution"
+              required
+              placeholder="Example University">
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Degree
+              <span class="required">*</span>
+            </label>
+
+            <input
+              id="degree"
+              required
+              placeholder="Bachelor of Technology">
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Field of Study
+            </label>
+
+            <input
+              id="field"
+              placeholder="Computer Science">
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Admission Year
+            </label>
+
+            <input
+              id="admissionYear"
+              type="number"
+              min="1900"
+              max="2100"
+              placeholder="2021">
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Pass Out / Completed Year
+            </label>
+
+            <input
+              id="completedYear"
+              type="number"
+              min="1900"
+              max="2100"
+              placeholder="2025">
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Grade / CGPA
+            </label>
+
+            <input
+              id="grade"
+              placeholder="8.6 / 10">
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label class="checkbox">
+
+              <input
+                id="currentlyStudying"
+                type="checkbox">
+
+              Currently Studying
+
+            </label>
+
+          </div>
+
+
+          <div class="form-group full">
+
+            <label>
+              Description
+            </label>
+
+            <textarea
+              id="description"
+              placeholder="Relevant coursework, activities, achievements, etc.">
+            </textarea>
+
+          </div>
+
+        </div>
+
+
+        <div class="actions">
+
+          <button
+            type="button"
+            id="cancelEdit"
+            class="btn secondary"
+            style="display:none">
+
+            Cancel Edit
+
+          </button>
+
+
+          <button
+            id="saveBtn"
+            class="btn"
+            type="submit">
+
+            + Add Education
+
+          </button>
+
+        </div>
+
+
+        <div
+          id="status"
+          class="status">
+        </div>
+
+      </form>
+
+
+      <div class="actions">
+
+        <a
+          class="btn secondary"
+          href="summary.html">
+
+          ← Back
+
+        </a>
+
+
+        <a
+          class="btn"
+          href="experience.html">
+
+          Save & Continue →
+
+        </a>
+
+      </div>
+
+    </section>
+
+  </div>
 
 </main>
 
 
 <script>
 
-document.addEventListener(
-  "DOMContentLoaded",
-  function () {
+window.MULTI_CONFIG = {
 
-    const container =
-      document.getElementById(
-        "educationEntries"
-      );
+  key: "education",
 
+  addText: "+ Add Education",
 
-    let entries =
-      getJSON(
-        STORAGE_KEYS.education,
-        []
-      );
+  fields: [
 
+    {
+      id: "institution"
+    },
 
-    if (!Array.isArray(entries) ||
-        !entries.length) {
+    {
+      id: "degree"
+    },
 
-      entries = [{}];
+    {
+      id: "field"
+    },
 
+    {
+      id: "admissionYear"
+    },
+
+    {
+      id: "completedYear"
+    },
+
+    {
+      id: "grade"
+    },
+
+    {
+      id: "currentlyStudying",
+      type: "checkbox"
+    },
+
+    {
+      id: "description",
+      type: "textarea"
     }
 
+  ],
 
-    function years() {
+  title: function(entry) {
 
-      const current =
-        new Date().getFullYear();
+    return entry.degree ||
+           entry.institution ||
+           "Education";
 
-      let html =
-        '<option value="">Select year</option>';
+  },
 
-      for (
-        let year = current + 5;
-        year >= 1950;
-        year--
-      ) {
+  meta: function(entry) {
 
-        html +=
-          `<option value="${year}">
-            ${year}
-          </option>`;
+    return [
 
-      }
+      entry.institution,
 
-      return html;
+      entry.field,
 
-    }
+      entry.admissionYear,
 
+      entry.currentlyStudying
+        ? "Currently Studying"
+        : entry.completedYear,
 
-    function render() {
+      entry.grade
 
-      container.innerHTML = "";
-
-
-      entries.forEach(
-        function (entry, index) {
-
-          const card =
-            document.createElement(
-              "div"
-            );
-
-          card.className =
-            "entry-card";
-
-
-          card.innerHTML = `
-
-            <div class="entry-card-header">
-
-              <h3>
-                Education ${index + 1}
-              </h3>
-
-              ${
-                index > 0
-                ? `
-                  <button
-                    type="button"
-                    class="remove-entry"
-                    data-index="${index}"
-                  >
-                    Remove
-                  </button>
-                `
-                : ""
-              }
-
-            </div>
-
-
-            <div class="form-grid">
-
-              <div class="form-group">
-
-                <label>
-                  Degree / Qualification
-                  <span class="required">*</span>
-                </label>
-
-                <input
-                  class="degree"
-                  type="text"
-                  placeholder="e.g. Bachelor of Technology"
-                  value="${escapeHTML(entry.degree || "")}"
-                  required
-                >
-
-              </div>
-
-
-              <div class="form-group">
-
-                <label>
-                  Field of Study
-                </label>
-
-                <input
-                  class="field"
-                  type="text"
-                  placeholder="e.g. Computer Science"
-                  value="${escapeHTML(entry.field || "")}"
-                >
-
-              </div>
-
-
-              <div class="form-group full">
-
-                <label>
-                  Institution / University
-                  <span class="required">*</span>
-                </label>
-
-                <input
-                  class="institution"
-                  type="text"
-                  placeholder="Enter institution name"
-                  value="${escapeHTML(entry.institution || "")}"
-                  required
-                >
-
-              </div>
-
-
-              <div class="form-group">
-
-                <label>
-                  Admission Year
-                </label>
-
-                <select class="admissionYear">
-
-                  ${years()}
-
-                </select>
-
-              </div>
-
-
-              <div class="form-group">
-
-                <label>
-                  Pass Out / Completed
-                </label>
-
-                <select class="completionYear">
-
-                  ${years()}
-
-                </select>
-
-              </div>
-
-
-              <div class="form-group">
-
-                <label>
-                  Grade / CGPA / Percentage
-                </label>
-
-                <input
-                  class="grade"
-                  type="text"
-                  placeholder="e.g. 8.5 CGPA"
-                  value="${escapeHTML(entry.grade || "")}"
-                >
-
-              </div>
-
-
-              <div class="form-group">
-
-                <label>
-                  Location
-                </label>
-
-                <input
-                  class="location"
-                  type="text"
-                  placeholder="City, Country"
-                  value="${escapeHTML(entry.location || "")}"
-                >
-
-              </div>
-
-
-              <div class="form-group full">
-
-                <label class="checkbox-row">
-
-                  <input
-                    class="currentlyStudying"
-                    type="checkbox"
-                    ${entry.currentlyStudying ? "checked" : ""}
-                  >
-
-                  <span>
-                    I am currently studying here
-                  </span>
-
-                </label>
-
-              </div>
-
-
-              <div class="form-group full">
-
-                <label>
-                  Description
-                </label>
-
-                <textarea
-                  class="description"
-                  placeholder="Relevant coursework, achievements, activities..."
-                >${escapeHTML(entry.description || "")}</textarea>
-
-              </div>
-
-            </div>
-
-          `;
-
-
-          container.appendChild(card);
-
-
-          card.querySelector(
-            ".admissionYear"
-          ).value =
-            entry.admissionYear || "";
-
-
-          card.querySelector(
-            ".completionYear"
-          ).value =
-            entry.completionYear || "";
-
-
-          const currentCheckbox =
-            card.querySelector(
-              ".currentlyStudying"
-            );
-
-          const completion =
-            card.querySelector(
-              ".completionYear"
-            );
-
-
-          function updateCompletion() {
-
-            completion.disabled =
-              currentCheckbox.checked;
-
-            if (currentCheckbox.checked) {
-              completion.value = "";
-            }
-
-          }
-
-
-          currentCheckbox.addEventListener(
-            "change",
-            updateCompletion
-          );
-
-
-          updateCompletion();
-
-        }
-      );
-
-
-      container
-        .querySelectorAll(
-          ".remove-entry"
-        )
-        .forEach(
-          function (button) {
-
-            button.addEventListener(
-              "click",
-              function () {
-
-                const index =
-                  Number(
-                    button.dataset.index
-                  );
-
-                entries.splice(
-                  index,
-                  1
-                );
-
-                render();
-
-              }
-            );
-
-          }
-        );
-
-    }
-
-
-    render();
-
-
-    document
-      .getElementById("addEducation")
-      .addEventListener(
-        "click",
-        function () {
-
-          entries.push({});
-
-          render();
-
-          window.scrollTo({
-            top:
-              document.body.scrollHeight,
-            behavior: "smooth"
-          });
-
-        }
-      );
-
-
-    document
-      .getElementById("educationForm")
-      .addEventListener(
-        "submit",
-        function (event) {
-
-          event.preventDefault();
-
-
-          const cards =
-            container.querySelectorAll(
-              ".entry-card"
-            );
-
-
-          const result = [];
-
-
-          cards.forEach(
-            function (card) {
-
-              result.push({
-
-                degree:
-                  card.querySelector(
-                    ".degree"
-                  ).value.trim(),
-
-                field:
-                  card.querySelector(
-                    ".field"
-                  ).value.trim(),
-
-                institution:
-                  card.querySelector(
-                    ".institution"
-                  ).value.trim(),
-
-                admissionYear:
-                  card.querySelector(
-                    ".admissionYear"
-                  ).value,
-
-                completionYear:
-                  card.querySelector(
-                    ".completionYear"
-                  ).value,
-
-                currentlyStudying:
-                  card.querySelector(
-                    ".currentlyStudying"
-                  ).checked,
-
-                grade:
-                  card.querySelector(
-                    ".grade"
-                  ).value.trim(),
-
-                location:
-                  card.querySelector(
-                    ".location"
-                  ).value.trim(),
-
-                description:
-                  card.querySelector(
-                    ".description"
-                  ).value.trim()
-
-              });
-
-            }
-          );
-
-
-          setJSON(
-            STORAGE_KEYS.education,
-            result
-          );
-
-
-          window.location.href =
-            "experience.html";
-
-        }
-      );
+    ]
+    .filter(Boolean)
+    .join(" • ");
 
   }
-);
+
+};
 
 </script>
+
+<script src="js/multi.js"></script>
 
 </body>
 </html>
