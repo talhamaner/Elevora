@@ -1,25 +1,17 @@
 (function () {
 
-    const STORAGE_KEY = "resumeTheme";
-
-    /*
-     * Apply saved theme immediately.
-     * This prevents the page from flashing
-     * into the wrong theme.
-     */
+    const THEME_KEY = "resumeTheme";
 
     const savedTheme =
-        localStorage.getItem(STORAGE_KEY);
+        localStorage.getItem(THEME_KEY);
 
-    const systemPrefersDark =
+    const prefersDark =
         window.matchMedia &&
-        window.matchMedia(
-            "(prefers-color-scheme: dark)"
-        ).matches;
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
 
     const initialTheme =
         savedTheme ||
-        (systemPrefersDark ? "dark" : "light");
+        (prefersDark ? "dark" : "light");
 
 
     document.documentElement.setAttribute(
@@ -27,10 +19,6 @@
         initialTheme
     );
 
-
-    /*
-     * Update the theme button
-     */
 
     function updateThemeButton() {
 
@@ -41,22 +29,21 @@
             return;
         }
 
-
         const currentTheme =
-            document.documentElement.getAttribute(
-                "data-theme"
-            );
+            document.documentElement.getAttribute("data-theme");
 
 
         if (currentTheme === "dark") {
 
             button.textContent = "☀️";
 
-            button.title =
-                "Switch to light mode";
-
             button.setAttribute(
                 "aria-label",
+                "Switch to light mode"
+            );
+
+            button.setAttribute(
+                "title",
                 "Switch to light mode"
             );
 
@@ -64,30 +51,23 @@
 
             button.textContent = "🌙";
 
-            button.title =
-                "Switch to dark mode";
-
             button.setAttribute(
                 "aria-label",
                 "Switch to dark mode"
             );
 
+            button.setAttribute(
+                "title",
+                "Switch to dark mode"
+            );
         }
-
     }
 
-
-    /*
-     * Theme toggle
-     */
 
     window.toggleTheme = function () {
 
         const currentTheme =
-            document.documentElement.getAttribute(
-                "data-theme"
-            );
-
+            document.documentElement.getAttribute("data-theme");
 
         const newTheme =
             currentTheme === "dark"
@@ -102,19 +82,14 @@
 
 
         localStorage.setItem(
-            STORAGE_KEY,
+            THEME_KEY,
             newTheme
         );
 
 
         updateThemeButton();
-
     };
 
-
-    /*
-     * Initialize button
-     */
 
     document.addEventListener(
         "DOMContentLoaded",
@@ -124,9 +99,7 @@
 
 
             const button =
-                document.getElementById(
-                    "themeToggle"
-                );
+                document.getElementById("themeToggle");
 
 
             if (button) {
@@ -135,9 +108,7 @@
                     "click",
                     window.toggleTheme
                 );
-
             }
-
         }
     );
 
