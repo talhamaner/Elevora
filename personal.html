@@ -1,1071 +1,872 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Personal Information | Elevora</title>
+<meta charset="UTF-8">
 
-  <link rel="stylesheet" href="css/style.css">
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-  <script src="theme.js"></script>
-  <script src="js/app.js"></script>
+<title>Personal Information | Elevora</title>
+
+<link
+  rel="stylesheet"
+  href="css/style.css"
+>
+
+<script src="theme.js"></script>
+<script src="js/app.js"></script>
+
 </head>
+
 
 <body>
 
+
 <header class="navbar">
-  <a href="index.html" class="logo">Elevora</a>
 
-  <nav class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="personal.html">Resume</a>
-    <a href="preview.html">Preview</a>
-    <a href="cover-letter.html">Cover Letter</a>
+<a href="index.html" class="logo">
+  Elevora
+</a>
 
-    <button
-      id="themeToggle"
-      class="theme-toggle"
-      type="button"
-      aria-label="Switch theme"
-    >
-      🌙
-    </button>
-  </nav>
+<nav class="nav-links">
+
+<a href="index.html">Home</a>
+<a href="personal.html">Resume</a>
+<a href="preview.html">Preview</a>
+<a href="cover-letter.html">Cover Letter</a>
+
+<button
+id="themeToggle"
+class="theme-toggle"
+type="button"
+>
+🌙
+</button>
+
+</nav>
+
 </header>
 
 
 <main class="page-container">
 
-  <div class="form-header">
-    <span class="step-number">1</span>
 
-    <div>
-      <h1>Personal Information</h1>
-      <p>
-        Start with your basic information. This information will appear on your resume.
-      </p>
-    </div>
-  </div>
+<div class="form-header">
 
+<div class="step-number">
+  1
+</div>
 
-  <div class="progress-wrapper">
-    <div class="progress-bar">
-      <div class="progress-fill" style="width:10%;"></div>
-    </div>
+<div>
 
-    <span>Step 1 of 10</span>
-  </div>
+<h1>Personal Information</h1>
 
+<p>
+Start with your basic contact information.
+</p>
 
-  <form id="personalForm" class="form-card">
+</div>
 
-    <!-- FULL NAME -->
+</div>
 
-    <div class="form-group">
-      <label for="fullName">
-        Full Name <span class="required">*</span>
-      </label>
 
-      <input
-        type="text"
-        id="fullName"
-        name="fullName"
-        placeholder="Enter your full name"
-        required
-      >
-    </div>
+<div class="progress-wrapper">
 
+<div class="progress-bar">
 
-    <!-- EMAIL -->
+<div
+class="progress-fill"
+style="width:10%"
+></div>
 
-    <div class="form-group">
-      <label for="email">
-        Email Address <span class="required">*</span>
-      </label>
+</div>
 
-      <input
-        type="email"
-        id="email"
-        name="email"
-        placeholder="you@example.com"
-        required
-      >
-    </div>
+<span>1 of 10</span>
 
+</div>
 
-    <!-- PHONE -->
 
-    <div class="form-group">
+<form
+id="personalForm"
+class="form-card"
+>
 
-      <label>
-        Phone Number <span class="required">*</span>
-      </label>
 
-      <div class="phone-wrapper">
+<div class="form-group">
 
-        <div class="phone-code-box">
+<label>
+Full Name <span class="required">*</span>
+</label>
 
-          <input
-            type="text"
-            id="phoneCodeSearch"
-            class="search-input"
-            placeholder="+91"
-            autocomplete="off"
-          >
+<input
+id="fullName"
+required
+placeholder="Enter your full name"
+>
 
-          <div
-            id="phoneCodeOptions"
-            class="search-options"
-          ></div>
+</div>
 
-        </div>
 
+<div class="form-group">
 
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          placeholder="9876543210"
-          required
-        >
+<label>
+Email Address <span class="required">*</span>
+</label>
 
-      </div>
+<input
+id="email"
+type="email"
+required
+placeholder="you@example.com"
+>
 
-    </div>
+</div>
 
 
-    <!-- COUNTRY -->
+<div class="form-group">
 
-    <div class="form-group">
+<label>
+Phone Number <span class="required">*</span>
+</label>
 
-      <label for="country">
-        Country <span class="required">*</span>
-      </label>
+<div class="phone-wrapper">
 
-      <div class="search-select">
+<div class="phone-code-box">
 
-        <input
-          type="text"
-          id="country"
-          name="country"
-          class="search-input"
-          placeholder="Search country..."
-          autocomplete="off"
-          required
-        >
+<input
+id="phoneCodeSearch"
+class="search-input"
+placeholder="+91"
+autocomplete="off"
+>
 
-        <span class="search-arrow">⌄</span>
+<div
+id="phoneCodeOptions"
+class="search-options"
+></div>
 
-        <div
-          id="countryOptions"
-          class="search-options"
-        ></div>
+</div>
 
-      </div>
 
-    </div>
+<input
+id="phone"
+type="tel"
+required
+placeholder="9876543210"
+>
 
+</div>
 
-    <!-- STATE -->
+</div>
 
-    <div class="form-group">
 
-      <label for="state">
-        State / Province / Region
-      </label>
+<div class="form-group">
 
-      <div class="search-select">
+<label>
+Country <span class="required">*</span>
+</label>
 
-        <input
-          type="text"
-          id="state"
-          name="state"
-          class="search-input"
-          placeholder="Search state / province..."
-          autocomplete="off"
-        >
+<div class="search-select">
 
-        <span class="search-arrow">⌄</span>
+<input
+id="country"
+class="search-input"
+required
+placeholder="Search country..."
+autocomplete="off"
+>
 
-        <div
-          id="stateOptions"
-          class="search-options"
-        ></div>
+<span class="search-arrow">
+⌄
+</span>
 
-      </div>
+<div
+id="countryOptions"
+class="search-options"
+></div>
 
-    </div>
+</div>
 
+</div>
 
-    <!-- CITY -->
 
-    <div class="form-group">
+<div class="form-group">
 
-      <label for="city">
-        District / City / Town
-      </label>
+<label>
+State / Province / Region
+</label>
 
-      <div class="search-select">
+<div class="search-select">
 
-        <input
-          type="text"
-          id="city"
-          name="city"
-          class="search-input"
-          placeholder="Enter your city / town"
-          autocomplete="off"
-        >
+<input
+id="state"
+class="search-input"
+placeholder="Search state..."
+autocomplete="off"
+>
 
-        <span class="search-arrow">⌄</span>
+<span class="search-arrow">
+⌄
+</span>
 
-        <div
-          id="cityOptions"
-          class="search-options"
-        ></div>
+<div
+id="stateOptions"
+class="search-options"
+></div>
 
-      </div>
+</div>
 
-    </div>
+</div>
 
 
-    <!-- ADDRESS -->
+<div class="form-group">
 
-    <div class="form-group">
+<label>
+District / City / Town
+</label>
 
-      <label for="address">
-        Address
-      </label>
+<div class="search-select">
 
-      <textarea
-        id="address"
-        name="address"
-        rows="3"
-        placeholder="Enter your address"
-      ></textarea>
+<input
+id="city"
+class="search-input"
+placeholder="Search city / town..."
+autocomplete="off"
+>
 
-    </div>
+<span class="search-arrow">
+⌄
+</span>
 
+<div
+id="cityOptions"
+class="search-options"
+></div>
 
-    <!-- PIN CODE -->
+</div>
 
-    <div class="form-group">
+</div>
 
-      <label for="postalCode">
-        Postal / ZIP Code
-      </label>
 
-      <input
-        type="text"
-        id="postalCode"
-        name="postalCode"
-        placeholder="Enter postal / ZIP code"
-      >
+<div class="form-group">
 
-    </div>
+<label>Address</label>
 
+<textarea
+id="address"
+placeholder="Enter your address"
+></textarea>
 
-    <!-- LINKEDIN -->
+</div>
 
-    <div class="form-group">
 
-      <label for="linkedin">
-        LinkedIn Profile
-      </label>
+<div class="form-group">
 
-      <input
-        type="url"
-        id="linkedin"
-        name="linkedin"
-        placeholder="https://linkedin.com/in/your-profile"
-      >
+<label>Postal / ZIP Code</label>
 
-    </div>
+<input
+id="postalCode"
+placeholder="Enter postal / ZIP code"
+>
 
+</div>
 
-    <!-- GITHUB -->
 
-    <div class="form-group">
+<div class="form-group">
 
-      <label for="github">
-        GitHub Profile
-      </label>
+<label>LinkedIn Profile</label>
 
-      <input
-        type="url"
-        id="github"
-        name="github"
-        placeholder="https://github.com/your-profile"
-      >
+<input
+id="linkedin"
+type="url"
+placeholder="https://linkedin.com/in/your-profile"
+>
 
-    </div>
+</div>
 
 
-    <!-- WEBSITE -->
+<div class="form-group">
 
-    <div class="form-group">
+<label>GitHub Profile</label>
 
-      <label for="website">
-        Portfolio / Website
-      </label>
+<input
+id="github"
+type="url"
+placeholder="https://github.com/your-profile"
+>
 
-      <input
-        type="url"
-        id="website"
-        name="website"
-        placeholder="https://yourwebsite.com"
-      >
+</div>
 
-    </div>
 
+<div class="form-group">
 
-    <!-- ACTIONS -->
+<label>Portfolio / Website</label>
 
-    <div class="form-actions">
+<input
+id="website"
+type="url"
+placeholder="https://yourwebsite.com"
+>
 
-      <a
-        href="index.html"
-        class="btn secondary"
-      >
-        ← Back
-      </a>
+</div>
 
-      <button
-        type="submit"
-        class="btn primary"
-        id="saveContinue"
-      >
-        Save & Continue →
-      </button>
 
-    </div>
+<div class="form-actions">
 
+<a
+href="index.html"
+class="btn secondary"
+>
+← Back
+</a>
 
-    <div
-      id="status"
-      class="form-status"
-      aria-live="polite"
-    ></div>
+<button
+type="submit"
+class="btn primary"
+>
+Save & Continue →
+</button>
 
-  </form>
+</div>
+
+
+<div
+id="status"
+class="form-status"
+></div>
+
+
+</form>
 
 </main>
 
 
 <script>
 
-/* =========================================
-   COUNTRY PHONE CODES
-========================================= */
-
 const phoneCountries = [
-  {name:"India", code:"+91"},
-  {name:"United States", code:"+1"},
-  {name:"Canada", code:"+1"},
-  {name:"United Kingdom", code:"+44"},
-  {name:"Australia", code:"+61"},
-  {name:"Germany", code:"+49"},
-  {name:"France", code:"+33"},
-  {name:"Italy", code:"+39"},
-  {name:"Spain", code:"+34"},
-  {name:"United Arab Emirates", code:"+971"},
-  {name:"Saudi Arabia", code:"+966"},
-  {name:"Singapore", code:"+65"},
-  {name:"Malaysia", code:"+60"},
-  {name:"Japan", code:"+81"},
-  {name:"China", code:"+86"},
-  {name:"South Korea", code:"+82"},
-  {name:"New Zealand", code:"+64"},
-  {name:"South Africa", code:"+27"},
-  {name:"Brazil", code:"+55"},
-  {name:"Mexico", code:"+52"},
-  {name:"Russia", code:"+7"},
-  {name:"Ireland", code:"+353"},
-  {name:"Netherlands", code:"+31"},
-  {name:"Switzerland", code:"+41"},
-  {name:"Sweden", code:"+46"},
-  {name:"Norway", code:"+47"},
-  {name:"Denmark", code:"+45"},
-  {name:"Finland", code:"+358"},
-  {name:"Pakistan", code:"+92"},
-  {name:"Bangladesh", code:"+880"},
-  {name:"Nepal", code:"+977"},
-  {name:"Sri Lanka", code:"+94"}
+["India","+91"],
+["United States","+1"],
+["Canada","+1"],
+["United Kingdom","+44"],
+["Australia","+61"],
+["Germany","+49"],
+["France","+33"],
+["Italy","+39"],
+["Spain","+34"],
+["United Arab Emirates","+971"],
+["Saudi Arabia","+966"],
+["Singapore","+65"],
+["Malaysia","+60"],
+["Japan","+81"],
+["China","+86"],
+["South Korea","+82"],
+["New Zealand","+64"],
+["South Africa","+27"],
+["Brazil","+55"],
+["Mexico","+52"],
+["Russia","+7"],
+["Ireland","+353"],
+["Netherlands","+31"],
+["Switzerland","+41"],
+["Sweden","+46"],
+["Norway","+47"],
+["Denmark","+45"],
+["Finland","+358"],
+["Pakistan","+92"],
+["Bangladesh","+880"],
+["Nepal","+977"],
+["Sri Lanka","+94"]
 ];
 
-
-/* =========================================
-   COUNTRY LIST
-========================================= */
 
 const countries = [
-  "Afghanistan",
-  "Australia",
-  "Bangladesh",
-  "Brazil",
-  "Canada",
-  "China",
-  "Denmark",
-  "Finland",
-  "France",
-  "Germany",
-  "India",
-  "Indonesia",
-  "Ireland",
-  "Italy",
-  "Japan",
-  "Malaysia",
-  "Mexico",
-  "Nepal",
-  "Netherlands",
-  "New Zealand",
-  "Norway",
-  "Pakistan",
-  "Philippines",
-  "Russia",
-  "Saudi Arabia",
-  "Singapore",
-  "South Africa",
-  "South Korea",
-  "Spain",
-  "Sri Lanka",
-  "Sweden",
-  "Switzerland",
-  "Thailand",
-  "United Arab Emirates",
-  "United Kingdom",
-  "United States",
-  "Vietnam"
+"Afghanistan",
+"Australia",
+"Bangladesh",
+"Brazil",
+"Canada",
+"China",
+"Denmark",
+"Finland",
+"France",
+"Germany",
+"India",
+"Indonesia",
+"Ireland",
+"Italy",
+"Japan",
+"Malaysia",
+"Mexico",
+"Nepal",
+"Netherlands",
+"New Zealand",
+"Norway",
+"Pakistan",
+"Philippines",
+"Russia",
+"Saudi Arabia",
+"Singapore",
+"South Africa",
+"South Korea",
+"Spain",
+"Sri Lanka",
+"Sweden",
+"Switzerland",
+"Thailand",
+"United Arab Emirates",
+"United Kingdom",
+"United States",
+"Vietnam"
 ];
 
 
-/* =========================================
-   ELEMENTS
-========================================= */
+const states = {
 
-const form = document.getElementById("personalForm");
+India:[
+"Andhra Pradesh",
+"Assam",
+"Bihar",
+"Goa",
+"Gujarat",
+"Haryana",
+"Karnataka",
+"Kerala",
+"Madhya Pradesh",
+"Maharashtra",
+"Odisha",
+"Punjab",
+"Rajasthan",
+"Tamil Nadu",
+"Telangana",
+"Uttar Pradesh",
+"Uttarakhand",
+"West Bengal",
+"Delhi"
+],
 
-const phoneCodeSearch =
-  document.getElementById("phoneCodeSearch");
+"United States":[
+"California",
+"Florida",
+"New York",
+"Texas",
+"Washington"
+],
 
-const phoneCodeOptions =
-  document.getElementById("phoneCodeOptions");
+Canada:[
+"Alberta",
+"British Columbia",
+"Manitoba",
+"Ontario",
+"Quebec"
+],
 
-const countryInput =
-  document.getElementById("country");
+Australia:[
+"New South Wales",
+"Queensland",
+"South Australia",
+"Tasmania",
+"Victoria",
+"Western Australia"
+],
 
-const countryOptions =
-  document.getElementById("countryOptions");
-
-const stateInput =
-  document.getElementById("state");
-
-const stateOptions =
-  document.getElementById("stateOptions");
-
-const cityInput =
-  document.getElementById("city");
-
-const cityOptions =
-  document.getElementById("cityOptions");
-
-
-/* =========================================
-   DROPDOWN RENDERING
-========================================= */
-
-function renderPhoneCodes(filter = "") {
-
-  const query = filter.toLowerCase().trim();
-
-  const results = phoneCountries.filter(item =>
-    item.name.toLowerCase().includes(query) ||
-    item.code.includes(query)
-  );
-
-  phoneCodeOptions.innerHTML = "";
-
-  results.forEach(item => {
-
-    const option = document.createElement("div");
-
-    option.className = "search-option";
-
-    option.textContent =
-      `${item.name} (${item.code})`;
-
-    option.addEventListener("click", () => {
-
-      phoneCodeSearch.value = item.code;
-
-      phoneCodeOptions.classList.remove("show");
-
-    });
-
-    phoneCodeOptions.appendChild(option);
-
-  });
-
-  if (!results.length) {
-
-    const empty = document.createElement("div");
-
-    empty.className = "search-option no-result";
-
-    empty.textContent = "No country found";
-
-    phoneCodeOptions.appendChild(empty);
-
-  }
-}
-
-
-function renderCountries(filter = "") {
-
-  const query = filter.toLowerCase().trim();
-
-  const results = countries.filter(country =>
-    country.toLowerCase().includes(query)
-  );
-
-  countryOptions.innerHTML = "";
-
-  results.forEach(country => {
-
-    const option = document.createElement("div");
-
-    option.className = "search-option";
-
-    option.textContent = country;
-
-    option.addEventListener("click", () => {
-
-      countryInput.value = country;
-
-      countryOptions.classList.remove("show");
-
-      stateInput.value = "";
-      cityInput.value = "";
-
-      loadStates(country);
-
-    });
-
-    countryOptions.appendChild(option);
-
-  });
-
-  if (!results.length) {
-
-    const empty = document.createElement("div");
-
-    empty.className = "search-option no-result";
-
-    empty.textContent = "No country found";
-
-    countryOptions.appendChild(empty);
-
-  }
-}
-
-
-/* =========================================
-   STATE DATA
-========================================= */
-
-const stateData = {
-
-  "India": [
-    "Andhra Pradesh",
-    "Arunachal Pradesh",
-    "Assam",
-    "Bihar",
-    "Chhattisgarh",
-    "Goa",
-    "Gujarat",
-    "Haryana",
-    "Himachal Pradesh",
-    "Jharkhand",
-    "Karnataka",
-    "Kerala",
-    "Madhya Pradesh",
-    "Maharashtra",
-    "Manipur",
-    "Meghalaya",
-    "Mizoram",
-    "Nagaland",
-    "Odisha",
-    "Punjab",
-    "Rajasthan",
-    "Sikkim",
-    "Tamil Nadu",
-    "Telangana",
-    "Tripura",
-    "Uttar Pradesh",
-    "Uttarakhand",
-    "West Bengal",
-    "Delhi"
-  ],
-
-  "United States": [
-    "Alabama",
-    "Alaska",
-    "Arizona",
-    "California",
-    "Colorado",
-    "Florida",
-    "Georgia",
-    "Illinois",
-    "New York",
-    "North Carolina",
-    "Ohio",
-    "Pennsylvania",
-    "Texas",
-    "Virginia",
-    "Washington"
-  ],
-
-  "Canada": [
-    "Alberta",
-    "British Columbia",
-    "Manitoba",
-    "New Brunswick",
-    "Nova Scotia",
-    "Ontario",
-    "Quebec",
-    "Saskatchewan"
-  ],
-
-  "Australia": [
-    "New South Wales",
-    "Queensland",
-    "South Australia",
-    "Tasmania",
-    "Victoria",
-    "Western Australia"
-  ],
-
-  "United Kingdom": [
-    "England",
-    "Scotland",
-    "Wales",
-    "Northern Ireland"
-  ]
+"United Kingdom":[
+"England",
+"Scotland",
+"Wales",
+"Northern Ireland"
+]
 
 };
 
 
-function loadStates(country) {
+const cities = {
 
-  const states = stateData[country] || [];
+Maharashtra:[
+"Mumbai",
+"Pune",
+"Nagpur",
+"Nashik",
+"Kolhapur",
+"Solapur"
+],
 
-  stateOptions.innerHTML = "";
+Karnataka:[
+"Bengaluru",
+"Mysuru",
+"Mangaluru",
+"Hubballi",
+"Belagavi"
+],
 
-  states.forEach(state => {
+California:[
+"Los Angeles",
+"San Diego",
+"San Francisco",
+"San Jose",
+"Sacramento"
+],
 
-    const option = document.createElement("div");
+"New York":[
+"New York City",
+"Buffalo",
+"Rochester",
+"Albany"
+],
 
-    option.className = "search-option";
+Ontario:[
+"Toronto",
+"Ottawa",
+"Mississauga",
+"Hamilton"
+]
 
-    option.textContent = state;
+};
 
-    option.addEventListener("click", () => {
 
-      stateInput.value = state;
+function render(
+container,
+items,
+formatter,
+input
+){
 
-      stateOptions.classList.remove("show");
+container.innerHTML="";
 
-      cityInput.value = "";
+const query =
+input.value.toLowerCase().trim();
 
-      loadCities(country, state);
+const results =
+items.filter(item =>
+formatter(item)
+.toLowerCase()
+.includes(query)
+);
 
-    });
+results.forEach(item=>{
 
-    stateOptions.appendChild(option);
+const option =
+document.createElement("div");
 
-  });
+option.className =
+"search-option";
 
-  if (!states.length) {
+option.textContent =
+formatter(item);
 
-    const option = document.createElement("div");
+option.onclick=()=>{
 
-    option.className = "search-option no-result";
+input.value =
+formatter(item);
 
-    option.textContent =
-      "Enter your state / province manually";
+container.classList.remove("show");
 
-    stateOptions.appendChild(option);
+};
 
-  }
+container.appendChild(option);
+
+});
+
+if(!results.length){
+
+const option =
+document.createElement("div");
+
+option.className =
+"search-option no-result";
+
+option.textContent =
+"No results found";
+
+container.appendChild(option);
+
+}
 
 }
 
 
-function loadCities(country, state) {
+const phoneInput =
+document.getElementById(
+"phoneCodeSearch"
+);
 
-  cityOptions.innerHTML = "";
+const phoneOptions =
+document.getElementById(
+"phoneCodeOptions"
+);
 
-  const cities = {
+phoneInput.onfocus=()=>{
+render(
+phoneOptions,
+phoneCountries,
+x=>`${x[0]} (${x[1]})`,
+phoneInput
+);
+phoneOptions.classList.add("show");
+};
 
-    "Maharashtra": [
-      "Mumbai",
-      "Pune",
-      "Nagpur",
-      "Nashik",
-      "Kolhapur",
-      "Aurangabad",
-      "Solapur"
-    ],
+phoneInput.oninput=()=>{
+render(
+phoneOptions,
+phoneCountries,
+x=>`${x[0]} (${x[1]})`,
+phoneInput
+);
+phoneOptions.classList.add("show");
+};
 
-    "Karnataka": [
-      "Bengaluru",
-      "Mysuru",
-      "Mangaluru",
-      "Hubballi",
-      "Belagavi"
-    ],
 
-    "California": [
-      "Los Angeles",
-      "San Diego",
-      "San Francisco",
-      "San Jose",
-      "Sacramento"
-    ],
+const country =
+document.getElementById("country");
 
-    "New York": [
-      "New York City",
-      "Buffalo",
-      "Rochester",
-      "Albany"
-    ],
+const countryOptions =
+document.getElementById(
+"countryOptions"
+);
 
-    "Ontario": [
-      "Toronto",
-      "Ottawa",
-      "Mississauga",
-      "Hamilton"
-    ]
+country.onfocus=()=>{
+render(
+countryOptions,
+countries,
+x=>x,
+country
+);
+countryOptions.classList.add("show");
+};
 
-  };
+country.oninput=()=>{
+render(
+countryOptions,
+countries,
+x=>x,
+country
+);
+countryOptions.classList.add("show");
+};
 
-  const results = cities[state] || [];
 
-  results.forEach(city => {
+const state =
+document.getElementById("state");
 
-    const option = document.createElement("div");
+const stateOptions =
+document.getElementById(
+"stateOptions"
+);
 
-    option.className = "search-option";
+state.onfocus=()=>{
 
-    option.textContent = city;
+render(
+stateOptions,
+states[country.value] || [],
+x=>x,
+state
+);
 
-    option.addEventListener("click", () => {
+stateOptions.classList.add("show");
 
-      cityInput.value = city;
+};
 
-      cityOptions.classList.remove("show");
 
-    });
+state.oninput=()=>{
 
-    cityOptions.appendChild(option);
+render(
+stateOptions,
+states[country.value] || [],
+x=>x,
+state
+);
 
-  });
+stateOptions.classList.add("show");
 
-  if (!results.length) {
+};
 
-    const option = document.createElement("div");
 
-    option.className = "search-option no-result";
+const city =
+document.getElementById("city");
 
-    option.textContent =
-      "Enter your city / town manually";
+const cityOptions =
+document.getElementById(
+"cityOptions"
+);
 
-    cityOptions.appendChild(option);
+city.onfocus=()=>{
 
-  }
+render(
+cityOptions,
+cities[state.value] || [],
+x=>x,
+city
+);
+
+cityOptions.classList.add("show");
+
+};
+
+
+city.oninput=()=>{
+
+render(
+cityOptions,
+cities[state.value] || [],
+x=>x,
+city
+);
+
+cityOptions.classList.add("show");
+
+};
+
+
+/* LOAD SAVED DATA */
+
+try{
+
+const saved =
+JSON.parse(
+localStorage.getItem(
+"resumePersonalData"
+)
+) || {};
+
+[
+"fullName",
+"email",
+"phone",
+"phoneCodeSearch",
+"country",
+"state",
+"city",
+"address",
+"postalCode",
+"linkedin",
+"github",
+"website"
+].forEach(id=>{
+
+const element =
+document.getElementById(id);
+
+if(element &&
+saved[
+id === "phoneCodeSearch"
+? "phoneCode"
+: id
+] !== undefined){
+
+element.value =
+saved[
+id === "phoneCodeSearch"
+? "phoneCode"
+: id
+];
 
 }
 
-
-/* =========================================
-   SEARCH EVENTS
-========================================= */
-
-phoneCodeSearch.addEventListener("focus", () => {
-
-  renderPhoneCodes(phoneCodeSearch.value);
-
-  phoneCodeOptions.classList.add("show");
-
 });
 
-
-phoneCodeSearch.addEventListener("input", () => {
-
-  renderPhoneCodes(phoneCodeSearch.value);
-
-  phoneCodeOptions.classList.add("show");
-
-});
+}catch(error){}
 
 
-countryInput.addEventListener("focus", () => {
+/* SAVE */
 
-  renderCountries(countryInput.value);
+document
+.getElementById("personalForm")
+.addEventListener(
+"submit",
+function(event){
 
-  countryOptions.classList.add("show");
+event.preventDefault();
 
-});
+const data={
 
+fullName:
+document.getElementById("fullName").value.trim(),
 
-countryInput.addEventListener("input", () => {
+email:
+document.getElementById("email").value.trim(),
 
-  renderCountries(countryInput.value);
+phone:
+document.getElementById("phone").value.trim(),
 
-  countryOptions.classList.add("show");
+phoneCode:
+document.getElementById("phoneCodeSearch").value.trim(),
 
-});
+country:
+document.getElementById("country").value.trim(),
 
+state:
+document.getElementById("state").value.trim(),
 
-stateInput.addEventListener("focus", () => {
+city:
+document.getElementById("city").value.trim(),
 
-  loadStates(countryInput.value);
+address:
+document.getElementById("address").value.trim(),
 
-  stateOptions.classList.add("show");
+postalCode:
+document.getElementById("postalCode").value.trim(),
 
-});
+linkedin:
+document.getElementById("linkedin").value.trim(),
 
+github:
+document.getElementById("github").value.trim(),
 
-stateInput.addEventListener("input", () => {
+website:
+document.getElementById("website").value.trim()
 
-  loadStates(countryInput.value);
-
-  stateOptions.classList.add("show");
-
-});
-
-
-cityInput.addEventListener("focus", () => {
-
-  cityOptions.classList.add("show");
-
-});
-
-
-/* =========================================
-   CLOSE DROPDOWNS
-========================================= */
-
-document.addEventListener("click", event => {
-
-  if (!event.target.closest(".phone-code-box")) {
-    phoneCodeOptions.classList.remove("show");
-  }
-
-  if (!event.target.closest("#country")) {
-    countryOptions.classList.remove("show");
-  }
-
-  if (!event.target.closest("#state")) {
-    stateOptions.classList.remove("show");
-  }
-
-  if (!event.target.closest("#city")) {
-    cityOptions.classList.remove("show");
-  }
-
-});
+};
 
 
-/* =========================================
-   LOAD PREVIOUS DATA
-========================================= */
+try{
 
-function loadSavedPersonalData() {
+localStorage.setItem(
+"resumePersonalData",
+JSON.stringify(data)
+);
 
-  let saved = {};
+window.location.href =
+"summary.html";
 
-  try {
+}catch(error){
 
-    saved =
-      JSON.parse(
-        localStorage.getItem("resumePersonalData")
-      ) || {};
-
-  } catch (error) {
-
-    saved = {};
-
-  }
-
-
-  const fields = [
-
-    "fullName",
-    "email",
-    "phone",
-    "phoneCode",
-    "country",
-    "state",
-    "city",
-    "address",
-    "postalCode",
-    "linkedin",
-    "github",
-    "website"
-
-  ];
-
-
-  fields.forEach(field => {
-
-    const element =
-      document.getElementById(field);
-
-    if (!element) return;
-
-    if (saved[field] !== undefined) {
-
-      element.value = saved[field];
-
-    }
-
-  });
+alert(
+"Could not save your information."
+);
 
 }
 
-
-/* =========================================
-   SAVE & CONTINUE
-========================================= */
-
-form.addEventListener("submit", function(event) {
-
-  event.preventDefault();
-
-
-  /*
-     IMPORTANT:
-     Collect EVERY field before navigation.
-  */
-
-  const personalData = {
-
-    fullName:
-      document.getElementById("fullName").value.trim(),
-
-    email:
-      document.getElementById("email").value.trim(),
-
-    phone:
-      document.getElementById("phone").value.trim(),
-
-    phoneCode:
-      document.getElementById("phoneCodeSearch").value.trim(),
-
-    country:
-      document.getElementById("country").value.trim(),
-
-    state:
-      document.getElementById("state").value.trim(),
-
-    city:
-      document.getElementById("city").value.trim(),
-
-    address:
-      document.getElementById("address").value.trim(),
-
-    postalCode:
-      document.getElementById("postalCode").value.trim(),
-
-    linkedin:
-      document.getElementById("linkedin").value.trim(),
-
-    github:
-      document.getElementById("github").value.trim(),
-
-    website:
-      document.getElementById("website").value.trim()
-
-  };
-
-
-  /*
-     Validate required fields.
-  */
-
-  if (
-    !personalData.fullName ||
-    !personalData.email ||
-    !personalData.phone ||
-    !personalData.country
-  ) {
-
-    alert(
-      "Please fill in all required fields marked with *."
-    );
-
-    return;
-
-  }
-
-
-  /*
-     SAVE EVERYTHING.
-  */
-
-  try {
-
-    localStorage.setItem(
-      "resumePersonalData",
-      JSON.stringify(personalData)
-    );
-
-  } catch (error) {
-
-    alert(
-      "Your information could not be saved. Please check your browser storage settings."
-    );
-
-    return;
-
-  }
-
-
-  /*
-     Confirm the data was actually saved.
-  */
-
-  const savedData =
-    localStorage.getItem("resumePersonalData");
-
-  if (!savedData) {
-
-    alert(
-      "The information could not be saved. Please try again."
-    );
-
-    return;
-
-  }
-
-
-  /*
-     Go to page 2.
-  */
-
-  window.location.href = "summary.html";
-
 });
 
 
-/* =========================================
-   INITIALIZE
-========================================= */
+document.addEventListener(
+"click",
+event=>{
 
-renderPhoneCodes();
-renderCountries();
-loadSavedPersonalData();
+if(!event.target.closest(
+".phone-code-box"
+))
+phoneOptions.classList.remove("show");
+
+if(!event.target.closest(
+"#country"
+))
+countryOptions.classList.remove("show");
+
+if(!event.target.closest(
+"#state"
+))
+stateOptions.classList.remove("show");
+
+if(!event.target.closest(
+"#city"
+))
+cityOptions.classList.remove("show");
+
+});
 
 </script>
 
