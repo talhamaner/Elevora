@@ -4,9 +4,10 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Skills - Elevora</title>
+<title>Skills | Elevora</title>
 
 <link rel="stylesheet" href="css/style.css">
 
@@ -15,11 +16,13 @@
 
 </head>
 
+
 <body>
+
 
 <header class="navbar">
 
-<a class="logo" href="index.html">Elevora</a>
+<a href="index.html" class="logo">Elevora</a>
 
 <nav class="nav-links">
 
@@ -28,147 +31,136 @@
 <a href="preview.html">Preview</a>
 <a href="cover-letter.html">Cover Letter</a>
 
-<button id="themeToggle" class="theme-toggle">🌙</button>
+<button id="themeToggle" class="theme-toggle" type="button">🌙</button>
 
 </nav>
 
 </header>
 
 
-<main class="container">
+<main class="page-container">
 
-<div class="page-head">
+
+<div class="form-header">
+
+<div class="step-number">6</div>
+
+<div>
 
 <h1>Skills</h1>
 
-<p>Add technical skills, soft skills and other skill categories.</p>
+<p>
+Add technical and professional skills.
+</p>
+
+</div>
 
 </div>
 
 
-<div class="builder">
+<div class="progress-wrapper">
 
-<aside class="steps">
+<div class="progress-bar">
+<div class="progress-fill" style="width:60%"></div>
+</div>
 
-<a href="personal.html">1. Personal</a>
-<a href="summary.html">2. Summary</a>
-<a href="education.html">3. Education</a>
-<a href="experience.html">4. Experience</a>
-<a href="projects.html">5. Projects</a>
-<a href="skills.html">6. Skills</a>
-<a href="certifications.html">7. Certifications</a>
-<a href="languages.html">8. Languages</a>
-<a href="achievements.html">9. Achievements</a>
-<a href="preview.html">10. Preview</a>
+<span>6 of 10</span>
 
-</aside>
+</div>
 
-
-<section class="form-card">
 
 <div id="entryList" class="entry-list"></div>
 
-<form id="entryForm">
 
-<div class="form-grid">
-
-<div class="form-group">
-
-<label>Category</label>
-
-<input
-id="category"
-placeholder="Technical Skills">
-
-</div>
+<form id="entryForm" class="form-card">
 
 
 <div class="form-group">
 
-<label>Skills</label>
+<label>Skill <span class="required">*</span></label>
 
-<input
-id="skills"
-placeholder="HTML, CSS, JavaScript, Git">
-
-</div>
+<input id="skill" required placeholder="JavaScript">
 
 </div>
 
 
-<div class="actions">
+<div class="form-group">
 
-<button
-type="button"
-id="cancelEdit"
-class="btn secondary"
-style="display:none">
+<label>Skill Level</label>
 
-Cancel Edit
+<select id="level">
 
+<option value="">Select level</option>
+<option>Beginner</option>
+<option>Intermediate</option>
+<option>Advanced</option>
+<option>Expert</option>
+
+</select>
+
+</div>
+
+
+<div class="form-actions">
+
+<a href="projects.html" class="btn secondary">
+← Back
+</a>
+
+<div style="display:flex;gap:10px;">
+
+<button type="button" id="cancelEdit" class="btn secondary" style="display:none">
+Cancel
 </button>
 
-<button
-id="saveBtn"
-class="btn">
-
-+ Add Skill Group
-
+<button type="submit" id="saveBtn" class="btn primary">
++ Add Skill
 </button>
 
 </div>
 
-<div id="status" class="status"></div>
+</div>
+
+
+<div id="status" class="form-status"></div>
 
 </form>
 
 
-<div class="actions">
+<div class="form-actions">
 
-<a class="btn secondary" href="projects.html">
+<a href="projects.html" class="btn secondary">
 ← Back
 </a>
 
-<a class="btn" href="certifications.html">
+<a href="certifications.html" class="btn primary">
 Save & Continue →
 </a>
 
 </div>
 
-</section>
-
-</div>
 
 </main>
 
 
 <script>
 
-window.MULTI_CONFIG={
+window.MULTI_CONFIG = {
 
 key:"skills",
 
-addText:"+ Add Skill Group",
+addText:"+ Add Skill",
 
 fields:[
-
-{id:"category"},
-
-{id:"skills"}
-
+{id:"skill"},
+{id:"level"}
 ],
 
-title:function(entry){
+title:entry =>
+entry.skill || "Skill",
 
-return entry.category || "Skills";
-
-},
-
-meta:function(entry){
-
-return entry.skills || "";
-
-}
+meta:entry =>
+entry.level || ""
 
 };
 
@@ -177,5 +169,4 @@ return entry.skills || "";
 <script src="js/multi.js"></script>
 
 </body>
-
 </html>
