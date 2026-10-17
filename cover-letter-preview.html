@@ -1,253 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cover Letter Preview | Elevora</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="theme.js"></script>
+  <script src="js/app.js"></script>
 
-<meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
->
-
-<title>Cover Letter Preview | Elevora</title>
-
-<link
-rel="stylesheet"
-href="css/style.css"
->
-
-<script src="theme.js"></script>
-
+  <!-- Primary PDF library. A second CDN is loaded automatically if this one fails. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
-
-
 <body>
 
-
 <header class="navbar no-print">
-
-<a href="index.html" class="logo">
-Elevora
-</a>
-
-<nav class="nav-links">
-
-<a href="index.html">Home</a>
-<a href="personal.html">Resume</a>
-<a href="preview.html">Preview</a>
-<a href="cover-letter.html">Cover Letter</a>
-
-<button
-id="themeToggle"
-class="theme-toggle"
-type="button"
->
-🌙
-</button>
-
-</nav>
-
+  <a href="index.html" class="logo">Elevora</a>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="personal.html">Resume</a>
+    <a href="preview.html">Preview</a>
+    <a href="cover-letter.html" class="active">Cover Letter</a>
+    <button id="themeToggle" class="theme-toggle" type="button">🌙</button>
+  </nav>
 </header>
 
-
 <main class="page-container">
+  <div class="form-header no-print">
+    <div class="step-number">✦</div>
+    <div>
+      <h1>Cover Letter Preview</h1>
+      <p>Review your cover letter and download it directly.</p>
+    </div>
+  </div>
 
+  <div class="form-actions no-print preview-actions">
+    <a href="cover-letter.html" class="btn secondary">← Edit</a>
+    <div class="action-group">
+      <button id="downloadPdfBtn" class="btn primary" type="button">Download Cover Letter PDF</button>
+      <button id="downloadWordBtn" class="btn secondary" type="button">Download Word</button>
+      <button id="printBtn" class="btn secondary" type="button">Print</button>
+    </div>
+  </div>
 
-<div class="form-header no-print">
+  <div id="downloadStatus" class="download-status no-print" aria-live="polite"></div>
 
-<div class="step-number">
-✦
-</div>
-
-<div>
-
-<h1>Cover Letter Preview</h1>
-
-<p>
-Review your cover letter before printing.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="form-actions no-print">
-
-<a
-href="cover-letter.html"
-class="btn secondary"
->
-← Edit
-</a>
-
-<button
-id="printBtn"
-class="btn primary"
->
-Print / Save PDF
-</button>
-
-</div>
-
-
-<div
-id="letter"
-class="resume-paper"
-></div>
-
-
+  <div id="letter" class="resume-paper letter-paper template-classic"></div>
 </main>
 
-
 <script>
+(function () {
+  const personal = getJSON(STORAGE_KEYS.personal, {});
+  const summary = getJSON(STORAGE_KEYS.summary, {});
+  const cover = getJSON(STORAGE_KEYS.coverLetter, {});
+  const today = new Date().toLocaleDateString();
+  const greeting = cover.manager ? `Dear ${cover.manager},` : "Dear Hiring Manager,";
 
-const personal =
-JSON.parse(
-localStorage.getItem(
-"resumePersonalData"
-) || "{}"
-);
+  function esc(value) {
+    return escapeHTML(value || "");
+  }
 
+  document.getElementById("letter").innerHTML = `
+    <div class="resume-header-block">
+      <h1>${esc(personal.fullName || "Your Name")}</h1>
+      <div class="contact">
+        ${personal.email ? esc(personal.email) : ""}
+        ${personal.phone ? ` • ${esc((personal.phoneCode || "") + " " + personal.phone)}` : ""}
+        ${personal.city ? ` • ${esc(personal.city)}` : ""}
+        ${personal.country ? `, ${esc(personal.country)}` : ""}
+      </div>
+    </div>
 
-const summary =
-JSON.parse(
-localStorage.getItem(
-"section_summary"
-) || "{}"
-);
+    <p>${esc(today)}</p>
+    <p>${esc(cover.company || "Company")}</p>
+    <p><strong>Re: Application for ${esc(cover.jobTitle || "the position")}</strong></p>
+    <p>${esc(greeting)}</p>
 
+    <p>
+      I am writing to express my interest in the
+      ${esc(cover.jobTitle || "position")} opportunity at
+      ${esc(cover.company || "your organization")}.
+      ${cover.industry ? `I am particularly interested in contributing to the ${esc(cover.industry)} industry.` : ""}
+    </p>
 
-const cover =
-JSON.parse(
-localStorage.getItem(
-"section_cover_letter"
-) || "{}"
-);
+    <p>
+      ${summary.professionalSummary
+        ? esc(summary.professionalSummary)
+        : "I believe my skills, experience and professional background would allow me to make a meaningful contribution to your team."}
+    </p>
 
+    ${cover.jobDescription ? `
+      <p>
+        Based on the requirements of this opportunity, I am especially interested in applying
+        my experience to the needs described in the position.
+      </p>
+    ` : ""}
 
-const today =
-new Date().toLocaleDateString();
+    ${cover.notes ? `<p>${esc(cover.notes)}</p>` : ""}
 
+    <p>
+      Thank you for considering my application. I would welcome the opportunity to discuss
+      how my background and skills can contribute to your organization.
+    </p>
 
-const greeting =
-cover.manager
-? `Dear ${cover.manager},`
-: "Dear Hiring Manager,";
+    <p>Sincerely,<br><strong>${esc(personal.fullName || "Your Name")}</strong></p>
+  `;
 
+  function setDownloadStatus(message, error) {
+    const element = document.getElementById("downloadStatus");
+    element.textContent = message;
+    element.classList.toggle("error", Boolean(error));
+    clearTimeout(window.__downloadStatusTimer);
+    window.__downloadStatusTimer = setTimeout(function () {
+      element.textContent = "";
+      element.classList.remove("error");
+    }, 4000);
+  }
 
-const letter = `
+  function safeFileName(name, fallback) {
+    const cleaned = String(name || fallback)
+      .trim()
+      .replace(/[^a-z0-9]+/gi, "-")
+      .replace(/^-+|-+$/g, "");
+    return cleaned || fallback;
+  }
 
-<p>
-${esc(personal.fullName || "Your Name")}
-<br>
-${esc(personal.email || "")}
-${personal.phone
-? "<br>" + esc(
-(personal.phoneCode || "") +
-" " +
-personal.phone
-)
-: ""}
-</p>
+  function loadFallbackPdfLibrary() {
+    return new Promise(function (resolve, reject) {
+      if (typeof window.html2pdf === "function") {
+        resolve();
+        return;
+      }
 
-<p>
-${today}
-</p>
+      const existing = document.querySelector('script[data-elevora-pdf-fallback="true"]');
+      if (existing) {
+        existing.addEventListener("load", function () { resolve(); }, { once: true });
+        existing.addEventListener("error", function () { reject(new Error("PDF library failed to load.")); }, { once: true });
+        return;
+      }
 
-<p>
-${esc(cover.company || "Company")}
-</p>
+      const script = document.createElement("script");
+      script.src = "https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js";
+      script.async = true;
+      script.dataset.elevoraPdfFallback = "true";
 
-<p>
-<strong>
-Re: Application for ${esc(
-cover.jobTitle || "the position"
-)}
-</strong>
-</p>
+      script.onload = function () {
+        if (typeof window.html2pdf === "function") {
+          resolve();
+        } else {
+          reject(new Error("PDF library loaded but html2pdf is unavailable."));
+        }
+      };
 
-<p>
-${greeting}
-</p>
+      script.onerror = function () {
+        reject(new Error("Unable to load the PDF library."));
+      };
 
-<p>
-I am writing to express my interest in the
-${esc(cover.jobTitle || "position")}
-opportunity at
-${esc(cover.company || "your organization")}.
-${
-cover.industry
-? ` I am particularly interested in contributing
-to the ${esc(cover.industry)} industry.`
-: ""
-}
-</p>
+      document.head.appendChild(script);
+    });
+  }
 
-<p>
-${
-summary.professionalSummary
-? esc(summary.professionalSummary)
-: "I believe my skills, experience and professional background would allow me to make a meaningful contribution to your team."
-}
-</p>
+  async function downloadPDF() {
+    const button = document.getElementById("downloadPdfBtn");
+    const element = document.getElementById("letter");
 
-${
-cover.jobDescription
-? `<p>
-Based on the requirements of this opportunity,
-I am especially interested in applying my
-experience to the needs described in the
-position.
-</p>`
-: ""
-}
+    button.disabled = true;
+    button.textContent = "Preparing PDF...";
+    setDownloadStatus("Preparing your cover letter PDF...");
 
-${
-cover.notes
-? `<p>${esc(cover.notes)}</p>`
-: ""
-}
+    try {
+      await loadFallbackPdfLibrary();
 
-<p>
-Thank you for considering my application.
-I would welcome the opportunity to discuss how
-my background and skills can contribute to
-your organization.
-</p>
+      if (typeof window.html2pdf !== "function") {
+        throw new Error("html2pdf is unavailable.");
+      }
 
-<p>
-Sincerely,<br>
-<strong>${esc(
-personal.fullName || "Your Name"
-)}</strong>
-</p>
+      const fileName = `${safeFileName(personal.fullName, "Elevora")}-Cover-Letter.pdf`;
 
-`;
+      await window.html2pdf()
+        .set({
+          margin: 0,
+          filename: fileName,
+          image: {
+            type: "jpeg",
+            quality: 0.98
+          },
+          html2canvas: {
+            scale: 2,
+            useCORS: true,
+            allowTaint: false,
+            backgroundColor: "#ffffff",
+            logging: false
+          },
+          jsPDF: {
+            unit: "mm",
+            format: "a4",
+            orientation: "portrait",
+            compress: true
+          },
+          pagebreak: {
+            mode: ["css", "legacy"]
+          }
+        })
+        .from(element)
+        .save();
 
+      setDownloadStatus("Cover letter PDF downloaded successfully.");
+    } catch (error) {
+      console.error("Cover letter PDF error:", error);
+      setDownloadStatus(
+        "PDF download could not start. Please check your internet connection and try again.",
+        true
+      );
+    } finally {
+      button.disabled = false;
+      button.textContent = "Download Cover Letter PDF";
+    }
+  }
 
-function esc(value){
+  function downloadWord() {
+    const fileName = `${safeFileName(personal.fullName, "Elevora")}-Cover-Letter.doc`;
+    const htmlDocument = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="UTF-8">
+        <title>Cover Letter</title>
+        <style>
+          @page { size: A4; margin: 18mm; }
+          body { font-family: Arial, sans-serif; color: #111; line-height: 1.6; }
+          h1 { margin-bottom: 6px; }
+          .contact { color: #444; margin-bottom: 28px; }
+        </style>
+      </head>
+      <body>${document.getElementById("letter").innerHTML}</body>
+      </html>
+    `;
 
-return String(value || "")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;");
+    const blob = new Blob([htmlDocument], { type: "application/msword" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = fileName;
+    link.style.display = "none";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
 
-}
+    setTimeout(function () {
+      URL.revokeObjectURL(url);
+    }, 1000);
 
+    setDownloadStatus("Word file downloaded successfully.");
+  }
 
-document.getElementById(
-"letter"
-).innerHTML = letter;
-
-
-document.getElementById(
-"printBtn"
-).onclick = () =>
-window.print();
-
+  document.getElementById("downloadPdfBtn").addEventListener("click", downloadPDF);
+  document.getElementById("downloadWordBtn").addEventListener("click", downloadWord);
+  document.getElementById("printBtn").addEventListener("click", function () {
+    window.print();
+  });
+})();
 </script>
 
 </body>
