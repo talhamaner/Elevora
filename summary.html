@@ -2,23 +2,17 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Professional Summary | Resume Builder</title>
+    <title>Professional Summary - Resume Builder</title>
 
     <link rel="stylesheet" href="css/style.css">
 
+    <script src="js/theme.js"></script>
 </head>
 
-
 <body>
-
 
 <header class="navbar">
 
@@ -26,31 +20,80 @@
         Resume Builder
     </div>
 
-    <nav>
+    <nav class="nav-links">
 
-        <a href="index.html">
-            Home
-        </a>
+        <a href="index.html">Home</a>
 
-        <a href="personal.html">
-            Resume
-        </a>
+        <a href="personal.html">Resume</a>
 
-        <a href="preview.html">
-            Preview
-        </a>
+        <a href="preview.html">Preview</a>
+
+        <button
+            id="themeToggle"
+            class="theme-toggle"
+            type="button">
+            🌙
+        </button>
 
     </nav>
 
 </header>
 
 
-<main>
+<main class="page">
 
-<section class="builder-page">
+    <!-- PROGRESS -->
+
+    <div class="stepbar">
+
+        <a class="step" href="personal.html">
+            1 Personal
+        </a>
+
+        <a class="step active" href="summary.html">
+            2 Summary
+        </a>
+
+        <a class="step" href="education.html">
+            3 Education
+        </a>
+
+        <a class="step" href="experience.html">
+            4 Experience
+        </a>
+
+        <a class="step" href="projects.html">
+            5 Projects
+        </a>
+
+        <a class="step" href="skills.html">
+            6 Skills
+        </a>
+
+        <a class="step" href="certifications.html">
+            7 Certifications
+        </a>
+
+        <a class="step" href="languages.html">
+            8 Languages
+        </a>
+
+        <a class="step" href="achievements.html">
+            9 Achievements
+        </a>
+
+        <a class="step" href="cover-letter.html">
+            10 Cover Letter
+        </a>
+
+    </div>
 
 
-    <div class="builder-header">
+    <!-- INTRO -->
+
+    <section
+        class="hero"
+        style="padding-top:10px">
 
         <span class="badge">
             Step 2 of 10
@@ -61,173 +104,381 @@
         </h1>
 
         <p>
-            Tell employers about your professional background,
-            strengths and career goals.
+            Write a short introduction that highlights your
+            experience, strengths, skills and career goals.
         </p>
 
+    </section>
+
+
+    <!-- ERROR -->
+
+    <div
+        id="errorMessage"
+        class="error">
     </div>
 
 
-    <form id="summaryForm">
+    <!-- SUMMARY -->
+
+    <section class="card">
+
+        <h2>
+            About You
+        </h2>
 
 
-        <div class="form-card">
+        <div class="form-group">
 
-            <h2>About You</h2>
+            <label>
+                Professional Summary
+                <span class="required">*</span>
+            </label>
 
-
-            <div class="form-group">
-
-                <label>
-                    Professional Summary *
-                </label>
-
-                <textarea
-                    id="summary"
-                    rows="8"
-                    required
-                    placeholder="Example: Motivated software developer with experience in building web applications..."
-                ></textarea>
-
-                <small>
-                    Keep your summary concise and focused on
-                    your strongest professional qualities.
-                </small>
-
-            </div>
+            <textarea
+                id="summaryText"
+                maxlength="1000"
+                placeholder="Example: Motivated software developer with experience in web development, problem solving and building responsive applications. Passionate about creating reliable and user-friendly digital products."
+                style="min-height:220px;"></textarea>
 
 
-            <br>
+            <div
+                style="
+                display:flex;
+                justify-content:space-between;
+                margin-top:6px;
+                font-size:13px;
+                color:var(--muted);">
 
+                <span>
+                    Recommended: 3–5 lines
+                </span>
 
-            <div class="form-group">
-
-                <label>
-                    Career Objective
-                </label>
-
-                <textarea
-                    id="objective"
-                    rows="6"
-                    placeholder="What kind of role are you looking for?"
-                ></textarea>
+                <span id="characterCount">
+                    0 / 1000
+                </span>
 
             </div>
-
-
-            <br>
-
-
-            <div class="form-group">
-
-                <label>
-                    Key Strengths
-                </label>
-
-                <textarea
-                    id="strengths"
-                    rows="5"
-                    placeholder="Example: Problem solving, teamwork, communication, leadership"
-                ></textarea>
-
-            </div>
-
 
         </div>
 
 
-        <div class="form-actions">
+        <!-- OPTIONAL CAREER OBJECTIVE -->
 
-            <a
-                href="personal.html"
-                class="btn secondary"
-            >
-                ← Back
-            </a>
+        <div
+            class="form-group"
+            style="margin-top:24px;">
+
+            <label>
+                Career Objective
+            </label>
+
+            <textarea
+                id="careerObjective"
+                maxlength="700"
+                placeholder="Optional: Describe the type of role, industry or career direction you are looking for."
+                style="min-height:150px;"></textarea>
 
 
-            <button
-                type="submit"
-                class="btn primary"
-            >
-                Save & Continue →
-            </button>
+            <div
+                style="
+                text-align:right;
+                margin-top:6px;
+                font-size:13px;
+                color:var(--muted);">
+
+                <span id="objectiveCount">
+                    0 / 700
+                </span>
+
+            </div>
 
         </div>
 
 
-    </form>
+        <!-- STRENGTHS -->
+
+        <div
+            class="form-group"
+            style="margin-top:24px;">
+
+            <label>
+                Key Strengths
+            </label>
+
+            <textarea
+                id="keyStrengths"
+                placeholder="Example: Problem solving, leadership, communication, teamwork, analytical thinking"
+                style="min-height:130px;"></textarea>
+
+        </div>
 
 
-</section>
+    </section>
+
+
+    <!-- TIPS -->
+
+    <section
+        class="card"
+        style="margin-top:20px;">
+
+        <h2>
+            Summary Tips
+        </h2>
+
+        <div class="notice">
+
+            <strong>Good professional summaries usually include:</strong>
+
+            <ul
+                style="
+                margin:12px 0 0 20px;
+                color:var(--muted);">
+
+                <li>
+                    Your professional identity
+                </li>
+
+                <li>
+                    Your strongest skills
+                </li>
+
+                <li>
+                    Your experience or education
+                </li>
+
+                <li>
+                    Your major achievements
+                </li>
+
+                <li>
+                    Your career direction
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- BUTTONS -->
+
+    <div class="actions">
+
+        <a
+            href="personal.html"
+            class="btn btn-secondary">
+
+            ← Back
+
+        </a>
+
+
+        <button
+            id="saveContinue"
+            type="button"
+            class="btn btn-primary">
+
+            Save & Continue →
+
+        </button>
+
+    </div>
 
 </main>
 
 
+<script src="js/app.js"></script>
+
+
 <script>
 
-const savedSummary =
-    JSON.parse(
-        localStorage.getItem("resumeSummaryData")
-    );
+const STORAGE_KEY =
+    "section_summary";
+
+const summaryText =
+    document.getElementById("summaryText");
+
+const careerObjective =
+    document.getElementById("careerObjective");
+
+const keyStrengths =
+    document.getElementById("keyStrengths");
+
+const characterCount =
+    document.getElementById("characterCount");
+
+const objectiveCount =
+    document.getElementById("objectiveCount");
+
+const errorMessage =
+    document.getElementById("errorMessage");
 
 
-if (savedSummary) {
+// --------------------------------------
+// CHARACTER COUNTERS
+// --------------------------------------
 
-    document.getElementById("summary").value =
-        savedSummary.summary || "";
+function updateCounters() {
 
-    document.getElementById("objective").value =
-        savedSummary.objective || "";
+    characterCount.textContent =
+        summaryText.value.length + " / 1000";
 
-    document.getElementById("strengths").value =
-        savedSummary.strengths || "";
+    objectiveCount.textContent =
+        careerObjective.value.length + " / 700";
 
 }
 
 
-document
-    .getElementById("summaryForm")
-    .addEventListener("submit", function(event) {
-
-        event.preventDefault();
-
-
-        const summaryData = {
-
-            summary:
-                document
-                    .getElementById("summary")
-                    .value
-                    .trim(),
-
-            objective:
-                document
-                    .getElementById("objective")
-                    .value
-                    .trim(),
-
-            strengths:
-                document
-                    .getElementById("strengths")
-                    .value
-                    .trim()
-
-        };
+summaryText.addEventListener(
+    "input",
+    updateCounters
+);
 
 
-        localStorage.setItem(
-            "resumeSummaryData",
-            JSON.stringify(summaryData)
+careerObjective.addEventListener(
+    "input",
+    updateCounters
+);
+
+
+// --------------------------------------
+// LOAD SAVED DATA
+// --------------------------------------
+
+function loadSummary() {
+
+    try {
+
+        const saved =
+            JSON.parse(
+                localStorage.getItem(
+                    STORAGE_KEY
+                ) || "{}"
+            );
+
+
+        if (saved.summaryText) {
+
+            summaryText.value =
+                saved.summaryText;
+
+        }
+
+
+        if (saved.careerObjective) {
+
+            careerObjective.value =
+                saved.careerObjective;
+
+        }
+
+
+        if (saved.keyStrengths) {
+
+            keyStrengths.value =
+                saved.keyStrengths;
+
+        }
+
+
+        updateCounters();
+
+    }
+
+    catch (error) {
+
+        console.log(
+            "Unable to load saved summary."
         );
 
+    }
 
-        window.location.href = "education.html";
+}
 
-    });
+
+// --------------------------------------
+// SAVE
+// --------------------------------------
+
+document
+    .getElementById("saveContinue")
+    .addEventListener(
+        "click",
+        function () {
+
+            const summary =
+                summaryText.value.trim();
+
+
+            errorMessage.style.display =
+                "none";
+
+
+            if (!summary) {
+
+                errorMessage.textContent =
+                    "Please enter your Professional Summary.";
+
+                errorMessage.style.display =
+                    "block";
+
+                summaryText.focus();
+
+                return;
+
+            }
+
+
+            if (summary.length < 50) {
+
+                errorMessage.textContent =
+                    "Your Professional Summary should contain at least 50 characters.";
+
+                errorMessage.style.display =
+                    "block";
+
+                summaryText.focus();
+
+                return;
+
+            }
+
+
+            const data = {
+
+                summaryText:
+                    summary,
+
+                careerObjective:
+                    careerObjective.value.trim(),
+
+                keyStrengths:
+                    keyStrengths.value.trim()
+
+            };
+
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(data)
+            );
+
+
+            window.location.href =
+                "education.html";
+
+        }
+    );
+
+
+// LOAD DATA
+
+loadSummary();
 
 </script>
-
 
 </body>
 
