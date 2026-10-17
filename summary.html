@@ -1,1 +1,245 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Professional Summary</title><link rel="stylesheet" href="css/style.css"><script src="theme.js"></script><script src="js/app.js"></script></head><body><header class="navbar"><div class="logo">Resume Builder</div><nav><a href="index.html">Home</a><a href="personal.html">Resume</a><a href="preview.html">Preview</a><button id="themeToggle" class="theme-toggle" type="button">🌙</button></nav></header><main class="builder-page"><div class="stepbar"><span class="step ">1</span><span class="step-line"></span><span class="step active">2</span><span class="step-line"></span><span class="step ">3</span><span class="step-line"></span><span class="step ">4</span><span class="step-line"></span><span class="step ">5</span><span class="step-line"></span><span class="step ">6</span><span class="step-line"></span><span class="step ">7</span><span class="step-line"></span><span class="step ">8</span><span class="step-line"></span><span class="step ">9</span><span class="step-line"></span><span class="step ">10</span></div><div class="builder-header"><h1>Professional Summary</h1><p>Show employers who you are, what you do well and what you want next.</p></div><form id="f" class="form-card"><div class="form-group"><label>Professional Summary <span class="required">*</span></label><textarea id="summaryText" maxlength="1000" required placeholder="Example: Motivated software developer with experience in web development, problem solving and building responsive applications."></textarea><div class="counter"><span id="c1">0</span> / 1000</div></div><div class="form-group" style="margin-top:20px"><label>Career Objective</label><textarea id="careerObjective" maxlength="700" placeholder="Optional: Describe the type of role, industry or career direction you are looking for."></textarea><div class="counter"><span id="c2">0</span> / 700</div></div><div class="form-group" style="margin-top:20px"><label>Key Strengths</label><textarea id="keyStrengths" maxlength="500" placeholder="Example: Problem Solving, Communication, Teamwork, Leadership, Analytical Thinking"></textarea><div class="counter"><span id="c3">0</span> / 500</div></div><div class="info-box"><h3>💡 Tips</h3><ul><li>Keep it focused and easy to scan.</li><li>Use skills and keywords relevant to your target jobs.</li><li>Include meaningful experience or results when possible.</li></ul></div><div class="form-actions"><a class="btn secondary" href="personal.html">← Back</a><button class="btn primary">Save & Continue →</button></div></form></main><script>const s=getJSON(K.summary,{});["summaryText","careerObjective","keyStrengths"].forEach(id=>document.getElementById(id).value=s[id]||"");[["summaryText","c1"],["careerObjective","c2"],["keyStrengths","c3"]].forEach(a=>{const e=document.getElementById(a[0]),o=document.getElementById(a[1]);e.addEventListener("input",()=>o.textContent=e.value.length);o.textContent=e.value.length});f.addEventListener("submit",e=>{e.preventDefault();setJSON(K.summary,{summaryText:summaryText.value.trim(),careerObjective:careerObjective.value.trim(),keyStrengths:keyStrengths.value.trim()});location.href="education.html"});</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Professional Summary | Elevora</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="theme.js"></script>
+  <script src="js/app.js"></script>
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+  <a href="index.html" class="logo">Elevora</a>
+
+  <nav class="nav-links">
+
+    <a href="index.html">Home</a>
+    <a href="personal.html" class="active">Resume</a>
+    <a href="preview.html">Preview</a>
+
+    <button
+      id="themeToggle"
+      class="theme-toggle"
+      type="button"
+    >
+      🌙
+    </button>
+
+  </nav>
+
+</header>
+
+
+<main class="builder-wrapper">
+
+  <div class="progress-wrapper">
+
+    <div
+      class="progress-bar"
+      style="--progress: 18%"
+    >
+      <div class="progress-fill"></div>
+    </div>
+
+    <div class="progress-text">
+      <span>Step 2 of 11</span>
+      <span>Professional Summary</span>
+    </div>
+
+  </div>
+
+
+  <div class="page-heading">
+
+    <span class="eyebrow">STEP 02</span>
+
+    <h1>Professional Summary</h1>
+
+    <p>
+      Tell employers about your professional background,
+      goals and strengths.
+    </p>
+
+  </div>
+
+
+  <form id="summaryForm" class="form-card">
+
+    <div class="form-grid">
+
+      <div class="form-group full">
+
+        <label>
+          Professional Summary <span class="required">*</span>
+        </label>
+
+        <textarea
+          id="professionalSummary"
+          placeholder="Example: Motivated and detail-oriented professional with experience..."
+          required
+        ></textarea>
+
+        <span class="form-help">
+          Keep this section concise and focused on your value.
+        </span>
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>
+          Career Objective
+        </label>
+
+        <textarea
+          id="careerObjective"
+          placeholder="Example: To obtain a software development position where I can apply my skills..."
+        ></textarea>
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>
+          Key Strengths
+        </label>
+
+        <input
+          id="keyStrengths"
+          type="text"
+          placeholder="Problem Solving, Communication, Teamwork, Leadership"
+        >
+
+        <span class="form-help">
+          Separate each strength with commas.
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="form-actions">
+
+      <a
+        href="personal.html"
+        class="btn btn-secondary"
+      >
+        ← Back
+      </a>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+      >
+        Save & Continue →
+      </button>
+
+    </div>
+
+  </form>
+
+</main>
+
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+    const saved =
+      getJSON(
+        STORAGE_KEYS.summary,
+        {}
+      );
+
+
+    document.getElementById(
+      "professionalSummary"
+    ).value =
+      saved.professionalSummary || "";
+
+
+    document.getElementById(
+      "careerObjective"
+    ).value =
+      saved.careerObjective || "";
+
+
+    document.getElementById(
+      "keyStrengths"
+    ).value =
+      saved.keyStrengths || "";
+
+
+    document
+      .getElementById("summaryForm")
+      .addEventListener(
+        "submit",
+        function (event) {
+
+          event.preventDefault();
+
+
+          const data = {
+
+            professionalSummary:
+              document.getElementById(
+                "professionalSummary"
+              ).value.trim(),
+
+            careerObjective:
+              document.getElementById(
+                "careerObjective"
+              ).value.trim(),
+
+            keyStrengths:
+              document.getElementById(
+                "keyStrengths"
+              ).value.trim()
+
+          };
+
+
+          if (!data.professionalSummary) {
+
+            alert(
+              "Please enter your professional summary."
+            );
+
+            return;
+
+          }
+
+
+          setJSON(
+            STORAGE_KEYS.summary,
+            data
+          );
+
+
+          window.location.href =
+            "education.html";
+
+        }
+      );
+
+  }
+);
+
+</script>
+
+</body>
+</html>
