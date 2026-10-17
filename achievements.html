@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Achievements | Elevora</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="theme.js"></script>
+  <script src="js/app.js"></script>
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+  <a href="index.html" class="logo">Elevora</a>
+
+  <nav class="nav-links">
+
+    <a href="index.html">Home</a>
+    <a href="personal.html" class="active">Resume</a>
+    <a href="preview.html">Preview</a>
+
+    <button
+      id="themeToggle"
+      class="theme-toggle"
+      type="button"
+    >
+      🌙
+    </button>
+
+  </nav>
+
+</header>
+
+
+<main class="builder-wrapper">
+
+  <div class="progress-wrapper">
+
+    <div
+      class="progress-bar"
+      style="--progress: 82%"
+    >
+      <div class="progress-fill"></div>
+    </div>
+
+    <div class="progress-text">
+      <span>Step 9 of 11</span>
+      <span>Achievements</span>
+    </div>
+
+  </div>
+
+
+  <div class="page-heading">
+
+    <span class="eyebrow">STEP 09</span>
+
+    <h1>Achievements</h1>
+
+    <p>
+      Add awards, accomplishments, competitions,
+      publications and other achievements.
+    </p>
+
+  </div>
+
+
+  <form id="achievementForm" class="form-card">
+
+    <div
+      id="achievementEntries"
+      class="entries-container"
+    ></div>
+
+    <button
+      type="button"
+      id="addAchievement"
+      class="add-entry"
+    >
+      + Add Achievement
+    </button>
+
+
+    <div class="form-actions">
+
+      <a
+        href="languages.html"
+        class="btn btn-secondary"
+      >
+        ← Back
+      </a>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+      >
+        Save & Continue →
+      </button>
+
+    </div>
+
+  </form>
+
+</main>
+
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+    let entries =
+      getJSON(
+        STORAGE_KEYS.achievements,
+        []
+      );
+
+
+    if (!Array.isArray(entries) ||
+        !entries.length) {
+
+      entries = [{}];
+
+    }
+
+
+    const container =
+      document.getElementById(
+        "achievementEntries"
+      );
+
+
+    function render() {
+
+      container.innerHTML = "";
+
+
+      entries.forEach(
+        function (entry, index) {
+
+          const card =
+            document.createElement(
+              "div"
+            );
+
+          card.className =
+            "entry-card";
+
+
+          card.innerHTML = `
+
+            <div class="entry-card-header">
+
+              <h3>
+                Achievement ${index + 1}
+              </h3>
+
+              ${
+                index > 0
+                ? `
+                  <button
+                    type="button"
+                    class="remove-entry"
+                  >
+                    Remove
+                  </button>
+                `
+                : ""
+              }
+
+            </div>
+
+
+            <div class="form-grid">
+
+              <div class="form-group">
+
+                <label>
+                  Title
+                </label>
+
+                <input
+                  class="title"
+                  type="text"
+                  placeholder="e.g. Hackathon Winner"
+                  value="${escapeHTML(entry.title || "")}"
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label>
+                  Year
+                </label>
+
+                <input
+                  class="year"
+                  type="number"
+                  min="1950"
+                  max="2100"
+                  placeholder="2025"
+                  value="${entry.year || ""}"
+                >
+
+              </div>
+
+
+              <div class="form-group full">
+
+                <label>
+                  Description
+                </label>
+
+                <textarea
+                  class="description"
+                  placeholder="Describe your achievement..."
+                >${escapeHTML(entry.description || "")}</textarea>
+
+              </div>
+
+            </div>
+
+          `;
+
+
+          container.appendChild(card);
+
+
+          const remove =
+            card.querySelector(
+              ".remove-entry"
+            );
+
+
+          if (remove) {
+
+            remove.addEventListener(
+              "click",
+              function () {
+
+                entries.splice(
+                  index,
+                  1
+                );
+
+                render();
+
+              }
+            );
+
+          }
+
+        }
+      );
+
+    }
+
+
+    render();
+
+
+    document
+      .getElementById(
+        "addAchievement"
+      )
+      .addEventListener(
+        "click",
+        function () {
+
+          entries.push({});
+
+          render();
+
+        }
+      );
+
+
+    document
+      .getElementById(
+        "achievementForm"
+      )
+      .addEventListener(
+        "submit",
+        function (event) {
+
+          event.preventDefault();
+
+
+          const result = [];
+
+
+          container
+            .querySelectorAll(
+              ".entry-card"
+            )
+            .forEach(
+              function (card) {
+
+                result.push({
+
+                  title:
+                    card.querySelector(
+                      ".title"
+                    ).value.trim(),
+
+                  year:
+                    card.querySelector(
+                      ".year"
+                    ).value,
+
+                  description:
+                    card.querySelector(
+                      ".description"
+                    ).value.trim()
+
+                });
+
+              }
+            );
+
+
+          setJSON(
+            STORAGE_KEYS.achievements,
+            result
+          );
+
+
+          window.location.href =
+            "cover-letter.html";
+
+        }
+      );
+
+  }
+);
+
+</script>
+
+</body>
+</html>
