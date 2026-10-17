@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Professional Summary | Resume Builder</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+    <div class="logo">
+        Resume Builder
+    </div>
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="personal.html">
+            Resume
+        </a>
+
+        <a href="preview.html">
+            Preview
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main>
+
+<section class="builder-page">
+
+
+    <div class="builder-header">
+
+        <span class="badge">
+            Step 2 of 10
+        </span>
+
+        <h1>
+            Professional Summary
+        </h1>
+
+        <p>
+            Tell employers about your professional background,
+            strengths and career goals.
+        </p>
+
+    </div>
+
+
+    <form id="summaryForm">
+
+
+        <div class="form-card">
+
+            <h2>About You</h2>
+
+
+            <div class="form-group">
+
+                <label>
+                    Professional Summary *
+                </label>
+
+                <textarea
+                    id="summary"
+                    rows="8"
+                    required
+                    placeholder="Example: Motivated software developer with experience in building web applications..."
+                ></textarea>
+
+                <small>
+                    Keep your summary concise and focused on
+                    your strongest professional qualities.
+                </small>
+
+            </div>
+
+
+            <br>
+
+
+            <div class="form-group">
+
+                <label>
+                    Career Objective
+                </label>
+
+                <textarea
+                    id="objective"
+                    rows="6"
+                    placeholder="What kind of role are you looking for?"
+                ></textarea>
+
+            </div>
+
+
+            <br>
+
+
+            <div class="form-group">
+
+                <label>
+                    Key Strengths
+                </label>
+
+                <textarea
+                    id="strengths"
+                    rows="5"
+                    placeholder="Example: Problem solving, teamwork, communication, leadership"
+                ></textarea>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="form-actions">
+
+            <a
+                href="personal.html"
+                class="btn secondary"
+            >
+                ← Back
+            </a>
+
+
+            <button
+                type="submit"
+                class="btn primary"
+            >
+                Save & Continue →
+            </button>
+
+        </div>
+
+
+    </form>
+
+
+</section>
+
+</main>
+
+
+<script>
+
+const savedSummary =
+    JSON.parse(
+        localStorage.getItem("resumeSummaryData")
+    );
+
+
+if (savedSummary) {
+
+    document.getElementById("summary").value =
+        savedSummary.summary || "";
+
+    document.getElementById("objective").value =
+        savedSummary.objective || "";
+
+    document.getElementById("strengths").value =
+        savedSummary.strengths || "";
+
+}
+
+
+document
+    .getElementById("summaryForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        const summaryData = {
+
+            summary:
+                document
+                    .getElementById("summary")
+                    .value
+                    .trim(),
+
+            objective:
+                document
+                    .getElementById("objective")
+                    .value
+                    .trim(),
+
+            strengths:
+                document
+                    .getElementById("strengths")
+                    .value
+                    .trim()
+
+        };
+
+
+        localStorage.setItem(
+            "resumeSummaryData",
+            JSON.stringify(summaryData)
+        );
+
+
+        window.location.href = "education.html";
+
+    });
+
+</script>
+
+
+</body>
+
+</html>
