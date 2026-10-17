@@ -1,1 +1,1206 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Personal Information</title><link rel="stylesheet" href="css/style.css"><script src="theme.js"></script><script src="js/app.js"></script></head><body><header class="navbar"><div class="logo">Resume Builder</div><nav><a href="index.html">Home</a><a href="personal.html">Resume</a><a href="preview.html">Preview</a><button id="themeToggle" class="theme-toggle" type="button">🌙</button></nav></header><main class="builder-page"><div class="stepbar"><span class="step active">1</span><span class="step-line"></span><span class="step ">2</span><span class="step-line"></span><span class="step ">3</span><span class="step-line"></span><span class="step ">4</span><span class="step-line"></span><span class="step ">5</span><span class="step-line"></span><span class="step ">6</span><span class="step-line"></span><span class="step ">7</span><span class="step-line"></span><span class="step ">8</span><span class="step-line"></span><span class="step ">9</span><span class="step-line"></span><span class="step ">10</span></div><div class="builder-header"><h1>Personal Information</h1><p>Enter the contact and professional information you want employers to see.</p></div><form id="f" class="form-card"><div class="form-grid"><div class="form-group"><label>First Name <span class="required">*</span></label><input id="firstName" required></div><div class="form-group"><label>Last Name <span class="required">*</span></label><input id="lastName" required></div><div class="form-group"><label>Email <span class="required">*</span></label><input id="email" type="email" required></div><div class="form-group"><label>Mobile <span class="required">*</span></label><div class="phone-row"><select id="phoneCode"><option>+91</option><option>+1</option><option>+44</option><option>+61</option><option>+971</option><option>+65</option></select><input id="mobile" required placeholder="Mobile number"></div></div><div class="form-group"><label>Country <span class="required">*</span></label><input id="country" required placeholder="e.g. India"></div><div class="form-group"><label>State / Province / Region</label><input id="state"></div><div class="form-group"><label>District / City / Town</label><input id="city"></div><div class="form-group"><label>Postal Code</label><input id="postalCode"></div><div class="form-group"><label>Professional Title <span class="required">*</span></label><input id="professionalTitle" required placeholder="e.g. Software Developer"></div><div class="form-group"><label>LinkedIn</label><input id="linkedin" placeholder="https://linkedin.com/in/your-profile"></div><div class="form-group full-width"><label>Website / Portfolio</label><input id="website" placeholder="https://example.com"></div></div><div class="form-actions"><a class="btn secondary" href="index.html">← Back</a><button class="btn primary">Save & Continue →</button></div></form></main><script>const p=getJSON(K.personal,{});["firstName","lastName","email","mobile","country","state","city","postalCode","professionalTitle","linkedin","website"].forEach(id=>document.getElementById(id).value=p[id]||"");phoneCode.value=p.phoneCode||"+91";f.addEventListener("submit",e=>{e.preventDefault();const o={};["firstName","lastName","email","mobile","country","state","city","postalCode","professionalTitle","linkedin","website"].forEach(id=>o[id]=document.getElementById(id).value.trim());o.phoneCode=phoneCode.value;setJSON(K.personal,o);location.href="summary.html"});</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Personal Information | Elevora</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="theme.js"></script>
+  <script src="js/app.js"></script>
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+  <a href="index.html" class="logo">Elevora</a>
+
+  <nav class="nav-links">
+
+    <a href="index.html">Home</a>
+
+    <a href="personal.html" class="active">Resume</a>
+
+    <a href="preview.html">Preview</a>
+
+    <button
+      id="themeToggle"
+      class="theme-toggle"
+      type="button"
+    >
+      🌙
+    </button>
+
+  </nav>
+
+</header>
+
+
+<main class="builder-wrapper">
+
+  <div class="progress-wrapper">
+
+    <div
+      class="progress-bar"
+      style="--progress: 9%"
+    >
+      <div class="progress-fill"></div>
+    </div>
+
+    <div class="progress-text">
+      <span>Step 1 of 11</span>
+      <span>Personal Information</span>
+    </div>
+
+  </div>
+
+
+  <div class="page-heading">
+
+    <span class="eyebrow">STEP 01</span>
+
+    <h1>Personal Information</h1>
+
+    <p>
+      Enter your contact details and location.
+      Required fields are marked with *.
+    </p>
+
+  </div>
+
+
+  <form id="personalForm" class="form-card">
+
+    <div
+      id="formMessage"
+      class="form-message"
+    ></div>
+
+
+    <div class="form-grid">
+
+      <div class="form-group">
+
+        <label>
+          First Name <span class="required">*</span>
+        </label>
+
+        <input
+          id="firstName"
+          type="text"
+          placeholder="Enter first name"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Last Name <span class="required">*</span>
+        </label>
+
+        <input
+          id="lastName"
+          type="text"
+          placeholder="Enter last name"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Professional Title
+        </label>
+
+        <input
+          id="professionalTitle"
+          type="text"
+          placeholder="e.g. Software Developer"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Email <span class="required">*</span>
+        </label>
+
+        <input
+          id="email"
+          type="email"
+          placeholder="example@email.com"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>
+          Phone Number <span class="required">*</span>
+        </label>
+
+        <div class="phone-wrapper">
+
+          <div
+            class="search-select"
+            id="phoneCountryDropdown"
+          >
+
+            <input
+              type="text"
+              class="search-input"
+              id="phoneCountrySearch"
+              placeholder="Search code..."
+              autocomplete="off"
+            >
+
+            <span class="search-arrow">⌄</span>
+
+            <div
+              class="search-options"
+              id="phoneCountryOptions"
+            ></div>
+
+          </div>
+
+
+          <input
+            id="phone"
+            type="tel"
+            placeholder="Enter phone number"
+            required
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Country <span class="required">*</span>
+        </label>
+
+        <div
+          class="search-select"
+          id="countryDropdown"
+        >
+
+          <input
+            type="text"
+            class="search-input"
+            id="countrySearch"
+            placeholder="Search country..."
+            autocomplete="off"
+            required
+          >
+
+          <span class="search-arrow">⌄</span>
+
+          <div
+            class="search-options"
+            id="countryOptions"
+          ></div>
+
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          State / Province / Region
+        </label>
+
+        <div
+          class="search-select"
+          id="stateDropdown"
+        >
+
+          <input
+            type="text"
+            class="search-input"
+            id="stateSearch"
+            placeholder="Search state..."
+            autocomplete="off"
+          >
+
+          <span class="search-arrow">⌄</span>
+
+          <div
+            class="search-options"
+            id="stateOptions"
+          ></div>
+
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          District
+        </label>
+
+        <input
+          id="district"
+          type="text"
+          placeholder="Enter district"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          City / Town
+        </label>
+
+        <div
+          class="search-select"
+          id="cityDropdown"
+        >
+
+          <input
+            type="text"
+            class="search-input"
+            id="citySearch"
+            placeholder="Search city / town..."
+            autocomplete="off"
+          >
+
+          <span class="search-arrow">⌄</span>
+
+          <div
+            class="search-options"
+            id="cityOptions"
+          ></div>
+
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Postal / ZIP Code
+        </label>
+
+        <input
+          id="postalCode"
+          type="text"
+          placeholder="Enter postal code"
+        >
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>
+          Address
+        </label>
+
+        <textarea
+          id="address"
+          placeholder="Street, building, apartment, etc."
+        ></textarea>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          LinkedIn URL
+        </label>
+
+        <input
+          id="linkedin"
+          type="url"
+          placeholder="https://linkedin.com/in/..."
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Portfolio / Website
+        </label>
+
+        <input
+          id="portfolio"
+          type="url"
+          placeholder="https://example.com"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          GitHub URL
+        </label>
+
+        <input
+          id="github"
+          type="url"
+          placeholder="https://github.com/..."
+        >
+
+      </div>
+
+    </div>
+
+
+    <div class="form-actions">
+
+      <a
+        href="index.html"
+        class="btn btn-secondary"
+      >
+        ← Back
+      </a>
+
+      <div class="action-right">
+
+        <button
+          type="button"
+          id="saveButton"
+          class="btn btn-secondary"
+        >
+          Save
+        </button>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+        >
+          Save & Continue →
+        </button>
+
+      </div>
+
+    </div>
+
+  </form>
+
+</main>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const form =
+    document.getElementById("personalForm");
+
+  const message =
+    document.getElementById("formMessage");
+
+
+  const data =
+    getJSON(
+      STORAGE_KEYS.personal,
+      {}
+    );
+
+
+  const fields = [
+    "firstName",
+    "lastName",
+    "professionalTitle",
+    "email",
+    "phone",
+    "district",
+    "postalCode",
+    "address",
+    "linkedin",
+    "portfolio",
+    "github"
+  ];
+
+
+  fields.forEach(function (id) {
+
+    const element =
+      document.getElementById(id);
+
+    if (element && data[id]) {
+      element.value = data[id];
+    }
+
+  });
+
+
+  const phoneSearch =
+    document.getElementById("phoneCountrySearch");
+
+  const phoneOptions =
+    document.getElementById("phoneCountryOptions");
+
+  const countrySearch =
+    document.getElementById("countrySearch");
+
+  const countryOptions =
+    document.getElementById("countryOptions");
+
+
+  let selectedPhoneCode =
+    data.phoneCode || "+91";
+
+  let selectedCountry =
+    data.country || "India";
+
+
+  function showMessage(text, type) {
+
+    message.textContent = text;
+
+    message.className =
+      "form-message show " + type;
+
+    setTimeout(function () {
+
+      message.className =
+        "form-message";
+
+    }, 3000);
+
+  }
+
+
+  function renderPhoneOptions(search = "") {
+
+    const query =
+      search.trim().toLowerCase();
+
+    const filtered =
+      COUNTRIES.filter(function (country) {
+
+        return (
+          country.name.toLowerCase().includes(query) ||
+          country.code.includes(query)
+        );
+
+      });
+
+
+    phoneOptions.innerHTML = "";
+
+
+    if (!filtered.length) {
+
+      phoneOptions.innerHTML =
+        '<div class="search-option no-result">No country found</div>';
+
+      return;
+
+    }
+
+
+    filtered.forEach(function (country) {
+
+      const option =
+        document.createElement("div");
+
+      option.className =
+        "search-option";
+
+      option.textContent =
+        country.flag +
+        " " +
+        country.name +
+        " (" +
+        country.code +
+        ")";
+
+
+      option.addEventListener(
+        "mousedown",
+        function (event) {
+
+          event.preventDefault();
+
+          selectedPhoneCode =
+            country.code;
+
+          phoneSearch.value =
+            country.flag +
+            " " +
+            country.name +
+            " (" +
+            country.code +
+            ")";
+
+          phoneOptions.classList.remove("show");
+
+        }
+      );
+
+
+      phoneOptions.appendChild(option);
+
+    });
+
+  }
+
+
+  function renderCountryOptions(search = "") {
+
+    const query =
+      search.trim().toLowerCase();
+
+    const filtered =
+      COUNTRIES.filter(function (country) {
+
+        return country.name
+          .toLowerCase()
+          .includes(query);
+
+      });
+
+
+    countryOptions.innerHTML = "";
+
+
+    if (!filtered.length) {
+
+      countryOptions.innerHTML =
+        '<div class="search-option no-result">No country found</div>';
+
+      return;
+
+    }
+
+
+    filtered.forEach(function (country) {
+
+      const option =
+        document.createElement("div");
+
+      option.className =
+        "search-option";
+
+      option.textContent =
+        country.flag +
+        " " +
+        country.name;
+
+
+      option.addEventListener(
+        "mousedown",
+        function (event) {
+
+          event.preventDefault();
+
+          selectedCountry =
+            country.name;
+
+          countrySearch.value =
+            country.flag +
+            " " +
+            country.name;
+
+          countryOptions.classList.remove("show");
+
+          loadStates(country.name);
+
+        }
+      );
+
+
+      countryOptions.appendChild(option);
+
+    });
+
+  }
+
+
+  phoneSearch.addEventListener(
+    "focus",
+    function () {
+
+      renderPhoneOptions(
+        phoneSearch.value
+      );
+
+      phoneOptions.classList.add("show");
+
+    }
+  );
+
+
+  phoneSearch.addEventListener(
+    "input",
+    function () {
+
+      renderPhoneOptions(
+        phoneSearch.value
+      );
+
+      phoneOptions.classList.add("show");
+
+    }
+  );
+
+
+  countrySearch.addEventListener(
+    "focus",
+    function () {
+
+      renderCountryOptions(
+        countrySearch.value
+      );
+
+      countryOptions.classList.add("show");
+
+    }
+  );
+
+
+  countrySearch.addEventListener(
+    "input",
+    function () {
+
+      renderCountryOptions(
+        countrySearch.value
+      );
+
+      countryOptions.classList.add("show");
+
+    }
+  );
+
+
+  document.addEventListener(
+    "click",
+    function (event) {
+
+      if (
+        !event.target.closest(
+          "#phoneCountryDropdown"
+        )
+      ) {
+
+        phoneOptions.classList.remove(
+          "show"
+        );
+
+      }
+
+
+      if (
+        !event.target.closest(
+          "#countryDropdown"
+        )
+      ) {
+
+        countryOptions.classList.remove(
+          "show"
+        );
+
+      }
+
+
+      if (
+        !event.target.closest(
+          "#stateDropdown"
+        )
+      ) {
+
+        document
+          .getElementById("stateOptions")
+          .classList.remove("show");
+
+      }
+
+
+      if (
+        !event.target.closest(
+          "#cityDropdown"
+        )
+      ) {
+
+        document
+          .getElementById("cityOptions")
+          .classList.remove("show");
+
+      }
+
+    }
+  );
+
+
+  function createSearchDropdown(
+    inputId,
+    optionsId,
+    items,
+    onSelect
+  ) {
+
+    const input =
+      document.getElementById(inputId);
+
+    const options =
+      document.getElementById(optionsId);
+
+
+    function render(search = "") {
+
+      const query =
+        search.toLowerCase().trim();
+
+      const filtered =
+        items.filter(function (item) {
+
+          return item
+            .toLowerCase()
+            .includes(query);
+
+        });
+
+
+      options.innerHTML = "";
+
+
+      if (!filtered.length) {
+
+        options.innerHTML =
+          '<div class="search-option no-result">No results found. You can type manually.</div>';
+
+        return;
+
+      }
+
+
+      filtered.forEach(function (item) {
+
+        const option =
+          document.createElement("div");
+
+        option.className =
+          "search-option";
+
+        option.textContent =
+          item;
+
+
+        option.addEventListener(
+          "mousedown",
+          function (event) {
+
+            event.preventDefault();
+
+            input.value = item;
+
+            options.classList.remove(
+              "show"
+            );
+
+            if (onSelect) {
+              onSelect(item);
+            }
+
+          }
+        );
+
+
+        options.appendChild(option);
+
+      });
+
+    }
+
+
+    input.addEventListener(
+      "focus",
+      function () {
+
+        render(input.value);
+
+        options.classList.add("show");
+
+      }
+    );
+
+
+    input.addEventListener(
+      "input",
+      function () {
+
+        render(input.value);
+
+        options.classList.add("show");
+
+      }
+    );
+
+
+    return {
+      render
+    };
+
+  }
+
+
+  let stateDropdown =
+    createSearchDropdown(
+      "stateSearch",
+      "stateOptions",
+      [],
+      function (state) {
+        loadCities(
+          selectedCountry,
+          state
+        );
+      }
+    );
+
+
+  let cityDropdown =
+    createSearchDropdown(
+      "citySearch",
+      "cityOptions",
+      [],
+      null
+    );
+
+
+  async function loadStates(country) {
+
+    const stateInput =
+      document.getElementById(
+        "stateSearch"
+      );
+
+    stateInput.value = "";
+
+    document.getElementById(
+      "citySearch"
+    ).value = "";
+
+
+    try {
+
+      const response =
+        await fetch(
+          "https://countriesnow.space/api/v0.1/countries/states",
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json"
+            },
+
+            body: JSON.stringify({
+              country: country
+            })
+
+          }
+        );
+
+
+      const result =
+        await response.json();
+
+
+      const states =
+        result.data &&
+        result.data.states
+          ? result.data.states.map(
+              function (state) {
+                return state.name;
+              }
+            )
+          : [];
+
+
+      stateDropdown =
+        createSearchDropdown(
+          "stateSearch",
+          "stateOptions",
+          states,
+          function (state) {
+            loadCities(
+              country,
+              state
+            );
+          }
+        );
+
+
+    } catch (error) {
+
+      stateDropdown =
+        createSearchDropdown(
+          "stateSearch",
+          "stateOptions",
+          [],
+          function (state) {
+            loadCities(
+              country,
+              state
+            );
+          }
+        );
+
+    }
+
+  }
+
+
+  async function loadCities(
+    country,
+    state
+  ) {
+
+    try {
+
+      const response =
+        await fetch(
+          "https://countriesnow.space/api/v0.1/countries/state/cities",
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json"
+            },
+
+            body: JSON.stringify({
+              country: country,
+              state: state
+            })
+
+          }
+        );
+
+
+      const result =
+        await response.json();
+
+
+      const cities =
+        result.data || [];
+
+
+      cityDropdown =
+        createSearchDropdown(
+          "citySearch",
+          "cityOptions",
+          cities,
+          null
+        );
+
+
+    } catch (error) {
+
+      cityDropdown =
+        createSearchDropdown(
+          "citySearch",
+          "cityOptions",
+          [],
+          null
+        );
+
+    }
+
+  }
+
+
+  phoneSearch.value =
+    data.phoneCountryDisplay ||
+    "🇮🇳 India (+91)";
+
+
+  countrySearch.value =
+    data.countryDisplay ||
+    "🇮🇳 India";
+
+
+  renderPhoneOptions();
+
+  renderCountryOptions();
+
+
+  if (selectedCountry) {
+    loadStates(selectedCountry);
+  }
+
+
+  function collectData() {
+
+    return {
+
+      firstName:
+        document.getElementById(
+          "firstName"
+        ).value.trim(),
+
+      lastName:
+        document.getElementById(
+          "lastName"
+        ).value.trim(),
+
+      professionalTitle:
+        document.getElementById(
+          "professionalTitle"
+        ).value.trim(),
+
+      email:
+        document.getElementById(
+          "email"
+        ).value.trim(),
+
+      phoneCode:
+        selectedPhoneCode,
+
+      phoneCountryDisplay:
+        phoneSearch.value,
+
+      phone:
+        document.getElementById(
+          "phone"
+        ).value.trim(),
+
+      country:
+        selectedCountry,
+
+      countryDisplay:
+        countrySearch.value,
+
+      state:
+        document.getElementById(
+          "stateSearch"
+        ).value.trim(),
+
+      district:
+        document.getElementById(
+          "district"
+        ).value.trim(),
+
+      city:
+        document.getElementById(
+          "citySearch"
+        ).value.trim(),
+
+      postalCode:
+        document.getElementById(
+          "postalCode"
+        ).value.trim(),
+
+      address:
+        document.getElementById(
+          "address"
+        ).value.trim(),
+
+      linkedin:
+        document.getElementById(
+          "linkedin"
+        ).value.trim(),
+
+      portfolio:
+        document.getElementById(
+          "portfolio"
+        ).value.trim(),
+
+      github:
+        document.getElementById(
+          "github"
+        ).value.trim()
+
+    };
+
+  }
+
+
+  document
+    .getElementById("saveButton")
+    .addEventListener(
+      "click",
+      function () {
+
+        setJSON(
+          STORAGE_KEYS.personal,
+          collectData()
+        );
+
+        showMessage(
+          "Personal information saved.",
+          "success"
+        );
+
+      }
+    );
+
+
+  form.addEventListener(
+    "submit",
+    function (event) {
+
+      event.preventDefault();
+
+      const data =
+        collectData();
+
+
+      if (
+        !data.firstName ||
+        !data.lastName ||
+        !data.email ||
+        !data.phone ||
+        !data.country
+      ) {
+
+        showMessage(
+          "Please complete all required fields.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      setJSON(
+        STORAGE_KEYS.personal,
+        data
+      );
+
+
+      window.location.href =
+        "summary.html";
+
+    }
+  );
+
+});
+
+</script>
+
+</body>
+</html>
