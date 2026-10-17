@@ -4,9 +4,10 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Experience - Elevora</title>
+<title>Experience | Elevora</title>
 
 <link rel="stylesheet" href="css/style.css">
 
@@ -15,11 +16,13 @@
 
 </head>
 
+
 <body>
+
 
 <header class="navbar">
 
-<a class="logo" href="index.html">Elevora</a>
+<a href="index.html" class="logo">Elevora</a>
 
 <nav class="nav-links">
 
@@ -28,7 +31,7 @@
 <a href="preview.html">Preview</a>
 <a href="cover-letter.html">Cover Letter</a>
 
-<button id="themeToggle" class="theme-toggle">
+<button id="themeToggle" class="theme-toggle" type="button">
 🌙
 </button>
 
@@ -37,45 +40,73 @@
 </header>
 
 
-<main class="container">
+<main class="page-container">
 
-<div class="page-head">
+
+<div class="form-header">
+
+<div class="step-number">4</div>
+
+<div>
 
 <h1>Experience</h1>
 
 <p>
-Add multiple jobs, internships, freelance roles or other professional experience.
+Tell us about your professional experience.
 </p>
 
 </div>
 
-
-<div class="builder">
-
-<aside class="steps">
-
-<a href="personal.html">1. Personal</a>
-<a href="summary.html">2. Summary</a>
-<a href="education.html">3. Education</a>
-<a href="experience.html">4. Experience</a>
-<a href="projects.html">5. Projects</a>
-<a href="skills.html">6. Skills</a>
-<a href="certifications.html">7. Certifications</a>
-<a href="languages.html">8. Languages</a>
-<a href="achievements.html">9. Achievements</a>
-<a href="preview.html">10. Preview</a>
-
-</aside>
+</div>
 
 
-<section class="form-card">
+<div class="progress-wrapper">
 
-<div id="entryList" class="entry-list"></div>
+<div class="progress-bar">
+<div class="progress-fill" style="width:40%"></div>
+</div>
+
+<span>4 of 10</span>
+
+</div>
+
+
+<div class="form-card">
+
+
+<div class="form-group">
+
+<label>Experience Level</label>
+
+<select id="experienceType">
+
+<option value="Experienced">
+Experienced
+</option>
+
+<option value="Fresher">
+Fresher
+</option>
+
+<option value="Student">
+Student
+</option>
+
+</select>
+
+</div>
+
+
+<div id="experienceArea">
+
+<div
+id="entryList"
+class="entry-list"
+></div>
 
 
 <form id="entryForm">
 
-<div class="form-grid">
 
 <div class="form-group">
 
@@ -83,18 +114,20 @@ Add multiple jobs, internships, freelance roles or other professional experience
 
 <input
 id="jobTitle"
-placeholder="Software Developer">
+placeholder="Software Engineer"
+>
 
 </div>
 
 
 <div class="form-group">
 
-<label>Company / Organization</label>
+<label>Company</label>
 
 <input
 id="company"
-placeholder="Example Company">
+placeholder="Company name"
+>
 
 </div>
 
@@ -105,7 +138,8 @@ placeholder="Example Company">
 
 <input
 id="location"
-placeholder="City, Country">
+placeholder="City, Country"
+>
 
 </div>
 
@@ -117,7 +151,8 @@ placeholder="City, Country">
 <input
 id="startYear"
 type="number"
-placeholder="2024">
+placeholder="2022"
+>
 
 </div>
 
@@ -129,90 +164,82 @@ placeholder="2024">
 <input
 id="endYear"
 type="number"
-placeholder="2025">
+placeholder="2025"
+>
+
+</div>
+
+
+<div class="checkbox-row">
+
+<input
+id="currentJob"
+type="checkbox"
+>
+
+<label for="currentJob">
+I currently work here
+</label>
 
 </div>
 
 
 <div class="form-group">
 
-<label class="checkbox">
-
-<input
-id="current"
-type="checkbox">
-
-Currently Working
-
-</label>
-
-</div>
-
-
-<div class="form-group full">
-
 <label>Responsibilities / Achievements</label>
 
 <textarea
 id="description"
-placeholder="Describe your responsibilities and achievements...">
-</textarea>
+placeholder="Describe your responsibilities and achievements..."
+></textarea>
 
 </div>
 
-</div>
 
-
-<div class="actions">
+<div class="form-actions">
 
 <button
 type="button"
 id="cancelEdit"
 class="btn secondary"
-style="display:none">
-
-Cancel Edit
-
+style="display:none"
+>
+Cancel
 </button>
 
-
 <button
+type="submit"
 id="saveBtn"
-class="btn">
-
+class="btn primary"
+>
 + Add Experience
-
 </button>
 
 </div>
 
 
-<div id="status" class="status"></div>
+<div
+id="status"
+class="form-status"
+></div>
 
 </form>
 
+</div>
 
-<div class="actions">
 
-<a
-class="btn secondary"
-href="education.html">
+<div class="form-actions">
 
+<a href="education.html" class="btn secondary">
 ← Back
-
 </a>
 
-<a
-class="btn"
-href="projects.html">
-
+<a href="projects.html" class="btn primary">
 Save & Continue →
-
 </a>
 
 </div>
 
-</section>
 
 </div>
 
@@ -223,11 +250,11 @@ Save & Continue →
 
 window.MULTI_CONFIG = {
 
-key: "experience",
+key:"experience",
 
-addText: "+ Add Experience",
+addText:"+ Add Experience",
 
-fields: [
+fields:[
 
 {id:"jobTitle"},
 
@@ -239,42 +266,56 @@ fields: [
 
 {id:"endYear"},
 
-{
-id:"current",
-type:"checkbox"
-},
+{id:"currentJob",type:"checkbox"},
 
-{
-id:"description",
-type:"textarea"
-}
+{id:"description"}
 
 ],
 
-title: function(entry) {
+title:entry =>
+entry.jobTitle ||
+entry.company ||
+"Experience",
 
-return entry.jobTitle ||
-       entry.company ||
-       "Experience";
-
-},
-
-meta: function(entry) {
-
-return [
-
+meta:entry =>
+[
 entry.company,
 entry.location,
 entry.startYear,
-entry.current ? "Present" : entry.endYear
-
+entry.currentJob
+? "Present"
+: entry.endYear
 ]
 .filter(Boolean)
-.join(" • ");
+.join(" • ")
+
+};
+
+
+document
+.getElementById("experienceType")
+.addEventListener(
+"change",
+function(){
+
+const area =
+document.getElementById(
+"experienceArea"
+);
+
+if(this.value === "Fresher" ||
+this.value === "Student"){
+
+area.style.display = "none";
+
+}else{
+
+area.style.display = "block";
 
 }
 
-};
+});
+
 
 </script>
 
