@@ -10,75 +10,2070 @@
     content="width=device-width, initial-scale=1.0"
   >
 
+  <meta
+    name="description"
+    content="Elevora is a modern resume and cover letter builder that helps you create professional career documents quickly."
+  >
+
+  <meta
+    name="theme-color"
+    content="#2563eb"
+  >
+
   <title>Elevora | Resume & Cover Letter Builder</title>
 
-  <link rel="stylesheet" href="css/style.css">
+
+  <!-- =========================================
+       MAIN CSS
+       ========================================= -->
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
+
+  <!-- =========================================
+       THEME
+       ========================================= -->
 
   <script src="theme.js"></script>
 
+
+  <!-- =========================================
+       PAGE-SPECIFIC STYLES
+       ========================================= -->
+
+  <style>
+
+    /* =========================================
+       RESET
+       ========================================= */
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+
+    a {
+      text-decoration: none;
+    }
+
+
+    /* =========================================
+       HERO
+       ========================================= */
+
+    .hero {
+      position: relative;
+      min-height: 720px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      isolation: isolate;
+      padding: 80px 20px 100px;
+    }
+
+
+    /* =========================================
+       HERO BACKGROUND
+       ========================================= */
+
+    .hero-background {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+
+    /* =========================================
+       GRADIENT GLOWS
+       ========================================= */
+
+    .glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      animation:
+        glowMove 10s ease-in-out infinite alternate;
+    }
+
+
+    .glow-one {
+      width: 500px;
+      height: 500px;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(37, 99, 235, .25),
+          transparent 70%
+        );
+
+      top: -230px;
+      left: -120px;
+    }
+
+
+    .glow-two {
+      width: 560px;
+      height: 560px;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(124, 58, 237, .22),
+          transparent 70%
+        );
+
+      top: 20px;
+      right: -200px;
+
+      animation-delay: -3s;
+    }
+
+
+    .glow-three {
+      width: 420px;
+      height: 420px;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(14, 165, 233, .18),
+          transparent 70%
+        );
+
+      bottom: -230px;
+      left: 38%;
+
+      animation-delay: -6s;
+    }
+
+
+    @keyframes glowMove {
+
+      0% {
+        transform:
+          translate3d(0, 0, 0)
+          scale(1);
+      }
+
+      100% {
+        transform:
+          translate3d(35px, -25px, 0)
+          scale(1.12);
+      }
+
+    }
+
+
+    /* =========================================
+       GRID
+       ========================================= */
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+
+      background-image:
+        linear-gradient(
+          rgba(100, 116, 139, .08) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(100, 116, 139, .08) 1px,
+          transparent 1px
+        );
+
+      background-size: 45px 45px;
+
+      mask-image:
+        radial-gradient(
+          ellipse at center,
+          black 0%,
+          transparent 75%
+        );
+
+      -webkit-mask-image:
+        radial-gradient(
+          ellipse at center,
+          black 0%,
+          transparent 75%
+        );
+
+      opacity: .7;
+    }
+
+
+    /* =========================================
+       HERO CONTENT
+       ========================================= */
+
+    .hero-content {
+      position: relative;
+      z-index: 5;
+
+      width: min(
+        900px,
+        100%
+      );
+
+      margin: 0 auto;
+
+      text-align: center;
+    }
+
+
+    /* =========================================
+       HERO BADGE
+       ========================================= */
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 8px 15px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(37, 99, 235, .08);
+
+      border:
+        1px solid rgba(37, 99, 235, .18);
+
+      color:
+        #2563eb;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      margin-bottom: 22px;
+    }
+
+
+    .hero-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: #2563eb;
+
+      box-shadow:
+        0 0 0 5px
+        rgba(37, 99, 235, .10);
+    }
+
+
+    /* =========================================
+       HERO HEADING
+       ========================================= */
+
+    .hero h1 {
+      margin: 0;
+
+      font-size:
+        clamp(
+          44px,
+          7vw,
+          78px
+        );
+
+      line-height: 1.03;
+
+      letter-spacing: -.055em;
+
+      font-weight: 850;
+    }
+
+
+    .hero h1 span {
+      display: block;
+
+      background:
+        linear-gradient(
+          90deg,
+          #2563eb,
+          #7c3aed,
+          #0891b2
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      -webkit-text-fill-color:
+        transparent;
+    }
+
+
+    /* =========================================
+       HERO DESCRIPTION
+       ========================================= */
+
+    .hero-description {
+      max-width: 680px;
+
+      margin:
+        25px auto 0;
+
+      font-size: 17px;
+
+      line-height: 1.8;
+
+      color: var(--muted);
+    }
+
+
+    /* =========================================
+       HERO BUTTONS
+       ========================================= */
+
+    .hero-buttons {
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 12px;
+
+      flex-wrap: wrap;
+
+      margin-top: 32px;
+    }
+
+
+    .hero-buttons .btn {
+      min-width: 180px;
+      justify-content: center;
+    }
+
+
+    /* =========================================
+       FLOATING CARDS
+       ========================================= */
+
+    .floating-card {
+      position: absolute;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      min-width: 210px;
+
+      padding: 15px 17px;
+
+      border-radius: 17px;
+
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          .75
+        );
+
+      border:
+        1px solid
+        rgba(
+          255,
+          255,
+          255,
+          .85
+        );
+
+      box-shadow:
+        0 20px 60px
+        rgba(
+          15,
+          23,
+          42,
+          .13
+        );
+
+      backdrop-filter:
+        blur(18px);
+
+      -webkit-backdrop-filter:
+        blur(18px);
+
+      color: #111827;
+
+      animation:
+        floatingCard
+        6s ease-in-out infinite;
+    }
+
+
+    .floating-card strong {
+      display: block;
+
+      font-size: 13px;
+
+      margin-bottom: 3px;
+    }
+
+
+    .floating-card span {
+      display: block;
+
+      font-size: 11px;
+
+      color: #64748b;
+    }
+
+
+    .mini-icon {
+      width: 40px;
+      height: 40px;
+
+      flex-shrink: 0;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 12px;
+
+      background:
+        rgba(
+          37,
+          99,
+          235,
+          .10
+        );
+
+      font-size: 18px;
+    }
+
+
+    /* =========================================
+       CARD POSITIONS
+       ========================================= */
+
+    .resume-float {
+      top: 150px;
+      left: 5%;
+
+      transform:
+        rotate(-5deg);
+
+      animation-delay:
+        -1s;
+    }
+
+
+    .letter-float {
+      top: 235px;
+      right: 5%;
+
+      transform:
+        rotate(5deg);
+
+      animation-delay:
+        -3s;
+    }
+
+
+    .skill-float {
+      bottom: 105px;
+      left: 11%;
+
+      transform:
+        rotate(4deg);
+
+      animation-delay:
+        -4.5s;
+    }
+
+
+    @keyframes floatingCard {
+
+      0%,
+      100% {
+        margin-top: 0;
+      }
+
+      50% {
+        margin-top: -14px;
+      }
+
+    }
+
+
+    /* =========================================
+       FLOATING DOTS
+       ========================================= */
+
+    .floating-dot {
+      position: absolute;
+
+      width: 8px;
+      height: 8px;
+
+      border-radius: 50%;
+
+      background:
+        #2563eb;
+
+      box-shadow:
+        0 0 0 7px
+        rgba(37, 99, 235, .08),
+
+        0 0 25px
+        rgba(37, 99, 235, .30);
+
+      animation:
+        dotFloat
+        5s ease-in-out infinite;
+    }
+
+
+    .dot-one {
+      top: 23%;
+      left: 29%;
+    }
+
+
+    .dot-two {
+      top: 58%;
+      right: 27%;
+
+      animation-delay:
+        -2s;
+    }
+
+
+    .dot-three {
+      bottom: 20%;
+      right: 13%;
+
+      animation-delay:
+        -4s;
+    }
+
+
+    @keyframes dotFloat {
+
+      0%,
+      100% {
+        transform:
+          translateY(0)
+          scale(1);
+      }
+
+      50% {
+        transform:
+          translateY(-12px)
+          scale(1.25);
+      }
+
+    }
+
+
+    /* =========================================
+       STATS
+       ========================================= */
+
+    .hero-stats {
+      display: flex;
+
+      justify-content: center;
+
+      gap: 40px;
+
+      flex-wrap: wrap;
+
+      margin-top: 55px;
+    }
+
+
+    .hero-stat {
+      text-align: center;
+    }
+
+
+    .hero-stat strong {
+      display: block;
+
+      font-size: 21px;
+
+      font-weight: 800;
+    }
+
+
+    .hero-stat span {
+      display: block;
+
+      margin-top: 3px;
+
+      font-size: 12px;
+
+      color: var(--muted);
+    }
+
+
+    /* =========================================
+       FEATURES
+       ========================================= */
+
+    .home-section {
+      width: min(
+        1150px,
+        calc(100% - 40px)
+      );
+
+      margin:
+        0 auto;
+
+      padding:
+        90px 0;
+    }
+
+
+    .section-heading {
+      max-width: 700px;
+
+      margin:
+        0 auto 45px;
+
+      text-align: center;
+    }
+
+
+    .section-label {
+      display: inline-block;
+
+      margin-bottom: 10px;
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      letter-spacing: .12em;
+
+      text-transform:
+        uppercase;
+
+      color:
+        #2563eb;
+    }
+
+
+    .section-heading h2 {
+      margin:
+        0 0 12px;
+
+      font-size:
+        clamp(
+          30px,
+          5vw,
+          45px
+        );
+
+      line-height: 1.15;
+
+      letter-spacing: -.035em;
+    }
+
+
+    .section-heading p {
+      margin: 0;
+
+      color: var(--muted);
+
+      line-height: 1.7;
+    }
+
+
+    /* =========================================
+       FEATURE GRID
+       ========================================= */
+
+    .feature-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          3,
+          minmax(0, 1fr)
+        );
+
+      gap: 18px;
+    }
+
+
+    .feature-card {
+      padding: 27px;
+
+      border-radius: 20px;
+
+      background:
+        var(--surface);
+
+      border:
+        1px solid
+        var(--border);
+
+      box-shadow:
+        var(--shadow);
+
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+    }
+
+
+    .feature-card:hover {
+      transform:
+        translateY(-6px);
+
+      box-shadow:
+        0 20px 45px
+        rgba(
+          15,
+          23,
+          42,
+          .12
+        );
+    }
+
+
+    .feature-icon {
+      width: 50px;
+      height: 50px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 14px;
+
+      background:
+        rgba(
+          37,
+          99,
+          235,
+          .10
+        );
+
+      font-size: 23px;
+
+      margin-bottom: 18px;
+    }
+
+
+    .feature-card h3 {
+      margin:
+        0 0 8px;
+
+      font-size: 17px;
+    }
+
+
+    .feature-card p {
+      margin: 0;
+
+      color: var(--muted);
+
+      line-height: 1.7;
+
+      font-size: 14px;
+    }
+
+
+    /* =========================================
+       HOW IT WORKS
+       ========================================= */
+
+    .steps-section {
+      background:
+        rgba(
+          100,
+          116,
+          139,
+          .035
+        );
+
+      border-top:
+        1px solid
+        var(--border);
+
+      border-bottom:
+        1px solid
+        var(--border);
+    }
+
+
+    .steps-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          4,
+          minmax(0, 1fr)
+        );
+
+      gap: 20px;
+    }
+
+
+    .step {
+      position: relative;
+
+      text-align: center;
+
+      padding: 20px;
+    }
+
+
+    .step-number {
+      width: 48px;
+      height: 48px;
+
+      margin:
+        0 auto 16px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background:
+        #2563eb;
+
+      color:
+        white;
+
+      font-weight:
+        800;
+
+      box-shadow:
+        0 10px 25px
+        rgba(
+          37,
+          99,
+          235,
+          .22
+        );
+    }
+
+
+    .step h3 {
+      margin:
+        0 0 7px;
+
+      font-size: 16px;
+    }
+
+
+    .step p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+      line-height: 1.6;
+    }
+
+
+    /* =========================================
+       COVER LETTER CTA
+       ========================================= */
+
+    .cover-letter-section {
+      padding:
+        25px 0 90px;
+    }
+
+
+    .cover-letter-card {
+      position: relative;
+
+      overflow: hidden;
+
+      padding:
+        55px 50px;
+
+      border-radius: 28px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #111827,
+          #1e3a8a
+        );
+
+      color: white;
+
+      box-shadow:
+        0 25px 70px
+        rgba(
+          15,
+          23,
+          42,
+          .20
+        );
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 40px;
+    }
+
+
+    .cover-letter-card::before {
+      content: "";
+
+      position: absolute;
+
+      width: 350px;
+      height: 350px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          .07
+        );
+
+      right: -100px;
+      top: -180px;
+    }
+
+
+    .cover-letter-card::after {
+      content: "";
+
+      position: absolute;
+
+      width: 250px;
+      height: 250px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(
+          96,
+          165,
+          250,
+          .10
+        );
+
+      left: 35%;
+      bottom: -180px;
+    }
+
+
+    .cover-letter-content {
+      position: relative;
+
+      z-index: 2;
+
+      max-width: 650px;
+    }
+
+
+    .cover-letter-content .section-label {
+      color:
+        #93c5fd;
+    }
+
+
+    .cover-letter-content h2 {
+      margin:
+        0 0 13px;
+
+      font-size:
+        clamp(
+          28px,
+          5vw,
+          43px
+        );
+
+      line-height: 1.15;
+
+      letter-spacing:
+        -.035em;
+    }
+
+
+    .cover-letter-content p {
+      margin: 0;
+
+      color:
+        #dbeafe;
+
+      line-height: 1.75;
+    }
+
+
+    .cover-letter-action {
+      position: relative;
+
+      z-index: 2;
+
+      flex-shrink: 0;
+    }
+
+
+    .cover-letter-action .btn {
+      background: white;
+
+      color: #111827;
+
+      border-color: white;
+
+      min-width: 190px;
+
+      justify-content: center;
+    }
+
+
+    .cover-letter-action .btn:hover {
+      background:
+        #eff6ff;
+    }
+
+
+    /* =========================================
+       FINAL CTA
+       ========================================= */
+
+    .final-cta {
+      text-align: center;
+
+      padding:
+        20px 0 100px;
+    }
+
+
+    .final-cta h2 {
+      margin:
+        0 0 12px;
+
+      font-size:
+        clamp(
+          30px,
+          5vw,
+          45px
+        );
+
+      letter-spacing:
+        -.035em;
+    }
+
+
+    .final-cta p {
+      max-width: 600px;
+
+      margin:
+        0 auto 25px;
+
+      color: var(--muted);
+
+      line-height: 1.7;
+    }
+
+
+    /* =========================================
+       DARK MODE
+       ========================================= */
+
+    [data-theme="dark"] .floating-card {
+
+      background:
+        rgba(
+          15,
+          23,
+          42,
+          .76
+        );
+
+      border-color:
+        rgba(
+          255,
+          255,
+          255,
+          .10
+        );
+
+      color:
+        #f8fafc;
+
+      box-shadow:
+        0 20px 60px
+        rgba(
+          0,
+          0,
+          0,
+          .35
+        );
+    }
+
+
+    [data-theme="dark"]
+    .floating-card span {
+
+      color:
+        #94a3b8;
+    }
+
+
+    [data-theme="dark"]
+    .hero-grid {
+
+      opacity:
+        .35;
+
+      background-image:
+        linear-gradient(
+          rgba(
+            148,
+            163,
+            184,
+            .06
+          ) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(
+            148,
+            163,
+            184,
+            .06
+          ) 1px,
+          transparent 1px
+        );
+    }
+
+
+    /* =========================================
+       TABLET
+       ========================================= */
+
+    @media (max-width: 950px) {
+
+      .resume-float {
+        left: -35px;
+      }
+
+      .letter-float {
+        right: -35px;
+      }
+
+      .skill-float {
+        left: 0;
+      }
+
+      .feature-grid {
+        grid-template-columns:
+          repeat(
+            2,
+            minmax(0, 1fr)
+          );
+      }
+
+      .steps-grid {
+        grid-template-columns:
+          repeat(
+            2,
+            minmax(0, 1fr)
+          );
+      }
+
+    }
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 700px) {
+
+      .hero {
+        min-height: 700px;
+
+        padding:
+          70px 18px 80px;
+      }
+
+
+      .hero-description {
+        font-size: 15px;
+      }
+
+
+      .hero-stats {
+        gap: 25px;
+      }
+
+
+      .floating-card {
+        transform:
+          scale(.72) !important;
+
+        opacity:
+          .45;
+      }
+
+
+      .resume-float {
+        top: 75px;
+        left: -65px;
+      }
+
+
+      .letter-float {
+        top: 120px;
+        right: -70px;
+      }
+
+
+      .skill-float {
+        bottom: 55px;
+        left: -65px;
+      }
+
+
+      .feature-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+
+      .steps-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+
+      .home-section {
+        width:
+          calc(
+            100% - 30px
+          );
+
+        padding:
+          65px 0;
+      }
+
+
+      .cover-letter-card {
+        padding:
+          35px 25px;
+
+        flex-direction:
+          column;
+
+        align-items:
+          flex-start;
+      }
+
+
+      .cover-letter-action {
+        width: 100%;
+      }
+
+
+      .cover-letter-action .btn {
+        width: 100%;
+      }
+
+    }
+
+
+    /* =========================================
+       SMALL MOBILE
+       ========================================= */
+
+    @media (max-width: 480px) {
+
+      .floating-card {
+        display: none;
+      }
+
+
+      .hero {
+        min-height: 650px;
+      }
+
+
+      .hero-buttons {
+        flex-direction:
+          column;
+
+        width: 100%;
+      }
+
+
+      .hero-buttons .btn {
+        width: 100%;
+      }
+
+
+      .hero-stats {
+        display:
+          grid;
+
+        grid-template-columns:
+          repeat(
+            2,
+            1fr
+          );
+      }
+
+
+      .hero-grid {
+        opacity:
+          .3;
+      }
+
+    }
+
+
+    /* =========================================
+       REDUCED MOTION
+       ========================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior:
+          auto;
+      }
+
+
+      .glow,
+      .floating-card,
+      .floating-dot {
+        animation:
+          none !important;
+      }
+
+
+      .feature-card {
+        transition:
+          none !important;
+      }
+
+    }
+
+  </style>
+
 </head>
+
 
 <body>
 
-<header class="navbar">
 
-  <a href="index.html" class="logo">
-    Elevora
-  </a>
+  <!-- =======================================
+       NAVIGATION
+       ======================================= -->
 
-  <nav class="nav-links">
+  <header class="navbar">
 
-    <a href="index.html">
-      Home
-    </a>
-
-    <a href="personal.html">
-      Resume
-    </a>
-
-    <a href="preview.html">
-      Preview
-    </a>
-
-    <a href="cover-letter.html">
-      Cover Letter
-    </a>
-
-    <button
-      id="themeToggle"
-      class="theme-toggle"
-      type="button"
+    <a
+      href="index.html"
+      class="logo"
     >
-      🌙
-    </button>
-
-  </nav>
-
-</header>
+      Elevora
+    </a>
 
 
-<main>
+    <nav class="nav-links">
 
-  <!-- HERO -->
+      <a
+        href="index.html"
+      >
+        Home
+      </a>
 
-  <section class="hero">
 
-    <div class="hero-content">
+      <a
+        href="personal.html"
+      >
+        Resume
+      </a>
 
-      <div class="hero-badge">
-        Professional Career Builder
+
+      <a
+        href="preview.html"
+      >
+        Preview
+      </a>
+
+
+      <a
+        href="cover-letter.html"
+      >
+        Cover Letter
+      </a>
+
+
+      <button
+        id="themeToggle"
+        class="theme-toggle"
+        type="button"
+        aria-label="Switch theme"
+        title="Switch theme"
+      >
+        🌙
+      </button>
+
+    </nav>
+
+  </header>
+
+
+
+  <!-- =======================================
+       HERO
+       ======================================= -->
+
+  <main>
+
+
+    <section class="hero">
+
+
+      <!-- BACKGROUND -->
+
+      <div
+        class="hero-background"
+        aria-hidden="true"
+      >
+
+        <div
+          class="glow glow-one"
+        ></div>
+
+        <div
+          class="glow glow-two"
+        ></div>
+
+        <div
+          class="glow glow-three"
+        ></div>
+
+
+        <div
+          class="hero-grid"
+        ></div>
+
+
+        <!-- RESUME CARD -->
+
+        <div
+          class="floating-card resume-float"
+        >
+
+          <div class="mini-icon">
+            📄
+          </div>
+
+          <div>
+
+            <strong>
+              Resume
+            </strong>
+
+            <span>
+              Professional & Ready
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- COVER LETTER CARD -->
+
+        <div
+          class="floating-card letter-float"
+        >
+
+          <div class="mini-icon">
+            ✉️
+          </div>
+
+          <div>
+
+            <strong>
+              Cover Letter
+            </strong>
+
+            <span>
+              Personalized for you
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- CAREER CARD -->
+
+        <div
+          class="floating-card skill-float"
+        >
+
+          <div class="mini-icon">
+            ✓
+          </div>
+
+          <div>
+
+            <strong>
+              Career Ready
+            </strong>
+
+            <span>
+              Stand out from the crowd
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- FLOATING DOTS -->
+
+        <div
+          class="floating-dot dot-one"
+        ></div>
+
+        <div
+          class="floating-dot dot-two"
+        ></div>
+
+        <div
+          class="floating-dot dot-three"
+        ></div>
+
       </div>
 
-      <h1>
-        Build a Resume That
-        <span>Gets Noticed.</span>
-      </h1>
+
+
+      <!-- HERO CONTENT -->
+
+      <div class="hero-content">
+
+
+        <div class="hero-badge">
+
+          Professional Career Builder
+
+        </div>
+
+
+        <h1>
+
+          Build a Resume That
+
+          <span>
+            Gets Noticed.
+          </span>
+
+        </h1>
+
+
+        <p class="hero-description">
+
+          Create a professional resume and
+          cover letter with modern templates,
+          simple editing, and powerful
+          career-focused tools.
+
+        </p>
+
+
+        <!-- MAIN ACTIONS -->
+
+        <div class="hero-buttons">
+
+
+          <a
+            href="personal.html"
+            class="btn primary"
+          >
+            Build My Resume
+          </a>
+
+
+          <a
+            href="cover-letter.html"
+            class="btn secondary"
+          >
+            Build a Cover Letter
+          </a>
+
+
+        </div>
+
+
+        <!-- STATS -->
+
+        <div class="hero-stats">
+
+
+          <div class="hero-stat">
+
+            <strong>
+              10+
+            </strong>
+
+            <span>
+              Resume Templates
+            </span>
+
+          </div>
+
+
+          <div class="hero-stat">
+
+            <strong>
+              PDF
+            </strong>
+
+            <span>
+              Download Ready
+            </span>
+
+          </div>
+
+
+          <div class="hero-stat">
+
+            <strong>
+              Word
+            </strong>
+
+            <span>
+              Export Supported
+            </span>
+
+          </div>
+
+
+          <div class="hero-stat">
+
+            <strong>
+              Free
+            </strong>
+
+            <span>
+              Easy to Start
+            </span>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================
+         FEATURES
+         ======================================= -->
+
+    <section class="home-section">
+
+
+      <div class="section-heading">
+
+        <div class="section-label">
+          Why Elevora
+        </div>
+
+        <h2>
+          Everything you need to
+          build your career profile.
+        </h2>
+
+        <p>
+          Create polished career documents
+          without struggling with complicated
+          formatting or design tools.
+        </p>
+
+      </div>
+
+
+      <div class="feature-grid">
+
+
+        <!-- FEATURE 1 -->
+
+        <article class="feature-card">
+
+          <div class="feature-icon">
+            🎨
+          </div>
+
+          <h3>
+            Professional Templates
+          </h3>
+
+          <p>
+            Choose from modern, classic,
+            executive, minimal, technical,
+            academic and ATS-friendly
+            resume designs.
+          </p>
+
+        </article>
+
+
+        <!-- FEATURE 2 -->
+
+        <article class="feature-card">
+
+          <div class="feature-icon">
+            ⚡
+          </div>
+
+          <h3>
+            Fast Resume Builder
+          </h3>
+
+          <p>
+            Enter your information step by
+            step and keep your resume data
+            saved while you build.
+          </p>
+
+        </article>
+
+
+        <!-- FEATURE 3 -->
+
+        <article class="feature-card">
+
+          <div class="feature-icon">
+            📄
+          </div>
+
+          <h3>
+            PDF & Word
+          </h3>
+
+          <p>
+            Download your finished resume
+            for applications, emails,
+            interviews and professional
+            profiles.
+          </p>
+
+        </article>
+
+
+        <!-- FEATURE 4 -->
+
+        <article class="feature-card">
+
+          <div class="feature-icon">
+            ✉️
+          </div>
+
+          <h3>
+            Cover Letters
+          </h3>
+
+          <p>
+            Create a separate professional
+            cover letter tailored to the
+            company and position you are
+            applying for.
+          </p>
+
+        </article>
+
+
+        <!-- FEATURE 5 -->
+
+        <article class="feature-card">
+
+          <div class="feature-icon">
+            📱
+          </div>
+
+          <h3>
+            Mobile Friendly
+          </h3>
+
+          <p>
+            Build and review your career
+            documents comfortably on
+            desktop, tablet or mobile.
+          </p>
+
+        </article>
+
+
+        <!-- FEATURE 6 -->
+
+        <article class="feature-card">
+
+          <div class="feature-icon">
+            🌙
+          </div>
+
+          <h3>
+            Light & Dark Mode
+          </h3>
+
+          <p>
+            Switch between light and dark
+            themes while keeping your
+            preference saved across pages.
+          </p>
+
+        </article>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================
+         HOW IT WORKS
+         ======================================= -->
+
+    <section class="steps-section">
+
+
+      <div class="home-section">
+
+
+        <div class="section-heading">
+
+          <div class="section-label">
+            Simple Process
+          </div>
+
+          <h2>
+            Build your resume in four steps.
+          </h2>
+
+          <p>
+            No complicated software.
+            Just enter your information,
+            choose your style and download.
+          </p>
+
+        </div>
+
+
+        <div class="steps-grid">
+
+
+          <!-- STEP 1 -->
+
+          <div class="step">
+
+            <div class="step-number">
+              1
+            </div>
+
+            <h3>
+              Enter Your Details
+            </h3>
+
+            <p>
+              Add your personal information,
+              education, experience and
+              professional details.
+            </p>
+
+          </div>
+
+
+          <!-- STEP 2 -->
+
+          <div class="step">
+
+            <div class="step-number">
+              2
+            </div>
+
+            <h3>
+              Add Your Skills
+            </h3>
+
+            <p>
+              Highlight your technical skills,
+              projects, certifications,
+              languages and achievements.
+            </p>
+
+          </div>
+
+
+          <!-- STEP 3 -->
+
+          <div class="step">
+
+            <div class="step-number">
+              3
+            </div>
+
+            <h3>
+              Choose a Template
+            </h3>
+
+            <p>
+              Select the resume design that
+              best matches your career and
+              professional style.
+            </p>
+
+          </div>
+
+
+          <!-- STEP 4 -->
+
+          <div class="step">
+
+            <div class="step-number">
+              4
+            </div>
+
+            <h3>
+              Download & Apply
+            </h3>
+
+            <p>
+              Preview your resume and
+              download it for your next
+              opportunity.
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================
+         COVER LETTER SECTION
+         ======================================= -->
+
+    <section class="home-section cover-letter-section">
+
+
+      <div class="cover-letter-card">
+
+
+        <div class="cover-letter-content">
+
+          <div class="section-label">
+            Cover Letter Builder
+          </div>
+
+          <h2>
+            Make your application
+            more personal.
+          </h2>
+
+          <p>
+            A strong resume gets attention.
+            A personalized cover letter
+            tells employers why you are
+            the right person for the role.
+            Create yours separately with
+            Elevora.
+          </p>
+
+        </div>
+
+
+        <div class="cover-letter-action">
+
+          <a
+            href="cover-letter.html"
+            class="btn"
+          >
+            Create Cover Letter →
+          </a>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================
+         FINAL CTA
+         ======================================= -->
+
+    <section class="home-section final-cta">
+
+
+      <div class="section-label">
+        Your Next Opportunity Starts Here
+      </div>
+
+
+      <h2>
+        Ready to build your
+        professional profile?
+      </h2>
+
 
       <p>
-        Create a professional resume and cover letter
-        with modern templates, easy editing, and
-        downloadable PDF and Word files.
+        Start creating your resume today
+        and take the next step toward
+        your career goals.
       </p>
+
 
       <div class="hero-buttons">
 
@@ -86,256 +2081,88 @@
           href="personal.html"
           class="btn primary"
         >
-          Build My Resume
+          Start Building My Resume
+        </a>
+
+
+        <a
+          href="preview.html"
+          class="btn secondary"
+        >
+          View Resume Preview
+        </a>
+
+      </div>
+
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- =======================================
+       FOOTER
+       ======================================= -->
+
+  <footer class="footer">
+
+    <div class="footer-content">
+
+      <div>
+
+        <strong>
+          Elevora
+        </strong>
+
+        <p>
+          Build better. Apply smarter.
+        </p>
+
+      </div>
+
+
+      <div class="footer-links">
+
+        <a
+          href="index.html"
+        >
+          Home
+        </a>
+
+        <a
+          href="personal.html"
+        >
+          Resume
+        </a>
+
+        <a
+          href="preview.html"
+        >
+          Preview
         </a>
 
         <a
           href="cover-letter.html"
-          class="btn secondary"
         >
-          Build a Cover Letter
+          Cover Letter
         </a>
 
       </div>
 
     </div>
 
-  </section>
 
+    <div class="footer-bottom">
 
-  <!-- FEATURES -->
-
-  <section class="features-section">
-
-    <div class="section-heading">
-
-      <h2>
-        Everything You Need
-      </h2>
-
-      <p>
-        Create professional career documents
-        without complicated software.
-      </p>
+      © 2026 Elevora.
+      All rights reserved.
 
     </div>
 
+  </footer>
 
-    <div class="feature-grid">
-
-      <div class="feature-card">
-
-        <div class="feature-icon">
-          📄
-        </div>
-
-        <h3>
-          Professional Resumes
-        </h3>
-
-        <p>
-          Build a complete resume with personal
-          information, education, experience,
-          projects, skills, certifications,
-          languages, and achievements.
-        </p>
-
-        <a href="personal.html">
-          Create Resume →
-        </a>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="feature-icon">
-          ✉️
-        </div>
-
-        <h3>
-          Cover Letters
-        </h3>
-
-        <p>
-          Create a customized cover letter for
-          a company, position, industry, and
-          job description.
-        </p>
-
-        <a href="cover-letter.html">
-          Create Cover Letter →
-        </a>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="feature-icon">
-          🎨
-        </div>
-
-        <h3>
-          10 Professional Templates
-        </h3>
-
-        <p>
-          Choose from modern, classic, executive,
-          minimal, sidebar, ATS-friendly, academic,
-          tech, and other professional styles.
-        </p>
-
-        <a href="preview.html">
-          View Templates →
-        </a>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="feature-icon">
-          📥
-        </div>
-
-        <h3>
-          Download Anywhere
-        </h3>
-
-        <p>
-          Download your completed resume as a
-          PDF or Word document, or print it
-          directly from your browser.
-        </p>
-
-        <a href="preview.html">
-          Open Preview →
-        </a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- HOW IT WORKS -->
-
-  <section class="steps-section">
-
-    <div class="section-heading">
-
-      <h2>
-        How Elevora Works
-      </h2>
-
-    </div>
-
-
-    <div class="steps-grid">
-
-      <div class="step-card">
-
-        <span>
-          01
-        </span>
-
-        <h3>
-          Enter Your Details
-        </h3>
-
-        <p>
-          Add your personal information,
-          education, experience, projects,
-          and skills.
-        </p>
-
-      </div>
-
-
-      <div class="step-card">
-
-        <span>
-          02
-        </span>
-
-        <h3>
-          Choose a Template
-        </h3>
-
-        <p>
-          Select a professional resume
-          design that matches your career.
-        </p>
-
-      </div>
-
-
-      <div class="step-card">
-
-        <span>
-          03
-        </span>
-
-        <h3>
-          Download
-        </h3>
-
-        <p>
-          Download your resume as PDF or
-          Word, or print it directly.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- COVER LETTER CTA -->
-
-  <section class="cover-letter-cta">
-
-    <div>
-
-      <div class="hero-badge">
-        New
-      </div>
-
-      <h2>
-        Need a Cover Letter Too?
-      </h2>
-
-      <p>
-        Create a professional cover letter
-        separately from your resume.
-        Add the company, position, industry,
-        and job description.
-      </p>
-
-    </div>
-
-    <a
-      href="cover-letter.html"
-      class="btn primary"
-    >
-      Build Cover Letter
-    </a>
-
-  </section>
-
-</main>
-
-
-<footer>
-
-  <p>
-    © 2026 Elevora. Build your career with confidence.
-  </p>
-
-</footer>
 
 </body>
 
