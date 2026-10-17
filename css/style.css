@@ -1208,3 +1208,123 @@ img {
   }
 
 }
+.entry-list {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.entry-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.entry-card h3 {
+  margin: 0 0 5px;
+}
+
+.entry-meta {
+  color: var(--muted);
+}
+
+.entry-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.empty {
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  color: var(--muted);
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-box {
+  width: min(600px, 100%);
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: var(--shadow);
+}
+
+.modal-box h2 {
+  margin-top: 0;
+}
+
+.resume-paper {
+  width: min(850px, 100%);
+  margin: 25px auto 60px;
+  background: #ffffff;
+  color: #111111;
+  padding: 48px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.18);
+}
+
+.resume-paper h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.resume-paper h2 {
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 5px;
+  margin-top: 26px;
+}
+
+.resume-paper h3 {
+  margin: 12px 0 3px;
+}
+
+.resume-paper p {
+  margin: 5px 0;
+}
+
+.contact {
+  color: #444;
+  margin-bottom: 15px;
+}
+
+@media print {
+
+  body {
+    background: white !important;
+  }
+
+  .no-print,
+  .navbar,
+  footer {
+    display: none !important;
+  }
+
+  .resume-paper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+
+}
