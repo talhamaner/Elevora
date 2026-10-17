@@ -1328,3 +1328,240 @@ img {
   }
 
 }
+/* =========================================
+   ELEVORA HOME PAGE
+   ========================================= */
+
+.hero {
+  min-height: 620px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 850px;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, .10);
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 7vw, 76px);
+  line-height: 1.05;
+  margin: 0 auto 22px;
+  letter-spacing: -2px;
+}
+
+.hero h1 span {
+  color: #2563eb;
+}
+
+.hero p {
+  max-width: 680px;
+  margin: 0 auto 30px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hero-buttons .btn {
+  min-width: 180px;
+  text-decoration: none;
+}
+
+
+/* =========================================
+   FEATURES
+   ========================================= */
+
+.features-section,
+.steps-section {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 80px 20px;
+}
+
+.section-heading {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 40px;
+}
+
+.section-heading h2 {
+  font-size: 38px;
+  margin-bottom: 10px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.feature-card {
+  padding: 25px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  transition: .2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+}
+
+.feature-icon {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.feature-card h3 {
+  margin: 0 0 10px;
+}
+
+.feature-card p {
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.feature-card a {
+  color: #2563eb;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+
+/* =========================================
+   STEPS
+   ========================================= */
+
+.steps-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.step-card {
+  padding: 30px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface);
+}
+
+.step-card span {
+  font-size: 14px;
+  font-weight: 800;
+  color: #2563eb;
+}
+
+.step-card h3 {
+  margin: 12px 0 8px;
+}
+
+.step-card p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   COVER LETTER CTA
+   ========================================= */
+
+.cover-letter-cta {
+  max-width: 1100px;
+  margin: 40px auto 80px;
+  padding: 45px;
+  border-radius: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+.cover-letter-cta h2 {
+  font-size: 34px;
+  margin: 5px 0 10px;
+}
+
+.cover-letter-cta p {
+  max-width: 650px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 900px) {
+
+  .feature-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+@media (max-width: 700px) {
+
+  .hero {
+    min-height: auto;
+    padding: 70px 20px;
+  }
+
+  .hero h1 {
+    font-size: 45px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .feature-grid,
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cover-letter-cta {
+    margin: 30px 20px 60px;
+    padding: 30px;
+    display: block;
+  }
+
+  .cover-letter-cta .btn {
+    display: inline-flex;
+    margin-top: 15px;
+  }
+
+}
