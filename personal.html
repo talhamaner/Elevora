@@ -1,465 +1,28 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<title>Personal Information - Resume Builder</title>
+    <title>
+        Personal Information - Resume Builder
+    </title>
 
-<style>
 
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
 
-html,
-body{
-    font-family:Arial, Helvetica, sans-serif;
-}
 
-body{
-    background:#f5f7fb;
-    color:#172033;
-    min-height:100vh;
-}
-
-/* =========================
-   NAVBAR
-========================= */
-
-.navbar{
-    width:100%;
-    background:#ffffff;
-    border-bottom:1px solid #e5e7eb;
-    padding:18px 7%;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    position:sticky;
-    top:0;
-    z-index:1000;
-}
-
-.logo{
-    font-size:22px;
-    font-weight:800;
-    color:#172033;
-}
-
-.navbar nav{
-    display:flex;
-    gap:28px;
-}
-
-.navbar nav a{
-    color:#172033;
-    text-decoration:none;
-    font-weight:600;
-    font-size:15px;
-}
-
-.navbar nav a:hover{
-    color:#4361ee;
-}
-
-/* =========================
-   PAGE
-========================= */
-
-.page{
-    width:100%;
-    max-width:1050px;
-    margin:auto;
-    padding:45px 20px 70px;
-}
-
-.header{
-    text-align:center;
-    margin-bottom:30px;
-}
-
-.badge{
-    display:inline-block;
-    background:#e8edff;
-    color:#4361ee;
-    padding:8px 16px;
-    border-radius:50px;
-    font-size:13px;
-    font-weight:700;
-}
-
-.header h1{
-    margin:17px 0 9px;
-    font-size:40px;
-    font-weight:800;
-}
-
-.header p{
-    color:#64748b;
-    font-size:15px;
-}
-
-.required{
-    color:#e63946;
-}
-
-/* =========================
-   CARD
-========================= */
-
-.card{
-    background:#ffffff;
-    border:1px solid #e5e7eb;
-    border-radius:18px;
-    padding:35px;
-    box-shadow:0 10px 35px rgba(15,23,42,.06);
-}
-
-.card h2{
-    font-size:24px;
-    margin-bottom:28px;
-}
-
-/* =========================
-   FORM
-========================= */
-
-.form-grid{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:22px;
-}
-
-.form-group{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-    min-width:0;
-}
-
-.full{
-    grid-column:1 / -1;
-}
-
-label{
-    font-size:15px;
-    font-weight:700;
-    color:#172033;
-}
-
-input,
-textarea{
-    width:100%;
-    height:48px;
-    border:1px solid #d5dbe5;
-    border-radius:9px;
-    background:#ffffff;
-    color:#172033;
-    padding:0 14px;
-    font-size:15px;
-    font-family:Arial, Helvetica, sans-serif;
-    outline:none;
-}
-
-input:focus,
-textarea:focus{
-    border-color:#4361ee;
-    box-shadow:0 0 0 3px rgba(67,97,238,.12);
-}
-
-input::placeholder{
-    color:#94a3b8;
-}
-
-/* =========================
-   PHONE
-========================= */
-
-.phone-row{
-    display:grid;
-    grid-template-columns:210px 1fr;
-    gap:10px;
-}
-
-.phone-number{
-    width:100%;
-}
-
-.phone-prefix{
-    display:flex;
-    align-items:center;
-    gap:8px;
-}
-
-.flag{
-    font-size:22px;
-    flex-shrink:0;
-}
-
-/* =========================
-   SEARCHABLE SELECT
-========================= */
-
-.search-select{
-    position:relative;
-    width:100%;
-}
-
-.search-select-input{
-    width:100%;
-    height:48px;
-    padding:0 42px 0 14px;
-    border:1px solid #d5dbe5;
-    border-radius:9px;
-    background:#ffffff;
-    color:#172033;
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:15px;
-    outline:none;
-    cursor:text;
-}
-
-.search-select-input:focus{
-    border-color:#4361ee;
-    box-shadow:0 0 0 3px rgba(67,97,238,.12);
-}
-
-.search-select-input:disabled{
-    background:#f1f3f7;
-    color:#8b95a7;
-    cursor:not-allowed;
-}
-
-.search-arrow{
-    position:absolute;
-    right:15px;
-    top:50%;
-    transform:translateY(-50%);
-    font-size:13px;
-    color:#64748b;
-    pointer-events:none;
-}
-
-.search-options{
-    display:none;
-    position:absolute;
-    top:calc(100% + 5px);
-    left:0;
-    width:100%;
-    max-height:270px;
-    overflow-y:auto;
-    background:#ffffff;
-    border:1px solid #d5dbe5;
-    border-radius:9px;
-    box-shadow:0 12px 30px rgba(15,23,42,.15);
-    z-index:5000;
-}
-
-.search-options.open{
-    display:block;
-}
-
-.search-option{
-    padding:12px 14px;
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:15px;
-    color:#172033;
-    cursor:pointer;
-    transition:.12s;
-    display:flex;
-    align-items:center;
-    gap:9px;
-}
-
-.search-option:hover{
-    background:#eef2ff;
-    color:#3048c8;
-}
-
-.search-option.selected{
-    background:#e8edff;
-    color:#3048c8;
-    font-weight:700;
-}
-
-.search-empty{
-    padding:13px 14px;
-    color:#64748b;
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:14px;
-}
-
-.search-disabled{
-    background:#f1f3f7;
-    color:#8b95a7;
-    cursor:not-allowed;
-}
-
-/* =========================
-   LOCATION STATUS
-========================= */
-
-.location-status{
-    display:none;
-    padding:10px 13px;
-    border-radius:8px;
-    font-size:13px;
-    color:#1d4ed8;
-    background:#eff6ff;
-    border:1px solid #bfdbfe;
-}
-
-.location-status.error{
-    color:#b91c1c;
-    background:#fef2f2;
-    border-color:#fecaca;
-}
-
-/* =========================
-   MANUAL LOCATION
-========================= */
-
-.manual-location{
-    display:none;
-    padding:18px;
-    background:#f8fafc;
-    border:1px dashed #cbd5e1;
-    border-radius:10px;
-}
-
-.manual-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-}
-
-/* =========================
-   ERROR
-========================= */
-
-.error-message{
-    display:none;
-    margin-bottom:20px;
-    padding:14px 16px;
-    background:#fef2f2;
-    border:1px solid #fecaca;
-    border-radius:9px;
-    color:#b91c1c;
-    font-size:14px;
-}
-
-/* =========================
-   BUTTONS
-========================= */
-
-.actions{
-    display:flex;
-    justify-content:space-between;
-    gap:15px;
-    margin-top:25px;
-}
-
-.btn{
-    min-height:48px;
-    padding:12px 25px;
-    border-radius:10px;
-    font-size:15px;
-    font-weight:700;
-    cursor:pointer;
-    text-decoration:none;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    font-family:Arial, Helvetica, sans-serif;
-}
-
-.back{
-    color:#172033;
-    background:#ffffff;
-    border:1px solid #d5dbe5;
-}
-
-.next{
-    color:#ffffff;
-    background:#4361ee;
-    border:none;
-}
-
-.next:hover{
-    background:#3048c8;
-}
-
-.next:disabled{
-    opacity:.7;
-    cursor:not-allowed;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:700px){
-
-    .navbar{
-        padding:15px 5%;
-    }
-
-    .navbar nav{
-        gap:13px;
-    }
-
-    .navbar nav a{
-        font-size:13px;
-    }
-
-    .page{
-        padding:30px 13px 50px;
-    }
-
-    .header h1{
-        font-size:30px;
-    }
-
-    .card{
-        padding:22px 17px;
-    }
-
-    .form-grid{
-        grid-template-columns:1fr;
-    }
-
-    .full{
-        grid-column:auto;
-    }
-
-    .phone-row{
-        grid-template-columns:1fr;
-    }
-
-    .manual-grid{
-        grid-template-columns:1fr;
-    }
-
-    .actions{
-        flex-direction:column-reverse;
-    }
-
-    .btn{
-        width:100%;
-    }
-
-    .search-options{
-        max-height:240px;
-    }
-
-}
-
-</style>
+    <script src="theme.js"></script>
 
 </head>
 
@@ -467,1967 +30,1070 @@ input::placeholder{
 <body>
 
 
-<header class="navbar">
+<!-- ================= NAVBAR ================= -->
 
-    <div class="logo">
-        Resume Builder
+<nav class="navbar">
+
+    <div class="nav-inner">
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            Resume Builder
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="personal.html">
+                Resume
+            </a>
+
+            <a href="preview.html">
+                Preview
+            </a>
+
+
+            <button
+                id="themeToggle"
+                class="theme-toggle"
+                type="button"
+            >
+                🌙
+            </button>
+
+        </div>
+
     </div>
 
-    <nav>
+</nav>
 
-        <a href="index.html">
-            Home
+
+
+<!-- ================= BUILDER ================= -->
+
+<main class="builder-page">
+
+
+    <div class="builder-header">
+
+        <span class="badge">
+            Step 1 of 10
+        </span>
+
+
+        <h1>
+            Personal Information
+        </h1>
+
+
+        <p>
+            Tell us how employers can contact you.
+        </p>
+
+    </div>
+
+
+
+    <!-- STEP BAR -->
+
+    <div class="stepbar">
+
+        <a
+            class="step active"
+            href="personal.html"
+        >
+            1<br>
+            Personal
         </a>
 
-        <a href="personal.html">
-            Resume
+
+        <a
+            class="step"
+            href="summary.html"
+        >
+            2<br>
+            Summary
         </a>
 
-        <a href="preview.html">
-            Preview
-        </a>
 
-    </nav>
+        <div class="step">
+            3<br>
+            Education
+        </div>
 
-</header>
 
+        <div class="step">
+            4<br>
+            Experience
+        </div>
 
 
-<main class="page">
+        <div class="step">
+            5<br>
+            Projects
+        </div>
 
 
-<section class="header">
+        <div class="step">
+            6<br>
+            Skills
+        </div>
 
-    <span class="badge">
-        Step 1 of 10
-    </span>
 
-    <h1>
-        Personal Information
-    </h1>
+        <div class="step">
+            7<br>
+            Certifications
+        </div>
 
-    <p>
-        Enter your personal and contact information.
-    </p>
 
-</section>
+        <div class="step">
+            8<br>
+            Languages
+        </div>
 
 
+        <div class="step">
+            9<br>
+            Achievements
+        </div>
 
-<form id="personalForm" novalidate>
 
+        <div class="step">
+            10<br>
+            Cover Letter
+        </div>
 
-<div
-    id="errorMessage"
-    class="error-message">
-</div>
+    </div>
 
 
 
-<section class="card">
+    <!-- FORM -->
 
+    <div class="form-card">
 
-<h2>
-    Basic Information
-</h2>
+        <form id="personalForm">
 
 
+            <div class="form-grid">
 
-<div class="form-grid">
 
+                <!-- FIRST NAME -->
 
-<!-- FIRST NAME -->
+                <div class="form-group">
 
-<div class="form-group">
+                    <label>
+                        First Name
+                        <span class="required">*</span>
+                    </label>
 
-<label>
-    First Name
-    <span class="required">*</span>
-</label>
+                    <input
+                        id="firstName"
+                        type="text"
+                        required
+                    >
 
-<input
-    type="text"
-    id="firstName"
-    placeholder="Enter your first name"
-    required
->
+                </div>
 
-</div>
 
 
+                <!-- LAST NAME -->
 
-<!-- LAST NAME -->
+                <div class="form-group">
 
-<div class="form-group">
+                    <label>
+                        Last Name
+                        <span class="required">*</span>
+                    </label>
 
-<label>
-    Last Name
-    <span class="required">*</span>
-</label>
+                    <input
+                        id="lastName"
+                        type="text"
+                        required
+                    >
 
-<input
-    type="text"
-    id="lastName"
-    placeholder="Enter your last name"
-    required
->
+                </div>
 
-</div>
 
 
+                <!-- EMAIL -->
 
-<!-- EMAIL -->
+                <div class="form-group">
 
-<div class="form-group">
+                    <label>
+                        Email
+                        <span class="required">*</span>
+                    </label>
 
-<label>
-    Email
-    <span class="required">*</span>
-</label>
+                    <input
+                        id="email"
+                        type="email"
+                        placeholder="example@email.com"
+                        required
+                    >
 
-<input
-    type="email"
-    id="email"
-    placeholder="you@example.com"
-    required
->
+                </div>
 
-</div>
 
 
+                <!-- PHONE CODE -->
 
-<!-- PHONE -->
+                <div class="form-group">
 
-<div class="form-group">
+                    <label>
+                        Mobile Number
+                        <span class="required">*</span>
+                    </label>
 
-<label>
-    Mobile Number
-    <span class="required">*</span>
-</label>
 
+                    <div
+                        style="
+                            display:grid;
+                            grid-template-columns:180px 1fr;
+                            gap:10px;
+                        "
+                    >
 
-<div class="phone-row">
 
+                        <div
+                            class="search-select"
+                            style="position:relative"
+                        >
 
-<div class="phone-prefix">
+                            <input
+                                id="phoneCode"
+                                type="text"
+                                placeholder="Country code"
+                                autocomplete="off"
+                                required
+                            >
 
-<span
-    id="phoneFlag"
-    class="flag">
-    🇮🇳
-</span>
+                            <div
+                                id="phoneOptions"
+                                class="search-options"
+                            ></div>
 
+                        </div>
 
-<div
-    class="search-select"
-    id="phoneCountryBox"
->
 
-<input
-    type="text"
-    id="phoneCountryInput"
-    class="search-select-input"
-    placeholder="Country code"
-    autocomplete="off"
->
+                        <input
+                            id="mobile"
+                            type="tel"
+                            placeholder="Mobile number"
+                            required
+                        >
 
-<span class="search-arrow">
-    ▼
-</span>
+                    </div>
 
-<div
-    id="phoneCountryOptions"
-    class="search-options">
-</div>
+                </div>
 
-</div>
 
-</div>
 
+                <!-- COUNTRY -->
 
-<input
-    type="tel"
-    id="mobileNumber"
-    class="phone-number"
-    placeholder="+91 Mobile number"
-    required
->
+                <div class="form-group">
 
+                    <label>
+                        Country
+                        <span class="required">*</span>
+                    </label>
 
-</div>
 
-</div>
+                    <div
+                        class="search-select"
+                        style="position:relative"
+                    >
 
+                        <input
+                            id="country"
+                            type="text"
+                            placeholder="Search country"
+                            autocomplete="off"
+                            required
+                        >
 
 
-<!-- COUNTRY -->
+                        <div
+                            id="countryOptions"
+                            class="search-options"
+                        ></div>
 
-<div class="form-group">
+                    </div>
 
-<label>
-    Country
-    <span class="required">*</span>
-</label>
+                </div>
 
 
-<div
-    class="search-select"
-    id="countryBox"
->
 
-<input
-    type="text"
-    id="countryInput"
-    class="search-select-input"
-    placeholder="Search country..."
-    autocomplete="off"
-    required
->
+                <!-- STATE -->
 
-<span class="search-arrow">
-    ▼
-</span>
+                <div class="form-group">
 
-<div
-    id="countryOptions"
-    class="search-options">
-</div>
+                    <label>
+                        State / Province / Region
+                    </label>
 
-</div>
 
-</div>
+                    <select id="state">
 
+                        <option value="">
+                            Select state / region
+                        </option>
 
+                    </select>
 
-<!-- STATE -->
+                </div>
 
-<div class="form-group">
 
-<label>
-    State / Province / Region
-    <span class="required">*</span>
-</label>
 
+                <!-- CITY -->
 
-<div
-    class="search-select"
-    id="stateBox"
->
+                <div class="form-group">
 
-<input
-    type="text"
-    id="stateInput"
-    class="search-select-input search-disabled"
-    placeholder="Select country first"
-    autocomplete="off"
-    disabled
->
+                    <label>
+                        District / City / Town
+                    </label>
 
-<span class="search-arrow">
-    ▼
-</span>
 
-<div
-    id="stateOptions"
-    class="search-options">
-</div>
+                    <select id="city">
 
-</div>
+                        <option value="">
+                            Select city / town
+                        </option>
 
-</div>
+                    </select>
 
+                </div>
 
 
-<!-- DISTRICT CITY -->
 
-<div class="form-group">
+                <!-- POSTAL -->
 
-<label>
-    District / City / Town
-    <span class="required">*</span>
-</label>
+                <div class="form-group">
 
+                    <label>
+                        Postal Code
+                    </label>
 
-<div
-    class="search-select"
-    id="districtBox"
->
+                    <input
+                        id="postalCode"
+                        type="text"
+                    >
 
-<input
-    type="text"
-    id="districtInput"
-    class="search-select-input search-disabled"
-    placeholder="Select state first"
-    autocomplete="off"
-    disabled
->
+                </div>
 
-<span class="search-arrow">
-    ▼
-</span>
 
-<div
-    id="districtOptions"
-    class="search-options">
-</div>
 
-</div>
+                <!-- PROFESSIONAL TITLE -->
 
-</div>
+                <div class="form-group">
 
+                    <label>
+                        Professional Title
+                        <span class="required">*</span>
+                    </label>
 
+                    <input
+                        id="professionalTitle"
+                        type="text"
+                        placeholder="e.g. Software Developer"
+                        required
+                    >
 
-<!-- POSTAL -->
+                </div>
 
-<div class="form-group">
 
-<label>
-    PIN / ZIP / Postal Code
-    <span class="required">*</span>
-</label>
 
-<input
-    type="text"
-    id="postalCode"
-    placeholder="PIN / ZIP / Postal code"
-    required
->
+                <!-- LINKEDIN -->
 
-</div>
+                <div class="form-group">
 
+                    <label>
+                        LinkedIn
+                    </label>
 
+                    <input
+                        id="linkedin"
+                        type="url"
+                        placeholder="https://linkedin.com/in/..."
+                    >
 
-<!-- STATUS -->
+                </div>
 
-<div class="form-group full">
 
-<div
-    id="locationStatus"
-    class="location-status">
-</div>
 
-</div>
+                <!-- WEBSITE -->
 
+                <div class="form-group">
 
+                    <label>
+                        Website / Portfolio
+                    </label>
 
-<!-- MANUAL -->
+                    <input
+                        id="website"
+                        type="url"
+                        placeholder="https://..."
+                    >
 
-<div
-    id="manualLocation"
-    class="manual-location full"
->
+                </div>
 
-<div class="manual-grid">
 
+            </div>
 
-<div class="form-group">
 
-<label>
-    State / Province / Region
-</label>
 
-<input
-    type="text"
-    id="manualState"
-    placeholder="Enter state / province / region"
->
+            <!-- ACTIONS -->
 
-</div>
+            <div class="form-actions">
 
+                <a
+                    href="index.html"
+                    class="btn btn-secondary"
+                >
+                    ← Back
+                </a>
 
 
-<div class="form-group">
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Save & Continue →
+                </button>
 
-<label>
-    District / City / Town
-</label>
+            </div>
 
-<input
-    type="text"
-    id="manualCity"
-    placeholder="Enter district / city / town"
->
 
-</div>
+        </form>
 
-
-</div>
-
-</div>
-
-
-
-<!-- PROFESSIONAL TITLE -->
-
-<div class="form-group full">
-
-<label>
-    Professional Title
-    <span class="required">*</span>
-</label>
-
-<input
-    type="text"
-    id="professionalTitle"
-    placeholder="e.g. Software Developer"
-    required
->
-
-</div>
-
-
-
-<!-- LINKEDIN -->
-
-<div class="form-group full">
-
-<label>
-    LinkedIn Profile
-</label>
-
-<input
-    type="url"
-    id="linkedin"
-    placeholder="https://linkedin.com/in/your-profile"
->
-
-</div>
-
-
-
-<!-- WEBSITE -->
-
-<div class="form-group full">
-
-<label>
-    Portfolio / Website
-</label>
-
-<input
-    type="url"
-    id="website"
-    placeholder="https://yourwebsite.com"
->
-
-</div>
-
-
-</div>
-
-</section>
-
-
-
-<div class="actions">
-
-<a
-    href="index.html"
-    class="btn back"
->
-    ← Back
-</a>
-
-
-<button
-    type="submit"
-    class="btn next"
-    id="continueButton"
->
-    Save & Continue →
-</button>
-
-</div>
-
-
-</form>
+    </div>
 
 </main>
 
 
 
+<script src="js/app.js"></script>
+
+
 <script>
 
-
-/* =========================================================
-   INTERNATIONAL COUNTRY DATABASE
-========================================================= */
+/* =====================================================
+   COUNTRY DATA
+===================================================== */
 
 const countries = [
 
-["AF","Afghanistan","🇦🇫","+93"],
-["AL","Albania","🇦🇱","+355"],
-["DZ","Algeria","🇩🇿","+213"],
-["AD","Andorra","🇦🇩","+376"],
-["AO","Angola","🇦🇴","+244"],
-["AG","Antigua and Barbuda","🇦🇬","+1"],
-["AR","Argentina","🇦🇷","+54"],
-["AM","Armenia","🇦🇲","+374"],
-["AU","Australia","🇦🇺","+61"],
-["AT","Austria","🇦🇹","+43"],
-["AZ","Azerbaijan","🇦🇿","+994"],
-
-["BS","Bahamas","🇧🇸","+1"],
-["BH","Bahrain","🇧🇭","+973"],
-["BD","Bangladesh","🇧🇩","+880"],
-["BB","Barbados","🇧🇧","+1"],
-["BY","Belarus","🇧🇾","+375"],
-["BE","Belgium","🇧🇪","+32"],
-["BZ","Belize","🇧🇿","+501"],
-["BJ","Benin","🇧🇯","+229"],
-["BT","Bhutan","🇧🇹","+975"],
-["BO","Bolivia","🇧🇴","+591"],
-["BA","Bosnia and Herzegovina","🇧🇦","+387"],
-["BW","Botswana","🇧🇼","+267"],
-["BR","Brazil","🇧🇷","+55"],
-["BN","Brunei","🇧🇳","+673"],
-["BG","Bulgaria","🇧🇬","+359"],
-["BF","Burkina Faso","🇧🇫","+226"],
-["BI","Burundi","🇧🇮","+257"],
-
-["CV","Cabo Verde","🇨🇻","+238"],
-["KH","Cambodia","🇰🇭","+855"],
-["CM","Cameroon","🇨🇲","+237"],
-["CA","Canada","🇨🇦","+1"],
-["CF","Central African Republic","🇨🇫","+236"],
-["TD","Chad","🇹🇩","+235"],
-["CL","Chile","🇨🇱","+56"],
-["CN","China","🇨🇳","+86"],
-["CO","Colombia","🇨🇴","+57"],
-["KM","Comoros","🇰🇲","+269"],
-["CG","Congo","🇨🇬","+242"],
-["CD","Democratic Republic of the Congo","🇨🇩","+243"],
-["CR","Costa Rica","🇨🇷","+506"],
-["CI","Côte d'Ivoire","🇨🇮","+225"],
-["HR","Croatia","🇭🇷","+385"],
-["CU","Cuba","🇨🇺","+53"],
-["CY","Cyprus","🇨🇾","+357"],
-["CZ","Czechia","🇨🇿","+420"],
-
-["DK","Denmark","🇩🇰","+45"],
-["DJ","Djibouti","🇩🇯","+253"],
-["DM","Dominica","🇩🇲","+1"],
-["DO","Dominican Republic","🇩🇴","+1"],
-
-["EC","Ecuador","🇪🇨","+593"],
-["EG","Egypt","🇪🇬","+20"],
-["SV","El Salvador","🇸🇻","+503"],
-["GQ","Equatorial Guinea","🇬🇶","+240"],
-["ER","Eritrea","🇪🇷","+291"],
-["EE","Estonia","🇪🇪","+372"],
-["SZ","Eswatini","🇸🇿","+268"],
-["ET","Ethiopia","🇪🇹","+251"],
-
-["FJ","Fiji","🇫🇯","+679"],
-["FI","Finland","🇫🇮","+358"],
-["FR","France","🇫🇷","+33"],
-
-["GA","Gabon","🇬🇦","+241"],
-["GM","Gambia","🇬🇲","+220"],
-["GE","Georgia","🇬🇪","+995"],
-["DE","Germany","🇩🇪","+49"],
-["GH","Ghana","🇬🇭","+233"],
-["GR","Greece","🇬🇷","+30"],
-["GD","Grenada","🇬🇩","+1"],
-["GT","Guatemala","🇬🇹","+502"],
-["GN","Guinea","🇬🇳","+224"],
-["GW","Guinea-Bissau","🇬🇼","+245"],
-["GY","Guyana","🇬🇾","+592"],
-
-["HT","Haiti","🇭🇹","+509"],
-["HN","Honduras","🇭🇳","+504"],
-["HU","Hungary","🇭🇺","+36"],
-
-["IS","Iceland","🇮🇸","+354"],
-["IN","India","🇮🇳","+91"],
-["ID","Indonesia","🇮🇩","+62"],
-["IR","Iran","🇮🇷","+98"],
-["IQ","Iraq","🇮🇶","+964"],
-["IE","Ireland","🇮🇪","+353"],
-["IL","Israel","🇮🇱","+972"],
-["IT","Italy","🇮🇹","+39"],
-
-["JM","Jamaica","🇯🇲","+1"],
-["JP","Japan","🇯🇵","+81"],
-["JO","Jordan","🇯🇴","+962"],
-
-["KZ","Kazakhstan","🇰🇿","+7"],
-["KE","Kenya","🇰🇪","+254"],
-["KI","Kiribati","🇰🇮","+686"],
-["KW","Kuwait","🇰🇼","+965"],
-["KG","Kyrgyzstan","🇰🇬","+996"],
-
-["LA","Laos","🇱🇦","+856"],
-["LV","Latvia","🇱🇻","+371"],
-["LB","Lebanon","🇱🇧","+961"],
-["LS","Lesotho","🇱🇸","+266"],
-["LR","Liberia","🇱🇷","+231"],
-["LY","Libya","🇱🇾","+218"],
-["LI","Liechtenstein","🇱🇮","+423"],
-["LT","Lithuania","🇱🇹","+370"],
-["LU","Luxembourg","🇱🇺","+352"],
-
-["MG","Madagascar","🇲🇬","+261"],
-["MW","Malawi","🇲🇼","+265"],
-["MY","Malaysia","🇲🇾","+60"],
-["MV","Maldives","🇲🇻","+960"],
-["ML","Mali","🇲🇱","+223"],
-["MT","Malta","🇲🇹","+356"],
-["MH","Marshall Islands","🇲🇭","+692"],
-["MR","Mauritania","🇲🇷","+222"],
-["MU","Mauritius","🇲🇺","+230"],
-["MX","Mexico","🇲🇽","+52"],
-["FM","Micronesia","🇫🇲","+691"],
-["MD","Moldova","🇲🇩","+373"],
-["MC","Monaco","🇲🇨","+377"],
-["MN","Mongolia","🇲🇳","+976"],
-["ME","Montenegro","🇲🇪","+382"],
-["MA","Morocco","🇲🇦","+212"],
-["MZ","Mozambique","🇲🇿","+258"],
-["MM","Myanmar","🇲🇲","+95"],
-
-["NA","Namibia","🇳🇦","+264"],
-["NR","Nauru","🇳🇷","+674"],
-["NP","Nepal","🇳🇵","+977"],
-["NL","Netherlands","🇳🇱","+31"],
-["NZ","New Zealand","🇳🇿","+64"],
-["NI","Nicaragua","🇳🇮","+505"],
-["NE","Niger","🇳🇪","+227"],
-["NG","Nigeria","🇳🇬","+234"],
-["KP","North Korea","🇰🇵","+850"],
-["MK","North Macedonia","🇲🇰","+389"],
-["NO","Norway","🇳🇴","+47"],
-
-["OM","Oman","🇴🇲","+968"],
-
-["PK","Pakistan","🇵🇰","+92"],
-["PW","Palau","🇵🇼","+680"],
-["PA","Panama","🇵🇦","+507"],
-["PG","Papua New Guinea","🇵🇬","+675"],
-["PY","Paraguay","🇵🇾","+595"],
-["PE","Peru","🇵🇪","+51"],
-["PH","Philippines","🇵🇭","+63"],
-["PL","Poland","🇵🇱","+48"],
-["PT","Portugal","🇵🇹","+351"],
-
-["QA","Qatar","🇶🇦","+974"],
-
-["RO","Romania","🇷🇴","+40"],
-["RU","Russia","🇷🇺","+7"],
-["RW","Rwanda","🇷🇼","+250"],
-
-["KN","Saint Kitts and Nevis","🇰🇳","+1"],
-["LC","Saint Lucia","🇱🇨","+1"],
-["VC","Saint Vincent and the Grenadines","🇻🇨","+1"],
-["WS","Samoa","🇼🇸","+685"],
-["SM","San Marino","🇸🇲","+378"],
-["ST","São Tomé and Príncipe","🇸🇹","+239"],
-["SA","Saudi Arabia","🇸🇦","+966"],
-["SN","Senegal","🇸🇳","+221"],
-["RS","Serbia","🇷🇸","+381"],
-["SC","Seychelles","🇸🇨","+248"],
-["SL","Sierra Leone","🇸🇱","+232"],
-["SG","Singapore","🇸🇬","+65"],
-["SK","Slovakia","🇸🇰","+421"],
-["SI","Slovenia","🇸🇮","+386"],
-["SB","Solomon Islands","🇸🇧","+677"],
-["SO","Somalia","🇸🇴","+252"],
-["ZA","South Africa","🇿🇦","+27"],
-["KR","South Korea","🇰🇷","+82"],
-["SS","South Sudan","🇸🇸","+211"],
-["ES","Spain","🇪🇸","+34"],
-["LK","Sri Lanka","🇱🇰","+94"],
-["SD","Sudan","🇸🇩","+249"],
-["SR","Suriname","🇸🇷","+597"],
-["SE","Sweden","🇸🇪","+46"],
-["CH","Switzerland","🇨🇭","+41"],
-["SY","Syria","🇸🇾","+963"],
-
-["TW","Taiwan","🇹🇼","+886"],
-["TJ","Tajikistan","🇹🇯","+992"],
-["TZ","Tanzania","🇹🇿","+255"],
-["TH","Thailand","🇹🇭","+66"],
-["TL","Timor-Leste","🇹🇱","+670"],
-["TG","Togo","🇹🇬","+228"],
-["TO","Tonga","🇹🇴","+676"],
-["TT","Trinidad and Tobago","🇹🇹","+1"],
-["TN","Tunisia","🇹🇳","+216"],
-["TR","Türkiye","🇹🇷","+90"],
-["TM","Turkmenistan","🇹🇲","+993"],
-["TV","Tuvalu","🇹🇻","+688"],
-
-["UG","Uganda","🇺🇬","+256"],
-["UA","Ukraine","🇺🇦","+380"],
-["AE","United Arab Emirates","🇦🇪","+971"],
-["GB","United Kingdom","🇬🇧","+44"],
-["US","United States","🇺🇸","+1"],
-["UY","Uruguay","🇺🇾","+598"],
-["UZ","Uzbekistan","🇺🇿","+998"],
-
-["VU","Vanuatu","🇻🇺","+678"],
-["VA","Vatican City","🇻🇦","+379"],
-["VE","Venezuela","🇻🇪","+58"],
-["VN","Vietnam","🇻🇳","+84"],
-
-["YE","Yemen","🇾🇪","+967"],
-
-["ZM","Zambia","🇿🇲","+260"],
-["ZW","Zimbabwe","🇿🇼","+263"]
+    ["India", "+91", "🇮🇳"],
+    ["United States", "+1", "🇺🇸"],
+    ["Canada", "+1", "🇨🇦"],
+    ["United Kingdom", "+44", "🇬🇧"],
+    ["Australia", "+61", "🇦🇺"],
+    ["Germany", "+49", "🇩🇪"],
+    ["France", "+33", "🇫🇷"],
+    ["Italy", "+39", "🇮🇹"],
+    ["Spain", "+34", "🇪🇸"],
+    ["United Arab Emirates", "+971", "🇦🇪"],
+    ["Saudi Arabia", "+966", "🇸🇦"],
+    ["Singapore", "+65", "🇸🇬"],
+    ["Japan", "+81", "🇯🇵"],
+    ["China", "+86", "🇨🇳"],
+    ["South Korea", "+82", "🇰🇷"],
+    ["Brazil", "+55", "🇧🇷"],
+    ["Mexico", "+52", "🇲🇽"],
+    ["South Africa", "+27", "🇿🇦"],
+    ["New Zealand", "+64", "🇳🇿"],
+    ["Ireland", "+353", "🇮🇪"],
+    ["Netherlands", "+31", "🇳🇱"],
+    ["Switzerland", "+41", "🇨🇭"],
+    ["Sweden", "+46", "🇸🇪"],
+    ["Norway", "+47", "🇳🇴"],
+    ["Denmark", "+45", "🇩🇰"],
+    ["Finland", "+358", "🇫🇮"],
+    ["Belgium", "+32", "🇧🇪"],
+    ["Austria", "+43", "🇦🇹"],
+    ["Portugal", "+351", "🇵🇹"],
+    ["Malaysia", "+60", "🇲🇾"],
+    ["Thailand", "+66", "🇹🇭"],
+    ["Indonesia", "+62", "🇮🇩"],
+    ["Philippines", "+63", "🇵🇭"],
+    ["Pakistan", "+92", "🇵🇰"],
+    ["Bangladesh", "+880", "🇧🇩"],
+    ["Nepal", "+977", "🇳🇵"],
+    ["Sri Lanka", "+94", "🇱🇰"],
+    ["Nigeria", "+234", "🇳🇬"],
+    ["Kenya", "+254", "🇰🇪"],
+    ["Egypt", "+20", "🇪🇬"],
+    ["Turkey", "+90", "🇹🇷"],
+    ["Israel", "+972", "🇮🇱"],
+    ["Poland", "+48", "🇵🇱"],
+    ["Greece", "+30", "🇬🇷"],
+    ["Romania", "+40", "🇷🇴"],
+    ["Ukraine", "+380", "🇺🇦"],
+    ["Vietnam", "+84", "🇻🇳"],
+    ["Qatar", "+974", "🇶🇦"],
+    ["Kuwait", "+965", "🇰🇼"],
+    ["Oman", "+968", "🇴🇲"]
 
 ];
 
 
-/* =========================================================
-   ELEMENTS
-========================================================= */
-
-const countryInput =
-document.getElementById("countryInput");
-
-const countryOptions =
-document.getElementById("countryOptions");
-
-const phoneCountryInput =
-document.getElementById("phoneCountryInput");
-
-const phoneCountryOptions =
-document.getElementById("phoneCountryOptions");
-
-const stateInput =
-document.getElementById("stateInput");
-
-const stateOptions =
-document.getElementById("stateOptions");
-
-const districtInput =
-document.getElementById("districtInput");
-
-const districtOptions =
-document.getElementById("districtOptions");
-
-const phoneFlag =
-document.getElementById("phoneFlag");
-
-const mobileNumber =
-document.getElementById("mobileNumber");
-
-const locationStatus =
-document.getElementById("locationStatus");
-
-const manualLocation =
-document.getElementById("manualLocation");
-
-const manualState =
-document.getElementById("manualState");
-
-const manualCity =
-document.getElementById("manualCity");
-
-const errorMessage =
-document.getElementById("errorMessage");
+const countryNames =
+    countries.map(
+        country => country[0]
+    );
 
 
-let selectedCountry = null;
-let selectedPhoneCountry = null;
-let selectedState = null;
-let selectedDistrict = null;
+/* =====================================================
+   SEARCHABLE DROPDOWN
+===================================================== */
 
-let statesData = [];
-let citiesData = [];
-
-
-/* =========================================================
-   SORT COUNTRIES
-========================================================= */
-
-countries.sort(function(a,b){
-
-    return a[1].localeCompare(b[1]);
-
-});
-
-
-/* =========================================================
-   SEARCHABLE DROPDOWN FUNCTION
-========================================================= */
-
-function createSearchDropdown(
-    input,
-    optionsContainer,
+function setupSearch(
+    inputId,
+    optionsId,
     items,
-    formatter,
-    onSelect
-){
+    callback
+) {
 
-    function render(filter=""){
+    const input =
+        document.getElementById(inputId);
 
-        optionsContainer.innerHTML = "";
+    const options =
+        document.getElementById(optionsId);
+
+
+    function render() {
 
         const search =
-        filter.trim().toLowerCase();
-
-        const filtered =
-        items.filter(function(item){
-
-            return formatter(item)
-            .toLowerCase()
-            .includes(search);
-
-        });
+            input.value.toLowerCase();
 
 
-        if(filtered.length === 0){
-
-            const empty =
-            document.createElement("div");
-
-            empty.className =
-            "search-empty";
-
-            empty.textContent =
-            "No results found";
-
-            optionsContainer.appendChild(
-                empty
-            );
-
-            return;
-
-        }
+        options.innerHTML = "";
 
 
-        filtered.forEach(function(item){
+        items
+            .filter(item =>
+                item.toLowerCase().includes(search)
+            )
+            .slice(0, 40)
+            .forEach(item => {
 
-            const option =
-            document.createElement("div");
+                const button =
+                    document.createElement("button");
 
-            option.className =
-            "search-option";
 
-            option.innerHTML =
-            formatter(item);
+                button.type =
+                    "button";
 
-            option.addEventListener(
-                "mousedown",
-                function(event){
 
-                    event.preventDefault();
+                button.textContent =
+                    item;
 
-                    onSelect(item);
 
-                    optionsContainer.classList.remove(
-                        "open"
-                    );
+                button.addEventListener(
+                    "click",
+                    function () {
 
-                }
-            );
+                        input.value =
+                            item;
 
-            optionsContainer.appendChild(
-                option
-            );
+                        options.classList.remove(
+                            "open"
+                        );
 
-        });
+                        if (callback) {
+                            callback(item);
+                        }
+                    }
+                );
 
+
+                options.appendChild(
+                    button
+                );
+
+            });
+
+
+        options.classList.add(
+            "open"
+        );
     }
 
 
     input.addEventListener(
         "focus",
-        function(){
-
-            if(input.disabled){
-                return;
-            }
-
-            render(input.value);
-
-            optionsContainer.classList.add(
-                "open"
-            );
-
-        }
+        render
     );
 
 
     input.addEventListener(
         "input",
-        function(){
-
-            if(input.disabled){
-                return;
-            }
-
-            render(input.value);
-
-            optionsContainer.classList.add(
-                "open"
-            );
-
-        }
+        render
     );
 
 
-    input.addEventListener(
+    document.addEventListener(
         "click",
-        function(){
+        function (event) {
 
-            if(input.disabled){
-                return;
-            }
+            if (
+                !event.target.closest(
+                    ".search-select"
+                )
+            ) {
 
-            render(input.value);
-
-            optionsContainer.classList.add(
-                "open"
-            );
-
-        }
-    );
-
-
-    input.addEventListener(
-        "keydown",
-        function(event){
-
-            if(event.key === "Escape"){
-
-                optionsContainer.classList.remove(
+                options.classList.remove(
                     "open"
                 );
-
             }
 
         }
     );
-
-
-    return {
-        render
-    };
-
 }
 
 
-/* =========================================================
-   COUNTRY DROPDOWN
-========================================================= */
+/* =====================================================
+   SAVED DATA
+===================================================== */
 
-const countryDropdown =
-createSearchDropdown(
+const saved =
+    getSection(
+        "personal",
+        {}
+    );
 
-    countryInput,
 
-    countryOptions,
+function setValue(
+    id,
+    value
+) {
 
-    countries,
+    const element =
+        document.getElementById(id);
 
-    function(country){
-
-        return (
-            country[2] +
-            " " +
-            country[1] +
-            " " +
-            country[0] +
-            " " +
-            country[3]
-        );
-
-    },
-
-    function(country){
-
-        selectedCountry =
-        country;
-
-        countryInput.value =
-        country[2] +
-        " " +
-        country[1];
-
-        loadStates(
-            country
-        );
-
+    if (element) {
+        element.value =
+            value || "";
     }
+}
 
+
+setValue(
+    "firstName",
+    saved.firstName
 );
 
 
-/* =========================================================
-   PHONE COUNTRY DROPDOWN
-========================================================= */
-
-createSearchDropdown(
-
-    phoneCountryInput,
-
-    phoneCountryOptions,
-
-    countries,
-
-    function(country){
-
-        return (
-            country[2] +
-            " " +
-            country[1] +
-            " " +
-            country[3]
-        );
-
-    },
-
-    function(country){
-
-        selectedPhoneCountry =
-        country;
-
-        phoneCountryInput.value =
-        country[2] +
-        " " +
-        country[1] +
-        " " +
-        country[3];
-
-        phoneFlag.textContent =
-        country[2];
-
-        mobileNumber.placeholder =
-        country[3] +
-        " Mobile number";
-
-    }
-
+setValue(
+    "lastName",
+    saved.lastName
 );
 
 
-/* =========================================================
-   STATE DROPDOWN
-========================================================= */
-
-let stateDropdown =
-null;
+setValue(
+    "email",
+    saved.email
+);
 
 
-async function loadStates(country){
-
-    selectedState =
-    null;
-
-    selectedDistrict =
-    null;
-
-    stateInput.value = "";
-
-    districtInput.value = "";
-
-    stateInput.disabled =
-    true;
-
-    districtInput.disabled =
-    true;
-
-    stateInput.classList.add(
-        "search-disabled"
-    );
-
-    districtInput.classList.add(
-        "search-disabled"
-    );
-
-    stateInput.placeholder =
-    "Loading states...";
-
-    districtInput.placeholder =
-    "Select state first";
-
-    manualLocation.style.display =
-    "none";
-
-    showStatus(
-        "Loading states..."
-    );
+setValue(
+    "phoneCode",
+    saved.phoneCode
+);
 
 
-    try{
+setValue(
+    "mobile",
+    saved.mobile
+);
+
+
+setValue(
+    "country",
+    saved.country
+);
+
+
+setValue(
+    "postalCode",
+    saved.postalCode
+);
+
+
+setValue(
+    "professionalTitle",
+    saved.professionalTitle
+);
+
+
+setValue(
+    "linkedin",
+    saved.linkedin
+);
+
+
+setValue(
+    "website",
+    saved.website
+);
+
+
+/* =====================================================
+   PHONE SEARCH
+===================================================== */
+
+setupSearch(
+    "phoneCode",
+    "phoneOptions",
+    countries.map(
+        country =>
+            `${country[2]} ${country[0]} ${country[1]}`
+    ),
+    function (value) {
+
+        const selected =
+            countries.find(
+                country =>
+                    value.includes(
+                        country[0]
+                    )
+            );
+
+
+        if (selected) {
+
+            document.getElementById(
+                "phoneCode"
+            ).value =
+                `${selected[2]} ${selected[0]} ${selected[1]}`;
+        }
+    }
+);
+
+
+/* =====================================================
+   COUNTRY SEARCH
+===================================================== */
+
+setupSearch(
+    "country",
+    "countryOptions",
+    countryNames,
+    function (country) {
+
+        loadStates(country);
+
+    }
+);
+
+
+/* =====================================================
+   LOAD STATES
+===================================================== */
+
+async function loadStates(
+    country
+) {
+
+    try {
 
         const response =
-        await fetch(
-            "https://countriesnow.space/api/v0.1/countries/states",
-            {
-                method:"POST",
+            await fetch(
+                "https://countriesnow.space/api/v0.1/countries/states",
+                {
+                    method: "POST",
 
-                headers:{
-                    "Content-Type":
-                    "application/json"
-                },
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
 
-                body:JSON.stringify({
-
-                    country:
-                    country[1]
-
-                })
-
-            }
-        );
-
-
-        if(!response.ok){
-            throw new Error();
-        }
+                    body:
+                        JSON.stringify({
+                            country:
+                                country
+                        })
+                }
+            );
 
 
         const result =
-        await response.json();
+            await response.json();
 
 
-        if(
-            result.error ||
-            !result.data ||
-            !result.data.states
-        ){
-
-            throw new Error();
-
-        }
-
-
-        statesData =
-        result.data.states
-        .sort(function(a,b){
-
-            return a.name.localeCompare(
-                b.name
+        const state =
+            document.getElementById(
+                "state"
             );
 
-        });
+
+        state.innerHTML =
+            `
+            <option value="">
+                Select state / region
+            </option>
+            `;
 
 
-        if(
-            stateDropdown
-        ){
-            stateDropdown.render("");
-        }
+        const states =
+            result.data &&
+            result.data.states
+                ? result.data.states
+                : [];
 
 
-        stateInput.disabled =
-        false;
+        states.forEach(
+            function (item) {
 
-        stateInput.classList.remove(
-            "search-disabled"
-        );
-
-        stateInput.placeholder =
-        "Search state / province / region...";
-
-
-        stateDropdown =
-        createSearchDropdown(
-
-            stateInput,
-
-            stateOptions,
-
-            statesData,
-
-            function(state){
-
-                return state.name;
-
-            },
-
-            function(state){
-
-                selectedState =
-                state;
-
-                stateInput.value =
-                state.name;
-
-                loadCities(
-                    country,
-                    state
+                state.add(
+                    new Option(
+                        item.name,
+                        item.name
+                    )
                 );
 
             }
-
         );
 
 
-        hideStatus();
+        if (saved.state) {
 
-    }
-    catch(error){
+            state.value =
+                saved.state;
 
-        stateInput.value =
-        "";
+            loadCities(
+                country,
+                saved.state
+            );
+        }
 
-        stateInput.placeholder =
-        "Enter state manually";
+    } catch (error) {
 
-        districtInput.value =
-        "";
-
-        districtInput.placeholder =
-        "Enter city manually";
-
-        manualLocation.style.display =
-        "block";
-
-        showStatus(
-            "State information is temporarily unavailable. Manual location entry is available.",
-            true
+        console.log(
+            "State loading failed:",
+            error
         );
-
     }
-
 }
 
 
-/* =========================================================
-   CITY / DISTRICT DROPDOWN
-========================================================= */
-
-let districtDropdown =
-null;
-
+/* =====================================================
+   LOAD CITIES
+===================================================== */
 
 async function loadCities(
     country,
-    state
-){
+    stateName
+) {
 
-    selectedDistrict =
-    null;
-
-    districtInput.value =
-    "";
-
-    districtInput.disabled =
-    true;
-
-    districtInput.classList.add(
-        "search-disabled"
-    );
-
-    districtInput.placeholder =
-    "Loading cities...";
-
-
-    showStatus(
-        "Loading cities..."
-    );
-
-
-    try{
-
-        const response =
-        await fetch(
-            "https://countriesnow.space/api/v0.1/countries/state/cities",
-            {
-                method:"POST",
-
-                headers:{
-                    "Content-Type":
-                    "application/json"
-                },
-
-                body:JSON.stringify({
-
-                    country:
-                    country[1],
-
-                    state:
-                    state.name
-
-                })
-
-            }
+    const city =
+        document.getElementById(
+            "city"
         );
 
 
-        if(!response.ok){
-            throw new Error();
-        }
-
-
-        const result =
-        await response.json();
-
-
-        if(
-            result.error ||
-            !Array.isArray(result.data)
-        ){
-
-            throw new Error();
-
-        }
-
-
-        citiesData =
-        [...new Set(
-
-            result.data
-            .map(function(city){
-
-                return String(city).trim();
-
-            })
-            .filter(Boolean)
-
-        )]
-        .sort(function(a,b){
-
-            return a.localeCompare(b);
-
-        });
-
-
-        districtDropdown =
-        createSearchDropdown(
-
-            districtInput,
-
-            districtOptions,
-
-            citiesData,
-
-            function(city){
-
-                return city;
-
-            },
-
-            function(city){
-
-                selectedDistrict =
-                city;
-
-                districtInput.value =
-                city;
-
-            }
-
-        );
-
-
-        districtInput.disabled =
-        false;
-
-        districtInput.classList.remove(
-            "search-disabled"
-        );
-
-        districtInput.placeholder =
-        "Search district / city / town...";
-
-
-        hideStatus();
-
-    }
-    catch(error){
-
-        districtInput.value =
-        "";
-
-        districtInput.placeholder =
-        "Enter city manually";
-
-        districtInput.disabled =
-        true;
-
-        districtInput.classList.add(
-            "search-disabled"
-        );
-
-        manualLocation.style.display =
-        "block";
-
-        showStatus(
-            "City information is temporarily unavailable. Manual location entry is available.",
-            true
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   PHONE NUMBER COUNTRY AUTO UPDATE
-========================================================= */
-
-phoneCountryInput.addEventListener(
-    "change",
-    function(){
-
-        const searchValue =
-        phoneCountryInput.value
-        .toLowerCase();
-
-        const found =
-        countries.find(function(country){
-
-            return (
-                country[1].toLowerCase()
-                .includes(searchValue) ||
-
-                country[3]
-                .includes(searchValue)
-            );
-
-        });
-
-
-        if(found){
-
-            selectedPhoneCountry =
-            found;
-
-            phoneFlag.textContent =
-            found[2];
-
-            mobileNumber.placeholder =
-            found[3] +
-            " Mobile number";
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   CLICK OUTSIDE
-========================================================= */
-
-document.addEventListener(
-    "click",
-    function(event){
-
-        const boxes =
-        document.querySelectorAll(
-            ".search-select"
-        );
-
-
-        boxes.forEach(function(box){
-
-            if(
-                !box.contains(
-                    event.target
-                )
-            ){
-
-                const options =
-                box.querySelector(
-                    ".search-options"
-                );
-
-                if(options){
-
-                    options.classList.remove(
-                        "open"
-                    );
-
-                }
-
-            }
-
-        });
-
-    }
-);
-
-
-/* =========================================================
-   STATUS
-========================================================= */
-
-function showStatus(
-    message,
-    error=false
-){
-
-    locationStatus.textContent =
-    message;
-
-    locationStatus.className =
-    "location-status";
-
-    if(error){
-
-        locationStatus.classList.add(
-            "error"
-        );
-
-    }
-
-    locationStatus.style.display =
-    "block";
-
-}
-
-
-function hideStatus(){
-
-    locationStatus.style.display =
-    "none";
-
-}
-
-
-/* =========================================================
-   RESTORE SAVED DATA
-========================================================= */
-
-async function restoreData(){
-
-    const saved =
-    localStorage.getItem(
-        "resumePersonalData"
-    );
-
-
-    if(!saved){
+    city.innerHTML =
+        `
+        <option value="">
+            Select city / town
+        </option>
+        `;
+
+
+    if (!stateName) {
         return;
     }
 
 
-    try{
+    try {
 
-        const data =
-        JSON.parse(saved);
+        const response =
+            await fetch(
+                "https://countriesnow.space/api/v0.1/countries/state/cities",
+                {
+                    method: "POST",
 
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
 
-        document.getElementById(
-            "firstName"
-        ).value =
-        data.firstName || "";
+                    body:
+                        JSON.stringify({
+                            country:
+                                country,
 
-
-        document.getElementById(
-            "lastName"
-        ).value =
-        data.lastName || "";
-
-
-        document.getElementById(
-            "email"
-        ).value =
-        data.email || "";
-
-
-        document.getElementById(
-            "mobileNumber"
-        ).value =
-        data.mobileNumber || "";
-
-
-        document.getElementById(
-            "postalCode"
-        ).value =
-        data.postalCode || "";
-
-
-        document.getElementById(
-            "professionalTitle"
-        ).value =
-        data.professionalTitle || "";
-
-
-        document.getElementById(
-            "linkedin"
-        ).value =
-        data.linkedin || "";
-
-
-        document.getElementById(
-            "website"
-        ).value =
-        data.website || "";
-
-
-        if(data.countryCode){
-
-            const country =
-            countries.find(function(item){
-
-                return item[0] ===
-                data.countryCode;
-
-            });
-
-
-            if(country){
-
-                selectedCountry =
-                country;
-
-                countryInput.value =
-                country[2] +
-                " " +
-                country[1];
-
-
-                await loadStates(
-                    country
-                );
-
-
-                if(data.state){
-
-                    const state =
-                    statesData.find(
-                        function(item){
-
-                            return (
-                                item.name ===
-                                data.state
-                            );
-
-                        }
-                    );
-
-
-                    if(state){
-
-                        selectedState =
-                        state;
-
-                        stateInput.value =
-                        state.name;
-
-
-                        await loadCities(
-                            country,
-                            state
-                        );
-
-
-                        if(data.district){
-
-                            selectedDistrict =
-                            data.district;
-
-                            districtInput.value =
-                            data.district;
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-        }
-
-
-        if(data.phoneCountry){
-
-            const phoneCountry =
-            countries.find(
-                function(item){
-
-                    return (
-                        item[0] ===
-                        data.phoneCountry
-                    );
-
+                            state:
+                                stateName
+                        })
                 }
             );
 
 
-            if(phoneCountry){
+        const result =
+            await response.json();
 
-                selectedPhoneCountry =
-                phoneCountry;
 
-                phoneCountryInput.value =
-                phoneCountry[2] +
-                " " +
-                phoneCountry[1] +
-                " " +
-                phoneCountry[3];
+        const cities =
+            result.data || [];
 
-                phoneFlag.textContent =
-                phoneCountry[2];
 
-                mobileNumber.placeholder =
-                phoneCountry[3] +
-                " Mobile number";
+        cities.forEach(
+            function (item) {
+
+                city.add(
+                    new Option(
+                        item,
+                        item
+                    )
+                );
 
             }
+        );
 
+
+        if (saved.city) {
+
+            city.value =
+                saved.city;
         }
 
-    }
-    catch(error){
+    } catch (error) {
 
         console.log(
-            "Unable to restore saved data."
+            "City loading failed:",
+            error
         );
-
     }
-
 }
 
 
-/* =========================================================
-   FORM SUBMIT
-========================================================= */
+/* =====================================================
+   STATE CHANGE
+===================================================== */
 
 document
-.getElementById("personalForm")
-.addEventListener(
-    "submit",
-    function(event){
+    .getElementById("state")
+    .addEventListener(
+        "change",
+        function () {
 
-        event.preventDefault();
+            loadCities(
+                document.getElementById(
+                    "country"
+                ).value,
 
-
-        errorMessage.style.display =
-        "none";
-
-
-        let state =
-        selectedState
-        ? selectedState.name
-        : manualState.value.trim();
-
-
-        let district =
-        selectedDistrict
-        ? selectedDistrict
-        : manualCity.value.trim();
-
-
-        const firstName =
-        document.getElementById(
-            "firstName"
-        ).value.trim();
-
-
-        const lastName =
-        document.getElementById(
-            "lastName"
-        ).value.trim();
-
-
-        const email =
-        document.getElementById(
-            "email"
-        ).value.trim();
-
-
-        const mobile =
-        mobileNumber.value.trim();
-
-
-        const postal =
-        document.getElementById(
-            "postalCode"
-        ).value.trim();
-
-
-        const professionalTitle =
-        document.getElementById(
-            "professionalTitle"
-        ).value.trim();
-
-
-        const linkedin =
-        document.getElementById(
-            "linkedin"
-        ).value.trim();
-
-
-        const website =
-        document.getElementById(
-            "website"
-        ).value.trim();
-
-
-        if(
-            !firstName ||
-            !lastName ||
-            !email ||
-            !mobile ||
-            !selectedCountry ||
-            !state ||
-            !district ||
-            !postal ||
-            !professionalTitle
-        ){
-
-            errorMessage.textContent =
-            "Please complete all required fields marked with *.";
-
-            errorMessage.style.display =
-            "block";
-
-            window.scrollTo({
-                top:0,
-                behavior:"smooth"
-            });
-
-            return;
+                this.value
+            );
 
         }
+    );
 
 
-        const emailPattern =
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+/* =====================================================
+   INITIAL COUNTRY
+===================================================== */
 
+if (saved.country) {
 
-        if(
-            !emailPattern.test(email)
-        ){
-
-            errorMessage.textContent =
-            "Please enter a valid email address.";
-
-            errorMessage.style.display =
-            "block";
-
-            return;
-
-        }
-
-
-        const data = {
-
-            firstName:
-            firstName,
-
-            lastName:
-            lastName,
-
-            email:
-            email,
-
-            mobileNumber:
-            mobile,
-
-            phoneCountry:
-            selectedPhoneCountry
-            ? selectedPhoneCountry[0]
-            : "",
-
-            phoneCountryName:
-            selectedPhoneCountry
-            ? selectedPhoneCountry[1]
-            : "",
-
-            phoneCountryCode:
-            selectedPhoneCountry
-            ? selectedPhoneCountry[3]
-            : "",
-
-            countryCode:
-            selectedCountry[0],
-
-            country:
-            selectedCountry[1],
-
-            state:
-            state,
-
-            district:
-            district,
-
-            postalCode:
-            postal,
-
-            professionalTitle:
-            professionalTitle,
-
-            linkedin:
-            linkedin,
-
-            website:
-            website
-
-        };
-
-
-        localStorage.setItem(
-            "resumePersonalData",
-            JSON.stringify(data)
-        );
-
-
-        const button =
-        document.getElementById(
-            "continueButton"
-        );
-
-
-        button.disabled =
-        true;
-
-
-        button.textContent =
-        "Saving...";
-
-
-        setTimeout(
-            function(){
-
-                window.location.href =
-                "summary.html";
-
-            },
-            400
-        );
-
-    }
-);
-
-
-/* =========================================================
-   INITIAL PHONE COUNTRY
-========================================================= */
-
-const defaultPhone =
-countries.find(function(country){
-
-    return country[0] === "IN";
-
-});
-
-
-if(defaultPhone){
-
-    selectedPhoneCountry =
-    defaultPhone;
-
-    phoneCountryInput.value =
-    defaultPhone[2] +
-    " " +
-    defaultPhone[1] +
-    " " +
-    defaultPhone[3];
-
-    phoneFlag.textContent =
-    defaultPhone[2];
-
-    mobileNumber.placeholder =
-    defaultPhone[3] +
-    " Mobile number";
-
+    loadStates(
+        saved.country
+    );
 }
 
 
-/* =========================================================
-   START
-========================================================= */
+/* =====================================================
+   SAVE PERSONAL INFORMATION
+===================================================== */
 
-restoreData();
+document
+    .getElementById("personalForm")
+    .addEventListener(
+        "submit",
+        function (event) {
 
+            event.preventDefault();
+
+
+            const data = {
+
+                firstName:
+                    document.getElementById(
+                        "firstName"
+                    ).value.trim(),
+
+                lastName:
+                    document.getElementById(
+                        "lastName"
+                    ).value.trim(),
+
+                email:
+                    document.getElementById(
+                        "email"
+                    ).value.trim(),
+
+                phoneCode:
+                    document.getElementById(
+                        "phoneCode"
+                    ).value.trim(),
+
+                mobile:
+                    document.getElementById(
+                        "mobile"
+                    ).value.trim(),
+
+                country:
+                    document.getElementById(
+                        "country"
+                    ).value.trim(),
+
+                state:
+                    document.getElementById(
+                        "state"
+                    ).value,
+
+                city:
+                    document.getElementById(
+                        "city"
+                    ).value,
+
+                postalCode:
+                    document.getElementById(
+                        "postalCode"
+                    ).value.trim(),
+
+                professionalTitle:
+                    document.getElementById(
+                        "professionalTitle"
+                    ).value.trim(),
+
+                linkedin:
+                    document.getElementById(
+                        "linkedin"
+                    ).value.trim(),
+
+                website:
+                    document.getElementById(
+                        "website"
+                    ).value.trim()
+            };
+
+
+            saveSection(
+                "personal",
+                data
+            );
+
+
+            window.location.href =
+                "summary.html";
+        }
+    );
 
 </script>
 
