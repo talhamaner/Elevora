@@ -4,22 +4,30 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cover Letter Preview - Elevora</title>
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
 
-<link rel="stylesheet" href="css/style.css">
+<title>Cover Letter Preview | Elevora</title>
+
+<link
+rel="stylesheet"
+href="css/style.css"
+>
 
 <script src="theme.js"></script>
-<script src="js/app.js"></script>
 
 </head>
 
+
 <body>
+
 
 <header class="navbar no-print">
 
-<a class="logo" href="index.html">
+<a href="index.html" class="logo">
 Elevora
 </a>
 
@@ -27,10 +35,14 @@ Elevora
 
 <a href="index.html">Home</a>
 <a href="personal.html">Resume</a>
-<a href="preview.html">Resume Preview</a>
+<a href="preview.html">Preview</a>
 <a href="cover-letter.html">Cover Letter</a>
 
-<button id="themeToggle" class="theme-toggle">
+<button
+id="themeToggle"
+class="theme-toggle"
+type="button"
+>
 🌙
 </button>
 
@@ -39,262 +51,204 @@ Elevora
 </header>
 
 
-<main class="container">
+<main class="page-container">
 
-<div class="page-head no-print">
+
+<div class="form-header no-print">
+
+<div class="step-number">
+✦
+</div>
+
+<div>
 
 <h1>Cover Letter Preview</h1>
 
 <p>
-Review your cover letter before printing or downloading it.
+Review your cover letter before printing.
 </p>
 
 </div>
 
+</div>
 
-<div class="actions no-print">
+
+<div class="form-actions no-print">
 
 <a
 href="cover-letter.html"
-class="btn secondary">
-
-← Edit Cover Letter
-
+class="btn secondary"
+>
+← Edit
 </a>
 
-
 <button
-id="printButton"
-class="btn">
-
+id="printBtn"
+class="btn primary"
+>
 Print / Save PDF
-
-</button>
-
-
-<button
-id="wordButton"
-class="btn secondary">
-
-Download Word
-
 </button>
 
 </div>
 
 
-<article
-id="coverLetter"
-class="resume-paper">
+<div
+id="letter"
+class="resume-paper"
+></div>
 
-</article>
 
 </main>
 
 
 <script>
 
-const cover =
-  getJSON(STORAGE_KEYS.coverLetter, {});
-
 const personal =
-  getJSON(STORAGE_KEYS.personal, {});
-
-const summary =
-  getJSON(STORAGE_KEYS.summary, {});
-
-
-const manager =
-  cover.manager || "Hiring Manager";
-
-
-const date =
-  new Date().toLocaleDateString();
-
-
-const letter = document.getElementById(
-  "coverLetter"
+JSON.parse(
+localStorage.getItem(
+"resumePersonalData"
+) || "{}"
 );
 
 
-letter.innerHTML = `
+const summary =
+JSON.parse(
+localStorage.getItem(
+"section_summary"
+) || "{}"
+);
+
+
+const cover =
+JSON.parse(
+localStorage.getItem(
+"section_cover_letter"
+) || "{}"
+);
+
+
+const today =
+new Date().toLocaleDateString();
+
+
+const greeting =
+cover.manager
+? `Dear ${cover.manager},`
+: "Dear Hiring Manager,";
+
+
+const letter = `
 
 <p>
-${escapeHTML(personal.city || "")}
-${personal.country
-  ? ", " + escapeHTML(personal.country)
-  : ""}
-</p>
-
-<p>
-${escapeHTML(date)}
-</p>
-
-
-<p>
-
-${escapeHTML(manager)}
-
+${esc(personal.fullName || "Your Name")}
 <br>
-
-${escapeHTML(cover.company || "")}
-
+${esc(personal.email || "")}
+${personal.phone
+? "<br>" + esc(
+(personal.phoneCode || "") +
+" " +
+personal.phone
+)
+: ""}
 </p>
 
-
 <p>
-
-<strong>
-Subject: Application for
-${escapeHTML(cover.jobTitle || "")}
-</strong>
-
+${today}
 </p>
 
-
 <p>
-Dear ${escapeHTML(manager)},
+${esc(cover.company || "Company")}
 </p>
 
-
 <p>
-
-I am writing to express my interest in the
 <strong>
-${escapeHTML(cover.jobTitle || "")}
-</strong>
-position at
-<strong>
-${escapeHTML(cover.company || "")}
-</strong>.
-
-${escapeHTML(
-  summary.professionalSummary ||
-  "I am a motivated professional with a strong interest in contributing to meaningful work."
+Re: Application for ${esc(
+cover.jobTitle || "the position"
 )}
-
+</strong>
 </p>
-
 
 <p>
-
-My background and skills align with the requirements
-of this role. I am particularly interested in
-${escapeHTML(cover.industry || "your industry")}
-and would welcome the opportunity to contribute
-my skills and experience to your team.
-
+${greeting}
 </p>
 
+<p>
+I am writing to express my interest in the
+${esc(cover.jobTitle || "position")}
+opportunity at
+${esc(cover.company || "your organization")}.
+${
+cover.industry
+? ` I am particularly interested in contributing
+to the ${esc(cover.industry)} industry.`
+: ""
+}
+</p>
+
+<p>
+${
+summary.professionalSummary
+? esc(summary.professionalSummary)
+: "I believe my skills, experience and professional background would allow me to make a meaningful contribution to your team."
+}
+</p>
 
 ${
-  cover.notes
-    ? `<p>${escapeHTML(cover.notes)}</p>`
-    : `
-      <p>
-      I would welcome the opportunity to discuss how
-      my skills and experience can contribute to your
-      organization. Thank you for considering my
-      application.
-      </p>
-    `
+cover.jobDescription
+? `<p>
+Based on the requirements of this opportunity,
+I am especially interested in applying my
+experience to the needs described in the
+position.
+</p>`
+: ""
 }
 
+${
+cover.notes
+? `<p>${esc(cover.notes)}</p>`
+: ""
+}
 
 <p>
+Thank you for considering my application.
+I would welcome the opportunity to discuss how
+my background and skills can contribute to
+your organization.
+</p>
 
-Sincerely,
-
-<br><br>
-
-<strong>
-${escapeHTML(personal.fullName || "Your Name")}
-</strong>
-
-<br>
-
-${escapeHTML(personal.email || "")}
-
+<p>
+Sincerely,<br>
+<strong>${esc(
+personal.fullName || "Your Name"
+)}</strong>
 </p>
 
 `;
 
 
-document
-  .getElementById("printButton")
-  .addEventListener("click", function() {
+function esc(value){
 
-    window.print();
+return String(value || "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;");
 
-  });
-
-
-document
-  .getElementById("wordButton")
-  .addEventListener("click", function() {
-
-    const html = `
-
-      <html>
-
-      <head>
-
-      <meta charset="UTF-8">
-
-      <style>
-
-      body {
-        font-family: Arial, sans-serif;
-        padding: 40px;
-        line-height: 1.6;
-      }
-
-      </style>
-
-      </head>
-
-      <body>
-
-      ${letter.innerHTML}
-
-      </body>
-
-      </html>
-
-    `;
+}
 
 
-    const blob = new Blob(
-      [html],
-      {
-        type: "application/msword"
-      }
-    );
+document.getElementById(
+"letter"
+).innerHTML = letter;
 
 
-    const url =
-      URL.createObjectURL(blob);
-
-
-    const link =
-      document.createElement("a");
-
-
-    link.href = url;
-
-    link.download =
-      "cover-letter.doc";
-
-
-    link.click();
-
-
-    URL.revokeObjectURL(url);
-
-  });
+document.getElementById(
+"printBtn"
+).onclick = () =>
+window.print();
 
 </script>
 
 </body>
-
 </html>
