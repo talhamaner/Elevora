@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AI Cover Letter | Elevora</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="theme.js"></script>
+  <script src="js/app.js"></script>
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+  <a href="index.html" class="logo">Elevora</a>
+
+  <nav class="nav-links">
+
+    <a href="index.html">Home</a>
+    <a href="personal.html" class="active">Resume</a>
+    <a href="preview.html">Preview</a>
+
+    <button
+      id="themeToggle"
+      class="theme-toggle"
+      type="button"
+    >
+      🌙
+    </button>
+
+  </nav>
+
+</header>
+
+
+<main class="builder-wrapper">
+
+  <div class="progress-wrapper">
+
+    <div
+      class="progress-bar"
+      style="--progress: 91%"
+    >
+      <div class="progress-fill"></div>
+    </div>
+
+    <div class="progress-text">
+      <span>Step 10 of 11</span>
+      <span>AI Cover Letter</span>
+    </div>
+
+  </div>
+
+
+  <div class="page-heading">
+
+    <span class="eyebrow">STEP 10</span>
+
+    <h1>AI Cover Letter</h1>
+
+    <p>
+      Enter the job information and generate a professional
+      cover letter based on your resume.
+    </p>
+
+  </div>
+
+
+  <form id="coverLetterForm" class="form-card">
+
+    <div class="form-grid">
+
+      <div class="form-group">
+
+        <label>
+          Company Name
+        </label>
+
+        <input
+          id="companyName"
+          type="text"
+          placeholder="Company name"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Job Title
+        </label>
+
+        <input
+          id="jobTitle"
+          type="text"
+          placeholder="Job title"
+        >
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>
+          Industry
+        </label>
+
+        <input
+          id="industry"
+          type="text"
+          placeholder="e.g. Software, Finance, Healthcare"
+        >
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>
+          Job Description
+        </label>
+
+        <textarea
+          id="jobDescription"
+          placeholder="Paste the important responsibilities and requirements from the job posting..."
+        ></textarea>
+
+      </div>
+
+    </div>
+
+
+    <div
+      id="letterResult"
+      class="letter-paper"
+      style="display:none; margin-top:30px;"
+    ></div>
+
+
+    <div class="form-actions">
+
+      <a
+        href="achievements.html"
+        class="btn btn-secondary"
+      >
+        ← Back
+      </a>
+
+      <div class="action-right">
+
+        <button
+          type="button"
+          id="generateLetter"
+          class="btn btn-secondary"
+        >
+          Generate Letter
+        </button>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+        >
+          Save & Continue →
+        </button>
+
+      </div>
+
+    </div>
+
+  </form>
+
+</main>
+
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+    const saved =
+      getJSON(
+        STORAGE_KEYS.coverLetter,
+        {}
+      );
+
+
+    document.getElementById(
+      "companyName"
+    ).value =
+      saved.companyName || "";
+
+
+    document.getElementById(
+      "jobTitle"
+    ).value =
+      saved.jobTitle || "";
+
+
+    document.getElementById(
+      "industry"
+    ).value =
+      saved.industry || "";
+
+
+    document.getElementById(
+      "jobDescription"
+    ).value =
+      saved.jobDescription || "";
+
+
+    const result =
+      document.getElementById(
+        "letterResult"
+      );
+
+
+    if (saved.generatedLetter) {
+
+      result.textContent =
+        saved.generatedLetter;
+
+      result.style.display =
+        "block";
+
+    }
+
+
+    function generateLetter() {
+
+      const personal =
+        getJSON(
+          STORAGE_KEYS.personal,
+          {}
+        );
+
+
+      const summary =
+        getJSON(
+          STORAGE_KEYS.summary,
+          {}
+        );
+
+
+      const company =
+        document.getElementById(
+          "companyName"
+        ).value.trim();
+
+
+      const job =
+        document.getElementById(
+          "jobTitle"
+        ).value.trim();
+
+
+      const industry =
+        document.getElementById(
+          "industry"
+        ).value.trim();
+
+
+      const jobDescription =
+        document.getElementById(
+          "jobDescription"
+        ).value.trim();
+
+
+      const name =
+        (
+          personal.firstName || ""
+        ) +
+        " " +
+        (
+          personal.lastName || ""
+        );
+
+
+      const letter =
+
+`Dear Hiring Manager,
+
+I am writing to express my interest in the ${job || "position"} opportunity${company ? ` at ${company}` : ""}. With my background, skills and professional interests, I believe I can make a meaningful contribution to your team.
+
+${summary.professionalSummary || "I am a motivated professional who is eager to apply my skills, learn continuously and contribute to meaningful projects."}
+
+I am particularly interested in this opportunity because of its connection to ${industry || "your industry"} and the responsibilities described in the position.
+
+${jobDescription
+  ? "Based on the requirements of the role, I believe my skills and experience can be aligned with the needs of your organization."
+  : "I would welcome the opportunity to discuss how my skills and experience could contribute to your organization."
+}
+
+Thank you for considering my application. I look forward to the opportunity to discuss my qualifications with you.
+
+Sincerely,
+
+${name.trim() || "Your Name"}`;
+
+
+      result.textContent =
+        letter;
+
+      result.style.display =
+        "block";
+
+
+      return {
+
+        companyName:
+          company,
+
+        jobTitle:
+          job,
+
+        industry:
+          industry,
+
+        jobDescription:
+          jobDescription,
+
+        generatedLetter:
+          letter
+
+      };
+
+    }
+
+
+    document
+      .getElementById(
+        "generateLetter"
+      )
+      .addEventListener(
+        "click",
+        function () {
+
+          generateLetter();
+
+        }
+      );
+
+
+    document
+      .getElementById(
+        "coverLetterForm"
+      )
+      .addEventListener(
+        "submit",
+        function (event) {
+
+          event.preventDefault();
+
+
+          const data =
+            generateLetter();
+
+
+          setJSON(
+            STORAGE_KEYS.coverLetter,
+            data
+          );
+
+
+          window.location.href =
+            "preview.html";
+
+        }
+      );
+
+  }
+);
+
+</script>
+
+</body>
+</html>
