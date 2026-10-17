@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -7,804 +8,21 @@
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0">
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>
         Professional Summary - Resume Builder
     </title>
 
 
-    <!-- Global CSS -->
-
     <link
         rel="stylesheet"
-        href="./css/style.css">
+        href="css/style.css"
+    >
 
-
-    <!-- Theme -->
 
     <script src="theme.js"></script>
-
-
-    <style>
-
-        /* =========================================
-           SUMMARY PAGE
-        ========================================= */
-
-        .summary-page {
-
-            min-height:
-                calc(100vh - 72px);
-
-            padding:
-                40px 20px 60px;
-
-            background:
-                var(--bg);
-
-        }
-
-
-        .summary-container {
-
-            width: 100%;
-
-            max-width: 900px;
-
-            margin: 0 auto;
-
-        }
-
-
-        /* =========================================
-           HEADER
-        ========================================= */
-
-        .summary-header {
-
-            text-align: center;
-
-            margin-bottom: 30px;
-
-        }
-
-
-        .summary-icon {
-
-            width: 64px;
-
-            height: 64px;
-
-            margin:
-                0 auto 18px;
-
-            border-radius: 18px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            font-size: 30px;
-
-            background:
-                var(--primary);
-
-            color: white;
-
-            box-shadow:
-                0 10px 25px
-                rgba(67, 97, 238, 0.22);
-
-        }
-
-
-        .summary-header h1 {
-
-            margin:
-                0 0 10px;
-
-            font-size: 32px;
-
-            font-weight: 800;
-
-            color:
-                var(--text);
-
-        }
-
-
-        .summary-header p {
-
-            max-width: 650px;
-
-            margin: 0 auto;
-
-            color:
-                var(--muted);
-
-            line-height: 1.7;
-
-            font-size: 15px;
-
-        }
-
-
-        /* =========================================
-           PROGRESS
-        ========================================= */
-
-        .progress-card {
-
-            background:
-                var(--surface);
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 18px;
-
-            padding:
-                20px 22px;
-
-            margin-bottom: 24px;
-
-            box-shadow:
-                var(--shadow);
-
-        }
-
-
-        .progress-top {
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content:
-                space-between;
-
-            gap: 15px;
-
-            margin-bottom: 12px;
-
-        }
-
-
-        .progress-title {
-
-            font-size: 14px;
-
-            font-weight: 700;
-
-            color:
-                var(--text);
-
-        }
-
-
-        .progress-count {
-
-            font-size: 13px;
-
-            color:
-                var(--muted);
-
-            font-weight: 600;
-
-        }
-
-
-        .progress-track {
-
-            height: 8px;
-
-            width: 100%;
-
-            border-radius: 999px;
-
-            background:
-                var(--border);
-
-            overflow: hidden;
-
-        }
-
-
-        .progress-fill {
-
-            height: 100%;
-
-            width: 20%;
-
-            border-radius: inherit;
-
-            background:
-                var(--primary);
-
-        }
-
-
-        /* =========================================
-           MAIN CARD
-        ========================================= */
-
-        .summary-card {
-
-            background:
-                var(--surface);
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 22px;
-
-            padding: 32px;
-
-            box-shadow:
-                var(--shadow);
-
-        }
-
-
-        /* =========================================
-           SECTIONS
-        ========================================= */
-
-        .form-section {
-
-            margin-bottom: 34px;
-
-        }
-
-
-        .form-section:last-child {
-
-            margin-bottom: 0;
-
-        }
-
-
-        .section-heading {
-
-            display: flex;
-
-            align-items: flex-start;
-
-            gap: 14px;
-
-            margin-bottom: 20px;
-
-        }
-
-
-        .section-number {
-
-            flex:
-                0 0 auto;
-
-            width: 38px;
-
-            height: 38px;
-
-            border-radius: 12px;
-
-            background:
-                rgba(67, 97, 238, 0.10);
-
-            color:
-                var(--primary);
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            font-weight: 800;
-
-            font-size: 15px;
-
-        }
-
-
-        .section-heading h2 {
-
-            margin:
-                0 0 4px;
-
-            color:
-                var(--text);
-
-            font-size: 19px;
-
-        }
-
-
-        .section-heading p {
-
-            margin: 0;
-
-            color:
-                var(--muted);
-
-            font-size: 13px;
-
-            line-height: 1.5;
-
-        }
-
-
-        /* =========================================
-           FIELDS
-        ========================================= */
-
-        .field {
-
-            margin-bottom: 24px;
-
-        }
-
-
-        .field:last-child {
-
-            margin-bottom: 0;
-
-        }
-
-
-        .field-label {
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content:
-                space-between;
-
-            gap: 12px;
-
-            margin-bottom: 9px;
-
-        }
-
-
-        .field-label label {
-
-            font-size: 14px;
-
-            font-weight: 700;
-
-            color:
-                var(--text);
-
-        }
-
-
-        .required {
-
-            color:
-                var(--danger);
-
-        }
-
-
-        .counter {
-
-            color:
-                var(--muted);
-
-            font-size: 12px;
-
-            white-space: nowrap;
-
-        }
-
-
-        /* =========================================
-           TEXTAREAS
-        ========================================= */
-
-        .summary-textarea {
-
-            width: 100%;
-
-            min-height: 190px;
-
-            resize: vertical;
-
-            padding:
-                16px 17px;
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 13px;
-
-            background:
-                var(--surface);
-
-            color:
-                var(--text);
-
-            font-family: inherit;
-
-            font-size: 14px;
-
-            line-height: 1.65;
-
-            outline: none;
-
-            transition:
-                border-color 0.2s ease,
-                box-shadow 0.2s ease;
-
-        }
-
-
-        .summary-textarea:focus {
-
-            border-color:
-                var(--primary);
-
-            box-shadow:
-                0 0 0 4px
-                rgba(67, 97, 238, 0.10);
-
-        }
-
-
-        .summary-textarea::placeholder {
-
-            color:
-                var(--muted);
-
-            opacity: 0.85;
-
-        }
-
-
-        .strength-input {
-
-            width: 100%;
-
-            min-height: 105px;
-
-            resize: vertical;
-
-            padding:
-                15px 17px;
-
-            box-sizing: border-box;
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 13px;
-
-            background:
-                var(--surface);
-
-            color:
-                var(--text);
-
-            font-family: inherit;
-
-            font-size: 14px;
-
-            line-height: 1.6;
-
-            outline: none;
-
-            transition:
-                border-color 0.2s ease,
-                box-shadow 0.2s ease;
-
-        }
-
-
-        .strength-input:focus {
-
-            border-color:
-                var(--primary);
-
-            box-shadow:
-                0 0 0 4px
-                rgba(67, 97, 238, 0.10);
-
-        }
-
-
-        .strength-input::placeholder {
-
-            color:
-                var(--muted);
-
-            opacity: 0.85;
-
-        }
-
-
-        /* =========================================
-           FIELD FOOTER
-        ========================================= */
-
-        .textarea-footer {
-
-            display: flex;
-
-            justify-content:
-                space-between;
-
-            align-items: flex-start;
-
-            gap: 15px;
-
-            margin-top: 8px;
-
-        }
-
-
-        .field-hint {
-
-            color:
-                var(--muted);
-
-            font-size: 12px;
-
-            line-height: 1.5;
-
-        }
-
-
-        .field-counter {
-
-            color:
-                var(--muted);
-
-            font-size: 12px;
-
-            white-space: nowrap;
-
-        }
-
-
-        /* =========================================
-           VALIDATION
-        ========================================= */
-
-        .error-message {
-
-            display: none;
-
-            margin-top: 8px;
-
-            color:
-                var(--danger);
-
-            font-size: 12px;
-
-            font-weight: 600;
-
-        }
-
-
-        .field.invalid
-        .summary-textarea {
-
-            border-color:
-                var(--danger);
-
-        }
-
-
-        .field.invalid
-        .error-message {
-
-            display: block;
-
-        }
-
-
-        /* =========================================
-           TIPS
-        ========================================= */
-
-        .tips-box {
-
-            margin-top: 28px;
-
-            padding:
-                18px 20px;
-
-            border-radius: 15px;
-
-            background:
-                rgba(67, 97, 238, 0.07);
-
-            border:
-                1px solid
-                rgba(67, 97, 238, 0.14);
-
-        }
-
-
-        .tips-title {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 8px;
-
-            margin-bottom: 10px;
-
-            color:
-                var(--text);
-
-            font-size: 14px;
-
-            font-weight: 800;
-
-        }
-
-
-        .tips-box ul {
-
-            margin: 0;
-
-            padding-left: 20px;
-
-            color:
-                var(--muted);
-
-            font-size: 13px;
-
-            line-height: 1.7;
-
-        }
-
-
-        /* =========================================
-           FORM ACTIONS
-        ========================================= */
-
-        .form-actions {
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content:
-                space-between;
-
-            gap: 15px;
-
-            margin-top: 32px;
-
-            padding-top: 24px;
-
-            border-top:
-                1px solid var(--border);
-
-        }
-
-
-        /* =========================================
-           SAVED MESSAGE
-        ========================================= */
-
-        .saved-message {
-
-            display: none;
-
-            text-align: center;
-
-            margin-top: 14px;
-
-            color:
-                var(--success);
-
-            font-size: 13px;
-
-            font-weight: 700;
-
-        }
-
-
-        /* =========================================
-           MOBILE
-        ========================================= */
-
-        @media (max-width: 700px) {
-
-            .summary-page {
-
-                padding:
-                    25px 14px 45px;
-
-            }
-
-
-            .summary-header h1 {
-
-                font-size: 26px;
-
-            }
-
-
-            .summary-card {
-
-                padding:
-                    22px 18px;
-
-                border-radius: 17px;
-
-            }
-
-
-            .progress-card {
-
-                padding: 17px;
-
-            }
-
-
-            .section-heading {
-
-                gap: 10px;
-
-            }
-
-
-            .section-number {
-
-                width: 34px;
-
-                height: 34px;
-
-            }
-
-
-            .textarea-footer {
-
-                flex-direction: column;
-
-                gap: 5px;
-
-            }
-
-
-            .field-counter {
-
-                display: none;
-
-            }
-
-
-            .form-actions {
-
-                flex-direction:
-                    column-reverse;
-
-                align-items:
-                    stretch;
-
-            }
-
-
-            .btn-primary,
-            .btn-secondary {
-
-                width: 100%;
-
-            }
-
-        }
-
-    </style>
 
 </head>
 
@@ -812,826 +30,428 @@
 <body>
 
 
-    <!-- =========================================
-         NAVIGATION
-    ========================================= -->
+<!-- ================= NAVBAR ================= -->
 
-    <nav class="navbar">
+<nav class="navbar">
 
-        <div class="nav-inner">
+    <div class="nav-inner">
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            Resume Builder
+        </a>
 
 
-            <a
-                href="index.html"
-                class="brand">
+        <div class="nav-links">
 
-                Resume Builder
+            <a href="index.html">
+                Home
+            </a>
 
+            <a href="personal.html">
+                Resume
+            </a>
+
+            <a href="preview.html">
+                Preview
             </a>
 
 
-            <div class="nav-links">
+            <button
+                id="themeToggle"
+                class="theme-toggle"
+                type="button"
+            >
+                🌙
+            </button>
 
-                <a href="index.html">
-                    Home
-                </a>
+        </div>
 
-                <a href="personal.html">
-                    Resume
-                </a>
+    </div>
 
-                <a href="preview.html">
-                    Preview
+</nav>
+
+
+
+<!-- ================= BUILDER ================= -->
+
+<main class="builder-page">
+
+
+    <div class="builder-header">
+
+        <span class="badge">
+            Step 2 of 10
+        </span>
+
+
+        <h1>
+            Professional Summary
+        </h1>
+
+
+        <p>
+            Give employers a quick,
+            compelling picture of who you are.
+        </p>
+
+    </div>
+
+
+
+    <!-- ================= STEP BAR ================= -->
+
+    <div class="stepbar">
+
+
+        <a
+            class="step"
+            href="personal.html"
+        >
+            1<br>
+            Personal
+        </a>
+
+
+        <a
+            class="step active"
+            href="summary.html"
+        >
+            2<br>
+            Summary
+        </a>
+
+
+        <div class="step">
+            3<br>
+            Education
+        </div>
+
+
+        <div class="step">
+            4<br>
+            Experience
+        </div>
+
+
+        <div class="step">
+            5<br>
+            Projects
+        </div>
+
+
+        <div class="step">
+            6<br>
+            Skills
+        </div>
+
+
+        <div class="step">
+            7<br>
+            Certifications
+        </div>
+
+
+        <div class="step">
+            8<br>
+            Languages
+        </div>
+
+
+        <div class="step">
+            9<br>
+            Achievements
+        </div>
+
+
+        <div class="step">
+            10<br>
+            Cover Letter
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ================= FORM ================= -->
+
+    <div class="form-card">
+
+
+        <form id="summaryForm">
+
+
+            <!-- SUMMARY -->
+
+            <div class="form-group">
+
+                <label>
+
+                    Professional Summary
+
+                    <span class="required">
+                        *
+                    </span>
+
+                </label>
+
+
+                <textarea
+                    id="summaryText"
+                    maxlength="1000"
+                    minlength="50"
+                    required
+                    data-counter="#summaryCounter"
+                    placeholder="Example: Motivated software developer with experience in web development, problem solving and building responsive applications. Passionate about creating reliable and user-friendly digital products."
+                ></textarea>
+
+
+                <div
+                    id="summaryCounter"
+                    class="counter"
+                >
+                    0 / 1000
+                </div>
+
+            </div>
+
+
+
+            <!-- CAREER OBJECTIVE -->
+
+            <div
+                class="form-group"
+                style="margin-top:25px;"
+            >
+
+                <label>
+                    Career Objective
+                </label>
+
+
+                <textarea
+                    id="careerObjective"
+                    maxlength="700"
+                    data-counter="#objectiveCounter"
+                    placeholder="Describe the type of role, industry or career direction you are looking for."
+                ></textarea>
+
+
+                <div
+                    id="objectiveCounter"
+                    class="counter"
+                >
+                    0 / 700
+                </div>
+
+            </div>
+
+
+
+            <!-- KEY STRENGTHS -->
+
+            <div
+                class="form-group"
+                style="margin-top:25px;"
+            >
+
+                <label>
+                    Key Strengths
+                </label>
+
+
+                <textarea
+                    id="keyStrengths"
+                    maxlength="500"
+                    data-counter="#strengthCounter"
+                    placeholder="Problem Solving, Communication, Teamwork, Leadership, Analytical Thinking, Adaptability"
+                ></textarea>
+
+
+                <div
+                    id="strengthCounter"
+                    class="counter"
+                >
+                    0 / 500
+                </div>
+
+            </div>
+
+
+
+            <!-- TIPS -->
+
+            <div class="summary-tip">
+
+                <strong>
+                    💡 Tips for a stronger summary
+                </strong>
+
+
+                <ul>
+
+                    <li>
+                        Keep your summary focused
+                        and easy to scan.
+                    </li>
+
+                    <li>
+                        Mention your strongest
+                        skills and relevant experience.
+                    </li>
+
+                    <li>
+                        Use keywords related
+                        to the jobs you want.
+                    </li>
+
+                    <li>
+                        Avoid generic phrases
+                        without evidence.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <!-- ACTIONS -->
+
+            <div class="form-actions">
+
+
+                <a
+                    href="personal.html"
+                    class="btn btn-secondary"
+                >
+                    ← Back
                 </a>
 
 
                 <button
-                    id="themeToggle"
-                    class="theme-toggle"
-                    type="button"
-                    aria-label="Switch theme">
-
-                    🌙
-
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Save & Continue →
                 </button>
 
-            </div>
-
-        </div>
-
-    </nav>
-
-
-
-    <!-- =========================================
-         PAGE
-    ========================================= -->
-
-    <main class="summary-page">
-
-
-        <div class="summary-container">
-
-
-            <!-- HEADER -->
-
-            <header class="summary-header">
-
-
-                <div class="summary-icon">
-                    ✨
-                </div>
-
-
-                <h1>
-                    Professional Summary
-                </h1>
-
-
-                <p>
-                    Create a strong introduction that tells employers
-                    who you are, what you do, and the value you can
-                    bring to their organization.
-                </p>
-
-
-            </header>
-
-
-
-            <!-- PROGRESS -->
-
-            <div class="progress-card">
-
-
-                <div class="progress-top">
-
-
-                    <span class="progress-title">
-                        Resume Progress
-                    </span>
-
-
-                    <span class="progress-count">
-                        Step 2 of 10
-                    </span>
-
-
-                </div>
-
-
-                <div class="progress-track">
-
-                    <div class="progress-fill"></div>
-
-                </div>
-
 
             </div>
 
 
+        </form>
 
-            <!-- FORM -->
 
-            <form
-                id="summaryForm"
-                class="summary-card"
-                novalidate>
+    </div>
 
 
+</main>
 
-                <!-- =====================================
-                     PROFESSIONAL SUMMARY
-                ====================================== -->
 
-                <section class="form-section">
 
+<script src="js/app.js"></script>
 
-                    <div class="section-heading">
 
+<script>
 
-                        <div class="section-number">
-                            01
-                        </div>
+/* =====================================================
+   LOAD SAVED SUMMARY
+===================================================== */
 
+const savedSummary =
+    getSection(
+        "summary",
+        {}
+    );
 
-                        <div>
 
-                            <h2>
-                                Professional Summary
-                            </h2>
+document.getElementById(
+    "summaryText"
+).value =
+    savedSummary.summaryText || "";
 
 
-                            <p>
-                                Give employers a quick overview
-                                of your professional profile.
-                            </p>
+document.getElementById(
+    "careerObjective"
+).value =
+    savedSummary.careerObjective || "";
 
-                        </div>
 
+document.getElementById(
+    "keyStrengths"
+).value =
+    savedSummary.keyStrengths || "";
 
-                    </div>
 
+/* =====================================================
+   SUBMIT
+===================================================== */
 
+document
+    .getElementById("summaryForm")
+    .addEventListener(
+        "submit",
+        function (event) {
 
-                    <div
-                        class="field"
-                        id="summaryField">
+            event.preventDefault();
 
 
-                        <div class="field-label">
+            const summary =
+                document.getElementById(
+                    "summaryText"
+                ).value.trim();
 
 
-                            <label for="summaryText">
+            if (
+                summary.length < 50
+            ) {
 
-                                Your Professional Summary
+                alert(
+                    "Professional Summary must contain at least 50 characters."
+                );
 
-                                <span class="required">
-                                    *
-                                </span>
+                document.getElementById(
+                    "summaryText"
+                ).focus();
 
-                            </label>
+                return;
+            }
 
 
-                            <span
-                                class="counter"
-                                id="summaryCounter">
+            const data = {
 
-                                0 / 1000
+                summaryText:
+                    summary,
 
-                            </span>
+                careerObjective:
+                    document.getElementById(
+                        "careerObjective"
+                    ).value.trim(),
 
+                keyStrengths:
+                    document.getElementById(
+                        "keyStrengths"
+                    ).value.trim()
+            };
 
-                        </div>
 
-
-
-                        <textarea
-                            id="summaryText"
-                            name="summaryText"
-                            class="summary-textarea"
-                            maxlength="1000"
-                            required
-                            placeholder="Example: Motivated software developer with experience in web development, problem solving, and building responsive applications. Passionate about creating reliable and user-friendly digital products."></textarea>
-
-
-
-                        <div class="textarea-footer">
-
-
-                            <span class="field-hint">
-
-                                Aim for 3–5 concise lines focused
-                                on your experience, skills, and
-                                professional value.
-
-                            </span>
-
-
-                            <span class="field-counter">
-
-                                Maximum 1000 characters
-
-                            </span>
-
-
-                        </div>
-
-
-                        <div class="error-message">
-
-                            Please enter your professional summary.
-
-                        </div>
-
-
-                    </div>
-
-
-                </section>
-
-
-
-                <!-- =====================================
-                     CAREER OBJECTIVE
-                ====================================== -->
-
-                <section class="form-section">
-
-
-                    <div class="section-heading">
-
-
-                        <div class="section-number">
-                            02
-                        </div>
-
-
-                        <div>
-
-                            <h2>
-                                Career Objective
-                            </h2>
-
-
-                            <p>
-                                Optional — describe the type of
-                                role or career direction you want.
-                            </p>
-
-                        </div>
-
-
-                    </div>
-
-
-
-                    <div class="field">
-
-
-                        <div class="field-label">
-
-
-                            <label for="careerObjective">
-
-                                Career Objective
-
-                            </label>
-
-
-                            <span
-                                class="counter"
-                                id="objectiveCounter">
-
-                                0 / 700
-
-                            </span>
-
-
-                        </div>
-
-
-
-                        <textarea
-                            id="careerObjective"
-                            name="careerObjective"
-                            class="summary-textarea"
-                            maxlength="700"
-                            style="min-height: 150px;"
-                            placeholder="Example: Seeking an entry-level software development role where I can apply my programming skills, learn from experienced professionals, and contribute to meaningful technology projects."></textarea>
-
-
-
-                        <div class="textarea-footer">
-
-
-                            <span class="field-hint">
-
-                                Best for students, freshers,
-                                career changers, or people
-                                targeting a specific role.
-
-                            </span>
-
-
-                            <span class="field-counter">
-
-                                Maximum 700 characters
-
-                            </span>
-
-
-                        </div>
-
-
-                    </div>
-
-
-                </section>
-
-
-
-                <!-- =====================================
-                     KEY STRENGTHS
-                ====================================== -->
-
-                <section class="form-section">
-
-
-                    <div class="section-heading">
-
-
-                        <div class="section-number">
-                            03
-                        </div>
-
-
-                        <div>
-
-                            <h2>
-                                Key Strengths
-                            </h2>
-
-
-                            <p>
-                                Highlight the qualities and skills
-                                that make you stand out.
-                            </p>
-
-                        </div>
-
-
-                    </div>
-
-
-
-                    <div class="field">
-
-
-                        <div class="field-label">
-
-
-                            <label for="keyStrengths">
-
-                                Key Strengths
-
-                            </label>
-
-
-                            <span
-                                class="counter"
-                                id="strengthCounter">
-
-                                0 / 500
-
-                            </span>
-
-
-                        </div>
-
-
-
-                        <textarea
-                            id="keyStrengths"
-                            name="keyStrengths"
-                            class="strength-input"
-                            maxlength="500"
-                            placeholder="Example: Problem Solving • Communication • Teamwork • Leadership • Analytical Thinking • Adaptability • Time Management"></textarea>
-
-
-
-                        <div class="textarea-footer">
-
-
-                            <span class="field-hint">
-
-                                Separate multiple strengths
-                                using commas or bullet points.
-
-                            </span>
-
-
-                            <span class="field-counter">
-
-                                Maximum 500 characters
-
-                            </span>
-
-
-                        </div>
-
-
-                    </div>
-
-
-                </section>
-
-
-
-                <!-- =====================================
-                     TIPS
-                ====================================== -->
-
-                <div class="tips-box">
-
-
-                    <div class="tips-title">
-
-                        💡
-
-                        Tips for a stronger summary
-
-                    </div>
-
-
-                    <ul>
-
-                        <li>
-                            Keep your summary focused
-                            and easy to scan.
-                        </li>
-
-                        <li>
-                            Mention your strongest skills
-                            and relevant experience.
-                        </li>
-
-                        <li>
-                            Use keywords related to
-                            the jobs you want.
-                        </li>
-
-                        <li>
-                            Avoid generic phrases such as
-                            "hardworking person".
-                        </li>
-
-                    </ul>
-
-
-                </div>
-
-
-
-                <!-- =====================================
-                     ACTIONS
-                ====================================== -->
-
-                <div class="form-actions">
-
-
-                    <a
-                        href="personal.html"
-                        class="btn-secondary">
-
-                        ← Back
-
-                    </a>
-
-
-                    <button
-                        type="submit"
-                        class="btn-primary">
-
-                        Save &amp; Continue →
-
-                    </button>
-
-
-                </div>
-
-
-
-                <div
-                    id="savedMessage"
-                    class="saved-message">
-
-                    ✓ Your information has been saved.
-
-                </div>
-
-
-            </form>
-
-
-        </div>
-
-
-    </main>
-
-
-
-    <!-- =========================================
-         SUMMARY JAVASCRIPT
-    ========================================= -->
-
-    <script>
-
-
-        const form =
-            document.getElementById(
-                "summaryForm"
+            saveSection(
+                "summary",
+                data
             );
 
 
-        const summaryText =
-            document.getElementById(
-                "summaryText"
-            );
-
-
-        const careerObjective =
-            document.getElementById(
-                "careerObjective"
-            );
-
-
-        const keyStrengths =
-            document.getElementById(
-                "keyStrengths"
-            );
-
-
-        const summaryCounter =
-            document.getElementById(
-                "summaryCounter"
-            );
-
-
-        const objectiveCounter =
-            document.getElementById(
-                "objectiveCounter"
-            );
-
-
-        const strengthCounter =
-            document.getElementById(
-                "strengthCounter"
-            );
-
-
-        const summaryField =
-            document.getElementById(
-                "summaryField"
-            );
-
-
-        const savedMessage =
-            document.getElementById(
-                "savedMessage"
-            );
-
-
-        /* =========================================
-           CHARACTER COUNTERS
-        ========================================= */
-
-        function updateCounter(
-            element,
-            counter,
-            maximum
-        ) {
-
-            counter.textContent =
-                element.value.length +
-                " / " +
-                maximum;
-
+            window.location.href =
+                "education.html";
         }
+    );
 
 
-        summaryText.addEventListener(
-            "input",
-            function () {
-
-                updateCounter(
-                    summaryText,
-                    summaryCounter,
-                    1000
-                );
-
-
-                if (
-                    summaryText.value.trim()
-                ) {
-
-                    summaryField.classList.remove(
-                        "invalid"
-                    );
-
-                }
-
-            }
-        );
-
-
-        careerObjective.addEventListener(
-            "input",
-            function () {
-
-                updateCounter(
-                    careerObjective,
-                    objectiveCounter,
-                    700
-                );
-
-            }
-        );
-
-
-        keyStrengths.addEventListener(
-            "input",
-            function () {
-
-                updateCounter(
-                    keyStrengths,
-                    strengthCounter,
-                    500
-                );
-
-            }
-        );
-
-
-        /* =========================================
-           LOAD SAVED DATA
-        ========================================= */
-
-        function loadSummary() {
-
-            try {
-
-                const saved =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "section_summary"
-                        ) || "{}"
-                    );
-
-
-                if (saved.summaryText) {
-
-                    summaryText.value =
-                        saved.summaryText;
-
-                }
-
-
-                if (saved.careerObjective) {
-
-                    careerObjective.value =
-                        saved.careerObjective;
-
-                }
-
-
-                if (saved.keyStrengths) {
-
-                    keyStrengths.value =
-                        saved.keyStrengths;
-
-                }
-
-
-                updateCounter(
-                    summaryText,
-                    summaryCounter,
-                    1000
-                );
-
-
-                updateCounter(
-                    careerObjective,
-                    objectiveCounter,
-                    700
-                );
-
-
-                updateCounter(
-                    keyStrengths,
-                    strengthCounter,
-                    500
-                );
-
-
-            } catch (error) {
-
-                console.log(
-                    "Unable to load saved summary."
-                );
-
-            }
-
-        }
-
-
-        /* =========================================
-           SAVE
-        ========================================= */
-
-        form.addEventListener(
-            "submit",
-            function (event) {
-
-                event.preventDefault();
-
-
-                const summary =
-                    summaryText.value.trim();
-
-
-                /* Required field */
-
-                if (!summary) {
-
-                    summaryField.classList.add(
-                        "invalid"
-                    );
-
-
-                    summaryText.focus();
-
-                    return;
-
-                }
-
-
-                /* Save */
-
-                const summaryData = {
-
-                    summaryText:
-                        summaryText.value.trim(),
-
-                    careerObjective:
-                        careerObjective.value.trim(),
-
-                    keyStrengths:
-                        keyStrengths.value.trim()
-
-                };
-
-
-                localStorage.setItem(
-                    "section_summary",
-                    JSON.stringify(
-                        summaryData
-                    )
-                );
-
-
-                /* Show confirmation */
-
-                savedMessage.style.display =
-                    "block";
-
-
-                /*
-                 * Move to Education page
-                 */
-
-                setTimeout(
-                    function () {
-
-                        window.location.href =
-                            "education.html";
-
-                    },
-                    600
-                );
-
-            }
-        );
-
-
-        /* =========================================
-           INITIALIZE
-        ========================================= */
-
-        loadSummary();
-
-
-    </script>
+</script>
 
 
 </body>
