@@ -1,202 +1,352 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Resume Builder</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <script src="theme.js"></script>
+
 </head>
+
 
 <body>
 
-<header class="navbar">
-    <div class="logo">Resume Builder</div>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="personal.html">Build Resume</a>
-        <a href="preview.html">Preview</a>
-    </nav>
-</header>
+<!-- ================= NAVBAR ================= -->
 
-<main>
+<nav class="navbar">
 
-    <section class="hero">
+    <div class="nav-inner">
 
-        <div class="hero-content">
-
-            <span class="badge">Professional Resume Builder</span>
-
-            <h1>
-                Build a professional resume
-                <span>in minutes.</span>
-            </h1>
-
-            <p>
-                Create a modern, professional and ATS-friendly resume
-                using customizable templates.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="personal.html" class="btn primary">
-                    Create My Resume
-                </a>
-
-                <a href="#templates" class="btn secondary">
-                    View Templates
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section class="features">
-
-        <h2>Everything you need</h2>
-
-        <div class="feature-grid">
-
-            <div class="feature-card">
-                <div class="icon">📝</div>
-                <h3>Easy Builder</h3>
-                <p>
-                    Enter your information step by step
-                    with a simple interface.
-                </p>
-            </div>
-
-            <div class="feature-card">
-                <div class="icon">🎨</div>
-                <h3>Multiple Templates</h3>
-                <p>
-                    Choose from professional resume
-                    styles for different careers.
-                </p>
-            </div>
-
-            <div class="feature-card">
-                <div class="icon">📱</div>
-                <h3>Mobile Friendly</h3>
-                <p>
-                    Create and edit your resume from
-                    your phone, tablet or computer.
-                </p>
-            </div>
-
-            <div class="feature-card">
-                <div class="icon">🤖</div>
-                <h3>AI Cover Letter</h3>
-                <p>
-                    Generate a customized cover letter
-                    based on the company and job.
-                </p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section id="templates" class="templates">
-
-        <h2>Choose your resume style</h2>
-
-        <div class="template-grid">
-
-            <div class="template-card">
-                <div class="template-preview modern">
-                    <h3>Your Name</h3>
-                    <p>Professional Resume</p>
-                    <hr>
-                    <strong>Experience</strong>
-                    <p>Company Name — Job Title</p>
-                </div>
-
-                <h3>Modern</h3>
-                <p>Clean and professional</p>
-            </div>
-
-
-            <div class="template-card">
-                <div class="template-preview classic">
-                    <h3>Your Name</h3>
-                    <p>Professional Resume</p>
-                    <hr>
-                    <strong>Experience</strong>
-                    <p>Company Name — Job Title</p>
-                </div>
-
-                <h3>Classic</h3>
-                <p>Traditional professional format</p>
-            </div>
-
-
-            <div class="template-card">
-                <div class="template-preview minimal">
-                    <h3>Your Name</h3>
-                    <p>Professional Resume</p>
-                    <hr>
-                    <strong>Skills</strong>
-                    <p>Communication · Leadership · Java</p>
-                </div>
-
-                <h3>Minimal</h3>
-                <p>Simple and elegant</p>
-            </div>
-
-
-            <div class="template-card">
-                <div class="template-preview ats">
-                    <h3>Your Name</h3>
-                    <p>Professional Resume</p>
-                    <hr>
-                    <strong>Experience</strong>
-                    <p>Keyword-friendly professional layout</p>
-                </div>
-
-                <h3>ATS Friendly</h3>
-                <p>Designed for applicant systems</p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section class="cta">
-
-        <h2>Ready to build your resume?</h2>
-
-        <p>
-            Start with your personal information and
-            complete your resume step by step.
-        </p>
-
-        <a href="personal.html" class="btn primary">
-            Start Building
+        <a
+            href="index.html"
+            class="logo"
+        >
+            Resume Builder
         </a>
 
-    </section>
 
-</main>
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="personal.html">
+                Resume
+            </a>
+
+            <a href="preview.html">
+                Preview
+            </a>
+
+
+            <button
+                id="themeToggle"
+                class="theme-toggle"
+                type="button"
+            >
+                🌙
+            </button>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="badge">
+            ✨ Professional Resume Builder
+        </span>
+
+
+        <h1>
+
+            Create a
+
+            <span>
+                resume
+            </span>
+
+            that gets noticed.
+
+        </h1>
+
+
+        <p>
+
+            Build a professional,
+            modern and ATS-friendly
+            resume step by step.
+
+            Add your information,
+            preview your resume
+            and save it as PDF.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a
+                href="personal.html"
+                class="btn primary"
+            >
+                Create My Resume →
+            </a>
+
+
+            <a
+                href="preview.html"
+                class="btn secondary"
+            >
+                View Preview
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="section">
+
+    <h2>
+        Everything you need
+    </h2>
+
+
+    <div class="feature-grid">
+
+
+        <div class="feature-card">
+
+            <div class="icon">
+                📝
+            </div>
+
+            <h3>
+                Guided Sections
+            </h3>
+
+            <p>
+                Complete your resume
+                one section at a time.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="icon">
+                🎨
+            </div>
+
+            <h3>
+                Professional Design
+            </h3>
+
+            <p>
+                Create a clean and
+                professional-looking resume.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="icon">
+                🌙
+            </div>
+
+            <h3>
+                Light & Dark Theme
+            </h3>
+
+            <p>
+                Switch between light
+                and dark themes anytime.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="icon">
+                🖨️
+            </div>
+
+            <h3>
+                Print & PDF
+            </h3>
+
+            <p>
+                Preview your resume
+                and save it as PDF.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= TEMPLATES ================= -->
+
+<section class="section templates">
+
+    <h2>
+        Resume Styles
+    </h2>
+
+
+    <div class="template-grid">
+
+
+        <div class="template-card">
+
+            <div class="template-preview">
+
+                <h3>
+                    Modern
+                </h3>
+
+                <p>
+                    Clean and contemporary
+                    professional design.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="template-card">
+
+            <div class="template-preview">
+
+                <h3>
+                    Classic
+                </h3>
+
+                <p>
+                    Traditional professional
+                    resume structure.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="template-card">
+
+            <div class="template-preview">
+
+                <h3>
+                    Minimal
+                </h3>
+
+                <p>
+                    Simple and highly
+                    readable layout.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="template-card">
+
+            <div class="template-preview">
+
+                <h3>
+                    ATS Friendly
+                </h3>
+
+                <p>
+                    Simple structure suitable
+                    for applicant tracking systems.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta">
+
+    <h2>
+        Ready to build your resume?
+    </h2>
+
+
+    <p>
+        Start with your personal
+        information and continue
+        through each section.
+    </p>
+
+
+    <a
+        href="personal.html"
+        class="btn primary"
+    >
+        Start Building →
+    </a>
+
+</section>
+
 
 
 <footer>
 
-    <p>
-        © 2026 Resume Builder. All rights reserved.
-    </p>
+    Resume Builder
 
 </footer>
 
 
-<script src="js/app.js"></script>
-
 </body>
+
 </html>
