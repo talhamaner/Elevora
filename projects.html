@@ -4,9 +4,10 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Projects - Elevora</title>
+<title>Projects | Elevora</title>
 
 <link rel="stylesheet" href="css/style.css">
 
@@ -15,11 +16,13 @@
 
 </head>
 
+
 <body>
+
 
 <header class="navbar">
 
-<a class="logo" href="index.html">Elevora</a>
+<a href="index.html" class="logo">Elevora</a>
 
 <nav class="nav-links">
 
@@ -28,7 +31,7 @@
 <a href="preview.html">Preview</a>
 <a href="cover-letter.html">Cover Letter</a>
 
-<button id="themeToggle" class="theme-toggle">
+<button id="themeToggle" class="theme-toggle" type="button">
 🌙
 </button>
 
@@ -37,69 +40,48 @@
 </header>
 
 
-<main class="container">
+<main class="page-container">
 
-<div class="page-head">
+
+<div class="form-header">
+
+<div class="step-number">5</div>
+
+<div>
 
 <h1>Projects</h1>
 
-<p>Add multiple projects to your resume.</p>
+<p>
+Showcase projects that demonstrate your skills.
+</p>
+
+</div>
 
 </div>
 
 
-<div class="builder">
+<div class="progress-wrapper">
 
-<aside class="steps">
+<div class="progress-bar">
+<div class="progress-fill" style="width:50%"></div>
+</div>
 
-<a href="personal.html">1. Personal</a>
-<a href="summary.html">2. Summary</a>
-<a href="education.html">3. Education</a>
-<a href="experience.html">4. Experience</a>
-<a href="projects.html">5. Projects</a>
-<a href="skills.html">6. Skills</a>
-<a href="certifications.html">7. Certifications</a>
-<a href="languages.html">8. Languages</a>
-<a href="achievements.html">9. Achievements</a>
-<a href="preview.html">10. Preview</a>
+<span>5 of 10</span>
 
-</aside>
+</div>
 
-
-<section class="form-card">
 
 <div id="entryList" class="entry-list"></div>
 
 
-<form id="entryForm">
-
-<div class="form-grid">
-
-<div class="form-group">
-
-<label>Project Name</label>
-
-<input id="name">
-
-</div>
+<form id="entryForm" class="form-card">
 
 
 <div class="form-group">
 
-<label>Your Role</label>
+<label>Project Name <span class="required">*</span></label>
 
-<input id="role">
-
-</div>
-
-
-<div class="form-group">
-
-<label>Project Link</label>
-
-<input
-id="link"
-placeholder="https://example.com">
+<input id="projectName" required placeholder="Project name">
 
 </div>
 
@@ -108,67 +90,67 @@ placeholder="https://example.com">
 
 <label>Technologies</label>
 
-<input
-id="technologies"
-placeholder="HTML, CSS, JavaScript">
+<input id="technologies" placeholder="HTML, CSS, JavaScript">
 
 </div>
 
 
-<div class="form-group full">
+<div class="form-group">
 
-<label>Project Description</label>
+<label>Project Link</label>
 
-<textarea id="description"></textarea>
-
-</div>
+<input id="link" type="url" placeholder="https://example.com">
 
 </div>
 
 
-<div class="actions">
+<div class="form-group">
 
-<button
-type="button"
-id="cancelEdit"
-class="btn secondary"
-style="display:none">
+<label>Description</label>
 
-Cancel Edit
+<textarea id="description" placeholder="Describe the project and your contribution..."></textarea>
 
+</div>
+
+
+<div class="form-actions">
+
+<a href="experience.html" class="btn secondary">
+← Back
+</a>
+
+<div style="display:flex;gap:10px;">
+
+<button type="button" id="cancelEdit" class="btn secondary" style="display:none">
+Cancel
 </button>
 
-<button
-id="saveBtn"
-class="btn">
-
+<button type="submit" id="saveBtn" class="btn primary">
 + Add Project
-
 </button>
 
 </div>
 
+</div>
 
-<div id="status" class="status"></div>
+
+<div id="status" class="form-status"></div>
 
 </form>
 
 
-<div class="actions">
+<div class="form-actions">
 
-<a class="btn secondary" href="experience.html">
+<a href="experience.html" class="btn secondary">
 ← Back
 </a>
 
-<a class="btn" href="skills.html">
+<a href="skills.html" class="btn primary">
 Save & Continue →
 </a>
 
 </div>
 
-</section>
-
-</div>
 
 </main>
 
@@ -182,31 +164,22 @@ key:"projects",
 addText:"+ Add Project",
 
 fields:[
-
-{id:"name"},
-{id:"role"},
-{id:"link"},
+{id:"projectName"},
 {id:"technologies"},
-{id:"description",type:"textarea"}
-
+{id:"link"},
+{id:"description"}
 ],
 
-title:function(entry){
+title:entry =>
+entry.projectName || "Project",
 
-return entry.name || "Project";
-
-},
-
-meta:function(entry){
-
-return [
-entry.role,
-entry.technologies
+meta:entry =>
+[
+entry.technologies,
+entry.link
 ]
 .filter(Boolean)
-.join(" • ");
-
-}
+.join(" • ")
 
 };
 
@@ -215,5 +188,4 @@ entry.technologies
 <script src="js/multi.js"></script>
 
 </body>
-
 </html>
