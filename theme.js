@@ -1,31 +1,26 @@
 (function () {
 
+    const STORAGE_KEY = "resumeTheme";
+
     /*
-     * =========================================
-     * RESUME BUILDER THEME SYSTEM
-     * =========================================
+     * Apply saved theme immediately.
+     * This prevents the page from flashing
+     * into the wrong theme.
      */
 
-
     const savedTheme =
-        localStorage.getItem("resumeTheme");
+        localStorage.getItem(STORAGE_KEY);
 
-
-    const systemDark =
+    const systemPrefersDark =
         window.matchMedia &&
         window.matchMedia(
             "(prefers-color-scheme: dark)"
         ).matches;
 
-
     const initialTheme =
         savedTheme ||
-        (systemDark ? "dark" : "light");
+        (systemPrefersDark ? "dark" : "light");
 
-
-    /*
-     * Apply theme immediately
-     */
 
     document.documentElement.setAttribute(
         "data-theme",
@@ -34,16 +29,13 @@
 
 
     /*
-     * Update moon / sun button
+     * Update the theme button
      */
 
     function updateThemeButton() {
 
         const button =
-            document.getElementById(
-                "themeToggle"
-            );
-
+            document.getElementById("themeToggle");
 
         if (!button) {
             return;
@@ -60,13 +52,11 @@
 
             button.textContent = "☀️";
 
-            button.setAttribute(
-                "aria-label",
-                "Switch to light mode"
-            );
+            button.title =
+                "Switch to light mode";
 
             button.setAttribute(
-                "title",
+                "aria-label",
                 "Switch to light mode"
             );
 
@@ -74,13 +64,11 @@
 
             button.textContent = "🌙";
 
-            button.setAttribute(
-                "aria-label",
-                "Switch to dark mode"
-            );
+            button.title =
+                "Switch to dark mode";
 
             button.setAttribute(
-                "title",
+                "aria-label",
                 "Switch to dark mode"
             );
 
@@ -90,7 +78,7 @@
 
 
     /*
-     * Toggle theme
+     * Theme toggle
      */
 
     window.toggleTheme = function () {
@@ -114,7 +102,7 @@
 
 
         localStorage.setItem(
-            "resumeTheme",
+            STORAGE_KEY,
             newTheme
         );
 
@@ -125,7 +113,7 @@
 
 
     /*
-     * Initialize after page loads
+     * Initialize button
      */
 
     document.addEventListener(
