@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Personal Information | Resume Builder</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+    <div class="logo">
+        Resume Builder
+    </div>
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="personal.html">
+            Resume
+        </a>
+
+        <a href="preview.html">
+            Preview
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main>
+
+<section class="builder-page">
+
+    <div class="builder-header">
+
+        <span class="badge">
+            Step 1 of 10
+        </span>
+
+        <h1>
+            Personal Information
+        </h1>
+
+        <p>
+            Enter your basic information.
+            Fields marked with <strong>*</strong> are required.
+        </p>
+
+    </div>
+
+
+    <form id="personalForm">
+
+
+        <div class="form-card">
+
+            <h2>Basic Information</h2>
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label>
+                        First Name *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="firstName"
+                        required
+                        placeholder="Enter first name"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Last Name *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="lastName"
+                        required
+                        placeholder="Enter last name"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Email *
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        required
+                        placeholder="you@example.com"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Phone *
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        required
+                        placeholder="+91 XXXXX XXXXX"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        City *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="city"
+                        required
+                        placeholder="City"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Country *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="country"
+                        required
+                        placeholder="Country"
+                    >
+
+                </div>
+
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Professional Title *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="professionalTitle"
+                        required
+                        placeholder="e.g. Software Developer"
+                    >
+
+                </div>
+
+
+                <div class="form-group full-width">
+
+                    <label>
+                        LinkedIn Profile
+                    </label>
+
+                    <input
+                        type="url"
+                        id="linkedin"
+                        placeholder="https://linkedin.com/in/..."
+                    >
+
+                </div>
+
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Portfolio / Website
+                    </label>
+
+                    <input
+                        type="url"
+                        id="website"
+                        placeholder="https://yourwebsite.com"
+                    >
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="form-actions">
+
+            <a
+                href="index.html"
+                class="btn secondary"
+            >
+                Back
+            </a>
+
+            <button
+                type="submit"
+                class="btn primary"
+            >
+                Save & Continue →
+            </button>
+
+        </div>
+
+
+    </form>
+
+</section>
+
+</main>
+
+
+<script>
+
+document
+    .getElementById("personalForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const personalData = {
+
+            firstName:
+                document.getElementById("firstName").value.trim(),
+
+            lastName:
+                document.getElementById("lastName").value.trim(),
+
+            email:
+                document.getElementById("email").value.trim(),
+
+            phone:
+                document.getElementById("phone").value.trim(),
+
+            city:
+                document.getElementById("city").value.trim(),
+
+            country:
+                document.getElementById("country").value.trim(),
+
+            professionalTitle:
+                document
+                    .getElementById("professionalTitle")
+                    .value
+                    .trim(),
+
+            linkedin:
+                document.getElementById("linkedin").value.trim(),
+
+            website:
+                document.getElementById("website").value.trim()
+
+        };
+
+
+        localStorage.setItem(
+            "resumePersonalData",
+            JSON.stringify(personalData)
+        );
+
+
+        window.location.href = "summary.html";
+
+    });
+
+
+</script>
+
+
+</body>
+
+</html>
